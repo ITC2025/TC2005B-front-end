@@ -12,7 +12,7 @@ const NavbarSC = () => {
                         <Image
                             src="../../images/logo.png"
                             width="auto"
-                            height="33"ß
+                            height="33"
                             alt="logo"
                         />
                     </Navbar.Brand>
