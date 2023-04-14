@@ -1,6 +1,6 @@
 import React from "react";
-import logoNb from './../../images/logoNb.png';
-import './../../styles/login.css'
+import logoNb from '../../images/logoNb.png';
+import '../../styles/login.css'
 import {
   Col,
   Button,
