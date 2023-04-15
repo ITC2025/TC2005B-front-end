@@ -4,7 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/login'
 import Test from './pages/test/index'
-import PrivateRoutes from "./routers/PrivateRoutes";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 function App() {
   return (
