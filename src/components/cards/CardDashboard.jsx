@@ -4,13 +4,13 @@ import logo from "../../images/logo.png";
 import CardProject from "./../../images/CardProject.png";
 import "../../styles/CardDashboard.css"
 
-function CardDashboard() {
+function CardDashboard({image}) {
     return (
       <Card>
         <a href="">
 
         
-        <Card.Img src={CardProject} />
+        <Card.Img src={image} />
         </a>
       </Card>
     );
