@@ -17,7 +17,6 @@ function CardGrid() {
           <div className="col-6">
             <CardDashboard image={CardRequest}></CardDashboard>
           </div>
-
         </div>
 
         <div className="row justify-content-center">
@@ -29,5 +28,4 @@ function CardGrid() {
       </>
       );
 }
-
       export default CardGrid;
