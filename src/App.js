@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import './App.css';
-import CardDashboard from './components/cards/CardDashboard';
+import CardGrid from './components/cards/CardGrid';
 
 function App() {
   return (
-    <CardDashboard />
+    <CardGrid />
   );
 }
 
