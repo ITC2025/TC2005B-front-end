@@ -1,30 +1,42 @@
 // import logo from './logo.svg';\
 import "bootstrap/dist/css/bootstrap.min.css"
-
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/login'
+import Test from './pages/test/index'
+import PrivateRoutes from "./routers/PrivateRoutes";
 
 function App() {
   return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-    <>
-      <Login></Login>
-    </>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route element={<Login/>} path="/"/>
+          
+          {/*Rutas de usuario*/}
+          <Route element={<PrivateRoutes rol='user'/>}>
+            <Route element={<Test name="User"/>} path="user">
+              <Route element={<Test name="viaticos"/>} path="viaticos"/>
+            </Route>
+          </Route>
+
+          {/*Rutas de admin*/}
+          <Route element={<PrivateRoutes rol='admin'/>}>
+            <Route element={<Test name="Admin"/>} path="admin">
+              <Route element={<Test name="viaticos"/>} path="viaticos"/>
+            </Route>
+          </Route>
+
+          {/*Rutas de Project Manager*/}
+          <Route element={<PrivateRoutes rol='pm'/>}>
+            <Route element={<Test name="Project Manager"/>} path="pm">
+              <Route element={<Test name="viaticos"/>} path="viaticos"/>
+            </Route>
+          </Route>
+
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
