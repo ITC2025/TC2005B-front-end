@@ -1,68 +1,19 @@
-import React from 'react';
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBRow,
-  MDBCol
-} from 'mdb-react-ui-kit';
+import React from "react";
+import  {Card, Button}  from "react-bootstrap";
+import logo from "../../images/logo.png";
+import CardProject from "./../../images/CardProject.png";
+import "../../styles/CardDashboard.css"
 
-export default function App() {
-  return (
-    <MDBRow className='row-cols-1 row-cols-md-2 g-4'>
-      <MDBCol>
-        <MDBCard>
-          <MDBCardImage
-            src='https://mdbootstrap.com/img/new/standard/city/041.webp'
-            alt='...'
-            position='top'
-          />
-          <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
-            <MDBCardText>
-              This is a longer card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.
-            </MDBCardText>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-      <MDBCol>
-        <MDBCard>
-          <MDBCardImage
-            src='https://mdbootstrap.com/img/new/standard/city/042.webp'
-            alt='...'
-            position='top'
-          />
-          <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
-            <MDBCardText>
-              This is a longer card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.
-            </MDBCardText>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-      <MDBCol>
-        <MDBCard>
-          <MDBCardImage
-            src='https://mdbootstrap.com/img/new/standard/city/043.webp'
-            alt='...'
-            position='top'
-          />
-          <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
-            <MDBCardText>
-              This is a longer card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.
-            </MDBCardText>
-          </MDBCardBody>
-        </MDBCard>
-      </MDBCol>
-      <MDBCol>
+function CardDashboard() {
+    return (
+      <Card>
+        <a href="">
 
-      </MDBCol>
-    </MDBRow>
-  );
-}
+        
+        <Card.Img src={CardProject} />
+        </a>
+      </Card>
+    );
+  }
+  
+  export default CardDashboard;
