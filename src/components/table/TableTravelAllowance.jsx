@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import DataTable from 'react-data-table-component'
+import TableStyle from '../../styles/TableStyle.css'
 
 export const TableTravelAllowance = () => {
   // Configurar hooks
@@ -12,7 +13,7 @@ export const TableTravelAllowance = () => {
     const data = await res.json()
     setTravelAllowance(data)
     console.log(data)
-    setTravelAllowance(data)
+    
   }
   useEffect(() => {
     getTravelAllowance()
@@ -39,6 +40,7 @@ export const TableTravelAllowance = () => {
     <DataTable
       columns={columns} 
       data={travelAllowance}
+      pagination
       />
   )
 }
