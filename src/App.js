@@ -1,12 +1,14 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import './App.css';
-import CardGrid from './components/cards/CardGrid';
-import ItemTravelAllowance from "./components/table/ItemTravelAllowance";
+import pmDashboard from "./pages/Dashboard/pmDashboard.js";
+import CardDashboard from "./components/cards/CardDashboard";
+import CardGrid from "./components/cards/CardGrid";
+import { TableTravelAllowance } from "./components/table/TableTravelAllowance";
 
 function App() {
   return (
-    <ItemTravelAllowance   />
+    <TableTravelAllowance/>
   );
 }
 
