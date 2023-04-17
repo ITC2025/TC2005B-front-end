@@ -1,0 +1,22 @@
+* {
+    font-size: 15px;
+    line-height: 20px;
+}
+
+Container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#SolicitFormRow {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+#SolicitFormRowNew {
+    padding: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

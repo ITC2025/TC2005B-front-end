@@ -1,0 +1,43 @@
+#InputAndIcon {
+    display: 'flex';
+    flex-direction: row;
+}
+
+#InputAndIcon Col {
+    padding: 0%;
+}
+
+#IconButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#IconButton Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    border: solid 1px #000000;
+    color:#000000;
+    border-radius: 6px;
+    outline: none;
+    background-color: #ECECEC;
+}
+
+#IconButton svg {
+    width: 25px;
+    height: 25px;
+}
+
+#IconButton path {
+    color: #000000;
+}
+
+#InputForm {
+    padding: 0px;
+}
+
+::placeholder {
+    text-decoration: blue !important;
+}

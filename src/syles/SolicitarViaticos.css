@@ -1,0 +1,10 @@
+h1 {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 120px;
+    margin-right: 120px;
+    font-size: 26px;
+}
+
