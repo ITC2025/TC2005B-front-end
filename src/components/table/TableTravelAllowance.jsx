@@ -34,6 +34,22 @@ export const TableTravelAllowance = () => {
       name: 'Project',
       selector: row => row.email
     },
+    // {
+    //   name: 'Description',
+    //   selector: row => row.gender
+    // },
+    // {
+    //   name: 'Total',
+    //   selector: row => row.status
+    // },
+    // {
+    //   name: 'Status',
+    //   selector: row => row.status
+    // },
+    // {
+    //   name: 'Actions',
+      
+    // }
   ]
   // mostrar la tabla
   return (
