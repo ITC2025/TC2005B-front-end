@@ -4,7 +4,8 @@ import TableStyle from '../../styles/TableStyle.css'
 
 export const TableTravelAllowance = () => {
   // Configurar hooks
-  const [travelAllowance, setTravelAllowance] = useState( [] )
+  const [travelAllowance, setTravelAllowance] = useState([])
+  const [filtertravelAllowance, setFilterTravelAllowance] = useState([])
 
   // Funcion para mostrar datos con fetch
   const URL = 'https://gorest.co.in/public/v2/users'
@@ -13,8 +14,8 @@ export const TableTravelAllowance = () => {
     const res = await fetch(URL)
     const data = await res.json()
     setTravelAllowance(data)
+    setFilterTravelAllowance(data)
     console.log(data)
-    
   }
 
   useEffect(() => {
@@ -24,13 +25,9 @@ export const TableTravelAllowance = () => {
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
-    const searchWord = e.target.value
-    const newFilter = travelAllowance.filter((value) => {
-      return value.name.toLowerCase().includes(searchWord.toLowerCase())
-    })
-    setTravelAllowance(newFilter)
+    const newData = filtertravelAllowance.filter(row => row.name.toLowerCase().includes(e.target.value.toLowerCase()))
+    setTravelAllowance(newData);
   }
-
     
   // configuracion de columnas
   const columns = [
@@ -70,10 +67,14 @@ export const TableTravelAllowance = () => {
     //   sortable: true
     // }
   ]
+
   // mostrar la tabla
   return (
     <div className='Container text-center'>
-      <div className='text-end'> <input type="text" onChange={handleFilter}/></div>
+      <div className='text-end'> 
+      <input type="text" placeholder='Search' onChange={handleFilter}/>
+      </div>
+
       <DataTable
       columns={columns} 
       data={travelAllowance}
