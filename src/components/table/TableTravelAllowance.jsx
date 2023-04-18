@@ -70,9 +70,9 @@ export const TableTravelAllowance = () => {
     // }
   ];
 
-  const customStyles = {
-    rowsPerPageNext: "Filas por pagina",
-    rageSeparatorText: "de",
+  const paginationTable = {
+    rowsPerPageText: "Filas por pagina",
+    rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
   }
@@ -87,9 +87,8 @@ export const TableTravelAllowance = () => {
       <DataTable
         columns={columns}
         data={travelAllowance}
-        title="Mis Viaticos"
         pagination
-        paginationComponentOptions={customStyles}
+        paginationComponentOptions={paginationTable}
         fixedHeader
       />
     </div>
