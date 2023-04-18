@@ -2,8 +2,8 @@
     position: absolute;
     width: 240px;
     height: 46px;
-    left: 271px;
-    top: 122px;
+    left: 240px;
+    top: 46px;
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
@@ -18,9 +18,8 @@
 #container1 {
     display: flex;
     align-items: center;
-    width: 1380px;
-    height: 427px;
     background: #FAFAFA;
+    padding: 25px;
     backdrop-filter: blur(15px);
     /* Note: backdrop-filter has minimal browser support */
 
@@ -28,8 +27,6 @@
 }
 
 #container2 {
-    width: 1271px;
-    height: 262px;
     background: #ECECEC;
     backdrop-filter: blur(15px);
     border-radius: 25px;
@@ -41,7 +38,6 @@
 }
 
 #group2 {
-    display: flex;
     align-items: center;
 }
 
