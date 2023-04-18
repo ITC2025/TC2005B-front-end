@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
-function Footer() {
+function SendSaveCost(props) {
   const [modalShow, setModalShow] = useState(false);
 
   return (
@@ -14,15 +14,16 @@ function Footer() {
     <Container>
       <Row>
         <Col sm={12} md={6}>
-          <p className="total-gastos">
-            TOTAL DE LOS GASTOS (MXN): $0.00
+          <p className="mt-0" id="TotalExpenses">
+            TOTAL DE LOS GASTOS (MXN):
           </p>
+
         </Col>
-        <Col className="d-flex justify-content-end" sm={12} md={6}>
-          <Button variant="primary" className="h-75 mx-1">
+        <Col id="SaveSendColumns" sm={12} md={6}>
+          <Button id="SendSaveButtons" variant="primary">
             GUARDAR CAMBIOS
           </Button>
-          <Button variant="primary" className="h-75 mx-1" onClick={() => setModalShow(true)}>
+          <Button id="SendSaveButtons" variant="primary" onClick={() => setModalShow(true)}>
             GUARDAR Y ENVIAR
           </Button>
         </Col>
@@ -37,4 +38,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default SendSaveCost;

@@ -1,11 +1,18 @@
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { MdDeleteOutline } from "react-icons/md";
+import { useState } from "react";
+
 
 function AddedInput() {
-    const DeleteLine = <MdDeleteOutline />
+    const DeleteLineIcon = <MdDeleteOutline />
+    const [ShowComponent, SetShowComponent] = useState(true);
+    const DeleteLine = () => {
+        SetShowComponent(false);
+    };
     return (
         <>
-            <Row id="SolicitFormRowNew">
+            {ShowComponent ? (
+                <Row id="SolicitFormRowNew">
                 <Col sm={10} md={7}>
                     <Form.Control type="text" placeholder="Concepto de Gasto" />
                 </Col>
@@ -14,9 +21,14 @@ function AddedInput() {
                     <Button>MXN</Button>
                 </Col>
                 <Col sm={10} md={1} id="IconButton">
-                    <Button>{DeleteLine}</Button>
+                    <Button onClick={DeleteLine}>{DeleteLineIcon}</Button>
                 </Col>
             </Row>
+            ) : (
+                <Row>
+                    
+                </Row>
+            )}
         </>
     );
 }

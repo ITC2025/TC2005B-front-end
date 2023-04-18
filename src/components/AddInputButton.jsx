@@ -8,13 +8,13 @@ function AddInputButton(props) {
     const CreditCard = <MdOutlineCreditCard />
     const [inputs, setInputs] = useState([]);
 
-    const agregarInput = () => {
+    const addInput = () => {
         setInputs([...inputs, <props.InputComponent key={inputs.length} />]);
     };
 
     return (
         <>
-            <Button onClick={agregarInput}>
+            <Button onClick={addInput}>
                 {CreditCard}AGREGAR GASTO{add}
             </Button> 
             {inputs}
