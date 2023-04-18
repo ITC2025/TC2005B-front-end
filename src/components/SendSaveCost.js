@@ -13,18 +13,20 @@ function Footer() {
     <>
     <Container>
       <Row>
-        <Col xs={8} sm={8} md={8} lg={8} xl={8}>
-          <p className="total-gastos">
-            TOTAL DE LOS GASTOS (MXN): $0.00
-          </p>
+        <Col xs={12} sm={12} md={12} lg={8} xl={8}>
+          <Col xs={12} sm={12} md={9} lg={7} xl={5}>
+            <p className="total-gastos">
+              TOTAL DE LOS GASTOS (MXN): $0.00
+            </p>
+          </Col>
         </Col>
-        <Col xs={2} sm={2} md={2} lg={2} xl={2}>
-          <Button variant="primary" className="boton1" onClick={() => setModalShow(true)}>
+        <Col xs={6} sm={6} md={6} lg={2} xl={2}>
+          <Button className="boton1">
             GUARDAR CAMBIOS
           </Button>
         </Col>
-        <Col xs={2} sm={2} md={2} lg={2} xl={2}>
-          <Button className="boton1">
+        <Col xs={6} sm={6} md={6} lg={2} xl={2}>
+          <Button variant="primary" className="boton1" onClick={() => setModalShow(true)}>
             GUARDAR Y ENVIAR
           </Button>
         </Col>
