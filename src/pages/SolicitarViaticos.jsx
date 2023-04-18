@@ -1,21 +1,19 @@
 import  NavbarSC  from '../components/NavBar';
 import  FormSolicit  from '../components/FormSolicit';
 import '../syles/SolicitarViaticos.css'
-import SolicitarModal from '../components/RequestModal';
-import Footer from '../components/Footer';
+import Footer from '../components/SendSaveCost';
 
 function SolicitarViaticos() {
     return (
         <>
             <NavbarSC />
-            <h1>Solicitar viaticos</h1>
+            <h1 className='header-title'>Solicitar viaticos</h1>
             <hr />
             <div>
                 <FormSolicit />
             </div>
             <hr />
             <div>
-                <SolicitarModal />
                 <Footer />
             </div>
         </>
