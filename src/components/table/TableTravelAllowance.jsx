@@ -101,8 +101,10 @@ export const TableTravelAllowance = () => {
         <div className="col-7 d-flex justify-content-end">
           <div>
             <div className="input-group">
-              <input type="text" onChange={handleFilter} />
+              
+              <input type="text" placeholder="Buscar" onChange={handleFilter} />
               <label>Buscar</label>
+              
             </div>
           </div>
         </div>
