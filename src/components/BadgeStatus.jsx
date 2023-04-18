@@ -6,26 +6,26 @@ export const BadgeStatus = (props) => {
   if (props.status === "active") {
     return (
       <div className="container">
-        <h5>
+        <h6>
           <Badge className='acepatado'>{props.status}</Badge>
-        </h5>
+        </h6>
       </div>
     );
   } else if (props.status === "inactive") {
     return (
 
       <div className="container">
-        <h5>
+        <h6>
           <Badge className='rechazado'>{props.status}</Badge>
-        </h5>
+        </h6>
       </div>
     );
   } else {
     return (
       <div className="container">
-        <h5>
+        <h6>
           <Badge className='pendiente'>{props.status}</Badge>
-        </h5>
+        </h6>
       </div>
     );
   }
