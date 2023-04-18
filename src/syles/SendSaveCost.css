@@ -1,5 +1,5 @@
 .boton1 {
-    background-color: #FF8080; /* Green */
+    background-color: #FF8080;
     border-color: #FF0000;
     border-width: 1px;
     border-radius: 10px;
@@ -16,8 +16,8 @@
     cursor: pointer;
   }
   
-  .boton1:hover{
-    background-color: #FF0000; /* Green */
+/* .boton1:hover{
+    background-color: #FF0000; 
     border-color: #FF0000;
     border-width: 1px;
     border-radius: 10px;
@@ -32,4 +32,6 @@
     font-size: 20;
     margin: 4px 2px;
     cursor: pointer;
-  }
+} */
+
+  

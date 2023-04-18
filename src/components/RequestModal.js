@@ -18,7 +18,7 @@ function SolicitarModal(props) {
         keyboard={false}
     >
       <Modal.Header closeButton className='modal-header'>
-        <Modal.Title id="contained-modal-title-vcenter" className='title'>
+        <Modal.Title id="contained-modal-title-vcenter" className='title-modal'>
             <strong>CONFIRMACIÓN DE SOLICITUD</strong>
         </Modal.Title>
       </Modal.Header>

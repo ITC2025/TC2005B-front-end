@@ -1,4 +1,4 @@
-.title {
+.title-modal {
     color: #FF8080;
     font-size: 32;
     text-align: center;
@@ -32,7 +32,7 @@
 }
 
 .close-button {
-    background-color: #FF8080; /* Green */
+    background-color: #FF8080; 
     border-color: #FF0000;
     border-width: 1px;
     border-radius: 10px;
@@ -49,8 +49,8 @@
     cursor: pointer;
   }
   
-  .close-button:hover{
-    background-color: #FF0000; /* Green */
+  /* .close-button:hover{
+    background-color: #FF0000; 
     border-color: #FF0000;
     border-width: 1px;
     border-radius: 10px;
@@ -64,4 +64,13 @@
     display: inline-block;
     font-size: 20;
     cursor: pointer;
+  } */
+
+  .total-gastos {
+    font-size: 20;
+    color: #FF8080;
+    border-color: #FF8080;
+    border: #FF8080;
+    border-width: 1px;
+    border-radius: 10px;
   }
