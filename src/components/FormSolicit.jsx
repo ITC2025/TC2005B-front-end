@@ -3,7 +3,7 @@ import AddInputButton from './AddInputButton';
 import AddedInput from './AddedInput';
 import { Container, Row, Col } from 'react-bootstrap';
 import { MdCalendarMonth, MdLocationPin, MdExpandMore } from "react-icons/md";
-import '../syles/FormSolicit.css';
+import '../styles/FormSolicit.css';
 
 function FormSolicit() {
     const calendar = <MdCalendarMonth />

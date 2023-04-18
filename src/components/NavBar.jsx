@@ -1,5 +1,5 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
-import  '../syles/NavBar.css'
+import  '../styles/NavBar.css'
 
 const NavbarSC = () => {
     return (

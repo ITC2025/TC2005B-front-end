@@ -1,7 +1,8 @@
 import  NavbarSC  from '../components/NavBar';
 import  FormSolicit  from '../components/FormSolicit';
-import '../syles/SolicitarViaticos.css'
+import '../styles/SolicitarViaticos.css'
 import Footer from '../components/SendSaveCost';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function SolicitarViaticos() {
     return (
@@ -14,7 +15,14 @@ function SolicitarViaticos() {
             </div>
             <hr />
             <div>
-                <Footer />
+                <Container>
+                    <Row>
+                        <Col>
+                            <Footer />
+                        </Col>
+                    </Row>
+                </Container>
+                
             </div>
         </>
     );

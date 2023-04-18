@@ -37,7 +37,3 @@
 #InputForm {
     padding: 0px;
 }
-
-::placeholder {
-    text-decoration: blue !important;
-}

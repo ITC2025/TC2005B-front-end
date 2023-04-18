@@ -1,20 +1,20 @@
 .boton1 {
-    background-color: #FF8080;
-    border-color: #FF0000;
-    border-width: 1px;
-    border-radius: 10px;
-    color: white;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 20px;
-    padding-right: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20;
-    margin: 4px 2px;
-    cursor: pointer;
-  }
+  background-color: #FF8080;
+  border-color: #FF0000;
+  border-width: 1px;
+  border-radius: 10px;
+  color: white;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20;
+  margin: 4px 2px;
+  cursor: pointer;
+}
   
 /* .boton1:hover{
     background-color: #FF0000; 
