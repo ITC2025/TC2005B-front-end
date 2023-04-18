@@ -5,5 +5,19 @@
 }
 
 .rdt_TableCell {
-    background-color: #a4a4a40e;
+    background-color: rgba(250, 250, 250, 1);
 }
+
+
+
+input {
+    border: 1px solid rgba(255, 0, 0, 0.45);
+    border-radius: 30px;
+    background-color: #a4a4a40e;
+    padding: 0.2em;
+    padding-left: 0.5em;
+}
+
+/* .text-end {
+    padding-bottom: 0.5em;
+} */
