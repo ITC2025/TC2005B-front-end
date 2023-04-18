@@ -1,6 +1,6 @@
 import  NavbarSC  from '../components/NavBar';
 import  FormSolicit  from '../components/FormSolicit';
-import '../syles/SolicitarViaticos.css';
+import '../syles/SolicitarViaticos.css'
 
 function SolicitarViaticos() {
     return (
