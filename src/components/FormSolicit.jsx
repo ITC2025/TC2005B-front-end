@@ -11,7 +11,7 @@ function FormSolicit() {
     const expand = <MdExpandMore />
     return (
         <>
-            <Container>
+            <Container id="FormSolicitComponent">
                 <Row id="SolicitFormRow">
                     <Col sm={10} md={5}>
                         <FormInputIcon inputControlID="FechaInicio" inputNombre="Fecha Inicio" inputPlaceHolder="" inputType="date" inputIcon={calendar} />

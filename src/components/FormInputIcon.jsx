@@ -8,7 +8,7 @@ function FormInputIcon(props) {
         <>
             <Container>
                 <Row>
-                    <Col sm={4} md={8}>
+                    <Col sm={5} md={10}>
                         <Form.Group controlId= {props.InputControlID}>
                             <Form.Label id="FormInputTitle">
                                 {props.inputNombre}
@@ -17,14 +17,11 @@ function FormInputIcon(props) {
                     </Col>
                 </Row>
                 <Row id="InputAndIcon">
-                    <Col sm={4} md={8} id="InputForm">
+                    <Col sm={5} md={10} id="InputForm">
                         <Form.Control 
                             id="label" 
                             type= {props.inputType} 
                             placeholder= {props.inputInfo} />
-                    </Col>
-                    <Col sm={1} md={2} id="IconButton">
-                        <Button>{props.inputIcon}</Button>
                     </Col>
                 </Row>
             </Container>
