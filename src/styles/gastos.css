@@ -1,5 +1,4 @@
 #gastos {
-    position: absolute;
     width: 240px;
     height: 46px;
     left: 240px;
@@ -12,6 +11,8 @@
     display: flex;
     align-items: center;
     text-align: center;
+    margin: 40px;
+    margin-left: 60px;
 
 }
 
@@ -19,7 +20,8 @@
     display: flex;
     align-items: center;
     background: #FAFAFA;
-    padding: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
     backdrop-filter: blur(15px);
     /* Note: backdrop-filter has minimal browser support */
 
@@ -46,6 +48,22 @@
     height: 51px;
     left: 748px;
     top: 559px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+#CGbutton{
+    width: 278px;
+    height: 51px;
+    left: 748px;
+    top: 559px;
+    margin-right: 40px;
+    margin-bottom: 30px;
+    margin-top: 70px;
+
 
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
