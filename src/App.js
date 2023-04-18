@@ -1,11 +1,12 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-
 import './App.css';
-import { TableTravelAllowance } from "./components/table/TableTravelAllowance";
+import NavbarSC from './components/navbar/index.jsx';
 
 function App() {
+
   return (
-    <TableTravelAllowance/>
+    <div className="App">
+      <NavbarSC />
+    </div>
   );
 }
 
