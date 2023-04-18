@@ -52,9 +52,9 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Estado",
-      selector: (row)=> <BadgeStatus status={row.status} />,
+      selector: (row) => <BadgeStatus status={row.status} />,
       sortable: true,
-    }
+    },
     // {
     //   name: 'Description',
     //   selector: row => row.gender,
@@ -70,11 +70,11 @@ export const TableTravelAllowance = () => {
     //   selector: row => row.status,
     //   sortable: true
     // },
-    // {
-    //   name: 'Actions',
-    //
-    //
-    // }
+    {
+    name: 'Actions',
+  
+    cell: row => <div><button>Editar</button><button>Eliminar</button></div>
+   }
   ];
 
   const paginationTable = {
@@ -86,10 +86,17 @@ export const TableTravelAllowance = () => {
 
   // mostrar la tabla
   return (
-    <div className="Container text-center">
-      <div className="text-end my-1">
-        <input type="text" placeholder="Search" onChange={handleFilter} />
+    <div className="container text-center">
+      <div class="row justify-content-between my-2">
+        <div class="col-4">
+          <button> Solicitar Viaticos </button>
+        </div>
+        <div class="col-4">
+          <span className="icon"></span>
+          <input type="text" placeholder="Search" onChange={handleFilter} />
+        </div>
       </div>
+
 
       <DataTable
         columns={columns}
