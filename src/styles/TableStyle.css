@@ -18,6 +18,15 @@ input {
     padding-left: 0.5em;
 }
 
+button{
+    border: 1px solid rgba(255, 0, 0, 0.45);
+    border-radius: 10px;
+    background-color: rgb(221, 110, 110);
+    padding: 0.2em;
+    padding-left: 0.5em;
+    color: white;
+}
+
 /* .text-end {
     padding-bottom: 0.5em;
 } */
