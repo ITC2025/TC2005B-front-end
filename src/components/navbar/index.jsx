@@ -43,22 +43,6 @@ const NavbarSC = () => {
                     </Nav>
                 </Container>
             </Navbar>
-
-            {/* <style> {`
-            .navbar {
-                background-color: rgb(254, 241, 0);
-            }
-
-            .nav-link {
-                color: black
-            }
-
-            .nav-link:hover {
-                color: rgb(246, 8, 33);
-                text-decoration: underline;
-            }
-            `}
-            </style> */}
         </>
     )
 }

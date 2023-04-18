@@ -1,6 +1,6 @@
-
-
 import { Container, Button } from 'react-bootstrap';
+
+// Styled Components
 import styled from 'styled-components'
 
 const Modal = ({ estado, cambiarEstado, msg = 'alerta', succesIcon, excalmartionIcon, twoButtons, oneButton }) => {
@@ -24,7 +24,6 @@ const Modal = ({ estado, cambiarEstado, msg = 'alerta', succesIcon, excalmartion
                             <h1> {msg} </h1>
 
                         </Container>
-
                         {oneButton &&
                             <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
                         }
