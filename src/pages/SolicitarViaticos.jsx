@@ -12,6 +12,10 @@ function SolicitarViaticos() {
                 <FormSolicit />
             </div>
             <hr />
+            <div>
+                <RequestModal />
+                <Footer />
+            </div>
         </>
     );
 }
