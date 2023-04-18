@@ -3,7 +3,6 @@
     height: 46px;
     left: 240px;
     top: 46px;
-    font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
     font-size: 50px;
@@ -29,8 +28,6 @@
 }
 
 #container2 {
-    background: #ECECEC;
-    backdrop-filter: blur(15px);
     border-radius: 25px;
 }
 
@@ -53,7 +50,12 @@
 
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+
 
 #CGbutton{
     width: 278px;
