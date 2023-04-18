@@ -1,0 +1,20 @@
+.badge {
+    background-color: rgb(221, 110, 110) !important;
+    border: 1px solid red;
+    width: 75px;
+}
+
+#cell-4 {
+    background-color: #19f800 !important;
+}
+
+/* .container {
+    background-color: #e80101 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+h5 {
+    margin: 0;
+}
