@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
+import { BadgeStatus } from "../BadgeStatus";
+
 
 export const TableTravelAllowance = () => {
   // Configurar hooks
@@ -8,8 +10,8 @@ export const TableTravelAllowance = () => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  // const URL = 'https://gorest.co.in/public/v2/posts'
-  const URL = "https://jsonplaceholder.typicode.com/users";
+  const URL = 'https://gorest.co.in/public/v2/users'
+  // const URL = "https://jsonplaceholder.typicode.com/users";
 
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
@@ -48,6 +50,11 @@ export const TableTravelAllowance = () => {
       selector: (row) => row.email,
       sortable: true,
     },
+    {
+      name: "Estado",
+      selector: (row)=> <BadgeStatus status={row.status} />,
+      sortable: true,
+    }
     // {
     //   name: 'Description',
     //   selector: row => row.gender,
