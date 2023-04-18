@@ -1,14 +1,32 @@
 import React from "react";
 import { Badge } from "react-bootstrap";
 import "../styles/TableBadges.css";
-import { Container } from "react-bootstrap";
 
 export const BadgeStatus = (props) => {
-  return (
-    <div className="container">
-      <h5>
-        <Badge variant="warning">{props.status}</Badge>
-      </h5>
-    </div>
-  );
+  if (props.status === "active") {
+    return (
+      <div className="container">
+        <h5>
+          <Badge className='acepatado'>{props.status}</Badge>
+        </h5>
+      </div>
+    );
+  } else if (props.status === "inactive") {
+    return (
+
+      <div className="container">
+        <h5>
+          <Badge className='rechazado'>{props.status}</Badge>
+        </h5>
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
+        <h5>
+          <Badge className='pendiente'>{props.status}</Badge>
+        </h5>
+      </div>
+    );
+  }
 };
