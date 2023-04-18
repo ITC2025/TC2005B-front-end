@@ -1,6 +1,8 @@
 import  NavbarSC  from '../components/NavBar';
 import  FormSolicit  from '../components/FormSolicit';
 import '../syles/SolicitarViaticos.css'
+import SolicitarModal from '../components/RequestModal';
+import Footer from '../components/footer';
 
 function SolicitarViaticos() {
     return (
@@ -13,7 +15,7 @@ function SolicitarViaticos() {
             </div>
             <hr />
             <div>
-                <RequestModal />
+                <SolicitarModal />
                 <Footer />
             </div>
         </>
