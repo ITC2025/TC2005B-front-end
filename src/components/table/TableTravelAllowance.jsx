@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
-
+import TableDropdown from "./TableDropdown";
+import { MdDisplaySettings } from "react-icons/md";
 
 export const TableTravelAllowance = () => {
   // Configurar hooks
@@ -10,7 +11,7 @@ export const TableTravelAllowance = () => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = 'https://gorest.co.in/public/v2/users'
+  const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
 
   const getTravelAllowance = async () => {
@@ -20,6 +21,9 @@ export const TableTravelAllowance = () => {
     setFilterTravelAllowance(data);
     console.log(data);
   };
+
+// const getTravelAllowance = async () => {
+
 
   useEffect(() => {
     getTravelAllowance();
@@ -39,6 +43,7 @@ export const TableTravelAllowance = () => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
+      width: "120px", 
     },
     {
       name: "NAME",
@@ -54,6 +59,7 @@ export const TableTravelAllowance = () => {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.status} />,
       sortable: true,
+      width: "120px" 
     },
     // {
     //   name: 'Description',
@@ -71,10 +77,11 @@ export const TableTravelAllowance = () => {
     //   sortable: true
     // },
     {
-    name: 'Actions',
-  
-    cell: row => <div><button>Editar</button><button>Eliminar</button></div>
-   }
+      name: "Actions",
+
+      cell: (row) => <TableDropdown />,
+      width: "80px" ,
+    },
   ];
 
   const paginationTable = {
@@ -82,22 +89,24 @@ export const TableTravelAllowance = () => {
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
-  }
+  };
 
   // mostrar la tabla
   return (
-    <div className="container text-center">
-      <div class="row justify-content-between my-2">
-        <div class="col-4">
+    <div className="container">
+      <div className="row my-2">
+        <div className="col-5">
           <button> Solicitar Viaticos </button>
         </div>
-        <div class="col-4">
-          <span className="icon"></span>
-          <input type="text" placeholder="Search" onChange={handleFilter} />
+        <div className="col-7 d-flex justify-content-end">
+          <div>
+            <div className="input-group">
+              <input type="text" onChange={handleFilter} />
+              <label>Buscar</label>
+            </div>
+          </div>
         </div>
       </div>
-
-
       <DataTable
         columns={columns}
         data={travelAllowance}
