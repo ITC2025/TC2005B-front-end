@@ -3,7 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 // Styled Components
 import styled from 'styled-components'
 
-const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, cajaButtons }) => {
+const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
     return (
         <>
             {estado &&
@@ -53,10 +53,17 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
                             </>
                         }
 
-                        {cajaButtons &&
+                        {pagarButtons &&
                             <>
-                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> CANCELAR </Button>
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
+                            </>
+                        }
+
+                        {reenbolsoButtons &&
+                            <>
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> REENBOLSO EN CAJA </Button>
                             </>
                         }
 

@@ -68,7 +68,7 @@ function Test() {
                 cambiarEstado={modalCambiarEstado6}
                 msg='SALDO POSITIVO'
                 saldoPositivo={true}
-                cajaButtons={true}>
+                pagarButtons={true}>
             </Modal>
 
             {/* Modal 7 */}
@@ -76,7 +76,7 @@ function Test() {
                 cambiarEstado={modalCambiarEstado7}
                 msg='SALDO NEGATIVO'
                 saldoPositivo={true}
-                cajaButtons={true}>
+                reenbolsoButtons={true}>
             </Modal>
         </>
     );
