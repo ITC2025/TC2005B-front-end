@@ -1,9 +1,9 @@
 import { useParams } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
 import Test from './pages/test/index.js';
+import Facturas from './pages/Gastos/gastos';
 
 
 function Expedientes() {
@@ -24,7 +24,7 @@ function App() {
           {/*Rutas de usuario*/}
           {/*<Route element={<PrivateRoutes rol='user'/>}>*/}
           <Route element={<Test name="User" />} path="user">
-            <Route element={<Test name="facturas" />} path="facturas" />
+            <Route element={<Facturas name="facturas" />} path="facturas" />
             <Route element={<Test name="solicitar" />} path="solicitar" />
             <Route element={<Test name="viaticos" />} path="viaticos" />
             <Route element={<Expedientes />} path="expediente/:id" />

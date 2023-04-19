@@ -1,0 +1,72 @@
+#gastos {
+    width: 240px;
+    height: 46px;
+    left: 240px;
+    top: 46px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 68px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 40px;
+    margin-left: 60px;
+
+}
+
+#container1 {
+    display: flex;
+    align-items: center;
+    background: #FAFAFA;
+    padding-left: 25px;
+    padding-right: 25px;
+    backdrop-filter: blur(15px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 25px;
+}
+
+#container2 {
+    border-radius: 25px;
+}
+
+#group1 {
+    display: flex;
+    align-items: center;
+}
+
+#group2 {
+    align-items: center;
+}
+
+#button {
+    width: 278px;
+    height: 51px;
+    left: 748px;
+    top: 559px;
+    margin-top: 40px;
+    margin-bottom: 25px;
+
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#CGbutton{
+    width: 278px;
+    height: 51px;
+    left: 748px;
+    top: 559px;
+    margin-right: 40px;
+    margin-bottom: 30px;
+    margin-top: 70px;
+
+
+    background: rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+}
