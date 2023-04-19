@@ -28,15 +28,15 @@ function SolicitarModal(props) {
                 <Row>
                     <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                         <p>Solicitante: <strong>Luis Shaefer</strong></p>
-                        <p>Proyecto: <strong>Supervision de planta</strong></p>
+                        <p>Proyecto: <strong>{props.Proyecto}</strong></p>
                     </Col>
                     <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <p>Proyecto: <strong>Supervision de planta</strong></p>
-                        <p>Destino: <strong>Hermosillo, SON, MEX</strong></p>
+                        <p>Destino: <strong>{props.Destino}</strong></p>
+                        <p>Monto Total: <strong>0</strong></p>
                     </Col>
                     <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                        <p>Fecha de inicio: <strong>01/01/2023</strong></p>
-                        <p>Fecha de termino: <strong>03/02/2023</strong></p>
+                        <p>Fecha de inicio: <strong>{props.FechaInicio}</strong></p>
+                        <p>Fecha de termino: <strong>{props.FechaTermino}</strong></p>
                     </Col>
                 </Row>
                 <Row>

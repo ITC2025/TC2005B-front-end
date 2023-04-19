@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import SolicitarModal from './RequestModal'
 import Button from 'react-bootstrap/Button';
 import '../styles/SendSaveCost.css'
-import { Container } from 'react-bootstrap';
-import { Row } from 'react-bootstrap';
-import { Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function SendSaveCost(props) {
   const [modalShow, setModalShow] = useState(false);
