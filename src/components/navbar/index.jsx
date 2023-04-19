@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
 
-const NavbarSC = ({ client, productManager, admin }) => {
+const NavbarSC = () => {
     return (
         <>
             {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
@@ -19,27 +19,16 @@ const NavbarSC = ({ client, productManager, admin }) => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse className="justify-content-center pe-5 me-5">
                         <Nav>
-                            {client &&
-                                <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> MIS VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
-                                </>
-                            }
+                            <Nav.Link className="nav-link" href="#"> <strong> MIS VIÁTICOS </strong> </Nav.Link>
+                            <Nav.Link className="nav-link" href="#"> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
+                            <Nav.Link className="nav-link" href="#"> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
 
-                            {productManager &&
-                                <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
-                                </>
-                            }
+                            {/*
+                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
+                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
+                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
+                            */}
 
-                            {admin &&
-                                <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
-                                </>
-                            }
                         </Nav>
                     </Navbar.Collapse>
                     <Nav>
