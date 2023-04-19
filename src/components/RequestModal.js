@@ -1,13 +1,8 @@
 import React from 'react'
 import '../styles/RequestModal.css'
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Table from 'react-bootstrap/Table';
+import { Button, Modal, Col, Container, Row, Table} from 'react-bootstrap';
 
-function SolicitarModal(props) {
+function RequestModal(props) {
   return (
     <Modal
         {...props}
@@ -49,7 +44,7 @@ function SolicitarModal(props) {
                                 </tr>
                             </thead>
                             <tbody className='modal-tbody'>
-                                <tr className="bg-white">
+                                {/* <tr className="bg-white">
                                 <td>Boleto de avión redondo</td>
                                 <td>2,000 MXN</td>
                                 </tr>
@@ -72,7 +67,7 @@ function SolicitarModal(props) {
                                 <tr className="bg-white">
                                 <td>Gasolina</td>
                                 <td>40,000 MXN</td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </Table>
                     </Col>
@@ -88,4 +83,4 @@ function SolicitarModal(props) {
   );
 }
 
-export default SolicitarModal;
+export default RequestModal;

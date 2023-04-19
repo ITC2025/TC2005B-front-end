@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SolicitarModal from './RequestModal'
+import RequestModal from './RequestModal'
 import Button from 'react-bootstrap/Button';
 import '../styles/SendSaveCost.css'
 import { Container } from 'react-bootstrap';
@@ -30,7 +30,7 @@ function SendSaveCost(props) {
       </Row>
     </Container>
 
-      <SolicitarModal
+      <RequestModal
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
