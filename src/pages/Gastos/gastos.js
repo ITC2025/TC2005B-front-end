@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Formgastos from "../../components/Formgastos/index";
-import NavbarSC from "../../components/navbar";
 import AddedForm from "../../components/ButtonForm/index";
 import {
     Col,
@@ -15,7 +13,7 @@ import { BiMoney } from "react-icons/bi";
 
 import '../../styles/gastos.css';
 
-export default function Gastos() {
+export default function Facturas() {
     const [forms, setForms] = useState([<AddedForm key={0} />]);
 
     const addForm = () => {
@@ -29,7 +27,6 @@ export default function Gastos() {
 
     return (
         <>
-            <NavbarSC />
             <Container>
                 <h2 id="gastos">Gastos</h2>
                 <Row>
