@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
-import Test from './components/TestModal.jsx';
+import Test from './pages/test/index.js';
 
 
 function Expedientes() {
