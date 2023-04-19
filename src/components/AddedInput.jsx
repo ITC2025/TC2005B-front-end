@@ -24,7 +24,7 @@ function AddedInput() {
           </Col>
         </Row>
       ) : (
-        <></>
+        null
       )}
     </>
   );
