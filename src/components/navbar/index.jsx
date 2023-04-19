@@ -1,7 +1,7 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
 
-const NavbarSC = () => {
+const NavbarSC = ({ client, productManager, admin }) => {
     return (
         <>
             {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
@@ -19,16 +19,27 @@ const NavbarSC = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse className="justify-content-center pe-5 me-5">
                         <Nav>
-                            <Nav.Link className="nav-link" href="#"> <strong> MIS VIÁTICOS </strong> </Nav.Link>
-                            <Nav.Link className="nav-link" href="#"> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
-                            <Nav.Link className="nav-link" href="#"> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
+                            {client &&
+                                <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> MIS VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" href="#"> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
+                                </>
+                            }
 
-                            {/*
-                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
-                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
-                            <Nav.Link className="nav-link" as={Link to="/"}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
-                            */}
+                            {productManager &&
+                                <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                </>
+                            }
 
+                            {admin &&
+                                <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                </>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                     <Nav>
@@ -43,22 +54,6 @@ const NavbarSC = () => {
                     </Nav>
                 </Container>
             </Navbar>
-
-            {/* <style> {`
-            .navbar {
-                background-color: rgb(254, 241, 0);
-            }
-
-            .nav-link {
-                color: black
-            }
-
-            .nav-link:hover {
-                color: rgb(246, 8, 33);
-                text-decoration: underline;
-            }
-            `}
-            </style> */}
         </>
     )
 }
