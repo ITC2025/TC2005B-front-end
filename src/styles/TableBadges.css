@@ -1,24 +1,27 @@
-.badge.acepatado {
-    background-color: rgba(66, 255, 0, 0.1) !important;
-    border: 1px solid rgba(71, 151, 43, 0.3);
+.badge {
     width: 75px;
     border-radius: 4px;
     color: black;
+}
+
+.badge.acepatado {
+    background-color: rgba(66, 255, 0, 0.1) !important;
+    border: 1px solid rgba(71, 151, 43, 0.3);
 }
 
 .badge.rechazado {
     background-color: rgba(255, 0, 0, 0.1) !important;
-    border: 1px solid rgba(255, 0, 0, 0.3);
-    width: 75px;
-    border-radius: 4px;
-    color: black;
+    border: 1px solid rgba(255, 0, 0, 0.3); 
 }
 
 .badge.pendiente{
-    background-color: rgb(221, 110, 110) !important;
-    border: 1px solid red;
-    width: 75px;
-    border-radius: 10px;
+    background-color: rgba(251, 235, 4, 0.3) !important;
+    border: 1px solid rgba(208, 178, 20, 0.3);
+}
+
+.badge.borrador {
+    background-color: rgba(164, 164, 164, 0.1);
+    border: 1px solid rgba(164, 164, 164, 0.39);
 }
 
 .container {
@@ -50,6 +53,7 @@ h6 {
 }
 
 .dropdown-menu {
+    position: absolute;
     background-color: rgb(235, 235, 235) !important;
     border: rgba(250, 250, 250, 1) !important;
 }
