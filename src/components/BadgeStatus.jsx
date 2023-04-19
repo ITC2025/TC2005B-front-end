@@ -20,6 +20,15 @@ export const BadgeStatus = (props) => {
         </h6>
       </div>
     );
+  } else if (props.status === "borrador") {
+    return (
+
+      <div className="container">
+        <h6>
+          <Badge className='borrador'>{props.status}</Badge>
+        </h6>
+      </div>
+    );
   } else {
     return (
       <div className="container">
