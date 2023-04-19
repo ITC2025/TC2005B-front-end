@@ -59,6 +59,7 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> CANCELAR </Button>
                             </>
                         }
+
                     </ContModal>
                 </Overlay >
             }
