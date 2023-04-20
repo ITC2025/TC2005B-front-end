@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import getApiData from "../../utils/getApiData.js"
+import { getLoginToken } from "../../utils/getApiData.js"
 
 export default function Test({name}){
     useEffect(() => {
-        getApiData();
+        getLoginToken('Jose','Jose1234').then((resp) => console.log(resp))
     });
     return(
     <>
