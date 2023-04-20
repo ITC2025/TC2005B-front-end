@@ -3,7 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 // Styled Components
 import styled from 'styled-components'
 
-const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
+const Modal = ({ estado, cambiarEstado, msg = 'Alerta', rechazarPago, confirmarPago, succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
     return (
         <>
             {estado &&
@@ -40,7 +40,23 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
                                 </svg>
                             }
                             <h1> {msg} </h1>
+                            
+                            {rechazarPago &&
+                                <>
+                                    <div class="modal-textarea">
+                                        <p>Motivo de rechazo: </p>
+                                        <textarea rows="8" />
+                                    </div>
+                                </>
+                            }
 
+                            {confirmarPago &&
+                                <>
+                                    <div class="modal-textarea">
+                                        <textarea rows="8" />
+                                    </div>
+                                </>
+                            }
                         </Container>
                         {oneButton &&
                             <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
@@ -63,8 +79,8 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
                         {reenbolsoButtons &&
                             <>
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> REENBOLSO EN CAJA </Button>
-                            </>
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                            </> 
                         }
 
                     </ContModal>
@@ -74,7 +90,7 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
     );
 }
 
-export default Modal;
+export default Modal ;
 
 const Overlay = styled.div`
     width: 100vw;
@@ -96,8 +112,31 @@ const ContModal = styled.div`
     padding-top: 3em;
     padding-bottom: 3em;
 
+    .rechazarPago{
+        margin-left: 2em;
+        margin-right: 2em;
+        width: 90%;
+    }
+
+    .modal-textarea {
+        background-color: #ECECEC;
+        padding-top: 1em;
+        padding-bottom: 2em;
+        margin-right: 2em;
+        margin-left: 2em;
+        border-radius: 15px;
+    }
+
     h1 {
         color: rgba(254,128,127);
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    p{
+        text-align: left;
+        margin-left: 2em;
+        font-size: 20px;
     }
 
     svg {
@@ -115,19 +154,8 @@ const ContModal = styled.div`
     }
 
     Button:hover {
-        color: red;
-        background: rgb(254, 241, 0);
-        border-color: red;
-    }
-
-    #cancelButton {
-        color:  rgba(254,128,127);
+        color: rgba(254,128,127);
         background: #FFF;
+        border-color: rgba(254,128,127);
     }
-    #cancelButton:hover {
-        background:  rgba(248,248,248);;
-        color: red;
-        border-color: red;
-    }
-    
 `;
