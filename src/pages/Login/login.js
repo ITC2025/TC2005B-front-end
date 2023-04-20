@@ -19,6 +19,11 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [RenderIncorrect, setIncorrect] = useState(true);
+  let formData={
+    'useremail':email,
+    'userpassword':password,
+  }
+
 
 
   const handleSubmit = (event) => {
@@ -32,7 +37,6 @@ export default function Login() {
         // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
         console.log('Usuario autenticado');
         setIncorrect(true)
-        
       } else {
         // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
         console.log('Email o contraseña incorrectos');
@@ -40,6 +44,7 @@ export default function Login() {
       }
     }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
   }
+  console.log(formData)
 
   return (
     <>
