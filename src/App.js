@@ -1,11 +1,11 @@
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import './App.css';
-import { TableTravelAllowance } from "./components/table/TableTravelAllowance";
+import { Table_Admin } from "./pages/TablaA/Table_Admin";
 
 function App() {
   return (
-    <TableTravelAllowance/>
+    <Table_Admin/>
   );
 }
 
