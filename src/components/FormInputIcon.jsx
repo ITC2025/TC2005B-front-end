@@ -9,23 +9,21 @@ function FormInputIcon(props) {
             <Container>
                 <Row>
                     <Col sm={5} md={10}>
-                        <Form.Group controlId= {props.InputControlID}>
-                            <Form.Label id="FormInputTitle">
-                                {props.inputNombre}
+                        <Form.Group controlId={props.inputControlID}>
+                            <Form.Label id="FormInputLabel">
+                                {props.inputLabel}
                             </Form.Label>
+                            <Form.Control
+                                type={props.inputType}
+                                name={props.inputName}
+                                value={props.inputValue}
+                                onChange={props.onChange}
+                            />
                         </Form.Group>
                     </Col>
                 </Row>
-                <Row id="InputAndIcon">
-                    <Col sm={5} md={10} id="InputForm">
-                        <Form.Control 
-                            id="label" 
-                            type= {props.inputType} 
-                            placeholder= {props.inputInfo} />
-                    </Col>
-                </Row>
             </Container>
-            
+
         </>
     )
 }
