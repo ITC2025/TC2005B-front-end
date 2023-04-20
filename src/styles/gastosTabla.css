@@ -1,0 +1,23 @@
+.rowButtons {
+    background: #FAFAFA;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.colGasto {
+    display: flex;
+    justify-content: start;
+}
+
+.colEnviar {
+    display: flex;
+    justify-content: end;
+}
+
+.row {
+    background: #FAFAFA;
+}
+
+thead {
+    background: #FAFAFA;
+}

@@ -8,8 +8,6 @@ function CardDashboard({image}) {
     return (
       <Card>
         <a href="">
-
-        
         <Card.Img src={image} />
         </a>
       </Card>

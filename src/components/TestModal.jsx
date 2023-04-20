@@ -4,7 +4,7 @@ import { Container, Button } from 'react-bootstrap';
 
 import Modal from './modal/index.jsx';
 
-function Test() {
+function MostralModal() {
     const [modalEstado1, modalCambiarEstado1] = useState(false);
     const [modalEstado2, modalCambiarEstado2] = useState(false);
     const [modalEstado3, modalCambiarEstado3] = useState(false);
@@ -29,14 +29,14 @@ function Test() {
             {/* Modal 1 */}
             < Modal estado={modalEstado1}
                 cambiarEstado={modalCambiarEstado1}
-                msg={'CONFIRMAR'}
-                twoButtons={true}>
+                textBox={true}
+                oneButton={true}>
             </Modal>
 
             {/* Modal 2 */}
             < Modal estado={modalEstado2}
                 cambiarEstado={modalCambiarEstado2}
-                msg={'CANCELAR'}
+         
                 twoButtons={true}>
             </Modal>
 
@@ -80,7 +80,6 @@ function Test() {
             </Modal>
         </>
     );
-
 }
 
-export default Test;
+export default MostralModal;

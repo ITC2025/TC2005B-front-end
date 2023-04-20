@@ -9,7 +9,7 @@ function CardGrid() {
     <>
 
       <div className="container text-center">
-        <div className = "my-5"></div>
+        <div className="my-5"></div>
         <div className="row justify-content-center">
           <div className="col-6">
             <CardDashboard image={CardProject}></CardDashboard>
@@ -21,11 +21,11 @@ function CardGrid() {
 
         <div className="row justify-content-center">
           <div className="col-6">
-          <CardDashboard image={CardTravelAll}></CardDashboard>
+            <CardDashboard image={CardTravelAll}></CardDashboard>
           </div>
         </div>
       </div>
-      </>
-      );
+    </>
+  );
 }
-      export default CardGrid;
+export default CardGrid;

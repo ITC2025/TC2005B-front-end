@@ -3,7 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 // Styled Components
 import styled from 'styled-components'
 
-const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
+const Modal = ({ estado, cambiarEstado, msg = '', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
     return (
         <>
             {estado &&
@@ -42,8 +42,9 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
                             <h1> {msg} </h1>
 
                         </Container>
+
                         {oneButton &&
-                            <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
+                            <Button onClick={() => enviarData()} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
                         }
 
                         {twoButtons &&
@@ -72,6 +73,11 @@ const Modal = ({ estado, cambiarEstado, msg = 'Alerta', succesIcon, excalmartion
             }
         </>
     );
+
+    function enviarData() {
+        cambiarEstado(false)
+        alert('si sirve');
+    }
 }
 
 export default Modal;
