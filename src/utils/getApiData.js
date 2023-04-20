@@ -1,7 +1,7 @@
-export async function getLoginToken(name, password){
+export async function getAuthenticationData(name, password){
     let data = {
-        name: 'Jose',
-        password: 'Jose1234'
+        name: name,
+        password: password
     }
 
     const url = 'http://localhost:3000/login';
@@ -15,5 +15,6 @@ export async function getLoginToken(name, password){
 
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    return response
+    
+    sessionStorage.setItem("data", JSON.stringify(response))
 }
