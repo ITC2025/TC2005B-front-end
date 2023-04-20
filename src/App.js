@@ -1,10 +1,16 @@
 import { useParams } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+// Import components
 import NavbarSC from './components/navbar/index.jsx';
+
+// Import pages
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
-
+import PmDashboard from './pages/Dashboard/pmDashboard';
+import {UserDashboard} from './pages/Dashboard/userDashboard';
+import AdminDashboard from './pages/Dashboard/adminDashboard';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -28,7 +34,7 @@ function App() {
             <Route element={<Test name="solicitar" />} path="solicitar" />
             <Route element={<Test name="viaticos" />} path="viaticos" />
             <Route element={<Expedientes />} path="expediente/:id" />
-            <Route element={<Test name="tablero" />} path="tablero" />
+            <Route element={<UserDashboard />} path="dashboard" />
           </Route>
           {/*</Route>*/}
 
@@ -38,7 +44,7 @@ function App() {
             <Route element={<Test name="viaticos" />} path="viaticos" />
             <Route element={<Expedientes />} path="expediente/:id" />
             <Route element={<Test name="tablero" />} path="tablero" />
-            <Route element={<Test name="dashboard" />} path="dashboard" />
+            <Route element={<AdminDashboard />} path="dashboard" />
           </Route>
           {/*</Route>*/}
 
@@ -48,7 +54,7 @@ function App() {
             <Route element={<Test name="viaticos" />} path="viaticos" />
             <Route element={<Expedientes />} path="expediente/:id" />
             <Route element={<Test name="tablero" />} path="tablero" />
-            <Route element={<Test name="dashboard" />} path="dashboard" />
+            <Route element={<PmDashboard/>} path="dashboard" />
           </Route>
           {/*</Route>*/}
 
