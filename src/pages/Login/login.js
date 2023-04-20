@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import React from "react";
 import logoNb from '../../images/logoNb.png';
 import '../../styles/login.css'
@@ -13,7 +14,38 @@ import {
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
+
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [RenderIncorrect, setIncorrect] = useState(true);
+  let formData={
+    'useremail':email,
+    'userpassword':password,
+  }
+
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login(email, password); // login es una función que enviará los datos al servidor
+  }
+
+  const login = (email, password) => {
+    setTimeout(() => {
+      if (email === 'usuario@ejemplo.com' && password === 'contraseña') {
+        // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
+        console.log('Usuario autenticado');
+        setIncorrect(true)
+      } else {
+        // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
+        console.log('Email o contraseña incorrectos');
+        setIncorrect(false)
+      }
+    }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
+  }
+  console.log(formData)
+
   return (
     <>
       <div className="animated-background">
@@ -40,6 +72,7 @@ export default function Login() {
                               type="email"
                               placeholder="Enter email"
                               required
+                              onChange={e => setEmail(e.target.value)}
                             />
                           </InputGroup>
                         </Form.Group>
@@ -56,11 +89,12 @@ export default function Login() {
                               type="password"
                               placeholder="Enter password"
                               required
+                              onChange={e => setPassword(e.target.value)}
                             />
                           </InputGroup>
                         </Form.Group>
                         <div className="d-grid mt-4">
-                          <Button variant="primary" type="submit">
+                          <Button variant="primary" type="submit" onClick={handleSubmit}>
                             Login
                           </Button>
                         </div>
@@ -68,6 +102,11 @@ export default function Login() {
                     </div>
                   </div>
                 </Card.Body>
+                {RenderIncorrect ? (
+                  null
+                ) : (
+                  <div>Incorrect email or password</div>
+                )}
               </Card>
             </Col>
           </Row>
