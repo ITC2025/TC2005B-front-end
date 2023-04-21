@@ -1,15 +1,10 @@
 import {Outlet, Navigate} from 'react-router-dom'
+import { tokenValidation } from './getApiData'
 
 const PrivateRoutes = ({rol}) => {
-    /*Placeholder de autenticacion
-    Este codigo checa si el token es valido y
-    el rol es el mismo que el solicitado
-    por el prop
-    Si quieres cambiar de rutas, modifica
-    el rol en auth*/
-    let auth = {'token':true, 'rol':'user'}
+    const userRol = tokenValidation()
     return(
-        auth.token&&auth.rol===rol ? <Outlet/> : <Navigate to="/"/>
+        userRol===rol ? <Outlet/> : <Navigate to="/"/>
     )
 }
 

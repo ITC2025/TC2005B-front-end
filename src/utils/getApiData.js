@@ -20,6 +20,8 @@ export async function getAuthenticationData(name, password) {
 
 export function tokenValidation(){
     const token=JSON.parse(sessionStorage.getItem("data"))
+
+    if(token == null) return(-1)
     
     const bToken=token.token
 

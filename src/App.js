@@ -24,35 +24,37 @@ function App() {
           <Route element={<Login name="Login" />} path="/" />
 
           {/*Rutas de usuario*/}
-          {/*<Route element={<PrivateRoutes rol='user'/>}>*/}
-          <Route element={<Test name="User" />} path="user">
-            <Route element={<Facturas name="facturas" />} path="facturas" />
-            <Route element={<Test name="solicitar" />} path="solicitar" />
-            <Route element={<Test name="viaticos" />} path="viaticos" />
-            <Route element={<Expedientes />} path="expediente/:id" />
-            <Route element={<Test name="tablero" />} path="tablero" />
+          <Route element={<PrivateRoutes rol={1}/>}>
+            <Route element={<Test name="User" />} path="user">
+              <Route element={<Facturas name="facturas" />} path="facturas" />
+              <Route element={<Test name="solicitar" />} path="solicitar" />
+              <Route element={<Test name="viaticos" />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="tablero" />} path="tablero" />
+            </Route>
           </Route>
-          {/*</Route>*/}
 
           {/*Rutas de admin*/}
-          {/*<Route element={<PrivateRoutes rol='admin'/>}>*/}
-          <Route element={<Test name="Admin" />} path="admin">
-            <Route element={<Test name="viaticos" />} path="viaticos" />
-            <Route element={<Expedientes />} path="expediente/:id" />
-            <Route element={<Test name="tablero" />} path="tablero" />
-            <Route element={<Test name="dashboard" />} path="dashboard" />
+          <Route element={<PrivateRoutes rol={3}/>}>
+            <Route element={<Test name="Admin" />} path="admin">
+              <Route element={<Test name="viaticos" />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="tablero" />} path="tablero" />
+              <Route element={<Test name="dashboard" />} path="dashboard" />
+            </Route>
           </Route>
-          {/*</Route>*/}
 
           {/*Rutas de Project Manager*/}
-          {/*<Route element={<PrivateRoutes rol='pm'/>}>*/}
-          <Route element={<Test name="Project Manager" />} path="pm">
-            <Route element={<Test name="viaticos" />} path="viaticos" />
-            <Route element={<Expedientes />} path="expediente/:id" />
-            <Route element={<Test name="tablero" />} path="tablero" />
-            <Route element={<Test name="dashboard" />} path="dashboard" />
+          <Route element={<PrivateRoutes rol={2}/>}>
+            <Route element={<Test name="Project Manager" />} path="pm">
+              <Route element={<Test name="viaticos" />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="tablero" />} path="tablero" />
+              <Route element={<Test name="dashboard" />} path="dashboard" />
+            </Route>
           </Route>
-          {/*</Route>*/}
+
+          <Route element={<h>404 esta pagina no existe</h>} path="*" />
 
         </Routes>
       </Router>
