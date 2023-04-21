@@ -11,6 +11,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import PmDashboard from './pages/Dashboard/pmDashboard';
 import {UserDashboard} from './pages/Dashboard/userDashboard';
 import AdminDashboard from './pages/Dashboard/adminDashboard';
+import GastosUserView from './pages/GastoUserView/GastosUserView';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -24,6 +25,9 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
+
+          {/* */}
+          <Route element={<GastosUserView name="GastosPantalla" />} path="gastos" />
 
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1}/>}>
