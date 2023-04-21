@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Formgastos from "../../components/Formgastos/index";
 import AddedForm from "../../components/ButtonForm/index";
 import {
     Col,
@@ -54,4 +53,3 @@ export default function Gastos() {
         </>
     );
 }  
-

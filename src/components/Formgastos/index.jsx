@@ -1,125 +1,81 @@
 import React from "react";
-import {
-    Col,
-    Button,
-    Row,
-    Container,
-    Card,
-    Form,
-    InputGroup,
-} from "react-bootstrap";
-import { MdCalendarMonth, MdLocationPin, MdExpandMore, MdOutlineFileUpload } from "react-icons/md";
-import { HiPlus } from "react-icons/hi";
-import { BiMoney } from "react-icons/bi";
+import { Form } from "react-bootstrap";
+import { useState } from "react";
 
 import '../../styles/gastos.css'
 
 export default function Gastos() {
+    const [SetShowComponent] = useState(true);
+    const DeleteLine = () => {
+        SetShowComponent(false);
+      };
+
     return (
         <>
-        <Col xxl={12}>
-            <Card.Body id="container2">
-                <div className="mb-2">
-                    <div className="containerImage">
+            <div className="mt-3">
+                <Form>
+                    <div >
+                        <div className="row">
+                            <div className="col-md-4">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputEmail1">Producto</label>
+                                    <input type="text" className="form-control" placeholder="Producto" />
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputEmail1">Tipo</label>
+                                    <select className="form-select" aria-label="Default select example">
+                                        <option selected disabled value="">Elige una opcion</option>
+                                        <option value="1">Hospedaje</option>
+                                        <option value="2">Alimentos</option>
+                                        <option value="3">Transporte</option>
+                                        <option value="4">Personal</option>
+                                        <option value="5">Material</option>
+                                        <option value="6">Otros</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="form-group">
+                                    <label htmlFor="exampleInputEmail1">Monto</label>
+                                    <input type="integer" className="form-control" placeholder="Monto" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="my-4"></div>
+
+                        <div className="row">
+                            <div className="col-md-4">
+                                <label htmlFor="asda">Ticker de compra (PDF)</label>
+                                <div className="input-group mb-3">
+                                    <input class="form-control" type="file" onChange={e=> (e.target.files[0])} required/>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <label htmlFor="asda">Factura digital (XML)</label>
+                                <div className="input-group mb-3">
+                                    <input class="form-control" type="file" required/>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <label htmlFor="asda">Fecha de Compra</label>
+                                <div className="input-group mb-3">
+                                    <input type="date" className="form-control" placeholder="Fecha de Compra" aria-label="Fecha de Compra" aria-describedby="basic-addon2" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="mt-3">
-                        <Form>
-                            <Form.Group className="m-3" controlId="formBasicUp">
-                                <Row>
-                                    <Col>
-                                        <Form.Label className="text-center">
-                                            Productos
-                                        </Form.Label>
 
-                                        <InputGroup className="mb-3">
-                                            <Form.Control
-                                                type="text"
-                                                required
-                                            />
-
-                                        </InputGroup>
-
-                                    </Col>
-                                    <Col>
-                                        <Form.Label className="text-center">
-                                            Tipo
-                                        </Form.Label>
-
-                                        <InputGroup className="mb-3">
-                                            <Form.Select>
-                                                <option>Estancia</option>
-                                            </Form.Select>
-                                        </InputGroup>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label className="text-center">
-                                            Cantidad
-                                        </Form.Label>
-                                        <InputGroup className="mb-3">
-                                            <Form.Control
-                                                type="text"
-                                                required
-                                            />
-                                        </InputGroup>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label className="text-center">
-                                            Monto
-                                        </Form.Label>
-                                        <InputGroup className="mb-3">
-
-                                            <Form.Control
-                                                type="text"
-                                                required
-                                            />
-                                            <InputGroup.Text id="basic-addon1">
-                                                MXN
-                                            </InputGroup.Text>
-
-                                        </InputGroup>
-                                    </Col>
-                                </Row>
-                            </Form.Group>
-
-                            <Form.Group
-                                className="m-3"
-                                controlId="formBasicDown"
-                                id="group2"
-                            >
-                                <Row>
-                                    <Col>
-                                        <Form.Label>Ticker de factura</Form.Label>
-                                        <InputGroup className="mb-3">
-
-                                            <Form.Control
-                                                type="text"
-                                                required
-                                            />
-                                            <InputGroup.Text id="basic-addon2">
-                                                <MdOutlineFileUpload />
-                                                Upload
-                                            </InputGroup.Text>
-                                        </InputGroup>
-                                    </Col>
-                                    <Col>
-                                        <Form.Label>Fecha de Compra</Form.Label>
-                                        <InputGroup className="mb-3">
-
-                                            <Form.Control
-                                                type="date"
-                                                required
-                                                placeholder="DD | MM | YYYY |"
-                                            />
-                                        </InputGroup>
-                                    </Col>
-                                </Row>
-                            </Form.Group>
-                            
-                        </Form>
+                    <div className="d-flex justify-content-end">
+                        <button type="submit" className="btn btn-primary" onClick={DeleteLine}>Borar</button>
                     </div>
-                </div>
-            </Card.Body>
-            </Col>
+
+                </Form>
+            </div>
+            <hr />
+
         </>
     );
 }  
