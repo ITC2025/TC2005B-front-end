@@ -5,13 +5,14 @@ import { useState } from "react";
 import '../../styles/gastos.css'
 
 export default function Gastos() {
-    const [SetShowComponent] = useState(true);
+    const [ShowComponent ,SetShowComponent] = useState(true);
     const DeleteLine = () => {
         SetShowComponent(false);
       };
 
     return (
         <>
+        {ShowComponent ? (
             <div className="mt-3">
                 <Form>
                     <div >
@@ -71,11 +72,11 @@ export default function Gastos() {
                     <div className="d-flex justify-content-end">
                         <button type="submit" className="btn btn-primary" onClick={DeleteLine}>Borar</button>
                     </div>
-
+                    <hr />
                 </Form>
             </div>
-            <hr />
-
+           
+        ) : (null) }
         </>
     );
 }  
