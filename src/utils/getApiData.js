@@ -19,11 +19,12 @@ export async function getAuthenticationData(name, password) {
 }
 
 export function tokenValidation(){
-    const token=JSON.parse(sessionStorage.getItem("data"))
+    const data = sessionStorage("data")
+    //Checa si no habia nada en los datos
+    if (data == null) return -1
 
-    if(token == null) return(-1)
-    
-    const bToken=token.token
+    const parsedJson=JSON.parse(data)
+    const bToken=parsedJson.token
 
     const parts = bToken.split('.');
     const base64Url = parts[1];
