@@ -13,43 +13,48 @@ import { BiMoney } from "react-icons/bi";
 
 import '../../styles/gastos.css';
 
-export default function Gastos() {
+export default function Facturas() {
     const [forms, setForms] = useState([<AddedForm key={0} />]);
 
-    const addForm = () =>{
+    const addForm = () => {
         const newForms = [...forms, <AddedForm key={forms.length} />];
         setForms(newForms);
     };
 
-    const deleteForm = () =>{
+    const deleteForm = () => {
         setForms([<AddedForm key={0} />]);
     };
 
     return (
         <>
-        <Container>
-        <h2 id="gastos">Gastos</h2>
-            <Row>
-                <Col>
-                    <Card id="container1">
-                        <Container>
+            <Container>
+                <h2 id="gastos">Gastos</h2>
+                <Row>
+                    <Col>
+                        <Card id="container1">
+                            <Container>
                                 {forms}
                                 <div className="d-flex justify-content-center">
                                     <Button variant="danger" id="button" onClick={addForm}>
                                         <BiMoney />
-                                         AGREGAR GASTO 
+                                        AGREGAR GASTO
                                         <HiPlus />
                                     </Button>
                                 </div>
-                        </Container>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
-        <div className="d-flex justify-content-end align-items-end">
-            <Button variant="danger" id="CGbutton" onClick={deleteForm}>CANCELAR</Button>
-            <Button variant="danger" id="CGbutton">GUARDAR</Button>
-        </div>
+                            </Container>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
+            <div className="d-flex justify-content-end align-items-end">
+                <Button variant="danger" id="CGbutton" onClick={deleteForm}>CANCELAR</Button>
+                <Button variant="danger" id="CGbutton">GUARDAR</Button>
+            </div>
         </>
     );
+<<<<<<< HEAD:src/pages/Gastos/gastos.jsx
 }  
+=======
+}
+
+>>>>>>> 2f3aaf03b977499aec0dfea26b0c25905fe7158e:src/pages/Gastos/gastos.js
