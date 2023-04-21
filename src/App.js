@@ -8,7 +8,6 @@ import Login from './pages/Login/login'
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
 import PrivateRoutes from "./utils/PrivateRoutes";
-import Test from './pages/test/index.js';
 import PmDashboard from './pages/Dashboard/pmDashboard';
 import {UserDashboard} from './pages/Dashboard/userDashboard';
 import AdminDashboard from './pages/Dashboard/adminDashboard';
