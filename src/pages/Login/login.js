@@ -142,7 +142,7 @@ export default function Login() {
                             />
                           </InputGroup>
                         </Form.Group>
-                        <div className="d-grid mt-4">
+                        <div className="d-flex justify-content-center ">
                           <Button variant="primary" type="submit" onClick={handleSubmit}>
                             Login
                           </Button>
