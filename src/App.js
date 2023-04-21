@@ -62,7 +62,7 @@ function App() {
               <Route element={<Test name="sysadmin viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="sysadmin tablero" />} path="tablero" />
-              <Route element={<Test name="dashboard" />} path="dashboard" />
+              <Route element={<AdminDashboard />} path="dashboard" />
             </Route>
           </Route>
 
