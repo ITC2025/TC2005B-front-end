@@ -1,5 +1,6 @@
 import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
+import { Outlet } from "react-router-dom";
 
 const NavbarSC = ({ client, productManager, admin }) => {
     return (
@@ -54,6 +55,7 @@ const NavbarSC = ({ client, productManager, admin }) => {
                     </Nav>
                 </Container>
             </Navbar>
+            <Outlet />
         </>
     )
 }
