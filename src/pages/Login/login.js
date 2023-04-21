@@ -24,19 +24,15 @@ export default function Login() {
   const [RenderIncorrect, setIncorrect] = useState(true);
   const navigate = useNavigate();
 
-  let formData={
+ /*  let formData={
     'useremail':email,
     'userpassword':userpassword,
-  }
-
-
+  } */
 
   const handleSubmit = (event) => {
     event.preventDefault();
     login(email, userpassword); // login es una función que enviará los datos al servidor
   }
-
-  
 
    const login = (email, userpassword) => {
     setTimeout(() => {
@@ -44,7 +40,6 @@ export default function Login() {
         const response=JSON.parse(sessionStorage.getItem("data"))
         if (response.token!=null) {
           // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
-          console.log('Usuario autenticado');
           setIncorrect(true)
           const rol=tokenValidation()
           switch(rol){
@@ -65,13 +60,11 @@ export default function Login() {
           }
         } else {
           // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
-          console.log('Email o contraseña incorrectos');
           setIncorrect(false)
         }
       })
     }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
   }
-  console.log(formData)
 
   useEffect(()=>{
     const rol=tokenValidation()
