@@ -19,7 +19,7 @@ export async function getAuthenticationData(name, password) {
 }
 
 export function tokenValidation(){
-    const data = sessionStorage("data")
+    const data = sessionStorage.getItem("data")
     //Checa si no habia nada en los datos
     if (data == null) return -1
 
