@@ -54,6 +54,16 @@ function App() {
             </Route>
           </Route>
 
+          {/*Rutas del SysAdmin*/}
+          <Route element={<PrivateRoutes rol={4}/>}>
+            <Route element={<Test name="SysAdmin" />} path="sysadmin">
+              <Route element={<Test name="viaticos" />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="tablero" />} path="tablero" />
+              <Route element={<Test name="dashboard" />} path="dashboard" />
+            </Route>
+          </Route>
+
           <Route element={<h>404 esta pagina no existe</h>} path="*" />
 
         </Routes>

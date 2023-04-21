@@ -57,6 +57,9 @@ export default function Login() {
             case 3:
               navigate("/admin")
               break
+            case 4:
+              navigate("/sysadmin")
+              break
             default:
               navigate("/");
           }
