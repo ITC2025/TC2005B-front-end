@@ -52,9 +52,4 @@ export default function Facturas() {
             </div>
         </>
     );
-<<<<<<< HEAD:src/pages/Gastos/gastos.jsx
-}  
-=======
 }
-
->>>>>>> 2f3aaf03b977499aec0dfea26b0c25905fe7158e:src/pages/Gastos/gastos.js
