@@ -17,7 +17,7 @@ function RequestModal(props) {
             <Container>
               <Row>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                  <p>Solicitante: {props.formData.destino}</p>
+                  <p>Solicitante: </p>
                   <p>Proyecto: {props.formData.proyecto}</p>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -40,28 +40,8 @@ function RequestModal(props) {
                         </thead>
                         <tbody className='modal-tbody'>
                             <tr className="bg-white">
-                            <td>Boleto de avión redondo</td>
-                            <td>2,000 MXN</td>
-                            </tr>
-
-                            <tr className="bg-white">
-                            <td>Hotel</td>
-                            <td>30,000 MXN</td>
-                            </tr>
-
-                            <tr className="bg-white">
-                            <td>Comida</td>
-                            <td>15,000 MXN</td>
-                            </tr>
-
-                            <tr className="bg-white">
-                            <td>Renta de carro</td>
-                            <td>25,000 MXN</td>
-                            </tr>
-
-                            <tr className="bg-white">
-                            <td>Gasolina</td>
-                            <td>40,000 MXN</td>
+                              <td>Boleto de avión redondo</td>
+                              <td>2,000 MXN</td>
                             </tr>
                         </tbody>
                     </Table>
