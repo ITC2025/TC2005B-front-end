@@ -3,6 +3,7 @@ import { tokenValidation } from './getApiData'
 
 const PrivateRoutes = ({rol}) => {
     const userRol = tokenValidation()
+    
     return(
         userRol===rol ? <Outlet/> : <Navigate to="/"/>
     )
