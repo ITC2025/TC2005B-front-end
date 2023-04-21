@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from "react";
 import logoNb from '../../images/logoNb.png';
+import { getAuthenticationData, tokenValidation } from '../../utils/getApiData';
 import '../../styles/login.css'
 import {
   Col,
@@ -13,35 +14,58 @@ import {
 } from "react-bootstrap";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Login() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [userpassword, setPassword] = useState('');
   const [RenderIncorrect, setIncorrect] = useState(true);
+  const navigate = useNavigate();
+
   let formData={
     'useremail':email,
-    'userpassword':password,
+    'userpassword':userpassword,
   }
 
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    login(email, password); // login es una función que enviará los datos al servidor
+    login(email, userpassword); // login es una función que enviará los datos al servidor
   }
 
-  const login = (email, password) => {
+  
+
+   const login = (email, userpassword) => {
     setTimeout(() => {
-      if (email === 'usuario@ejemplo.com' && password === 'contraseña') {
-        // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
-        console.log('Usuario autenticado');
-        setIncorrect(true)
-      } else {
-        // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
-        console.log('Email o contraseña incorrectos');
-        setIncorrect(false)
-      }
+      getAuthenticationData(email, userpassword).then(()=>{
+        const response=JSON.parse(sessionStorage.getItem("data"))
+        if (response.token!=null) {
+          // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
+          console.log('Usuario autenticado');
+          setIncorrect(true)
+          const rol=tokenValidation()
+          switch(rol){
+            case 1:
+              navigate("/user");
+              break
+            case 2:
+              navigate("/pm")
+              break
+            case 3:
+              navigate("/admin")
+              break
+            default:
+              navigate("/");
+          }
+        } else {
+          // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
+          console.log('Email o contraseña incorrectos');
+          setIncorrect(false)
+        }
+      })
     }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
   }
   console.log(formData)
@@ -60,7 +84,7 @@ export default function Login() {
                     </div>
                     <div className="mt-3">
                       <Form>
-                        <Form.Group className="m-3" controlId="formBasicEmail">
+                        <Form.Group className="m-3" id="formBasicEmail">
                           <Form.Label className="text-center">
                             Email address
                           </Form.Label>
@@ -78,7 +102,7 @@ export default function Login() {
                         </Form.Group>
                         <Form.Group
                           className="m-3"
-                          controlId="formBasicPassword"
+                          id="formBasicPassword"
                         >
                           <Form.Label>Password</Form.Label>
                           <InputGroup className="mb-3">
