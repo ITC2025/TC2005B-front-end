@@ -4,8 +4,6 @@ import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
-import MostralModal from './components/TestModal';
-import TableGastos from './components/Gastos/tableGastos';
 import PantallaGastos from './components/Gastos';
 
 
@@ -61,9 +59,6 @@ function App() {
       {/* <MostralModal /> */}
 
       <PantallaGastos></PantallaGastos>
-      <TableGastos></TableGastos>
-      <MostralModal></MostralModal>
-  
     </div>
   );
 }

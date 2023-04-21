@@ -1,17 +1,22 @@
-import { Container, Row} from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 import ColDireccion from "./colDireccion";
 import ColInfoProyecto from "./colInfoProyecto";
+import TableGastos from "./tableGastos";
+import Subtotal from "./subtotal";
+
 const PantallaGastos = () => {
     return (
         <>
-            <Container>
-                <Header>
+            <Container >
+                <Section>
                     <Row>
                         <ColDireccion></ColDireccion>
                         <ColInfoProyecto></ColInfoProyecto>
                     </Row>
-                </Header>
+                </Section>
+                <TableGastos></TableGastos>
+                <Subtotal></Subtotal>
             </Container>
         </>
     );
@@ -19,7 +24,7 @@ const PantallaGastos = () => {
 
 export default PantallaGastos;
 
-const Header = styled.div`
+const Section = styled.div`
     padding-top: 5em;
     background: #FAFAFA;
 
@@ -59,4 +64,5 @@ const Header = styled.div`
         padding-bottom: 4px;
         padding-right: 3em;
     }
+   
 `;

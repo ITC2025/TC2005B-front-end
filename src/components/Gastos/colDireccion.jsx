@@ -1,10 +1,9 @@
-import { Col } from "react-bootstrap";
-import styled from "styled-components";
+import { Col, Image } from "react-bootstrap";
 
 function ColDireccion() {
     return (
         <>
-            <Col md="auto"> <img src="../../images/shaefferSolutions.png" /> </Col>
+            <Col md="auto"> <Image src="../../images/shaefferSolutions.png" /> </Col>
             <Col md={6} className="colDireccion mb-4">
                 <div>SSI Schaefer Ltda</div>
                 <div>Rua dos Cardeais, 41 - Jd. Itália</div>
@@ -18,9 +17,3 @@ function ColDireccion() {
 }
 
 export default ColDireccion;
-
-const ColDirreccion = styled.div`
-    text-align: left;
-    padding-top: 5px;
-`;
-

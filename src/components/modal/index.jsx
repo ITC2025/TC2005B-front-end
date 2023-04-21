@@ -3,7 +3,7 @@ import { Container, Button } from 'react-bootstrap';
 // Styled Components
 import styled from 'styled-components'
 
-const Modal = ({ estado, cambiarEstado, msg = '', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons }) => {
+const Modal = ({ estado, cambiarEstado, msg = '', succesIcon, excalmartionIcon, twoButtons, oneButton, saldoPositivo, saldoNegativo, pagarButtons, reenbolsoButtons, textBox }) => {
     return (
         <>
             {estado &&
@@ -90,6 +90,7 @@ const Overlay = styled.div`
     justify-content: center;
     position: fixed;
     top: 0;
+    left: 0;
     background: rgba(0,0,0,.60);
 `;
 
