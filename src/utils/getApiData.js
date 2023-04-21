@@ -21,7 +21,8 @@ export async function getAuthenticationData(name, password) {
 export function tokenValidation(){
     const data = sessionStorage.getItem("data")
     //Checa si no habia nada en los datos
-    if (data == null) return -1
+    if (data === null) return -1
+    if (data.length === 2) return 1
 
     const parsedJson=JSON.parse(data)
     const bToken=parsedJson.token
