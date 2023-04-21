@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from "react";
 import logoNb from '../../images/logoNb.png';
 import { getAuthenticationData, tokenValidation } from '../../utils/getApiData';
@@ -72,6 +72,28 @@ export default function Login() {
     }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
   }
   console.log(formData)
+
+  useEffect(()=>{
+    const rol=tokenValidation()
+    if(rol != -1){
+      switch(rol){
+        case 1:
+          navigate("/user");
+          break
+        case 2:
+          navigate("/pm")
+          break
+        case 3:
+          navigate("/admin")
+          break
+        case 4:
+          navigate("/sysadmin")
+          break
+        default:
+          navigate("/");
+      } 
+    }
+  })
 
   return (
     <>
