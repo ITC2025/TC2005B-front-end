@@ -49,16 +49,16 @@ export default function Login() {
           const rol=tokenValidation()
           switch(rol){
             case 1:
-              navigate("/user/dashboard");
+              navigate("/user");
               break
             case 2:
-              navigate("/pm/dashboard")
+              navigate("/pm")
               break
             case 3:
-              navigate("/admin/dashboard")
+              navigate("/admin")
               break
             case 4:
-              navigate("/sysadmin/dashboard")
+              navigate("/sysadmin")
               break
             default:
               navigate("/");
