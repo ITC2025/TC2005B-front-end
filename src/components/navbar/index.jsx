@@ -1,6 +1,8 @@
 import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import '../../styles/navbar.css'
 
+import { deleteSession } from "../../utils/getApiData.js";
+
 const NavbarSC = ({ client, productManager, admin }) => {
     return (
         <>
@@ -51,7 +53,7 @@ const NavbarSC = ({ client, productManager, admin }) => {
                             className="roundedCircle"
                         />
                         <NavDropdown title="USERNAME" id="basic-nav-dropdown">
-                            <NavDropdown.Item className="nav-link" href="#">  LOG OUT </NavDropdown.Item>
+                            <NavDropdown.Item className="nav-link" onClick={deleteSession()}>  LOG OUT </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Container>
