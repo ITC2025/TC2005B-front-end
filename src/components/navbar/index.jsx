@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
 
-const NavbarSC = ({ client, productManager, admin }) => {
+const NavbarSC = ({ client, projectManager, admin }) => {
     return (
         <>
             {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
