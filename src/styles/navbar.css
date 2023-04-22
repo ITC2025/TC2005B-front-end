@@ -1,0 +1,7 @@
+.navbar {
+    background-color: rgb(254, 241, 0);
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
