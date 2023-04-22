@@ -28,8 +28,9 @@ const NavbarSC = ({ client, productManager, admin }) => {
                                 </>
                             }
 
-                            {productManager &&
+                            {projectManager &&
                                 <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> MIS PROYECTOS</strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
