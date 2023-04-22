@@ -4,7 +4,7 @@ import "../../styles/TableAdminStyle.css";
 import TableDropdown from "../../components/table/TableAdminDropdown";
 import { MdDisplaySettings } from "react-icons/md";
 
-export const Table_Admin = () => {
+export default function Solicitudes() {
 
   // configuracion de columnas
   const columns = [

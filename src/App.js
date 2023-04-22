@@ -11,7 +11,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import PmDashboard from './pages/Dashboard/pmDashboard';
 import {UserDashboard} from './pages/Dashboard/userDashboard';
 import AdminDashboard from './pages/Dashboard/adminDashboard';
-import { solicitudes } from "./pages/TablaA/Table_Admin";
+import Solicitudes from "./pages/TablaA/Table_Admin";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -41,7 +41,7 @@ function App() {
           <Route element={<PrivateRoutes rol={3}/>}>
             <Route element={<NavbarSC admin={true}/>} path="admin">
               <Route index element={<AdminDashboard />}/>
-              <Route element={<Test name="admin solicitudes" />} path="solicitudes" />
+              <Route element={<Solicitudes name="admin solicitudes" />} path="solicitudes" />
               <Route element={<Test name="admin viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="admin tablero" />} path="tablero" />     
