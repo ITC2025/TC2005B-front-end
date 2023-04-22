@@ -1,4 +1,5 @@
 import { Col } from "react-bootstrap";
+import '../../styles/colProyecto.css'
 
 function ColInfoProyecto() {
     return (

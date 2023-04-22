@@ -47,7 +47,6 @@ export default Subtotal;
 
 const Column = styled.div`
     width: 35%;
-    
 
     th {
         text-align: left;

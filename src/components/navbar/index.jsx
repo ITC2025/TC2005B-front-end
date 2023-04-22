@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 import '../../styles/navbar.css'
 
 const NavbarSC = ({ client, productManager, admin }) => {
@@ -50,7 +50,9 @@ const NavbarSC = ({ client, productManager, admin }) => {
                             alt="user"
                             className="roundedCircle"
                         />
-                        <Nav.Link className="nav-link" href="#"> <strong> USERNAME </strong> </Nav.Link>
+                        <NavDropdown title="USERNAME" id="basic-nav-dropdown">
+                            <NavDropdown.Item className="nav-link" href="#">  LOG OUT </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Container>
             </Navbar>

@@ -1,9 +1,10 @@
 import { Col, Image } from "react-bootstrap";
+import '../../styles/colDireccion.css'
 
 function ColDireccion() {
     return (
         <>
-            <Col md="auto"> <Image src="../../images/shaefferSolutions.png" /> </Col>
+            <Col md="auto"> <Image className="imgInnovation" src="../../images/shaefferSolutions.png" /> </Col>
             <Col md={6} className="colDireccion mb-4">
                 <div>SSI Schaefer Ltda</div>
                 <div>Rua dos Cardeais, 41 - Jd. Itália</div>

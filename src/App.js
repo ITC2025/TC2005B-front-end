@@ -4,7 +4,7 @@ import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
-import PantallaGastos from './components/Gastos';
+import GastosTabla from './pages/GastosTabla/GastosTabla';
 
 
 function Expedientes() {
@@ -57,8 +57,7 @@ function App() {
       </Router>
 
       {/* <MostralModal /> */}
-
-      <PantallaGastos></PantallaGastos>
+      <GastosTabla></GastosTabla>
     </div>
   );
 }

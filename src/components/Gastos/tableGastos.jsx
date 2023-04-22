@@ -30,12 +30,9 @@ function TableGastos() {
                     <tr>
                         <th> N° Reporte </th>
                         <th> Fecha </th>
-                        <th> Producto/Servicio </th>
                         <th> Tipo </th>
-                        <th> Cantidad </th>
-                        <th> Precio </th>
+                        <th> Concepto (Producto/Servicio) </th>
                         <th> Total </th>
-                        <th> Moneda </th>
                         <th> Acciones </th>
                     </tr>
                 </thead>
@@ -43,12 +40,9 @@ function TableGastos() {
                     <tr>
                         <th> 01/2023 </th>
                         <th> 00-00-0000 </th>
-                        <th> hamburger</th>
                         <th> Comida</th>
-                        <th> 1</th>
-                        <th> $2,000</th>
-                        <th> $2,000</th>
-                        <th> USD</th>
+                        <th> Hamburguesa</th>
+                        <th> Total</th>
                         <th> </th>
                     </tr>
                 </tbody>
