@@ -11,18 +11,6 @@ function Subtotal() {
                         <Table borderless size="sm">
                             <tbody>
                                 <tr>
-                                    <th> SUBTOTAL (MXN): </th>
-                                    <th> $ -----</th>
-                                </tr>
-                                <tr>
-                                    <th>SUBTOTAL (USD): </th>
-                                    <th> $ ------</th>
-                                </tr>
-                                <tr>
-                                    <th> CAMBIO ($19.00 MXN): </th>
-                                    <th> $ ------</th>
-                                </tr>
-                                <tr className="border-top">
                                     <th> TOTAL (MXN): </th>
                                     <th> $ -------</th>
                                 </tr>
