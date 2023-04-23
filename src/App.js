@@ -4,7 +4,7 @@ import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
-import GastosTabla from './pages/GastosTabla/GastosTabla';
+import GastosTabla from './components/Gastos';
 
 
 function Expedientes() {
