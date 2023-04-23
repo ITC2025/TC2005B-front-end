@@ -18,6 +18,20 @@ export async function getAuthenticationData(name, password) {
     console.log(JSON.stringify(response))
 }
 
+export async function sendJsonRequest(url,reqMethod,data){
+    const options = {
+        method: reqMethod,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    sessionStorage.setItem("data", JSON.stringify(response))
+    console.log(JSON.stringify(response))
+}
+
 export function tokenValidation(){
     const data = sessionStorage.getItem("data")
     //Checa si no habia nada en los datos
