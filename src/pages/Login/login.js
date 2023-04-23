@@ -42,7 +42,7 @@ export default function Login() {
     setTimeout(() => {
       getAuthenticationData(email, userpassword).then(()=>{
         const response=JSON.parse(sessionStorage.getItem("data"))
-        if (response.token!=null) {
+        if (response.token!==null) {
           // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
           console.log('Usuario autenticado');
           setIncorrect(true)
