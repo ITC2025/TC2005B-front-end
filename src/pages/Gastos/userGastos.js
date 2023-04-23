@@ -16,12 +16,12 @@ import '../../styles/gastos.css';
 export default function Facturas() {
     const [forms, setForms] = useState([<AddedForm key={0} />]);
 
-    const addForm = () => {
+    const addForm = () =>    {
         const newForms = [...forms, <AddedForm key={forms.length} />];
         setForms(newForms);
     };
 
-    const deleteForm = () => {
+    const deleteForms = () => {
         setForms([<AddedForm key={0} />]);
     };
 
@@ -47,7 +47,7 @@ export default function Facturas() {
                 </Row>
             </Container>
             <div className="d-flex justify-content-end align-items-end">
-                <Button variant="danger" id="CGbutton" onClick={deleteForm}>CANCELAR</Button>
+                <Button variant="danger" id="CGbutton" onClick={deleteForms}>CANCELAR</Button>
                 <Button variant="danger" id="CGbutton">GUARDAR</Button>
             </div>
         </>

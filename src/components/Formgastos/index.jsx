@@ -1,7 +1,6 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
-
 import '../../styles/gastos.css'
 
 export default function Gastos() {
@@ -58,7 +57,7 @@ export default function Gastos() {
                                 <div className="col-md-4">
                                     <label htmlFor="asda">Factura digital (XML)</label>
                                     <div className="input-group mb-3">
-                                        <input class="form-control" type="file" required />
+                                        <input className="form-control" type="file" required />
                                     </div>
                                 </div>
                                 <div className="col-md-4">
@@ -77,7 +76,7 @@ export default function Gastos() {
                     </Form>
                 </div>
 
-            ) : (null)}
+            ) :     null}
         </>
     );
 }  
