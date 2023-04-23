@@ -21,11 +21,13 @@ function Expedientes() {
 function App() {
   return (
     <div className="App">
+      <Facturas/>
+      {/*!!!DESCOMENTAR ANTES DE MERGEAR!!!
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
 
-          {/*Rutas de usuario*/}
+          {/*Rutas de usuario*}
           <Route element={<PrivateRoutes rol={1}/>}>
             <Route element={<NavbarSC client={true}/>} path="user">
               <Route index element={<UserDashboard />}/>
@@ -36,7 +38,7 @@ function App() {
             </Route>
           </Route>
 
-          {/*Rutas de admin*/}
+          {/*Rutas de admin*}
           <Route element={<PrivateRoutes rol={3}/>}>
             <Route element={<NavbarSC admin={true}/>} path="admin">
               <Route index element={<AdminDashboard />}/>
@@ -46,7 +48,7 @@ function App() {
             </Route>
           </Route>
 
-          {/*Rutas de Project Manager*/}
+          {/*Rutas de Project Manager*}
           <Route element={<PrivateRoutes rol={2}/>}>
             <Route element={<NavbarSC productManager={true}/>} path="pm">
               <Route index element={<PmDashboard/>}/>
@@ -56,7 +58,7 @@ function App() {
             </Route>
           </Route>
 
-          {/*Rutas del SysAdmin*/}
+          {/*Rutas del SysAdmin*}
           <Route element={<PrivateRoutes rol={4}/>}>
             <Route element={<NavbarSC admin={true}/>} path="sysadmin">
               <Route index element={<AdminDashboard />}/>
@@ -70,6 +72,7 @@ function App() {
 
         </Routes>
       </Router>
+  */}
     </div>
   );
 }
