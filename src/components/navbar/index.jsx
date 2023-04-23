@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
 
-const NavbarSC = ({ client, productManager, admin }) => {
+const NavbarSC = ({ client, projectManager, admin }) => {
     return (
         <>
             {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
@@ -28,8 +28,9 @@ const NavbarSC = ({ client, productManager, admin }) => {
                                 </>
                             }
 
-                            {productManager &&
+                            {projectManager &&
                                 <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> MIS PROYECTOS</strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>

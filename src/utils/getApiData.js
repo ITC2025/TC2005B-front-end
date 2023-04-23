@@ -3,6 +3,7 @@ export async function getAuthenticationData(name, password) {
         correoElectronico: name,
         password: password
     }
+
     const url = 'http://localhost:3000/login';
     const options = {
         method: "POST",
@@ -14,12 +15,12 @@ export async function getAuthenticationData(name, password) {
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
     sessionStorage.setItem("data", JSON.stringify(response))
+    console.log(JSON.stringify(response))
 }
 
 export function tokenValidation(){
     const data = sessionStorage.getItem("data")
     //Checa si no habia nada en los datos
-        
     if (data === null) return -1
     if (data.length === 2) return -1
 
@@ -33,6 +34,7 @@ export function tokenValidation(){
     const payload = JSON.parse(decodedPayload);
 
     if(Date.now() >= payload.exp * 1000) {
+        sessionStorage.clear()
         return -1
     }
 
