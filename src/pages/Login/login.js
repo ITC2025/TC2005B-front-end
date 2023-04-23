@@ -24,10 +24,7 @@ export default function Login() {
   const [RenderIncorrect, setIncorrect] = useState(true);
   const navigate = useNavigate();
 
- /*  let formData={
-    'useremail':email,
-    'userpassword':userpassword,
-  } */
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
