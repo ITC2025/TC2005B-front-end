@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
+import TextField from "@mui/material/TextField";
 
 export const PmTableTravelAll = () => {
   // Configurar hooks
@@ -21,8 +22,9 @@ export const PmTableTravelAll = () => {
     console.log(data);
   };
 
-// const getTravelAllowance = async () => {
 
+
+  // const getTravelAllowance = async () => {
 
   useEffect(() => {
     getTravelAllowance();
@@ -42,7 +44,7 @@ export const PmTableTravelAll = () => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      width: "120px", 
+      width: "120px",
     },
     // {
     //     name:"Fecha",
@@ -63,7 +65,7 @@ export const PmTableTravelAll = () => {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.status} />,
       sortable: true,
-      width: "120px" 
+      width: "120px",
     },
     // {
     //   name: 'Description',
@@ -84,7 +86,7 @@ export const PmTableTravelAll = () => {
       name: "Actions",
 
       cell: (row) => <PmTableDropdown />,
-      width: "80px" ,
+      width: "80px",
     },
   ];
 
@@ -100,11 +102,13 @@ export const PmTableTravelAll = () => {
     <div className="container">
       <div className="row my-2">
         <div className="col justify-content-end">
-          <div>
-            <div className="input-group">
-              <input type="text" placeholder="Buscar" onChange={handleFilter} />
-              <label>Buscar</label>
-            </div>
+          <div className="d-flex justify-content-end">
+            <TextField
+              id="outlined-basic"
+              label="Buscar"
+              variant="standard"
+              onChange={handleFilter}
+            />
           </div>
         </div>
       </div>
