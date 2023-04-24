@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import NavbarSC from '../components/NavBar';
 import FormInputIcon from '../components/FormInputIcon';
 import AddInputButton from '../components/AddInputButton';
-import AddedInput from '../components/AddedInput';
 import RequestModal from '../components/RequestModal';
 import '../styles/FormSolicit.css';
 import '../styles/SendSaveCost.css';
@@ -76,7 +75,7 @@ function SolicitarViaticos() {
                         </Row>
                         <Row id="SolicitFormRow" className='mx-1'>
                             <Col sm={10} md={10}>
-                                <AddInputButton InputComponent={AddedInput} />
+                                <AddInputButton />
                             </Col>
                         </Row>
                     </Container>

@@ -18,6 +18,7 @@ function FormInputIcon(props) {
                                 name={props.inputName}
                                 value={props.inputValue}
                                 onChange={props.onChange}
+                                required
                             />
                         </Form.Group>
                     </Col>
