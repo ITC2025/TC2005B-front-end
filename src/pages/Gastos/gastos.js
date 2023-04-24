@@ -9,11 +9,14 @@ import {
 } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
+import {gastosApi} from '../../utils/gastosApidata'
 
 
 import '../../styles/gastos.css';
 
 export default function Facturas() {
+    const data = gastosApi("1");
+    console.log(data);
     const [forms, setForms] = useState([<AddedForm key={0} />]);
 
     const addForm = () => {
