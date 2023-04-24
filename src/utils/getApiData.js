@@ -1,3 +1,27 @@
+export async function getFormData(product, type, amount, image ,date) {
+    let data = {/*Esta funcion es para crear un Objecto Json y se enviara al backend*/
+        concepto: product,
+        ID_tipo_gasto: type,
+        monto: amount,
+        imagen: image,
+        fecha: date
+    }
+
+
+    // const url = 'http://localhost:3000/login';
+    // const options = {
+    //     method: "POST",
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(data)
+    // }
+    // const rawResponse = await fetch(url, options)
+    // const response = await rawResponse.json();
+    // sessionStorage.setItem("data", JSON.stringify(response))
+    // console.log(JSON.stringify(response))
+}
+
 export async function getAuthenticationData(name, password) {
     let data = {
         correoElectronico: name,
