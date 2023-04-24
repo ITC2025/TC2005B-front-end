@@ -1,7 +1,6 @@
-import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Image } from "react-bootstrap";
 import '../../styles/navbar.css'
-
-import { deleteSession } from "../../utils/getApiData.js";
+import { Outlet } from "react-router-dom";
 
 const NavbarSC = ({ client, projectManager, admin }) => {
     return (
@@ -31,6 +30,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
                             {projectManager &&
                                 <>
+                                    <Nav.Link className="nav-link" href="#"> <strong> MIS PROYECTOS</strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
@@ -52,12 +52,11 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             alt="user"
                             className="roundedCircle"
                         />
-                        <NavDropdown title="USERNAME" id="basic-nav-dropdown">
-                            <NavDropdown.Item className="nav-link" onClick={deleteSession()}>  LOG OUT </NavDropdown.Item>
-                        </NavDropdown>
+                        <Nav.Link className="nav-link" href="#"> <strong> USERNAME </strong> </Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
+            <Outlet />
         </>
     )
 }

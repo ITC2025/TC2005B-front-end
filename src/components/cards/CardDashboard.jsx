@@ -1,17 +1,20 @@
 import React from "react";
-import  {Card, Button}  from "react-bootstrap";
-import logo from "../../images/logo.png";
-import CardProject from "./../../images/CardProject.png";
-import "../../styles/CardDashboard.css"
+import { Card } from "react-bootstrap";
+import "../../styles/CardDashboard.css";
 
-function CardDashboard({image}) {
-    return (
-      <Card>
-        <a href="">
+/** 
+ * This componente is used to create a card with an image and a link.
+ * The image is passed as a prop and the link is passed as a prop.
+*/
+
+function CardDashboard({ image, link }) {
+  return (
+    <Card>
+      <a href={link}>
         <Card.Img src={image} />
-        </a>
-      </Card>
-    );
-  }
-  
-  export default CardDashboard;
+      </a>
+    </Card>
+  );
+}
+
+export default CardDashboard;

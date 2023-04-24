@@ -4,7 +4,7 @@ import { Container, Button } from 'react-bootstrap';
 
 import Modal from './modal/index.jsx';
 
-function MostralModal() {
+function Test() {
     const [modalEstado1, modalCambiarEstado1] = useState(false);
     const [modalEstado2, modalCambiarEstado2] = useState(false);
     const [modalEstado3, modalCambiarEstado3] = useState(false);
@@ -29,46 +29,58 @@ function MostralModal() {
             {/* Modal 1 */}
             < Modal estado={modalEstado1}
                 cambiarEstado={modalCambiarEstado1}
-                confirmar={true}>
+                msg={'CONFIRMAR'}
+                twoButtons={true}>
             </Modal>
 
             {/* Modal 2 */}
             < Modal estado={modalEstado2}
                 cambiarEstado={modalCambiarEstado2}
-                cancelar={true}>
+                msg={'CANCELAR'}
+                twoButtons={true}>
             </Modal>
 
             {/* Modal 3 */}
             < Modal estado={modalEstado3}
                 cambiarEstado={modalCambiarEstado3}
-                solicitudExitosa={true}>
+                msg={'SOLICITUD EXITOSA'}
+                oneButton={true}
+                succesIcon={true}>
             </Modal>
 
             {/* Modal 4 */}
             < Modal estado={modalEstado4}
                 cambiarEstado={modalCambiarEstado4}
-                ocurrioError={true}>
+                msg={'OCURRIÓ UN ERROR'}
+                oneButton={true}
+                excalmartionIcon={true}>
             </Modal>
 
             {/* Modal 5 */}
             < Modal estado={modalEstado5}
                 cambiarEstado={modalCambiarEstado5}
-                saldoPositivo={true}>
+                msg={'APROVACIÓN DE SOLICITUD'}
+                twoButtons={true}>
             </Modal>
 
             {/* Modal 6 */}
             <Modal estado={modalEstado6}
                 cambiarEstado={modalCambiarEstado6}
-                saldoNegativo={true}>
+                msg='SALDO POSITIVO'
+                saldoPositivo={true}
+                pagarButtons={true}>
             </Modal>
 
             {/* Modal 7 */}
             <Modal estado={modalEstado7}
                 cambiarEstado={modalCambiarEstado7}
-                aprovacionSolicitud={true}>
+                msg='SALDO NEGATIVO'
+                saldoPositivo={true}
+                reenbolsoButtons={true}>
             </Modal>
         </>
     );
+
 }
 
-export default MostralModal;
+export default Test;

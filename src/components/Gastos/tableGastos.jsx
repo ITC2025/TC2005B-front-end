@@ -13,7 +13,7 @@ export default function TableGastos() {
                 <Row>
                     <Col md={4} className="colGasto">
                         <div>
-                            <Button variant="ligth" >NUEVO GASTO</Button> {' '}
+                            <Button href='/facturas' variant="ligth" >NUEVO GASTO</Button> {' '}
                         </div>
                     </Col>
 
