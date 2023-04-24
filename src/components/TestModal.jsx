@@ -29,54 +29,43 @@ function MostralModal() {
             {/* Modal 1 */}
             < Modal estado={modalEstado1}
                 cambiarEstado={modalCambiarEstado1}
-                textBox={true}
-                oneButton={true}>
+                confirmar={true}>
             </Modal>
 
             {/* Modal 2 */}
             < Modal estado={modalEstado2}
                 cambiarEstado={modalCambiarEstado2}
-         
-                twoButtons={true}>
+                cancelar={true}>
             </Modal>
 
             {/* Modal 3 */}
             < Modal estado={modalEstado3}
                 cambiarEstado={modalCambiarEstado3}
-                msg={'SOLICITUD EXITOSA'}
-                oneButton={true}
-                succesIcon={true}>
+                solicitudExitosa={true}>
             </Modal>
 
             {/* Modal 4 */}
             < Modal estado={modalEstado4}
                 cambiarEstado={modalCambiarEstado4}
-                msg={'OCURRIÓ UN ERROR'}
-                oneButton={true}
-                excalmartionIcon={true}>
+                ocurrioError={true}>
             </Modal>
 
             {/* Modal 5 */}
             < Modal estado={modalEstado5}
                 cambiarEstado={modalCambiarEstado5}
-                msg={'APROVACIÓN DE SOLICITUD'}
-                twoButtons={true}>
+                saldoPositivo={true}>
             </Modal>
 
             {/* Modal 6 */}
             <Modal estado={modalEstado6}
                 cambiarEstado={modalCambiarEstado6}
-                msg='SALDO POSITIVO'
-                saldoPositivo={true}
-                pagarButtons={true}>
+                saldoNegativo={true}>
             </Modal>
 
             {/* Modal 7 */}
             <Modal estado={modalEstado7}
                 cambiarEstado={modalCambiarEstado7}
-                msg='SALDO NEGATIVO'
-                saldoPositivo={true}
-                reenbolsoButtons={true}>
+                aprovacionSolicitud={true}>
             </Modal>
         </>
     );

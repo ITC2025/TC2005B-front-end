@@ -5,7 +5,7 @@ import NavbarSC from './components/navbar/index.jsx';
 import Test from './pages/test/index.js';
 import Facturas from './pages/Gastos/gastos';
 import GastosTabla from './components/Gastos';
-
+import MostralModal from './components/TestModal';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -58,6 +58,7 @@ function App() {
 
       {/* <MostralModal /> */}
       <GastosTabla></GastosTabla>
+      {/* <MostralModal></MostralModal>c */}
     </div>
   );
 }

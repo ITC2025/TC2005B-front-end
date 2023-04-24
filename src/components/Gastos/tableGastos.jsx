@@ -3,15 +3,17 @@ import { Table, Container, Row, Col, Button } from "react-bootstrap";
 import Modal from "../modal";
 import { useState } from "react";
 
-function TableGastos() {
+export default function TableGastos() {
     const [estadoM, cambiarEstadoM] = useState(false);
+
+    const data = require('./datos.json');
     return (
         <>
             <Container>
                 <Row>
                     <Col md={4} className="colGasto">
                         <div>
-                            <Button variant="ligth">NUEVO GASTO</Button> {' '}
+                            <Button variant="ligth" >NUEVO GASTO</Button> {' '}
                         </div>
                     </Col>
 
@@ -37,29 +39,27 @@ function TableGastos() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th> 01/2023 </th>
-                        <th> 00-00-0000 </th>
-                        <th> Comida</th>
-                        <th> Hamburguesa</th>
-                        <th> Total</th>
-                        <th> </th>
-                    </tr>
+                    {data.map(gasto => (
+                        <tr key={gasto.id}>
+                            <td> {gasto.reporte} </td>
+                            <td> {gasto.fecha} </td>
+                            <td> {gasto.tipo} </td>
+                            <td> {gasto.concepto} </td>
+                            <td> {gasto.total} </td>
+                            <td>  </td>
+                        </tr>
+                    ))}
                 </tbody>
             </Table>
 
             <Modal estado={estadoM}
                 cambiarEstado={cambiarEstadoM}
-                msg="Saldo Positivo"
-                saldoPositivo={true}
-                pagarButtons={true}>
+                saldoNegativo={true}>
             </Modal>
         </>
     );
-
-    // function mostrarDatos() {
-
-    // }
 }
 
-export default TableGastos;
+
+
+

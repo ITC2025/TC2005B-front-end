@@ -3,7 +3,7 @@ import '../../styles/navbar.css'
 
 import { deleteSession } from "../../utils/getApiData.js";
 
-const NavbarSC = ({ client, productManager, admin }) => {
+const NavbarSC = ({ client, projectManager, admin }) => {
     return (
         <>
             {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
@@ -29,7 +29,7 @@ const NavbarSC = ({ client, productManager, admin }) => {
                                 </>
                             }
 
-                            {productManager &&
+                            {projectManager &&
                                 <>
                                     <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
                                     <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>

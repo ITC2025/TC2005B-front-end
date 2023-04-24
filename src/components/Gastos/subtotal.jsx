@@ -1,7 +1,28 @@
+// import { response } from "express";
+import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+import gastos from './datos.json'  // archivo json
 
-function Subtotal() {
+
+export default function Subtotal() {
+    const [total, setTotal] = useState(0);
+
+    // useEffect(() => {
+    //     fetch('./datos.json')
+    //         .then (response => response.json())
+    //         .then (data => {
+    //             const sumaTotal = data.reduce((i, gasto) => i + parseInt(gasto.total), 0);
+    //             setTotal(sumaTotal);
+    //         })
+    //         .catch(error => console.error(error));
+    // }, []);
+
+    useEffect(() => {
+        const sumaTotal = gastos.reduce((i, gasto) => i + parseInt(gasto.total), 0);
+        setTotal(sumaTotal);
+    }, [])
+
     return (
         <>
             <Container>
@@ -12,7 +33,7 @@ function Subtotal() {
                             <tbody>
                                 <tr>
                                     <th> TOTAL (MXN): </th>
-                                    <th> $ -------</th>
+                                    <th> $ {total} </th>
                                 </tr>
                                 <tr>
                                     <th> ANTICIPO (MXN): </th>
@@ -31,7 +52,6 @@ function Subtotal() {
         </>
     );
 }
-export default Subtotal;
 
 const Column = styled.div`
     width: 35%;
