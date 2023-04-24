@@ -4,11 +4,13 @@ import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
+import { Button } from "react-bootstrap";
 
 export const PmTableTravelAll = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
+  const [estadoBoton, setEstadoBoton] = useState([false]);
 
   // Funcion para mostrar datos con fetch
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
@@ -22,13 +24,31 @@ export const PmTableTravelAll = () => {
     console.log(data);
   };
 
-
-
   // const getTravelAllowance = async () => {
 
   useEffect(() => {
     getTravelAllowance();
   }, []);
+
+  const handleAceptar = () => {
+    console.log("aceptar");
+  };
+
+  const handleRechazo = () => {
+    console.log("rechazar");
+  };
+
+  // Funcion con checkbox
+  const handleSelected = ({ selectedRows }) => {
+    console.log(selectedRows);
+    if (selectedRows.length > 0) {
+      console.log("row seleccionadas");
+      setEstadoBoton(false);
+    } else {
+      console.log("ya no hay rows seleccionadas");
+      setEstadoBoton(true);
+    }
+  };
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
@@ -118,7 +138,17 @@ export const PmTableTravelAll = () => {
         paginationComponentOptions={paginationTable}
         fixedHeader
         selectableRows
+        onSelectedRowsChange={handleSelected}
       />
+      <div className="d-flex justify-content-end mr-4">
+        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleAceptar}>
+          Aceptar
+        </Button>
+        <div className="mx-2"></div>
+        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleRechazo}>
+          Rechazar
+        </Button>
+      </div>
     </div>
   );
 };
