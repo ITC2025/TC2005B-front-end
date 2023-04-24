@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
     Col,
     Button,
@@ -13,8 +14,27 @@ import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
 
 import '../../styles/gastos.css'
+import { useSearchParams } from "react-router-dom";
 
 export default function Gastos() {
+    const [producto, setProducto] = useState('');
+    const [tipo, setTipo] = useState('');
+    const [cantidad, setCantidad] = useState('');
+    const [monto, setMonto] = useState('');
+    const [ticket, setTicket] = useState('');
+    const [fecha, setFecha] = useState('');
+
+    let formData={
+        'producto':producto,
+        'tipo':tipo,
+        'cantidad':cantidad,
+        'monto':monto,
+        'ticket':ticket,
+        'fecha':fecha,
+    }
+
+    console.log(formData)
+
     return (
         <>
         <Col xxl={12}>
@@ -28,13 +48,14 @@ export default function Gastos() {
                                 <Row>
                                     <Col>
                                         <Form.Label className="text-center">
-                                            Productos
+                                            Producto
                                         </Form.Label>
 
                                         <InputGroup className="mb-3">
                                             <Form.Control
                                                 type="text"
                                                 required
+                                                onChange={e => setProducto(e.target.value)}
                                             />
 
                                         </InputGroup>
@@ -46,7 +67,7 @@ export default function Gastos() {
                                         </Form.Label>
 
                                         <InputGroup className="mb-3">
-                                            <Form.Select>
+                                            <Form.Select onChange={e => setTipo(e.target.value)}>
                                                 <option>Estancia</option>
                                             </Form.Select>
                                         </InputGroup>
@@ -59,6 +80,7 @@ export default function Gastos() {
                                             <Form.Control
                                                 type="text"
                                                 required
+                                                onChange={e => setCantidad(e.target.value)}
                                             />
                                         </InputGroup>
                                     </Col>
@@ -71,6 +93,7 @@ export default function Gastos() {
                                             <Form.Control
                                                 type="text"
                                                 required
+                                                onChange={e => setMonto(e.target.value)}
                                             />
                                             <InputGroup.Text id="basic-addon1">
                                                 MXN
@@ -94,6 +117,7 @@ export default function Gastos() {
                                             <Form.Control
                                                 type="text"
                                                 required
+                                                onChange={e => setTicket(e.target.value)}
                                             />
                                             <InputGroup.Text id="basic-addon2">
                                                 <MdOutlineFileUpload />
@@ -109,6 +133,7 @@ export default function Gastos() {
                                                 type="date"
                                                 required
                                                 placeholder="DD | MM | YYYY |"
+                                                onChange={e => setFecha(e.target.value)}
                                             />
                                         </InputGroup>
                                     </Col>
