@@ -16,6 +16,22 @@ button {
   color: white;
 }
 
+[role="boton"] {
+  border: 1px solid rgba(255, 0, 0, 0.45) !important;
+  border-radius: 0.4em !important;
+  background-color: rgb(221, 110, 110) !important;
+  padding: 0.3em !important;
+  color: white;
+}
+
+[role="boton"]:hover {
+  border: 1px solid rgba(255, 0, 0, 0.45) !important;
+  border-radius: 0.4em !important;
+  background-color: white  !important;
+  padding: 0.3em !important;
+  color: rgb(221, 110, 110);
+}
+
 .input-group {
   position: relative;
 }
