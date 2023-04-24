@@ -3,7 +3,7 @@ import FormProject from '../../components/FormProject';
 function Project() {
     return (
         <>
-        <FormProject/>
+        {/* <FormProject/> */}
         </>
     );
 }
