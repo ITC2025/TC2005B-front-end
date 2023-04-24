@@ -99,16 +99,11 @@ export const PmTableTravelAll = () => {
   return (
     <div className="container">
       <div className="row my-2">
-        <div className="col-5">
-          <button> Solicitar Viaticos </button>
-        </div>
-        <div className="col-7 d-flex justify-content-end">
+        <div className="col justify-content-end">
           <div>
             <div className="input-group">
-              
               <input type="text" placeholder="Buscar" onChange={handleFilter} />
               <label>Buscar</label>
-              
             </div>
           </div>
         </div>
@@ -119,6 +114,7 @@ export const PmTableTravelAll = () => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
+        selectableRows
       />
     </div>
   );
