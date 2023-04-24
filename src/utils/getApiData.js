@@ -1,3 +1,4 @@
+
 export async function getAuthenticationData(name, password) {
     let data = {
         correoElectronico: name,
@@ -35,8 +36,4 @@ export function tokenValidation(){
   
     return(payload.rol)
 
-}
-
-export function deleteSession () {
-    sessionStorage.clear();
 }

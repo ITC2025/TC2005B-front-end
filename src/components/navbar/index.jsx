@@ -1,6 +1,31 @@
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown, Button } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
+
+// function deleteSession () {
+//     const navigate = useNavigate();
+//     function handleLogout() {
+//         sessionStorage.clear();
+//         navigate("/login", { replace: true});
+//     }
+//     return (
+//         <NavDropdown.Item>
+//             <Button onClick={handleLogout}>
+//                 Log
+//             </Button>
+//         </NavDropdown.Item>
+//     )
+// }
+
+// function Logout() {
+//     const navigate = useNavigate();
+// }
+
+// function handleLogout() {
+//     sessionStorage.clear();
+//     navigate("/login");
+// }
 
 const NavbarSC = ({ client, projectManager, admin }) => {
     return (
@@ -52,7 +77,9 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             alt="user"
                             className="roundedCircle"
                         />
-                        <Nav.Link className="nav-link" href="#"> <strong> USERNAME </strong> </Nav.Link>
+                       <NavDropdown title="USERNAME" id="basic-nav-dropdown">
+                            <NavDropdown.Item className="nav-link" >  LOG OUT </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Container>
             </Navbar>
@@ -60,4 +87,6 @@ const NavbarSC = ({ client, projectManager, admin }) => {
         </>
     )
 }
+
+
 export default NavbarSC;
