@@ -4,7 +4,6 @@ import Innovation from '../../components/GastosUserView/innovation';
 import ProyectoInfo from '../../components/GastosUserView/proyectoInfo';
 import Tabla from '../../components/GastosUserView/tabla';
 import datos from '../../components/GastosUserView/datos.json'
-import DatatablePage from "../../components/GastosUserView/tabla2";
 import {gastosApi} from '../../utils/gastosApidata'
 
 const GastosUserView = () => {
