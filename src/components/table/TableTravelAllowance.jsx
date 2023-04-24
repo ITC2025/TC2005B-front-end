@@ -95,10 +95,7 @@ export const TableTravelAllowance = () => {
   return (
     <div className="container">
       <div className="row my-2">
-        <div className="col-5">
-          <button> Solicitar Viaticos </button>
-        </div>
-        <div className="col-7 d-flex justify-content-end">
+        <div className="col d-flex justify-content-end">
           <div>
             <div className="input-group">
               
@@ -115,6 +112,7 @@ export const TableTravelAllowance = () => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
+        selectableRows
       />
     </div>
   );
