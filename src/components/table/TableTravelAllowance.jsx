@@ -115,6 +115,7 @@ export const TableTravelAllowance = () => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
+        selectableRows
       />
     </div>
   );
