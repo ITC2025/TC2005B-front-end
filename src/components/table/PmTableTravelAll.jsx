@@ -99,7 +99,7 @@ export const PmTableTravelAll = () => {
   return (
     <div className="container">
       <div className="row my-2">
-        <div className="col justify-content-end">
+        <div className="col d-flex justify-content-end">
           <div>
             <div className="input-group">
               <input type="text" placeholder="Buscar" onChange={handleFilter} />
