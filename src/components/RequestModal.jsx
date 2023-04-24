@@ -49,9 +49,16 @@ function RequestModal(props) {
                       </tr>
                     </thead>
                     <tbody className="modal-tbody">
-                      <tr className="bg-white">
-                        <td>{props.formData.concepto}</td>
-                        <td>{props.formData.monto}</td>
+                      {props.gastosValues.map((value, idx) => (
+                        <tr key={idx} className="bg-white">
+                          <td>{value.concepto}</td>
+                          <td>{parseInt(value.monto)}</td>
+                        </tr>
+                      ))}
+
+                      <tr>
+                        <td>Total</td>
+                        <td>{props.totalGastos}</td>
                       </tr>
                     </tbody>
                   </Table>

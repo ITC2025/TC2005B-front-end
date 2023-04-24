@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { Button, Row, Col, Form, Modal } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Row, Col, Form } from "react-bootstrap";
 
-const AddInputButton = () => {
+const AddInputButton = ({ onAddInput }) => {
+  const sendValuesToParent = () => {
+    onAddInput(values);
+  };
+
   const [numRows, setNumRows] = useState(1);
   const [values, setValues] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   const handleAddRow = () => {
     setValues([...values, { concepto: "", monto: "" }]);
@@ -13,6 +16,11 @@ const AddInputButton = () => {
 
   return (
     <>
+      <Button variant="success" onClick={handleAddRow}>
+        Agregar fila
+      </Button>
+      <hr />
+
       {values.map((value, idx) => (
         <Row key={idx}>
           <Col>
@@ -36,7 +44,8 @@ const AddInputButton = () => {
                 setValues(
                   values.map((v, i) =>
                     i === idx ? { ...v, monto: e.target.value } : v
-                  )
+                  ),
+                  sendValuesToParent()
                 )
               }
             />
@@ -51,34 +60,13 @@ const AddInputButton = () => {
           </Col>
         </Row>
       ))}
-      <Button variant="success" onClick={handleAddRow}>
-        Agregar fila
-      </Button>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
-        Mostrar modal
-      </Button>
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Datos ingresados</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <ul>
-            {values.map((value, idx) => (
-              <li key={idx}>
-                <strong>Concepto:</strong> {value.concepto},{" "}
-                <strong>Monto:</strong> {value.monto}
-              </li>
-            ))}
-          </ul>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
-            Cerrar
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
 
-export default AddInputButton;
+// Utilizar memo nos permite no renderizar un componente hijo
+// cada que su componente padre lo es, esto permite reducir el uso de recursos
+// del programa. Como funciona es que React.memo guarda la ultima copia creada
+// del componente hijo, y al momento de actualizar al padre, deja al componente hijo con
+// su mismo valor previo
+export default React.memo(AddInputButton);
