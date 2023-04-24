@@ -104,7 +104,6 @@ export const PmTableTravelAll = () => {
     // },
     {
       name: "Actions",
-
       cell: (row) => <PmTableDropdown />,
       width: "80px",
     },
