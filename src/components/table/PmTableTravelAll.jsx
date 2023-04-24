@@ -96,7 +96,6 @@ export const PmTableTravelAll = () => {
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
   };
-
   // mostrar la tabla
   return (
     <div className="container">
