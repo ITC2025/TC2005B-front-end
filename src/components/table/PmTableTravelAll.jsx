@@ -15,21 +15,20 @@ export const PmTableTravelAll = () => {
   // Funcion para mostrar datos con fetch
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
-
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    console.log(data);
+    // console.log(data);
   };
 
   // const getTravelAllowance = async () => {
-
   useEffect(() => {
     getTravelAllowance();
   }, []);
 
+  // Funcion para aceptar o rechazar solicitudes
   const handleAceptar = () => {
     console.log("aceptar");
   };
