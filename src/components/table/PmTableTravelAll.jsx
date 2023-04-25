@@ -5,13 +5,21 @@ import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
+import Modal from 'react-bootstrap/Modal';
 
 export const PmTableTravelAll = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
+
+  // Estado de los botones, para deshabilitarlos o habilitarlos
   const [estadoBoton, setEstadoBoton] = useState([false]);
   const [estadoBoton2, setEstadoBoton2] = useState([false]);
+
+  // Estado para mostrar modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // Funcion para mostrar datos con fetch
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
@@ -34,9 +42,32 @@ export const PmTableTravelAll = () => {
     console.log("aceptar");
   };
 
-  const handleRechazo = () => {
-    console.log("rechazar");
+  const handleSend = () => {
+    console.log("enviar");
   };
+
+  // const handleRechazo = () => {
+  //   <Modal
+  //       show={show}
+  //       onHide={handleClose}
+  //       backdrop="static"
+  //       keyboard={false}
+  //     >
+  //       <Modal.Header closeButton>
+  //         <Modal.Title>Modal title</Modal.Title>
+  //       </Modal.Header>
+  //       <Modal.Body>
+  //         I will not close if you click outside me. Don't even try to press
+  //         escape key.
+  //       </Modal.Body>
+  //       <Modal.Footer>
+  //         <Button variant="secondary" onClick={handleClose}>
+  //           Close
+  //         </Button>
+  //         <Button variant="primary">Understood</Button>
+  //       </Modal.Footer>
+  //     </Modal>
+  // };
 
   // Funcion con checkbox
   const handleSelected = ({ selectedRows }) => {
@@ -152,10 +183,34 @@ export const PmTableTravelAll = () => {
           Aceptar
         </Button>
         <div className="mx-2"></div>
-        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleRechazo}>
+        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleShow}>
           Rechazar
         </Button>
       </div>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>CONFIRMACIÓN DE RECHAZO</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            Motivo de Rechazo:
+            <input type="text" className="form-control" aria-describedby="inputGroup-sizing-sm" />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={handleSend}>RECHAZAR</Button>
+
+          <Button onClick={handleClose}>
+            CANCELAR
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
