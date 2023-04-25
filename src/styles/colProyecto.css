@@ -1,0 +1,25 @@
+.colDatos {
+    text-align: right;
+}
+
+.colDatos div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.idProyecto {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.anticipoProyecto {
+    border: solid 1px;
+    border-radius: 5px;
+    color: rgba(253, 125, 125);
+    font-weight: bold;
+    padding-top: 7px;
+    padding-bottom: 4px;
+    padding-right: 3em;
+}
