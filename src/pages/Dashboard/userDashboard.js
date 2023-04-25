@@ -1,8 +1,7 @@
 import React from "react";
+import CardDashboard from "../../components/cards/CardDashboard";
 import CardRequest from "../../images/CardRequest.png";
 import CardTravelAll from "../../images/CardTravelAll.png";
-import CardDashboard from "../../components/cards/CardDashboard";
-
 
 export const UserDashboard = () => {
   return (
