@@ -44,6 +44,8 @@ export const PmTableTravelAll = () => {
 
   const handleSend = () => {
     console.log("enviar");
+    //refrescar la pagina
+    window.location.reload();
   };
 
   // const handleRechazo = () => {
@@ -200,7 +202,7 @@ export const PmTableTravelAll = () => {
         <Modal.Body>
           <div>
             Motivo de Rechazo:
-            <input type="text" className="form-control" aria-describedby="inputGroup-sizing-sm" />
+            <textarea className="form-control" rows="5" id="comment" required></textarea>
           </div>
         </Modal.Body>
         <Modal.Footer>
