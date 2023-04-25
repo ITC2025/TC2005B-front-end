@@ -4,8 +4,6 @@ import NavbarSC from "../components/NavBar";
 import FormInputIcon from "../components/FormInputIcon";
 import AddInputButton from "../components/AddInputButton";
 import RequestModal from "../components/RequestModal";
-import "../styles/FormSolicit.css";
-import "../styles/SendSaveCost.css";
 import "../styles/SolicitarViaticos.css";
 import { postEstimatedExpenses } from "../util/PostExpenses";
 
