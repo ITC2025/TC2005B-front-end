@@ -1,11 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css"
-
+import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import './App.css';
-import { TableTravelAllowance } from "./components/table/TableTravelAllowance";
 
 function App() {
   return (
-    <TableTravelAllowance/>
+    <PmTable/>
   );
 }
 

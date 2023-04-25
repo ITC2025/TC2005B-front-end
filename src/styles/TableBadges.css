@@ -43,9 +43,9 @@ h6 {
 }
 
 #icon {
-    color: rgba(28, 27, 31, 1);
-    width: 150%;
-    height: 150%;
+    color: rgba(28, 27, 31, 1) !important;
+    width: 50% !important;
+    height: 50% !important;
 }
 
 .dropdown-toggle::after {
@@ -70,4 +70,8 @@ h6 {
 .dropdown-item:active {
     background-color: rgb(221, 110, 110) !important;
     color: white !important;
+}
+
+[role=cell] {
+    padding:0 !important;
 }
