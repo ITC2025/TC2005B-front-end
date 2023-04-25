@@ -71,7 +71,3 @@ h6 {
     background-color: rgb(221, 110, 110) !important;
     color: white !important;
 }
-
-[role=cell] {
-    padding:0 !important;
-}
