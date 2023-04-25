@@ -1,0 +1,42 @@
+.colGasto {
+    display: felx;
+    justify-content: flex-start;
+    background-color: #FAFAFA;
+    padding-bottom: 1em;
+}
+
+.colGasto button {
+    background-color: #FAFAFA;
+    color: rgba(253, 125, 125);
+    border-color: rgba(253, 125, 125);
+    font-weight: bold;
+}
+
+.colGasto button:hover {
+    background-color: rgba(253, 125, 125);
+    border-color: #FAFAFA;
+    color: #FAFAFA;
+}
+
+.colEnviar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #FAFAFA;
+}
+
+.colEnviar button {
+    color: #FAFAFA;
+    background-color: rgba(253, 125, 125);
+    border-color: #FAFAFA;
+}
+
+.colEnviar button:hover {
+    color: rgba(253, 125, 125);
+    background-color: #FAFAFA;
+    border-color: rgba(253, 125, 125);
+}
+
+
+thead {
+    background: #ECECEC;
+}

@@ -66,5 +66,9 @@ export function tokenValidation(){
     }
 
     return(payload.rol)
+}
 
+export function sessionDelete() {
+    sessionStorage.clear();
+    window.location.replace('/');
 }
