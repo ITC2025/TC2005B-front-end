@@ -17,7 +17,7 @@ function RequestModal(props) {
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                   <p>Solicitante: </p>
                   <p>
-                    Proyecto: <strong>{props.formData.proyecto}</strong>
+                    Monto Total: <strong>${props.totalGastos}</strong>
                   </p>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -55,11 +55,6 @@ function RequestModal(props) {
                           <td>{parseInt(value.monto)}</td>
                         </tr>
                       ))}
-
-                      <tr>
-                        <td>Total</td>
-                        <td>{props.totalGastos}</td>
-                      </tr>
                     </tbody>
                   </Table>
                 </Col>
