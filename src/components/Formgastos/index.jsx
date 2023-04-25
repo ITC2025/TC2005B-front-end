@@ -3,6 +3,14 @@ import { Form } from "react-bootstrap";
 import { useState } from "react";
 import '../../styles/gastos.css'
 
+function Separator(stringToSep) {
+    const myString = stringToSep;
+    const startIndex = 5;
+    const result = myString.substring(startIndex);
+  
+    return (result)
+  }
+
 export default function Gastos() {
     const [ShowComponent, SetShowComponent] = useState(true);
     const [product, setProduct] = useState('');
@@ -10,18 +18,20 @@ export default function Gastos() {
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [image, setImage] = useState('');
-    function handleImageUpload(e) {
-        // Aqui se convierte la imagen a un string
-        const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.onload = () => {
-            const dataUrl = reader.result;
-            const base64Image = dataUrl.split(',')[1];
-            setImage(base64Image);
-        };
-        reader.readAsDataURL(file);
-    }
+    const handleFileUpload = (event) => {
+        const file = event.target.files[0]; // Obtiene el primer archivo cargado
+        const reader = new FileReader(); // Crea una instancia de FileReader
 
+        // Cuando el archivo se carga, convierte el archivo a Blob
+        reader.onload = () => {
+            const blob = new Blob([reader.result], { type: file.type });
+            // Usa el objeto Blob como sea necesario, por ejemplo, puedes enviarlo a un servidor
+            setImage(blob)
+        };
+
+
+        reader.readAsArrayBuffer(file); // Lee el archivo como un ArrayBuffer
+    };
     const DeleteLine = () => {//Esta funcion sirve como Renderiacion condicional
         SetShowComponent(false);//Aqui se declara el booleano como falso
     };
@@ -80,7 +90,7 @@ export default function Gastos() {
                                 <div className="col-md-4">
                                     <label htmlFor="asda">Ticker de compra (PNG)</label>{/*Aqui se sube una imagen en formato png de la factura*/}
                                     <div className="input-group mb-3">
-                                        <input class="form-control" type="file" onChange={handleImageUpload} required />
+                                        <input class="form-control" type="file" onChange={handleFileUpload} required />
                                     </div>
                                 </div>
                                 <div className="col-md-4">

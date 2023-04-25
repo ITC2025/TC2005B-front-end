@@ -7,6 +7,9 @@ export async function getFormData(product, type, amount, image ,date) {
         fecha: date
     }
 
+    console.log(data)
+
+    
 
     // const url = 'http://localhost:3000/login';
     // const options = {
