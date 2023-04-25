@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
-import TableDropdown from "./TableDropdown";
-import { MdDisplaySettings } from "react-icons/md";
+import PmTableDropdown from "./PmTableDropdown";
+import TextField from "@mui/material/TextField";
 
 export const TableTravelAllowance = () => {
   // Configurar hooks
@@ -13,18 +13,15 @@ export const TableTravelAllowance = () => {
   // Funcion para mostrar datos con fetch
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
-
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    console.log(data);
+    // console.log(data);
   };
 
-// const getTravelAllowance = async () => {
-
-
+  // const getTravelAllowance = async () => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
@@ -43,10 +40,15 @@ export const TableTravelAllowance = () => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      width: "120px", 
+      width: "120px",
     },
+    // {
+    //     name:"Fecha",
+    //     selector: (row) => row.date,
+    //     sortable: true
+    // },
     {
-      name: "NAME",
+      name: "Nombre",
       selector: (row) => row.name,
       sortable: true,
     },
@@ -58,8 +60,8 @@ export const TableTravelAllowance = () => {
     {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.status} />,
-      sortable: true,
-      width: "120px" 
+      width: "120px",
+      style: { paddingLeft: "0px" },
     },
     // {
     //   name: 'Description',
@@ -78,9 +80,9 @@ export const TableTravelAllowance = () => {
     // },
     {
       name: "Actions",
-
-      cell: (row) => <TableDropdown />,
-      width: "80px" ,
+      cell: (row) => <PmTableDropdown />,
+      width: "80px",
+      style: { paddingLeft: "0.5em" },
     },
   ];
 
@@ -90,18 +92,22 @@ export const TableTravelAllowance = () => {
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
   };
-
   // mostrar la tabla
   return (
     <div className="container">
-      <div className="row my-2">
-        <div className="col d-flex justify-content-end">
+      <div className="row my-2 d-flex align-items-end">
+        <div className="col-5">
+          <button> Solicitar Viaticos </button>
+        </div>
+        <div className="col-7 d-flex justify-content-end">
           <div>
-            <div className="input-group">
-              
-              <input type="text" placeholder="Buscar" onChange={handleFilter} />
-              <label>Buscar</label>
-              
+            <div className="d-flex justify-content-end">
+              <TextField
+                id="outlined-basic"
+                label="Buscar"
+                variant="standard"
+                onChange={handleFilter}
+              />
             </div>
           </div>
         </div>
@@ -112,7 +118,6 @@ export const TableTravelAllowance = () => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
-        selectableRows
       />
     </div>
   );
