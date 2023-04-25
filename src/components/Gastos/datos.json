@@ -1,0 +1,16 @@
+[{
+    "id": "1",
+    "reporte": "01/2023",
+    "fecha": "00-00-0000",
+    "tipo": "comida",
+    "concepto": "hamburguesa",
+    "total": "12000"
+},
+{
+    "id": "2",
+    "reporte": "02/2023",
+    "fecha": "00-00-0000",
+    "tipo": "juguete",
+    "concepto": "terreneitor",
+    "total": "100000"
+} ]
