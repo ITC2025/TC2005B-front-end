@@ -1,7 +1,13 @@
 import React, { useState } from "react";
-import { Button, Row, Col, Form } from "react-bootstrap";
+import { Button, Row, Col, Form, InputGroup } from "react-bootstrap";
+import { MdAdd, MdCreditCard, MdDelete } from "react-icons/md";
+import '../styles/AddInputButton.css';
 
 const AddInputButton = ({ onAddInput }) => {
+  const add = <MdAdd />;
+  const card = <MdCreditCard />;
+  const trash = <MdDelete />;
+
   const sendValuesToParent = () => {
     onAddInput(values);
   };
@@ -16,46 +22,50 @@ const AddInputButton = ({ onAddInput }) => {
 
   return (
     <>
-      <Button variant="success" onClick={handleAddRow}>
-        Agregar fila
+      <Button variant="primary" onClick={handleAddRow}>
+        {card}AGREGAR GASTOS{add}
       </Button>
-      <hr />
 
       {values.map((value, idx) => (
-        <Row key={idx}>
-          <Col>
-            <Form.Control
-              placeholder="Concepto de gasto"
-              value={value.concepto}
-              onChange={(e) =>
-                setValues(
-                  values.map((v, i) =>
-                    i === idx ? { ...v, concepto: e.target.value } : v
+        <Row key={idx} id="NewSolicitFormRow">
+          <Col md={7}>
+            <InputGroup>
+              <Form.Control
+                placeholder="Concepto de gasto"
+                value={value.concepto}
+                onChange={(e) =>
+                  setValues(
+                    values.map((v, i) =>
+                      i === idx ? { ...v, concepto: e.target.value } : v
+                    )
                   )
-                )
-              }
-            />
+                }
+                required
+              />
+            </InputGroup>
           </Col>
-          <Col>
-            <Form.Control
-              placeholder="Monto"
-              value={value.monto}
-              onChange={(e) =>
-                setValues(
-                  values.map((v, i) =>
-                    i === idx ? { ...v, monto: e.target.value } : v
-                  ),
-                  sendValuesToParent()
-                )
-              }
-            />
+          <Col md={3}>
+            <InputGroup>
+              <Form.Control
+                placeholder="Monto"
+                value={value.monto}
+                onChange={(e) =>
+                  setValues(
+                    values.map((v, i) =>
+                      i === idx ? { ...v, monto: e.target.value } : v
+                    ),
+                    sendValuesToParent()
+                  )
+                }
+                required
+              />
+              <InputGroup.Text id="basic-addon1">MXN</InputGroup.Text>
+            </InputGroup>
           </Col>
-          <Col>
-            <Button
-              variant="danger"
-              onClick={() => setValues(values.filter((_, i) => i !== idx))}
-            >
-              Eliminar
+          <Col md={1} id="IconButton">
+            <Button 
+              onClick={() => setValues(values.filter((_, i) => i !== idx))}>
+              {trash}
             </Button>
           </Col>
         </Row>
