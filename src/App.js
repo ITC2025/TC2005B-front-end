@@ -11,6 +11,7 @@ import PrivateRoutes from "./utils/PrivateRoutes";
 import PmDashboard from './pages/Dashboard/pmDashboard';
 import {UserDashboard} from './pages/Dashboard/userDashboard';
 import AdminDashboard from './pages/Dashboard/adminDashboard';
+import TablaGastos from './pages/TablaGastos/tablaGastos';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -30,6 +31,7 @@ function App() {
             <Route element={<NavbarSC client={true}/>} path="user">
               <Route index element={<UserDashboard />}/>
               <Route element={<Facturas name="user facturas" />} path="facturas" />
+              <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
               <Route element={<Test name="user solicitar" />} path="solicitar" />
               <Route element={<Test name="user viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
