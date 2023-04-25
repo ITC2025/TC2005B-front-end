@@ -11,6 +11,7 @@ export const PmTableTravelAll = () => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [estadoBoton, setEstadoBoton] = useState([false]);
+  const [estadoBoton2, setEstadoBoton2] = useState([false]);
 
   // Funcion para mostrar datos con fetch
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
@@ -41,12 +42,20 @@ export const PmTableTravelAll = () => {
   // Funcion con checkbox
   const handleSelected = ({ selectedRows }) => {
     console.log(selectedRows);
-    if (selectedRows.length > 0) {
-      console.log("row seleccionadas");
+    if (selectedRows.length === 1) {
+      console.log("row seleccionada");
+      setEstadoBoton2(false);
       setEstadoBoton(false);
-    } else {
-      console.log("ya no hay rows seleccionadas");
+    }
+    else if (selectedRows.length > 1) {
+      console.log("mas de una row seleccionadas");
+      setEstadoBoton2(true);
+      setEstadoBoton(false);
+    }
+    else {
+      console.log("no hay row seleccionadas");
       setEstadoBoton(true);
+      setEstadoBoton2(true);
     }
   };
 
@@ -144,7 +153,7 @@ export const PmTableTravelAll = () => {
           Aceptar
         </Button>
         <div className="mx-2"></div>
-        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleRechazo}>
+        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleRechazo}>
           Rechazar
         </Button>
       </div>
