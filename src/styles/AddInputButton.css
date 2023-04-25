@@ -5,3 +5,35 @@ Button.btn.btn-primary {
     align-items: center;
     justify-content: center;
 }
+
+Button.btn.btn-primary:active {
+    background: #FFFFFF;
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    color: rgba(255, 0, 0, 0.5);
+}
+
+#NewSolicitFormRow {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#IconButton Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    border: solid 1px #C3C3C3;
+    color:#000000;
+    border-radius: 6px;
+    outline: none;
+    background-color: #E7E9EB;
+}
+
+#IconButton svg {
+    width: 25px;
+    height: 25px;
+}
+
+#IconButton path {
+    color: #000000;
+}
