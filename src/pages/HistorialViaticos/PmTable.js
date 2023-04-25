@@ -21,9 +21,6 @@ export const PmTable = () => {
 
   return (
     <div className="p-5">
-      <div className="row d-flex justify-content-end">
-        Saldo del cliente: {cliente.id}
-      </div>
       <PmTableTravelAll />
     </div>
   );
