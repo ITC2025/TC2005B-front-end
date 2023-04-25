@@ -52,7 +52,7 @@ function RequestModal(props) {
                       {props.gastosValues.map((value, idx) => (
                         <tr key={idx} className="bg-white">
                           <td>{value.concepto}</td>
-                          <td>{parseInt(value.monto)}</td>
+                          <td>{parseInt(value.monto)} MXN</td>
                         </tr>
                       ))}
                     </tbody>
