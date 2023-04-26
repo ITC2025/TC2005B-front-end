@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 export const TableTravelAllowance = () => {
   const navigate = useNavigate();
 
-  const navFacturas = () => {
+  const navSolicitar = () => {
     navigate('/user/solicitar');
 } 
   // Configurar hooks
@@ -103,7 +103,7 @@ export const TableTravelAllowance = () => {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navFacturas} > Solicitar Viaticos </button>
+          <button id="basicButton" onClick={navSolicitar} > Solicitar Viaticos </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div>
