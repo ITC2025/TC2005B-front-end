@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
-import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
+import TableDropdown from "./TableDropdown";
+import { useNavigate } from 'react-router-dom';
 
 export const TableTravelAllowance = () => {
+  const navigate = useNavigate();
+
+  const navFacturas = () => {
+    navigate('/user/solicitar');
+} 
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -80,7 +86,7 @@ export const TableTravelAllowance = () => {
     // },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <TableDropdown />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -96,10 +102,10 @@ export const TableTravelAllowance = () => {
   return (
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-5">
-          <button> Solicitar Viaticos </button>
+        <div className="col-4">
+          <button id="basicButton" onClick={navFacturas} > Solicitar Viaticos </button>
         </div>
-        <div className="col-7 d-flex justify-content-end">
+        <div className="col-8 d-flex justify-content-end">
           <div>
             <div className="d-flex justify-content-end">
               <TextField
