@@ -4,14 +4,14 @@ import "../styles/RequestModal.css";
 function RequestModal(props) {
   return (
     <Modal show={props.showModal} onHide={props.handleClose} size="xl">
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title className="title-modal">
           CONFIRMACIÓN DE SOLICITUD
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Container className="white-bg">
-          <Container className="gray-bg">
+          <Container className="gray-bg" id="modalTable">
             <Container>
               <Row>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
@@ -64,7 +64,7 @@ function RequestModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={props.handleClose}>
+        <Button variant="primary" onClick={props.handleClose}>
           Cerrar
         </Button>
       </Modal.Footer>
