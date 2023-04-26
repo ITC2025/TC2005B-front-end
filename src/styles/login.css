@@ -71,6 +71,14 @@ button {
   color: grey !important;
   font-weight: bold !important;
 }
+
+button:hover {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  color: grey !important;
+  font-weight: bold !important;
+}
+
 input-group {
   opacity: 0;
 }
