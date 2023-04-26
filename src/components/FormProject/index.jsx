@@ -12,7 +12,7 @@ import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
 import '../../styles/formProject.css'
 
-export default function FormProject() {
+export default function FormProject({PmData}) {
     return (
         <>
             <Container className="d-flex justify-content-start">
@@ -55,8 +55,11 @@ export default function FormProject() {
 
                                 <InputGroup className="mb-3">
                                     <Form.Select>
-                                        <option>Marco Montoya</option>
-                                        <option>Andre Castillo</option>
+                                        {PmData.map(pm => (
+                                            <option>{pm.name} {pm.apellido}</option>
+                                        ))
+                                        }
+
                                     </Form.Select>
                                 </InputGroup>
                             </Col>
