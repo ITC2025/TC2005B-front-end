@@ -75,7 +75,7 @@ export default function Login() {
 
   useEffect(()=>{
     const rol=tokenValidation()
-    if(rol != -1){
+    if(rol !== -1){
       switch(rol){
         case 1:
           navigate("/user");

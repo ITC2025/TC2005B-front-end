@@ -1,3 +1,4 @@
+
 export async function getAuthenticationData(name, password) {
     let data = {
         correoElectronico: name,
@@ -37,6 +38,7 @@ export function tokenValidation(){
 
 }
 
-export function deleteSession () {
+export function sessionDelete() {
     sessionStorage.clear();
+    window.location.replace('/');
 }
