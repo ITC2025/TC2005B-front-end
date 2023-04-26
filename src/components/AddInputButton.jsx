@@ -53,10 +53,10 @@ const AddInputButton = ({ onAddInput }) => {
                   setValues(
                     values.map((v, i) =>
                       i === idx ? { ...v, monto: e.target.value } : v
-                    ),
-                    sendValuesToParent()
+                    )
                   )
                 }
+                onBlur={sendValuesToParent()}
                 required
               />
               <InputGroup.Text id="basic-addon1">MXN</InputGroup.Text>
