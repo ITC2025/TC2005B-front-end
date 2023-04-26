@@ -28,6 +28,7 @@ function App() {
           <Route element={<Login name="Login" />} path="/" />
           <Route element={<Project />} path="proyectos" />
           <Route element={<ProjectTable />} path="tablaproyectos" />
+
           {/* <Route element={<Facturas />} path="proyectos"/> */}
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
