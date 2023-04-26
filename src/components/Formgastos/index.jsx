@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Form } from "react-bootstrap";
 import { useState } from "react";
 import '../../styles/gastos.css'
