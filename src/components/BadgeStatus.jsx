@@ -7,7 +7,7 @@ export const BadgeStatus = (props) => {
     return (
       <div className="container">
         <h6>
-          <Badge className='acepatado'>{props.status}</Badge>
+          <Badge className='aceptado'>{props.status}</Badge>
         </h6>
       </div>
     );
