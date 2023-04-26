@@ -5,7 +5,9 @@ import ColInfoProyecto from "./colInfoProyecto";
 import TableGastos from "./tableGastos";
 import Subtotal from "./subtotal";
 
+
 const GastosTabla = () => {
+    
     return (
         <>
             <Container>

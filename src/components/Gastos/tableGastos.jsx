@@ -2,11 +2,17 @@ import '../../styles/gastosTabla.css'
 import { Table, Container, Row, Col, Button } from "react-bootstrap";
 import Modal from "../modal";
 import { useState } from "react";
+import { gastosApi } from "../../utils/gastosApiTabla";
 
 export default function TableGastos() {
     const [estadoM, cambiarEstadoM] = useState(false);
+    const data = gastosApi("1");
 
-    const data = require('./datos.json');
+
+    console.log(typeof data);
+
+    
+    
     return (
         <>
             <Container>
@@ -41,7 +47,6 @@ export default function TableGastos() {
                 <tbody>
                     {data.map(gasto => (
                         <tr key={gasto.id}>
-                            <td> {gasto.reporte} </td>
                             <td> {gasto.fecha} </td>
                             <td> {gasto.tipo} </td>
                             <td> {gasto.concepto} </td>
