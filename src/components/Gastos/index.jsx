@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
 import ColDireccion from "./colDireccion";
 import ColInfoProyecto from "./colInfoProyecto";
-import TableGastos from "./tableGastos";
+import {TableGastos} from "./tableGastos";
 import Subtotal from "./subtotal";
 
 const GastosTabla = () => {

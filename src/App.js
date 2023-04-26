@@ -25,13 +25,14 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
+          <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
 
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1}/>}>
             <Route element={<NavbarSC client={true}/>} path="user">
               <Route index element={<UserDashboard />}/>
               <Route element={<Facturas name="user facturas" />} path="facturas" />
-              <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
+              
               <Route element={<Test name="user solicitar" />} path="solicitar" />
               <Route element={<Test name="user viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
