@@ -101,21 +101,21 @@ export default Modal;
 const Overlay = styled.div`
     width: 100vw;
     height: 100vh;
-    display: flex ;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important; 
     background: rgba(0,0,0,.60);
 `;
 
 const ContModal = styled.div`
-    background: #FFF;
+    background: #FFF !important;
     width: 900px;
     min-height: 100px;
     border-radius: 10px;
-    position:relative;
+    position: absolute !important;
     padding-top: 3em;
     padding-bottom: 3em;
 
@@ -132,25 +132,25 @@ const ContModal = styled.div`
     }
 
     Button {
-        color: #FFF;
-        background: rgba(254,128,127);
-        border-color: rgba(254,128,127);
+        color: #FFF !important;
+        background: rgba(254,128,127) !important;
+        border-color: rgba(254,128,127) !important;
     }
 
     Button:hover {
-        color: red;
-        background: rgb(254, 241, 0);
-        border-color: red;
+        color: red !important;
+        background: rgb(254, 241, 0) !important;
+        border-color: red !important;
     }
 
     #cancelButton {
-        color:  rgba(254,128,127);
-        background: #FFF;
+        color:  rgba(254,128,127) !important;
+        background: #FFF !important;
     }
     #cancelButton:hover {
-        background:  rgba(248,248,248);;
-        color: red;
-        border-color: red;
+        background:  rgba(248,248,248) !important;
+        color: red !important;
+        border-color: red !important;
     }
     
 `;
