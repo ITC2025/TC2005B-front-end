@@ -47,7 +47,6 @@ export default function Facturas() {
                     <Col>
                         <Card id="container1">
                             <Container>
-
                                 <Gastos onAddInput={handleNewGastos} />
                             </Container>
                         </Card>
