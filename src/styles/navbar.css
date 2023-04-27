@@ -1,5 +1,12 @@
 .navbar {
     background-color: rgb(254, 241, 0);
+    max-height: 50px;
+    margin-bottom: 1em;
+}
+
+.logo {
+    height: 45px;
+    width: 400px;
 }
 
 .nav-link:hover {

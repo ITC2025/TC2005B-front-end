@@ -24,9 +24,9 @@ export default function Login() {
   const [RenderIncorrect, setIncorrect] = useState(true);
   const navigate = useNavigate();
 
-  let formData={
-    'useremail':email,
-    'userpassword':userpassword,
+  let formData = {
+    'useremail': email,
+    'userpassword': userpassword,
   }
 
 
@@ -36,18 +36,18 @@ export default function Login() {
     login(email, userpassword); // login es una función que enviará los datos al servidor
   }
 
-  
 
-   const login = (email, userpassword) => {
+
+  const login = (email, userpassword) => {
     setTimeout(() => {
-      getAuthenticationData(email, userpassword).then(()=>{
-        const response=JSON.parse(sessionStorage.getItem("data"))
-        if (response.token!=null) {
+      getAuthenticationData(email, userpassword).then(() => {
+        const response = JSON.parse(sessionStorage.getItem("data"))
+        if (response.token != null) {
           // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
           console.log('Usuario autenticado');
           setIncorrect(true)
-          const rol=tokenValidation()
-          switch(rol){
+          const rol = tokenValidation()
+          switch (rol) {
             case 1:
               navigate("/user");
               break
@@ -73,10 +73,10 @@ export default function Login() {
   }
   console.log(formData)
 
-  useEffect(()=>{
-    const rol=tokenValidation()
-    if(rol != -1){
-      switch(rol){
+  useEffect(() => {
+    const rol = tokenValidation()
+    if (rol !== -1) {
+      switch (rol) {
         case 1:
           navigate("/user");
           break
@@ -91,7 +91,7 @@ export default function Login() {
           break
         default:
           navigate("/");
-      } 
+      }
     }
   })
 
