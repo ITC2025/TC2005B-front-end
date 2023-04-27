@@ -17,7 +17,7 @@ export const TableGastos = () => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
+  const URL = "http://localhost:3001/expense_reports/vi/1";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
@@ -46,7 +46,7 @@ export const TableGastos = () => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      width: "120px",
+      width: "16%",
     },
     // {
     //     name:"Fecha",
@@ -54,40 +54,39 @@ export const TableGastos = () => {
     //     sortable: true
     // },
     {
-      name: "Nombre",
-      selector: (row) => row.name,
+      name: "Fecha",
+      selector: (row) => row.fecha,
       sortable: true,
+      width: "16%",
     },
     {
-      name: "Project",
-      selector: (row) => row.email,
+      name: "Tipo",
+      selector: (row) => row.tipo,
       sortable: true,
+      width: "16%",
     },
     {
-      name: "Estado",
-      selector: (row) => <BadgeStatus status={row.status} />,
-      width: "120px",
-      style: { paddingLeft: "0px" },
+        name: "Concepto",
+        selector: (row) => row.concepto,
+        sortable: true,
+        width: "20%",
     },
-    // {
-    //   name: 'Description',
-    //   selector: row => row.gender,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Total',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Status',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
     {
-      name: "Actions",
+        name: "Total",
+        selector: (row) => row.total,
+        sortable: true,
+        width: "16%",
+    },
+    //{
+    //  name: "Estado",
+    //  selector: (row) => <BadgeStatus status={row.status} />,
+    //  width: "120px",
+    //  style: { paddingLeft: "0px" },
+    //},
+    {
+      name: "Acciones",
       cell: (row) => <TableDropdown />,
-      width: "80px",
+      width: "16%",
       style: { paddingLeft: "0.5em" },
     },
   ];
@@ -122,6 +121,7 @@ export const TableGastos = () => {
         columns={columns}
         data={travelAllowance}
         pagination
+        paginationPerPage={5}
         paginationComponentOptions={paginationTable}
         fixedHeader
       />
