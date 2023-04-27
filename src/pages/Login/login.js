@@ -109,15 +109,16 @@ export default function Login() {
                     </div>
                     <div className="mt-3">
                       <Form>
-                        <Form.Group className="m-3" id="formBasicEmail">
-                          <Form.Label className="text-center">
+                        <Form.Group className="m-3" id="login-form-group">
+                          <Form.Label id="login-form-label">
                             Email address
                           </Form.Label>
-                          <InputGroup className="mb-3">
+                          <InputGroup className="mb-3" id='input-form-group'>
                             <InputGroup.Text id="basic-addon1">
-                              <FaUserAlt id="icon" />
+                              <FaUserAlt id="login-icon" />
                             </InputGroup.Text>
                             <Form.Control
+                              id='login-input'
                               type="email"
                               placeholder="Enter email"
                               required
@@ -127,14 +128,15 @@ export default function Login() {
                         </Form.Group>
                         <Form.Group
                           className="m-3"
-                          id="formBasicPassword"
+                          id="login-form-group"
                         >
-                          <Form.Label>Password</Form.Label>
-                          <InputGroup className="mb-3">
+                          <Form.Label id="login-form-label">Password</Form.Label>
+                          <InputGroup className="mb-3" id="input-form-group">
                             <InputGroup.Text id="basic-addon2">
-                              <RiLockPasswordFill id="icon" />
+                              <RiLockPasswordFill id="login-icon" />
                             </InputGroup.Text>
                             <Form.Control
+                              id='login-input'
                               type="password"
                               placeholder="Enter password"
                               required
@@ -143,7 +145,7 @@ export default function Login() {
                           </InputGroup>
                         </Form.Group>
                         <div className="d-flex justify-content-center ">
-                          <Button variant="primary" type="submit" onClick={handleSubmit}>
+                          <Button id="loginBoton" variant="primary" type="submit" onClick={handleSubmit}>
                             Login
                           </Button>
                         </div>
