@@ -6,12 +6,13 @@ import './App.css';
 import NavbarSC from './components/navbar/index.jsx';
 import Login from './pages/Login/login'
 import Test from './pages/test/index.js';
-import Facturas from './pages/Gastos/userGastos';
+import Facturas from './pages/Gastos/Gastos';
 import PrivateRoutes from "./utils/PrivateRoutes";
 import PmDashboard from './pages/Dashboard/pmDashboard';
 import {UserDashboard} from './pages/Dashboard/userDashboard';
 import AdminDashboard from './pages/Dashboard/adminDashboard';
 import TablaGastos from './pages/TablaGastos/tablaGastos';
+import SolicitarViaticos from './pages/SolicitarViaticos';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -32,7 +33,7 @@ function App() {
               <Route index element={<UserDashboard />}/>
               <Route element={<Facturas name="user facturas" />} path="facturas" />
               <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
-              <Route element={<Test name="user solicitar" />} path="solicitar" />
+              <Route element={<SolicitarViaticos name="user solicitar" />} path="solicitar" />
               <Route element={<Test name="user viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
             </Route>
