@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import React from "react";
-import logoNb from '../../images/logoNb.png';
-import { getAuthenticationData, tokenValidation } from '../../utils/getApiData';
-import '../../styles/login.css'
+import logoNb from "../../images/logoNb.png";
+import { getAuthenticationData, tokenValidation } from "../../utils/getApiData";
+import "../../styles/login.css";
 import {
   Col,
   Button,
@@ -14,86 +14,48 @@ import {
 } from "react-bootstrap";
 import { FaUserAlt } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
-import { useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [userpassword, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [userpassword, setPassword] = useState("");
   const [RenderIncorrect, setIncorrect] = useState(true);
   const navigate = useNavigate();
 
-  let formData={
-    'useremail':email,
-    'userpassword':userpassword,
-  }
-
-
+  let formData = {
+    useremail: email,
+    userpassword: userpassword,
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     login(email, userpassword); // login es una función que enviará los datos al servidor
-  }
+  };
 
-  
+  const login = async (email, userpassword) => {
+    // setTimeout(() => {
+    const response1 = await getAuthenticationData(email, userpassword);
+    console.log(response1);
+    const response2 = await tokenValidation();
+    console.log(response2.role);
 
-   const login = (email, userpassword) => {
-    setTimeout(() => {
-      getAuthenticationData(email, userpassword).then(()=>{
-        const response=JSON.parse(sessionStorage.getItem("data"))
-        if (response.token!=null) {
-          // Aquí podrías hacer algo si el usuario se autentica correctamente, como redirigirlo a otra página
-          console.log('Usuario autenticado');
-          setIncorrect(true)
-          const rol=tokenValidation()
-          switch(rol){
-            case 1:
-              navigate("/user");
-              break
-            case 2:
-              navigate("/pm")
-              break
-            case 3:
-              navigate("/admin")
-              break
-            case 4:
-              navigate("/sysadmin")
-              break
-            default:
-              navigate("/");
-          }
-        } else {
-          // Aquí se muestra un mensaje de error si el email o la contraseña son incorrectos
-          console.log('Email o contraseña incorrectos');
-          setIncorrect(false)
-        }
-      })
-    }, 1000); // Se simula un tiempo de espera de 1 segundo para la respuesta del servidor
-  }
-  console.log(formData)
-
-  useEffect(()=>{
-    const rol=tokenValidation()
-    if(rol != -1){
-      switch(rol){
-        case 1:
-          navigate("/user");
-          break
-        case 2:
-          navigate("/pm")
-          break
-        case 3:
-          navigate("/admin")
-          break
-        case 4:
-          navigate("/sysadmin")
-          break
-        default:
-          navigate("/");
-      } 
+    switch (response2.role) {
+      case 1:
+        navigate("/user");
+        break;
+      case 2:
+        navigate("/pm");
+        break;
+      case 3:
+        navigate("/admin");
+        break;
+      case 4:
+        navigate("/sysadmin");
+        break;
+      default:
+        navigate("/");
     }
-  })
+  };
 
   return (
     <>
@@ -121,14 +83,11 @@ export default function Login() {
                               type="email"
                               placeholder="Enter email"
                               required
-                              onChange={e => setEmail(e.target.value)}
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </InputGroup>
                         </Form.Group>
-                        <Form.Group
-                          className="m-3"
-                          id="formBasicPassword"
-                        >
+                        <Form.Group className="m-3" id="formBasicPassword">
                           <Form.Label>Password</Form.Label>
                           <InputGroup className="mb-3">
                             <InputGroup.Text id="basic-addon2">
@@ -138,12 +97,16 @@ export default function Login() {
                               type="password"
                               placeholder="Enter password"
                               required
-                              onChange={e => setPassword(e.target.value)}
+                              onChange={(e) => setPassword(e.target.value)}
                             />
                           </InputGroup>
                         </Form.Group>
                         <div className="d-flex justify-content-center ">
-                          <Button variant="primary" type="submit" onClick={handleSubmit}>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={handleSubmit}
+                          >
                             Login
                           </Button>
                         </div>
@@ -151,9 +114,7 @@ export default function Login() {
                     </div>
                   </div>
                 </Card.Body>
-                {RenderIncorrect ? (
-                  null
-                ) : (
+                {RenderIncorrect ? null : (
                   <div>Incorrect email or password</div>
                 )}
               </Card>
