@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 export default function TablaProyectos() {
   const navigate = useNavigate();
 
-  const navFacturas = () => {
-    navigate("/user/solicitar"); // cambiar ruta
+  const creatProyect = () => {
+    navigate("/proyectos"); // cambiar ruta
   };
   // Configurar hooks
   const [travelAllowance, setProyecto] = useState([]);
@@ -66,9 +66,8 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navFacturas}>
-            {" "}
-            Crear proyecto{" "}
+          <button id="basicButton" onClick={creatProyect}>
+            Crear proyecto
           </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
