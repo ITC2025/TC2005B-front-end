@@ -32,6 +32,10 @@ export default function Login() {
     login(email, userpassword); // login es una función que enviará los datos al servidor
   };
 
+  useEffect(() =>{
+    login(email, userpassword)
+  }, [])
+
   const login = async (email, userpassword) => {
     // setTimeout(() => {
     const response1 = await getAuthenticationData(email, userpassword);
