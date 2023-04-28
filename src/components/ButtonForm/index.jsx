@@ -166,14 +166,14 @@ function Gastos({onAddInput}) {
                         
                     })}
                     
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center" >
                         <Button variant="danger" id="button" onClick={handleaddForm}>
-                            <BiMoney />
-                            AGREGAR GASTO{/*Este boton sirve para usar la funcion addForm*/}
+                            <BiMoney id="iconMoney"/>
+                            <label> AGREGAR GASTO </label>
+                            {/*Este boton sirve para usar la funcion addForm*/}
                             <HiPlus />
                         </Button>
                     </div>
-                    <hr />
                 </Form>
             </div>
 
