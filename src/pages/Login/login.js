@@ -33,7 +33,29 @@ export default function Login() {
   };
 
   useEffect(() =>{
-    login(email, userpassword)
+
+    const autoRed = async () => {
+      const route = await tokenValidation();
+
+      switch (route.role) {
+        case 1:
+          navigate("/user");
+          break;
+        case 2:
+          navigate("/pm");
+          break;
+        case 3:
+          navigate("/admin");
+          break;
+        case 4:
+          navigate("/sysadmin");
+          break;
+        default:
+          navigate("/");
+        }
+    }
+    autoRed();
+  
   }, [])
 
   const login = async (email, userpassword) => {
