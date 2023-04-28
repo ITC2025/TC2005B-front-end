@@ -4,15 +4,17 @@ import DataTable from "react-data-table-component";
 // import { BadgeStatus } from "../BadgeStatus";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
+import FormProject from "../FormProject";
+import { proyectos } from "../../utils/getApiData";
 
 export default function TablaProyectos() {
   const navigate = useNavigate();
 
-  const navFacturas = () => {
-    navigate("/user/solicitar"); // cambiar ruta
+  const navFormProject = () => {
+    navigate(<FormProject />); // cambiar ruta
   };
   // Configurar hooks
-  const [travelAllowance, setProyecto] = useState([]);
+  const [proyecto, setProyecto] = useState([]);
 
   // Funcion para mostrar datos con fetch
   const URL = "https://retoolapi.dev/zoHjs2/data";
@@ -66,7 +68,7 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navFacturas}>
+          <button id="basicButton" onClick={navFormProject}>
             {" "}
             Crear proyecto{" "}
           </button>
@@ -79,7 +81,7 @@ export default function TablaProyectos() {
       </div>
       <DataTable
         columns={columns}
-        data={travelAllowance}
+        data={proyecto}
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader

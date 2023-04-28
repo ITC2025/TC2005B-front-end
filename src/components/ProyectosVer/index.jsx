@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 // import "../../styles/TableStyle.css";
-// import { BadgeStatus } from "../BadgeStatus";
+import { BadgeStatus } from "./BadgeStatus";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
+import { TextField } from "@mui/material";
 
-export default function TablaProyectos() {
+export default function VerTablaProyectos() {
   const navigate = useNavigate();
 
   const navFacturas = () => {
     navigate("/user/solicitar"); // cambiar ruta
   };
   // Configurar hooks
-  const [travelAllowance, setProyecto] = useState([]);
+  const [proyecto, setProyecto] = useState([]);
+  const [filterProyecto, setFilterProyecto] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://retoolapi.dev/zoHjs2/data";
+  const URL = "https://retoolapi.dev/GHo2iq/data";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getProyectos = async () => {
     const res = await fetch(URL);
     const data = await res.json();
     setProyecto(data);
+    setFilterProyecto(data);
     // console.log(data);
   };
 
@@ -28,6 +31,14 @@ export default function TablaProyectos() {
   useEffect(() => {
     getProyectos();
   }, []);
+
+  // Funcion para filtrar datos
+  const handleFilter = (e) => {
+    const newData = filterProyecto.filter((row) =>
+      row.name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setProyecto(newData);
+  };
 
   // configuracion de columnas
   const columns = [
@@ -38,14 +49,31 @@ export default function TablaProyectos() {
       sortable: true,
     },
     {
-      name: "Nombre",
-      selector: (row) => row.name,
+      name: "Fecha",
+      selector: (row) => row.date,
+      width: "120px",
+      sortable: true,
+    },
+    {
+      name: "Proyecto",
+      selector: (row) => row.project,
       sortable: true,
     },
     {
       name: "Descripcion",
       selector: (row) => row.desc,
       sortable: true,
+    },
+    {
+      name: "Total",
+      selector: (row) => row.total,
+      sortable: true,
+    },
+    {
+      name: "Estado",
+      selector: (row) => <BadgeStatus status={row.status} />,
+      width: "120px",
+      style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
@@ -74,12 +102,18 @@ export default function TablaProyectos() {
         <div className="col-8 d-flex justify-content-end">
           <div>
             <div className="d-flex justify-content-end"></div>
+            <TextField
+              id="outlined-basic"
+              label="Buscar"
+              variant="standard"
+              onChange={handleFilter}
+            />
           </div>
         </div>
       </div>
       <DataTable
         columns={columns}
-        data={travelAllowance}
+        data={proyecto}
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader

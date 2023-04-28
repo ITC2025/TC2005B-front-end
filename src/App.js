@@ -13,6 +13,7 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import Project from "./pages/Projects";
 import ProjectTable from "./pages/ProyectosTabla/proyectosTabla";
+import SeeProjectTable from "./pages/VerProyectosTabla/proyectosTabla";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -28,6 +29,7 @@ function App() {
           <Route element={<Login name="Login" />} path="/" />
           <Route element={<Project />} path="proyectos" />
           <Route element={<ProjectTable />} path="tablaproyectos" />
+          <Route element={<SeeProjectTable />} path="vertablaproyectos" />
 
           {/* <Route element={<Facturas />} path="proyectos"/> */}
           {/*Rutas de usuario*/}
