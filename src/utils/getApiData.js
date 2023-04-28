@@ -33,6 +33,6 @@ export async function tokenValidation(){
 }
 
 export function sessionDelete() {
-    sessionStorage.clear();
+    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     window.location.replace('/');
 }
