@@ -10,8 +10,8 @@ import { proyectos } from "../../utils/getApiData";
 export default function TablaProyectos() {
   const navigate = useNavigate();
 
-  const navFormProject = () => {
-    navigate(<FormProject />); // cambiar ruta
+  const creatProyect = () => {
+    navigate("/proyectos"); // cambiar ruta
   };
   // Configurar hooks
   const [proyecto, setProyecto] = useState([]);
@@ -68,9 +68,8 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navFormProject}>
-            {" "}
-            Crear proyecto{" "}
+          <button id="basicButton" onClick={creatProyect}>
+            Crear proyecto
           </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
