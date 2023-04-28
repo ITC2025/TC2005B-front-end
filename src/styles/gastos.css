@@ -40,21 +40,19 @@
     align-items: center;
 }
 
-#Button {
+#button {
     width: 278px;
     height: 51px;
     left: 748px;
     top: 559px;
-    margin-top: 40px;
-    margin-bottom: 25px;
+    margin-bottom: 2%;
+    padding: 0%;
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-
 
 #CGbutton{
     width: 278px;
@@ -68,4 +66,15 @@
 
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
+}
+
+#button_agregar {
+    margin: 0%;
+    padding: 0%;
+}
+
+Bigmoney {
+    width: 100px !important;
+    max-height: 100% !important;
+    padding-right: 50% !important;
 }
