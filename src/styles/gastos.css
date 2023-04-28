@@ -52,6 +52,11 @@
     justify-content: center;
 }
 
+#button:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
 #CGbutton{
     width: 278px;
     height: 51px;
@@ -62,6 +67,25 @@
     margin-top: 70px;
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
+}
+
+#botonB{
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonB:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
+#botonG {
+    margin-right: 1%;
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonG:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
 }
 
 #icon1 {
