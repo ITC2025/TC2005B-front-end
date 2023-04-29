@@ -114,9 +114,9 @@ export default function Login() {
                             />
                           </InputGroup>
                         </Form.Group>
-                        <Form.Group className="m-3" id="formBasicPassword">
-                          <Form.Label>Password</Form.Label>
-                          <InputGroup className="mb-3">
+                        <Form.Group className="m-3" id="login-form-group">
+                          <Form.Label id="login-form-label">Password</Form.Label>
+                          <InputGroup className="mb-3" id='input-form-group'>
                             <InputGroup.Text id="basic-addon2">
                               <RiLockPasswordFill id="login-icon" />
                             </InputGroup.Text>
@@ -133,6 +133,7 @@ export default function Login() {
                           <Button
                             variant="primary"
                             type="submit"
+                            id="loginBoton"
                             onClick={handleSubmit}
                           >
                             Login
