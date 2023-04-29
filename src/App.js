@@ -10,8 +10,9 @@ import Facturas from './pages/Gastos/gastos';
 import PrivateRoutes from './utils/PrivateRoutes';
 
 import { Dashboard } from './pages/Dashboard/dashboard';
-import { TableGastos } from './pages/TablaGastos/tableGastos';
+import { Tables } from './pages/Tables/tables';
 import SolicitarViaticos from './pages/SolicitarViaticos';
+import { Gasto } from './pages/Expedientes/expedientes';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -31,10 +32,10 @@ function App() {
             <Route element={<NavbarSC client={true} />} path="user">
               <Route index element={<Dashboard user={true} />} />
               <Route element={<Facturas name="user facturas" />} path="facturas" />
-              <Route element={<TableGastos tablaUser={true} name="user tabla gastos" />} path="tablaGastos" />
+              <Route element={<Tables tablaUser={true} name="user tabla gastos" />} path="tablaGastos" />
               <Route element={<SolicitarViaticos name="user solicitar" />} path="solicitar" />
               <Route element={<Test name="user viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Gasto name ="user expediente gasto"/>} path="expediente" />
             </Route>
           </Route>
 
@@ -44,7 +45,7 @@ function App() {
               <Route index element={<Dashboard admin={true} />} />
               <Route element={<Test name="admin viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<TableGastos tablaAdmid={true} name="admin tablero" />} path="tablero" />
+              <Route element={<Tables tablaAdmid={true} name="admin tablero" />} path="tablero" />
             </Route>
           </Route>
 
@@ -54,7 +55,7 @@ function App() {
               <Route index element={<Dashboard pm={true} />} />
               <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<Tables tablaPmHistorial={true} name="pm tablero" />} path="tablero" />
             </Route>
           </Route>
 

@@ -3,8 +3,16 @@ import CardDashboard from "../../components/cards/CardDashboard";
 import CardRequest from "../../images/CardRequest.png";
 import CardProject from "../../images/CardProject.png";
 import CardTravelAll from "../../images/CardTravelAll.png";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = ({ user, admin, pm }) => {
+
+    // const navigate = useNavigate();
+
+    // const misViaticos = () => {
+    //     navigate('/user/tablaGastos');
+    // }
+    
     return (
         <>
             {user &&
@@ -15,7 +23,8 @@ export const Dashboard = ({ user, admin, pm }) => {
                             <div className="col-md-6">
                                 <CardDashboard
                                     image={CardTravelAll}
-                                    link={"https://mayaonmoney.co.za/wp-content/uploads/2021/03/travel-allowance.jpg"}
+                                    link={"/user/tablaGastos"}
+                                    
                                 ></CardDashboard>
                             </div>
                             <div className="col-md-6">
@@ -26,7 +35,7 @@ export const Dashboard = ({ user, admin, pm }) => {
                             </div>
                         </div>
                     </div>
-                </div>  
+                </div>
             }
 
             {admin &&

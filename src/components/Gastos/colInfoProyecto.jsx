@@ -1,13 +1,13 @@
 import { Col } from "react-bootstrap";
 import '../../styles/colProyecto.css'
 
-function ColInfoProyecto() {
+export const ColInfoProyecto = (props) => {
     return (
         <>
             <Col md={4} className="colDatos">
                 <div className="idProyecto">
                     ID del proyecto:
-                    <div>------</div>
+                    <div>  {props.id}</div>
                 </div>
                 <div>
                     Fecha de creación:
@@ -25,4 +25,4 @@ function ColInfoProyecto() {
     );
 }
 
-export default ColInfoProyecto;
+// export default ColInfoProyecto;

@@ -22,7 +22,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
         navigate('/user/facturas');
     }
     const misViaticos = () => {
-        navigate('/user/');
+        navigate('/user/tablaGastos');
     }
 
     // pm
