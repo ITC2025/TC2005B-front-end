@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import logoNb from '../../images/logoNb.png';
-import { getAuthenticationData, tokenValidation } from '../../apis/getApiData';
+import { getAuthenticationData, tokenValidation, userViaticos } from '../../apis/getApiData';
 import '../../styles/login.css'
 import {
   Col,
@@ -64,6 +64,9 @@ export default function Login() {
     console.log(response1);
     const response2 = await tokenValidation();
     console.log(response2.role);
+
+    const response3 = await userViaticos();
+    console.log(response3);
 
     switch (response2.role) {
       case 1:
