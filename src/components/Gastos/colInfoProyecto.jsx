@@ -1,7 +1,12 @@
 import { Col } from "react-bootstrap";
 import '../../styles/colProyecto.css'
+import { proyecto_info } from "../../apis/gastosApiTabla";
 
 function ColInfoProyecto() {
+
+    
+
+    proyecto_info(1);
     return (
         <>
             <Col md={4} className="colDatos">

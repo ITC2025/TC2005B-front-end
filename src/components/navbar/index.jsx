@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 // import { useNavigate } from "react-router-dom";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
-import { sessionDelete } from "../../utils/getApiData";
+
 
 // function deleteSession () {
 //     const navigate = useNavigate();
@@ -79,7 +79,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             className="roundedCircle"
                         />
                        <NavDropdown title="USERNAME" id="basic-nav-dropdown">
-                            <NavDropdown.Item className="nav-link" onClick={sessionDelete}>  LOG OUT </NavDropdown.Item>
+                            <NavDropdown.Item className="nav-link" onClick={"#"}>  LOG OUT </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Container>
