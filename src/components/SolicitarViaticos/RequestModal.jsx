@@ -1,5 +1,5 @@
 import { Modal, Button, Container, Row, Col, Table } from "react-bootstrap";
-import "../styles/RequestModal.css";
+import "../../styles/RequestModal.css";
 
 function RequestModal(props) {
   return (
@@ -64,8 +64,8 @@ function RequestModal(props) {
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={props.handleClose}>
-          Cerrar
+        <Button variant="primary" onClick={props.handleModal}>
+          Enviar
         </Button>
       </Modal.Footer>
     </Modal>

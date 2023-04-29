@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
-import "../styles/SolicitarViaticos.css";
+import "../../styles/SolicitarViaticos.css";
 import { postEstimatedExpenses } from "../../util/PostExpenses";
 
 function SolicitarViaticos() {
@@ -120,7 +120,6 @@ function SolicitarViaticos() {
                   id="SendSaveButtons"
                   variant="primary"
                   type="submit"
-                  onClick={postToDB}
                 >
                   GUARDAR Y ENVIAR
                 </Button>
@@ -134,7 +133,7 @@ function SolicitarViaticos() {
         formData={formData}
         gastosValues={dataFromAddInput}
         totalGastos={totalGastos}
-        handleClose={() => setShowModal(false)}
+        handleModal={postToDB}
       />
     </>
   );
