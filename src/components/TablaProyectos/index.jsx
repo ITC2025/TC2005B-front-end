@@ -19,11 +19,26 @@ export default function TablaProyectos() {
   // Funcion para mostrar datos con fetch
   const URL = "https://retoolapi.dev/zoHjs2/data";
   // const URL = "https://jsonplaceholder.typicode.com/users";
+  // const getProyectos = async () => {
+  //   console.log(proyectos());
+  //   // const res = await fetch(proyectos());
+  //   // const data = await res.json();
+  //   // console.log("Data", data);
+  //   // setProyecto(data);
+  // };
+
   const getProyectos = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setProyecto(data);
-    // console.log(data);
+    const url = "http://localhost:3000/projects/2";
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    console.log(response[0]);
+    setProyecto(response);
   };
 
   // const getProyectos = async () => {

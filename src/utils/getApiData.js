@@ -70,5 +70,4 @@ export async function proyectos() {
   const rawResponse = await fetch(url, options);
   const response = await rawResponse.json();
   console.log(JSON.stringify(response));
-  console.log(response);
 }
