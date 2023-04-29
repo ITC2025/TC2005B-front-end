@@ -158,25 +158,24 @@ function Gastos({onAddInput}) {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-end">
-                                <Button type="submit" className="btn btn-danger" onClick={handleSubmit}>Guardar</Button>{/*Aqui esta puesto el boton que usara la funcion handelSubmit*/}
-                                <Button type="reset" className="btn btn-danger" onClick={e => DeleteLine(e, index)}>Borrar</Button>{/*Aqui esta puesto el boton que usara la funcion DeleteLine*/}
+                                <Button type="submit" className="btn btn-danger" id="botonG" onClick={handleSubmit}>Guardar</Button>{/*Aqui esta puesto el boton que usara la funcion handelSubmit*/}
+                                <Button type="reset" className="btn btn-danger" id="botonB" onClick={e => DeleteLine(e, index)}>Borrar</Button>{/*Aqui esta puesto el boton que usara la funcion DeleteLine*/}
                             </div>
                             <hr />
                         </div>)
                         
                     })}
                     
-                    <div className="d-flex justify-content-center">
-                        <Button variant="danger" id="button" onClick={handleaddForm}>
-                            <BiMoney />
-                            AGREGAR GASTO{/*Este boton sirve para usar la funcion addForm*/}
-                            <HiPlus />
+                    <div className="d-flex justify-content-center" >
+                        <Button className="justify-content-between" variant="danger" id="button" onClick={handleaddForm}>
+                            <BiMoney id="icon1"/>
+                            <label> AGREGAR GASTO </label>
+                            {/*Este boton sirve para usar la funcion addForm*/}
+                            <HiPlus id="icon2"/>
                         </Button>
                     </div>
-                    <hr />
                 </Form>
             </div>
-
         </>
     );
 }

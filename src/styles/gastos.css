@@ -40,21 +40,22 @@
     align-items: center;
 }
 
-#Button {
+#button {
+    display:inline-block;
     width: 278px;
     height: 51px;
-    left: 748px;
-    top: 559px;
-    margin-top: 40px;
-    margin-bottom: 25px;
+    margin-bottom: 2%;
+    padding: 0%;
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
-    display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
-
+#button:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
 
 #CGbutton{
     width: 278px;
@@ -64,8 +65,64 @@
     margin-right: 40px;
     margin-bottom: 30px;
     margin-top: 70px;
-
-
     background: rgba(255, 0, 0, 0.5);
     border-radius: 10px;
+}
+
+#botonB{
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonB:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
+#botonG {
+    margin-right: 1%;
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonG:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
+#icon1 {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#icon2 {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+#botonG1 {
+    margin-right: 8%;
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonG1:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
+#botonC1 {
+    margin-right: 1%;
+    background: rgba(255, 0, 0, 0.5);
+}
+
+#botonC1:hover{
+    color: rgba(255, 0, 0, 0.5);
+    background: white
+}
+
+#BotonesSC {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1%;
 }
