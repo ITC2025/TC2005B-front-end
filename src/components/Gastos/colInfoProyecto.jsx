@@ -29,18 +29,18 @@ function ColInfoProyecto() {
             <Col md={4} className="colDatos">
                 <div className="idProyecto">
                     ID del proyecto:
-                    <div>{id}</div>
+                    <div>&nbsp;{id}</div>
                 </div>
                 <div>
                     Fecha de creación:
-                    <div>{fechaI}</div>
+                    <div>&nbsp;{fechaI}</div>
                 </div>
                 <div>
                     Fecha de vencimiento:
-                    <div>{fechaF}</div>
+                    <div>&nbsp;{fechaF}</div>
                 </div>
                 <div className="anticipoProyecto mt-2"> ANTICIPO DEL PROYECTO (MXN):
-                    <div>{anticipo}</div>
+                    <div>&nbsp;{anticipo}</div>
                 </div>
             </Col>
         </>
