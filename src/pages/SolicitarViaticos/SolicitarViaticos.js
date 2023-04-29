@@ -1,11 +1,11 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import NavbarSC from "../components/NavBar";
-import FormInputIcon from "../components/FormInputIcon";
-import AddInputButton from "../components/AddInputButton";
-import RequestModal from "../components/RequestModal";
+import NavbarSC from "../../components/NavBar";
+import FormInputIcon from "../../components/FormInputIcon";
+import AddInputButton from "../../components/AddInputButton";
+import RequestModal from "../../components/RequestModal";
 import "../styles/SolicitarViaticos.css";
-import { postEstimatedExpenses } from "../util/PostExpenses";
+import { postEstimatedExpenses } from "../../util/PostExpenses";
 
 function SolicitarViaticos() {
   const [formData, setFormData] = useState({
