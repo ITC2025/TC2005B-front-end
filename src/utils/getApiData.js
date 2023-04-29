@@ -32,7 +32,17 @@ export async function tokenValidation(){
     return response;
 }
 
-export function sessionDelete() {
-    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+export async function sessionDelete() {
+    const url = 'http://localhost:3001/logout';
+    const options = {
+        method: "POST",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
     window.location.replace('/');
+    return response;
 }
