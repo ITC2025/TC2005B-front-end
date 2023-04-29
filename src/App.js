@@ -13,6 +13,7 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
+import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -43,7 +44,7 @@ function App() {
                 path="tablaGastos"
               />
               <Route
-                element={<Test name="user solicitar" />}
+                element={<SolicitarViaticos />}
                 path="solicitar"
               />
               <Route element={<UserTable />} path="viaticos" />

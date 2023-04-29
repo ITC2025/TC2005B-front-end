@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
-import "../styles/SolicitarViaticos.css";
+import "../../styles/SolicitarViaticos.css";
 import { postEstimatedExpenses } from "../../util/PostExpenses";
 
 function SolicitarViaticos() {
