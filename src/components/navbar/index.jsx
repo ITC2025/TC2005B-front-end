@@ -2,7 +2,7 @@ import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
 // import { useNavigate } from "react-router-dom";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
-import { sessionDelete } from "../../utils/getApiData";
+import { sessionDelete } from "../../apis/getApiData";
 
 // function deleteSession () {
 //     const navigate = useNavigate();
