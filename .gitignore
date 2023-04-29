@@ -14,8 +14,6 @@ packege-lock.json
 # production
 /build
 
-/images
-
 # misc
 .DS_Store
 .env.local
