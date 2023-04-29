@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from "react";
 import logoNb from '../../images/logoNb.png';
-import { getAuthenticationData, tokenValidation } from '../../utils/getApiData';
+import { getAuthenticationData, tokenValidation } from '../../apis/getApiData';
 import '../../styles/login.css'
 import {
   Col,
