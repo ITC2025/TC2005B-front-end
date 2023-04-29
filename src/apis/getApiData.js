@@ -58,4 +58,5 @@ export function tokenValidation(){
     }
 
     return(payload.rol)
+
 }
