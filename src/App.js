@@ -13,6 +13,7 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
+import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 
 function Expedientes() {
@@ -56,9 +57,9 @@ function App() {
           <Route element={<PrivateRoutes rol={2} />}>
             <Route element={<NavbarSC productManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>
           
