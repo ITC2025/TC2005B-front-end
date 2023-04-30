@@ -59,3 +59,18 @@ export function tokenValidation(){
 
     return(payload.rol)
 }
+
+export async function sumaTablaGastos(id){
+    const url = 'http://localhost:3001/expenses_table/vis/' + JSON.stringify(id);
+    console.log(url);
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}

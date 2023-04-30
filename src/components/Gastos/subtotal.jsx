@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import gastos from './datos.json'  // archivo json
+import { sumaTablaGastos } from "../../apis/getApiData";
 
 
 export default function Subtotal() {
@@ -18,9 +19,13 @@ export default function Subtotal() {
     //         .catch(error => console.error(error));
     // }, []);
 
+    const cargarGastos = async () => {
+        const sumaTotal = await sumaTablaGastos(1);
+        setTotal(sumaTotal.monto);
+    }
+
     useEffect(() => {
-        const sumaTotal = gastos.reduce((i, gasto) => i + parseInt(gasto.total), 0);
-        setTotal(sumaTotal);
+        cargarGastos()
     }, [])
 
     return (
