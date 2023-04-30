@@ -6,12 +6,15 @@
 package-lock.json
 /.pnp
 .pnp.js
+packege-lock.json
 
 # testing
 /coverage
 
 # production
 /build
+
+/images
 
 # misc
 .DS_Store

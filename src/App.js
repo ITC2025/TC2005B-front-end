@@ -7,13 +7,13 @@ import NavbarSC from "./components/navbar/index.jsx";
 import Login from "./pages/Login/login";
 import Test from "./pages/test/index.js";
 import Facturas from "./pages/Gastos/gastos";
-import PrivateRoutes from "./utils/PrivateRoutes";
+import PrivateRoutes from "./apis/PrivateRoutes";
 import PmDashboard from "./pages/Dashboard/pmDashboard";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
-import Project from "./pages/Projects";
-import ProjectTable from "./pages/ProyectosTabla/proyectosTabla";
-import SeeProjectTable from "./pages/VerProyectosTabla/proyectosTabla";
+import TablaGastos from "./pages/TablaGastos/tablaGastos";
+import { UserTable } from "./pages/HistorialViaticos/UserTable";
+import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -22,6 +22,9 @@ function Expedientes() {
 }
 
 function App() {
+
+  
+
   return (
     <div className="App">
       <Router>
@@ -41,21 +44,15 @@ function App() {
                 path="facturas"
               />
               <Route
-                element={<Test name="user solicitar" />}
+                element={<TablaGastos name="user tabla gastos" />}
+                path="tablaGastos"
+              />
+              <Route
+                element={<SolicitarViaticos />}
                 path="solicitar"
               />
-              <Route element={<Test name="user viaticos" />} path="viaticos" />
+              <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
-            </Route>
-          </Route>
-
-          {/*Rutas de admin*/}
-          <Route element={<PrivateRoutes rol={3} />}>
-            <Route element={<NavbarSC admin={true} />} path="admin">
-              <Route index element={<AdminDashboard />} />
-              <Route element={<Test name="admin viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="admin tablero" />} path="tablero" />
             </Route>
           </Route>
 
@@ -66,6 +63,16 @@ function App() {
               <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+            </Route>
+          </Route>
+          
+          {/*Rutas de admin*/}
+          <Route element={<PrivateRoutes rol={3} />}>
+            <Route element={<NavbarSC admin={true} />} path="admin">
+              <Route index element={<AdminDashboard />} />
+              <Route element={<Test name="admin viaticos" />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="admin tablero" />} path="tablero" />
             </Route>
           </Route>
 

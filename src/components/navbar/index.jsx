@@ -1,16 +1,56 @@
-import { Navbar, Nav, Container, Image } from "react-bootstrap";
+import { Navbar, Nav, Container, Image, NavDropdown } from "react-bootstrap";
+// import { useNavigate } from "react-router-dom";
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
+import { sessionDelete } from "../../apis/getApiData";
+import { useNavigate } from 'react-router-dom';
 
 const NavbarSC = ({ client, projectManager, admin }) => {
+
+    const navigate = useNavigate();
+
+    // homepage
+    const home = () => {
+        navigate('/');
+    }
+
+    // user
+    const userSolicitud = () => {
+        navigate('/user/solicitar');
+    }
+    const facturarViaticos = () => {
+        navigate('/user/');
+    }
+    const misViaticos = () => {
+        navigate('/user/tablaGastos');
+    }
+
+    // pm
+    const pmProyectos = () => {
+        navigate('/pm/');
+    }
+    const pmSolicitud = () => {
+        navigate('/pm/');
+    }
+    const pmHistorial = () => {
+        navigate('/pm/');
+    }
+
+    // admin
+    const adminSolicitud = () => {
+        navigate('/admin/');
+    }
+    const adminHistorial = () => {
+        navigate('/admin/');
+    }
+
     return (
         <>
-            {/* !!!! cambiar los 'href=" "' a 'as={Link} to="/path"' 
-                despues de hacer el routeo de componentes !!!! */}
             <Navbar className="navbar" expand="lg">
                 <Container>
-                    <Navbar.Brand href="#">
+                    <Navbar.Brand onClick={home} >
                         <Image
+                            className="logo"
                             src="../../images/logo.png"
                             width="auto"
                             height="33"
@@ -22,24 +62,24 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                         <Nav>
                             {client &&
                                 <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> MIS VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={misViaticos}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={userSolicitud}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={facturarViaticos}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
                                 </>
                             }
 
                             {projectManager &&
                                 <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> MIS PROYECTOS</strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={pmProyectos}> <strong> MIS PROYECTOS</strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={pmSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={pmHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
                             }
 
                             {admin &&
                                 <>
-                                    <Nav.Link className="nav-link" href="#"> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" href="#"> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={adminSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className="nav-link" onClick={adminHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
                             }
                         </Nav>
@@ -52,7 +92,10 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             alt="user"
                             className="roundedCircle"
                         />
-                        <Nav.Link className="nav-link" href="#"> <strong> USERNAME </strong> </Nav.Link>
+                        <NavDropdown title="USERNAME" id="basic-nav-dropdown">
+
+                            <NavDropdown.Item className="nav-link" onClick={sessionDelete}>  LOG OUT </NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Container>
             </Navbar>
@@ -60,4 +103,5 @@ const NavbarSC = ({ client, projectManager, admin }) => {
         </>
     )
 }
+
 export default NavbarSC;
