@@ -4,10 +4,11 @@ export async function  postProject(nombre, codigoProyecto, descripcion) {
         descripcion: descripcion,
         codigoProyecto: codigoProyecto,
     }
-    const url = "http://localhost:3001/projects/2"
+    const url = "http://localhost:3001/projects/"
     const options= {
         method: "POST",
         body: JSON.stringify(newProjectData),
+        credentials:"include",
         headers: {
             "Content-Type": "application/json; charset=UTF-8",
           },  
