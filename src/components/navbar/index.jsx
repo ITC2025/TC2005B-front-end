@@ -18,11 +18,11 @@ const NavbarSC = ({ client, projectManager, admin }) => {
     const userSolicitud = () => {
         navigate('/user/solicitar');
     }
-    const facturarViaticos = () => {
-        navigate('/user/');
-    }
+    // const facturarViaticos = () => {
+    //     navigate('/user/');
+    // }
     const misViaticos = () => {
-        navigate('/user/tablaGastos');
+        navigate('/user/viaticos');
     }
 
     // pm
@@ -64,7 +64,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                                 <>
                                     <Nav.Link className="nav-link" onClick={misViaticos}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
                                     <Nav.Link className="nav-link" onClick={userSolicitud}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" onClick={facturarViaticos}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link>
+                                    {/* <Nav.Link className="nav-link" onClick={facturarViaticos}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link> */}
                                 </>
                             }
 
