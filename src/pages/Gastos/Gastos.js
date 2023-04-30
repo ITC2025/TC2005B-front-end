@@ -40,6 +40,7 @@ export default function Facturas() {
         <>
             <Container>
                 <h2 id="gastos">Gastos</h2>
+                <hr></hr>
                 <Row>
                     <Col>
                         <Card id="container1">
@@ -52,8 +53,9 @@ export default function Facturas() {
                 </Row>
             </Container>
             <div className="d-flex justify-content-end align-items-end" id = "BotonesSC">
-                <Button variant="danger" controlId="CGbutton" id="botonC1">CANCELAR</Button>{/*Este boton sirve para usar la funcion deleteForms*/}
-                <Button type="submit" variant="danger" controlId="CGbutton" id="botonG1" onClick={saveForm} >GUARDAR</Button>{/*Este boton sirve para usar la funcion saveForm*/}
+                <Button variant = "danger" controlId="CGbutton" id="botonC1">CANCELAR</Button>{/*Este boton sirve para usar la funcion deleteForms*/}
+                <Button variant = "danger" type="submit" onSubmit={saveForm} id="botonG1">GUARDAR</Button>
+                {/*Este boton sirve para usar la funcion saveForm*/}
             </div>
         </>
     );
