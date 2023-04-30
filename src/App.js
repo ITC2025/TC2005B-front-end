@@ -15,6 +15,7 @@ import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -89,7 +90,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<h>404 esta pagina no existe</h>} path="*" />
+          <Route element={<NotFound/>} path="*" />
         </Routes>
       </Router>
     </div>
