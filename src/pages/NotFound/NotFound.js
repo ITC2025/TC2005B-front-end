@@ -27,6 +27,7 @@ export const NotFound = () => {
       <div class="link-container">
         <a
           onClick={navigateHome}
+          id="return-btn"
         >
           Visitar página principal
         </a>

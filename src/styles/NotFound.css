@@ -131,7 +131,7 @@ h1 {
 .link-container {
   text-align: center;
 }
-a.more-link {
+#return-btn {
   text-transform: uppercase;
   font-size: 13px;
     background-color: #de7e85;
