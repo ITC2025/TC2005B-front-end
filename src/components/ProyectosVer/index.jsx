@@ -1,83 +1,86 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 // import "../../styles/TableStyle.css";
-import { BadgeStatus } from "./BadgeStatus";
-import ProyectosDropdown from "./ProyectosDropdown";
-import { useNavigate } from "react-router-dom";
-import { TextField } from "@mui/material";
+import ViaticosDropdown from "./ViaticosDropdown";
+import { MdPadding } from "react-icons/md";
 
-export default function VerTablaProyectos() {
-  const navigate = useNavigate();
-
-  const navFacturas = () => {
-    navigate("/user/solicitar"); // cambiar ruta
-  };
+export default function TablaProyectos() {
   // Configurar hooks
   const [proyecto, setProyecto] = useState([]);
-  const [filterProyecto, setFilterProyecto] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://retoolapi.dev/GHo2iq/data";
-  // const URL = "https://jsonplaceholder.typicode.com/users";
   const getProyectos = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setProyecto(data);
-    setFilterProyecto(data);
-    // console.log(data);
+    const url = "http://localhost:3000/viatico_request/pm/2";
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    console.log(response);
+    setProyecto(response);
   };
 
-  // const getProyectos = async () => {
   useEffect(() => {
     getProyectos();
   }, []);
 
-  // Funcion para filtrar datos
-  const handleFilter = (e) => {
-    const newData = filterProyecto.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setProyecto(newData);
-  };
+  function setStatus(estado) {
+    switch (estado) {
+      case 1:
+        return "Borrador";
+      case 2:
+        return "Enviado";
+      case 3:
+        return "Aprobado";
+      case 4:
+        return "Rechazado";
+
+      default:
+        return "Estado desconocido";
+    }
+  }
 
   // configuracion de columnas
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID,
+      selector: (row) => row.ID_solicitud_viatico,
       width: "120px",
       sortable: true,
     },
     {
       name: "Fecha",
-      selector: (row) => row.date,
-      width: "120px",
+      selector: (row) => row.fechaInicio,
       sortable: true,
     },
     {
       name: "Proyecto",
-      selector: (row) => row.project,
+      selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
     {
       name: "Descripcion",
-      selector: (row) => row.desc,
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
       name: "Total",
-      selector: (row) => row.total,
+      selector: (row) => row.monto,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.status} />,
-      width: "120px",
-      style: { paddingLeft: "0px" },
+      selector: (row) => setStatus(row.ID_status_solicitud_viaticos),
+      sortable: true,
     },
     {
       name: "Actions",
-      cell: (row) => <ProyectosDropdown />,
+      cell: (row) => (
+        <ViaticosDropdown status={row.ID_status_solicitud_viaticos} />
+      ),
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -93,21 +96,9 @@ export default function VerTablaProyectos() {
   return (
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-4">
-          <button id="basicButton" onClick={navFacturas}>
-            {" "}
-            Crear proyecto{" "}
-          </button>
-        </div>
         <div className="col-8 d-flex justify-content-end">
           <div>
             <div className="d-flex justify-content-end"></div>
-            <TextField
-              id="outlined-basic"
-              label="Buscar"
-              variant="standard"
-              onChange={handleFilter}
-            />
           </div>
         </div>
       </div>

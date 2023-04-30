@@ -1,4 +1,4 @@
-import VerTablaProyectos from "../../components/ProyectosVer";
+import VerTablaProyectos from "../../components/ProyectosVer/index";
 
 function SeeProjectTable() {
   return (

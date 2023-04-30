@@ -16,6 +16,8 @@ import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import CrearProyecto from "./pages/CrearProyecto";
 import Proyectos from "./pages/Proyectos";
+import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
+
 function Expedientes() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
@@ -23,15 +25,11 @@ function Expedientes() {
 }
 
 function App() {
-
-
-
   return (
     <div className="App">
       <Router>
-        <Routes> 
+        <Routes>
           <Route element={<Login name="Login" />} path="/" />
-          {/* <Route element={<Facturas />} path="proyectos"/> */}
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
             <Route element={<NavbarSC client={true} />} path="user">
@@ -44,10 +42,7 @@ function App() {
                 element={<TablaGastos name="user tabla gastos" />}
                 path="tablaGastos"
               />
-              <Route
-                element={<SolicitarViaticos />}
-                path="solicitar"
-              />
+              <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
             </Route>
@@ -60,12 +55,11 @@ function App() {
               <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="pm tablero" />} path="tablero" />
-             
 
               <Route element={<CrearProyecto />} path="crearproyecto" />
               <Route element={<Proyectos />} path="proyectos" />
-              
-              {/* <Route element={<SeeProjectTable />} path="vertablaproyectos" /> */}
+
+              <Route element={<SeeProjectTable />} path="vertablaproyectos" />
             </Route>
           </Route>
 

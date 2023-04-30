@@ -15,16 +15,6 @@ export default function TablaProyectos() {
   const [proyecto, setProyecto] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://retoolapi.dev/zoHjs2/data";
-  // const URL = "https://jsonplaceholder.typicode.com/users";
-  // const getProyectos = async () => {
-  //   console.log(proyectos());
-  //   // const res = await fetch(proyectos());
-  //   // const data = await res.json();
-  //   // console.log("Data", data);
-  //   // setProyecto(data);
-  // };
-
   const getProyectos = async () => {
     const url = "http://localhost:3000/projects/2";
     const options = {

@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 // import "../../styles/TableBadges.css";
 
-export default function ProyectosDropdown() {
+export default function ViaticosDropdown({ status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -35,7 +35,8 @@ export default function ProyectosDropdown() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Ver</MenuItem>
+        <MenuItem onClick={handleClose}>Abrir Solicitud</MenuItem>
+        <MenuItem onClick={handleClose}>Abrir Gastos</MenuItem>
       </Menu>
     </div>
   );
