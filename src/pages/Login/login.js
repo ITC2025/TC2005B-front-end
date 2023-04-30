@@ -143,15 +143,8 @@ export default function Login() {
                     </div>
                   </div>
                 </Card.Body>
-<<<<<<< HEAD
-                {RenderIncorrect ? (
-                  null
-                ) : (
-                  <div>Incorrect email or password</div>//Aqui se imprime este div en caso de que la contraseña o email no se encuentren en la base de datos
-=======
                 {RenderIncorrect ? null : (
                   <div>Incorrect email or password</div>
->>>>>>> bd518a9612aa4d9caa796972b4890a19efe68a0d
                 )}
               </Card>
             </Col>
