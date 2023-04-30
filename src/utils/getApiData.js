@@ -1,3 +1,5 @@
+let arrayFormData = []
+
 export async function getFormData(product, type, amount, image, xml, date) {
 
     let data = {/*Esta funcion es para crear un Objeto Json y se enviara al backend*/
@@ -9,10 +11,9 @@ export async function getFormData(product, type, amount, image, xml, date) {
         fecha: date
     }
 
+    arrayFormData.push(data)
 
-    console.log(data)
-
-
+    console.log(arrayFormData)
 
     // const url = 'http://localhost:3000/login';
     // const options = {
