@@ -4,14 +4,12 @@ import DataTable from "react-data-table-component";
 // import { BadgeStatus } from "../BadgeStatus";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
-import FormProject from "../FormProject";
-import { proyectos } from "../../utils/getApiData";
 
 export default function TablaProyectos() {
   const navigate = useNavigate();
 
-  const creatProyect = () => {
-    navigate("/proyectos"); // cambiar ruta
+  const createProject = () => {
+    navigate("/pm/crearproyecto"); // cambiar ruta
   };
   // Configurar hooks
   const [proyecto, setProyecto] = useState([]);
@@ -83,7 +81,7 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={creatProyect}>
+          <button id="basicButton" onClick={createProject}>
             Crear proyecto
           </button>
         </div>

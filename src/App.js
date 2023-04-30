@@ -14,7 +14,8 @@ import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
-
+import CrearProyecto from "./pages/CrearProyecto";
+import Proyectos from "./pages/Proyectos";
 function Expedientes() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
@@ -23,17 +24,13 @@ function Expedientes() {
 
 function App() {
 
-  
+
 
   return (
     <div className="App">
       <Router>
-        <Routes>
+        <Routes> 
           <Route element={<Login name="Login" />} path="/" />
-          <Route element={<Project />} path="proyectos" />
-          <Route element={<ProjectTable />} path="tablaproyectos" />
-          <Route element={<SeeProjectTable />} path="vertablaproyectos" />
-
           {/* <Route element={<Facturas />} path="proyectos"/> */}
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
@@ -58,14 +55,20 @@ function App() {
 
           {/*Rutas de Project Manager*/}
           <Route element={<PrivateRoutes rol={2} />}>
-            <Route element={<NavbarSC productManager={true} />} path="pm">
+            <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
               <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+             
+
+              <Route element={<CrearProyecto />} path="crearproyecto" />
+              <Route element={<Proyectos />} path="proyectos" />
+              
+              {/* <Route element={<SeeProjectTable />} path="vertablaproyectos" /> */}
             </Route>
           </Route>
-          
+
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">

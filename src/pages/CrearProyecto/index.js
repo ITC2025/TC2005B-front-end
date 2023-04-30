@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import FormProject from '../../components/FormProject';
 import { getProjectManagers } from '../../utils/projectData';
 
-function Project() {
+function CrearProyecto() {
     const [PmData, setPmData] = useState([]);
 
     const getPmData = async () => {
@@ -20,5 +20,5 @@ function Project() {
         </>
     );
 }
-export default Project;
+export default CrearProyecto;
   

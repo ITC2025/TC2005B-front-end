@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { Col, Row, Button, Container, Form, InputGroup } from "react-bootstrap";
 import {
   MdCalendarMonth,
@@ -9,8 +9,34 @@ import {
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
 import "../../styles/formProject.css";
+import { postProject } from "../../utils/PostProject";
 
 export default function FormProject({ PmData }) {
+
+  //Hooks
+  const [formData, setFormData] = useState({
+    nombre: "",
+    codigoProyecto: "",
+    descripcion: "",
+  });
+
+  const postToDB = () => {
+    postProject(formData.nombre, formData.codigoProyecto, formData.descripcion)
+  }
+
+  // useEffect(() =>{
+  //   postProyectos();
+  // }, []);
+
+  const handleForm = (event) => {
+    event.preventDefault();
+    postToDB();    
+  }
+
+  const handleInputChange = (event) =>{
+    setFormData({...formData, [ event.target.name]: event.target.value});
+  }
+
   return (
     <>
       <Container className="d-flex justify-content-start">
@@ -18,33 +44,20 @@ export default function FormProject({ PmData }) {
       </Container>
       <Container className="justify-content-center">
         <hr />
-        <Form>
+        <Form onSubmit = {handleForm}>
           <Form.Group className="m-3" controlId="formBasicUp">
             <Row>
               <Col>
                 <Form.Label className="text-center">Nombre</Form.Label>
 
                 <InputGroup className="mb-3">
-                  <Form.Control type="text" required />
+                  <Form.Control name="nombre" value={formData.nombre} type="text" onChange={handleInputChange} required />
                 </InputGroup>
               </Col>
               <Col>
                 <Form.Label className="text-left">Código</Form.Label>
                 <InputGroup className="mb-3">
-                  <Form.Control type="text" required />
-                </InputGroup>
-              </Col>
-              <Col>
-                <Form.Label className="text-center">Responsable</Form.Label>
-
-                <InputGroup className="mb-3">
-                  <Form.Select>
-                    {/* {PmData.map((pm) => (
-                      <option>
-                        {pm.name} {pm.apellido}
-                      </option>
-                    ))} */}
-                  </Form.Select>
+                  <Form.Control name="codigoProyecto" value={formData.codigoProyecto} type="text" onChange={handleInputChange} required />
                 </InputGroup>
               </Col>
             </Row>
@@ -58,11 +71,15 @@ export default function FormProject({ PmData }) {
                   class="form-control"
                   id="exampleFormControlTextarea2"
                   rows="6"
+                  name="descripcion"
+                  value={formData.descripcion}
+                  onChange={handleInputChange}
                   required
                 ></textarea>
               </Col>
             </Row>
           </Form.Group>
+          <Button type = "submit" > Submit </Button>
         </Form>
       </Container>
       <Container className="fixed-bottom">
