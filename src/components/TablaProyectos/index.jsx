@@ -50,18 +50,18 @@ export default function TablaProyectos() {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID,
+      selector: (row) => row.ID_proyecto,
       width: "120px",
       sortable: true,
     },
     {
       name: "Nombre",
-      selector: (row) => row.name,
+      selector: (row) => row.nombre,
       sortable: true,
     },
     {
       name: "Descripcion",
-      selector: (row) => row.desc,
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
