@@ -15,7 +15,7 @@ import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import Expediente from "./pages/Expediente/expediente";
-
+import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -60,13 +60,13 @@ function App() {
           <Route element={<PrivateRoutes rol={2} />}>
             <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
               <Route
                 element={<Expediente />}
                 path="expediente"
               />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>
 
@@ -100,7 +100,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<h>404 esta pagina no existe</h>} path="*" />
+          <Route element={<NotFound/>} path="*" />
         </Routes>
       </Router>
     </div>
