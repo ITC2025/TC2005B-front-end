@@ -63,7 +63,7 @@ export async function sessionDelete() {
 
 export async function userViaticos(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/user/' + JSON.stringify(id_user);
+    const url = 'http://localhost:3001/user/viaticos/' + JSON.stringify(id_user);
     console.log(url);
     const options = {
         method: "GET",
@@ -71,6 +71,60 @@ export async function userViaticos(){
         headers: {
             'Content-Type': 'application/json',
         }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
+
+export async function userSaldo(){
+    const id_user = await tokenID();
+    const url = 'http://localhost:3001/user/saldo/' + JSON.stringify(id_user);
+    console.log(url);
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
+
+export async function projectsPM(){
+    const id_user = await tokenID();
+    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user);
+    console.log(url);
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
+
+export async function postProject(nombre, codigo , desc) {
+    let data = {
+        nombre: nombre,
+        codigoProyecto: codigo,
+        descripcion: desc
+    }
+
+    const id_user = await tokenID();
+    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user);
+    const options = {
+        method: "POST",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
