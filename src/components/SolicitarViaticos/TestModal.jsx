@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
 
-import Modal from './modal/index.jsx';
+import Modal from '../modal/index.jsx';
 
 function Test() {
     const [modalEstado1, modalCambiarEstado1] = useState(false);

@@ -1,4 +1,4 @@
-  import { useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -17,11 +17,13 @@ import Gastos from './pages/Gastos/Gastos'
 
 function Expedientes() {
   //Agarra el id del expediente del ult
-  const routeParams = useParams()
-  return (<Test name={routeParams.id} />)
+  const routeParams = useParams();
+  return <Test name={routeParams.id} />;
 }
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
@@ -29,49 +31,74 @@ function App() {
           <Route element={<Login name="Login" />} path="/" />
 
           {/*Rutas de usuario*/}
-          <Route element={<PrivateRoutes rol={1}/>}>
-            <Route element={<NavbarSC client={true}/>} path="user">
-              <Route index element={<UserDashboard />}/>
-              <Route element={<Facturas name="user facturas" />} path="facturas" />
-              <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
-              <Route element={<SolicitarViaticos name="user solicitar" />} path="solicitar" />
-              <Route element={<Gastos name="user viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
-            </Route>
-          </Route>
-
-          {/*Rutas de admin*/}
-          <Route element={<PrivateRoutes rol={3}/>}>
-            <Route element={<NavbarSC admin={true}/>} path="admin">
-              <Route index element={<AdminDashboard />}/>
-              <Route element={<Test name="admin viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="admin tablero" />} path="tablero" />     
+          <Route element={<PrivateRoutes rol={1} />}>
+            <Route element={<NavbarSC client={true} />} path="user">
+              <Route index element={<UserDashboard />} />
+              <Route
+                element={<Facturas name="user facturas" />}
+                path="facturas"
+              />
+              <Route
+                element={<SolicitarViaticos />}
+                path="solicitar"
+              />
+              <Route
+                element={<UserTable />}
+                path="viaticos"
+              />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />
             </Route>
           </Route>
 
           {/*Rutas de Project Manager*/}
-          <Route element={<PrivateRoutes rol={2}/>}>
-            <Route element={<NavbarSC productManager={true}/>} path="pm">
-              <Route index element={<PmDashboard/>}/>
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+          <Route element={<PrivateRoutes rol={2} />}>
+            <Route element={<NavbarSC projectManager={true} />} path="pm">
+              <Route index element={<PmDashboard />} />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<PmTable/> } path={"solicitudes"} />
+            </Route>
+          </Route>
+
+          {/*Rutas de admin*/}
+          <Route element={<PrivateRoutes rol={3} />}>
+            <Route element={<NavbarSC admin={true} />} path="admin">
+              <Route index element={<AdminDashboard />} />
+              <Route element={<Test name="admin viaticos" />} path="viaticos" />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />  
+              <Route element={<Test name="admin tablero" />} path="tablero" />
             </Route>
           </Route>
 
           {/*Rutas del SysAdmin*/}
-          <Route element={<PrivateRoutes rol={4}/>}>
-            <Route element={<NavbarSC admin={true}/>} path="sysadmin">
-              <Route index element={<AdminDashboard />}/>
-              <Route element={<Test name="sysadmin viaticos" />} path="viaticos" />
+          <Route element={<PrivateRoutes rol={4} />}>
+            <Route element={<NavbarSC admin={true} />} path="sysadmin">
+              <Route index element={<AdminDashboard />} />
+              <Route
+                element={<Test name="sysadmin viaticos" />}
+                path="viaticos"
+              />
               <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="sysadmin tablero" />} path="tablero" />
+              <Route
+                element={<Test name="sysadmin tablero" />}
+                path="tablero"
+              />
             </Route>
           </Route>
 
-          <Route element={<h>404 esta pagina no existe</h>} path="*" />
-
+          <Route element={<NotFound/>} path="*" />
         </Routes>
       </Router>
     </div>

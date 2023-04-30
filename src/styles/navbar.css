@@ -1,5 +1,6 @@
 .navbar {
     background-color: rgb(254, 241, 0);
+    margin-bottom: 1em;
 }
 
 .nav-link:hover {

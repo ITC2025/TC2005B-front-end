@@ -42,12 +42,14 @@ function SolicitarViaticos() {
 
   for (let i = 0; i < dataFromAddInput.length; i++) {
     totalGastos = totalGastos + parseInt(dataFromAddInput[i].monto);
-    console.log(dataFromAddInput[i].monto);
+  }
+
+  if (dataFromAddInput.length === 0) {
+    totalGastos = 0;
   }
 
   return (
     <>
-      <NavbarSC />
       <h1 id="HeaderTitle">Solicitar viaticos</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
@@ -56,6 +58,7 @@ function SolicitarViaticos() {
             <Row id="SolicitFormRow">
               <Col sm={10} md={5}>
                 <FormInputIcon
+                  className="formFechaInicio-input"
                   inputControlID="fechaInicio"
                   inputLabel="Fecha Inicio"
                   inputName="fechaInicio"
@@ -66,6 +69,7 @@ function SolicitarViaticos() {
               </Col>
               <Col sm={10} md={5}>
                 <FormInputIcon
+                  className="formFechaTermino-input"
                   inputControlID="fechaTermino"
                   inputLabel="Fecha Termino"
                   inputName="fechaTermino"
@@ -78,6 +82,7 @@ function SolicitarViaticos() {
             <Row id="SolicitFormRow">
               <Col sm={10} md={5}>
                 <FormInputIcon
+                  className="formDestino-input"
                   inputControlID="destino"
                   inputLabel="Destino"
                   inputName="destino"
@@ -88,6 +93,7 @@ function SolicitarViaticos() {
               </Col>
               <Col sm={10} md={5}>
                 <FormInputIcon
+                  className="formProyecto-input"
                   inputControlID="proyecto"
                   inputLabel="Proyecto"
                   inputName="proyecto"
@@ -99,7 +105,10 @@ function SolicitarViaticos() {
             </Row>
             <Row id="SolicitFormRow" className="mx-1">
               <Col sm={10} md={10}>
-                <AddInputButton onAddInput={handleDataFromAddInput} />
+                <AddInputButton
+                  className="form-button"
+                  onAddInput={handleDataFromAddInput}
+                />
               </Col>
             </Row>
           </Container>
@@ -117,12 +126,7 @@ function SolicitarViaticos() {
                 <Button id="SendSaveButtons" variant="primary">
                   GUARDAR CAMBIOS
                 </Button>
-                <Button
-                  id="SendSaveButtons"
-                  variant="primary"
-                  type="submit"
-                  onClick={postToDB}
-                >
+                <Button id="SendSaveButtons" variant="primary" type="submit">
                   GUARDAR Y ENVIAR
                 </Button>
               </Col>
@@ -136,6 +140,7 @@ function SolicitarViaticos() {
         gastosValues={dataFromAddInput}
         totalGastos={totalGastos}
         handleClose={() => setShowModal(false)}
+        handleModal={postToDB}
       />
     </>
   );
