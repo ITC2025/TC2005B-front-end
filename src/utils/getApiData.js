@@ -15,18 +15,18 @@ export async function getFormData(product, type, amount, image, xml, date) {
 
     console.log(arrayFormData)
 
-    // const url = 'http://localhost:3000/login';
-    // const options = {
-    //     method: "POST",
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data)
-    // }
-    // const rawResponse = await fetch(url, options)
-    // const response = await rawResponse.json();
-    // sessionStorage.setItem("data", JSON.stringify(response))
-    // console.log(JSON.stringify(response))
+    const url = 'http://localhost:3000/login';
+    const options = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    sessionStorage.setItem("data", JSON.stringify(response))
+    console.log(JSON.stringify(response))
 }
 
 export async function getAuthenticationData(name, password) {
@@ -95,4 +95,3 @@ export async function postEstimatedExpenses(concepto, monto) {
     const response = await rawResponse.json();
     console.log(JSON.stringify(response));
 }
-
