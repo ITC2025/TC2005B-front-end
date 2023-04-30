@@ -134,15 +134,21 @@ h1 {
 #return-btn {
   text-transform: uppercase;
   font-size: 13px;
-    background-color: #de7e85;
+    background-color: #99749D;
     padding: 10px 15px;
-    border-radius: 0;
+    border-radius: 15;
     color: #fff;
+    border: none;
     display: inline-block;
     margin-right: 5px;
     margin-bottom: 5px;
     line-height: 1.5;
     text-decoration: none;
   margin-top: 50px;
+  font-weight: 500;
   letter-spacing: 1px;
+}
+
+#return-btn:hover {
+  background-color: #B895AB;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import "../../styles/NotFound.css";
+import { Button } from "react-bootstrap";
 export const NotFound = () => {
     const navigate = useNavigate();
 
@@ -25,12 +26,12 @@ export const NotFound = () => {
         </span>
       </section>
       <div class="link-container">
-        <a
+        <Button
           onClick={navigateHome}
           id="return-btn"
         >
           Visitar página principal
-        </a>
+        </Button>
       </div>
     </>
   );
