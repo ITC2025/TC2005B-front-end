@@ -130,3 +130,54 @@ export async function postProject(nombre, codigo , desc) {
     const response = await rawResponse.json();
     return response;
 }
+
+export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, nomEmpleado, codProyecto, descStatus){
+    let data = {
+        monto: montoViatico,
+        descripcion: descripcionSolicitud,
+        destino: destinoViatico,
+        fechaInicio: fechaI,
+        fechaTermino: fechaF,
+        nombre_empleado: nomEmpleado,
+        codigo_proyecto: codProyecto,
+        status_descripcion: descStatus
+    }
+
+    const url = 'http://localhost:3001/viatico_request/solicitar';
+    const options = {
+        method: "POST",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
+
+export async function postCrearReporteGastos(conceptoGasto,montoGasto,fechaGasto,imagenGasto,idSolicitud,descTipoGasto,descStatusReporte){
+    let data = {
+        concepto: conceptoGasto,
+        monto: montoGasto,
+        fecha: fechaGasto,
+        imagen: imagenGasto,
+        ID_solicitud_viatico: idSolicitud,
+        tipo: descTipoGasto,
+        status: descStatusReporte
+    }
+
+    const url = 'http://localhost:3001/expense_reports/crear';
+    const options = {
+        method: "POST",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}

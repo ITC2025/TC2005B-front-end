@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import logoNb from '../../images/logoNb.png';
-import { getAuthenticationData, tokenValidation, userViaticos } from '../../apis/getApiData';
+import { getAuthenticationData, tokenValidation, userViaticos, postCrearReporteGastos, postSolicitarViatico } from '../../apis/getApiData';
 import '../../styles/login.css'
 import {
   Col,
@@ -65,8 +65,14 @@ export default function Login() {
     const response2 = await tokenValidation();
     console.log(response2.role);
 
-    const response3 = await userViaticos();
-    console.log(response3);
+    /*
+    let MyBlob = new Blob(['test text'], {type : 'text/plain'});
+    const response4 = await postSolicitarViatico(500,"Juntada a ver mario bros","Hermosillo, Sonora",new Date(),new Date(),"Jose","FT890","Borrador")
+    console.log(response4)
+
+    const response5 = await postCrearReporteGastos("La pelicula de mario bros",90,new Date(),MyBlob,1,"Comida","Borrador")
+    console.log(response5)
+    */
 
     switch (response2.role) {
       case 1:
