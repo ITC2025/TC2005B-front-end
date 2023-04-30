@@ -9,11 +9,13 @@ import Test from "./pages/test/index.js";
 import Facturas from "./pages/Gastos/gastos";
 import PrivateRoutes from "./apis/PrivateRoutes";
 import PmDashboard from "./pages/Dashboard/pmDashboard";
+import PmProyectos from "./pages/Proyectos/pmProyectos";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import { PmTable } from "./pages/HistorialViaticos/PmTable";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -45,7 +47,7 @@ function App() {
               />
               <Route
                 element={<SolicitarViaticos />}
-                path="solicitar"
+                path="solicitud"
               />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
@@ -56,9 +58,9 @@ function App() {
           <Route element={<PrivateRoutes rol={2} />}>
             <Route element={<NavbarSC productManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
+              <Route element={<PmTable name="pm viaticos" />} path="viaticos" />
+              <Route element={<PmProyectos name="pm proyectos" />} path="proyectos" />
               <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="pm tablero" />} path="tablero" />
             </Route>
           </Route>
           

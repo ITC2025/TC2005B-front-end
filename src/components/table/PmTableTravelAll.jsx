@@ -84,11 +84,6 @@ export const PmTableTravelAll = () => {
       sortable: true,
       width: "120px",
     },
-    // {
-    //     name:"Fecha",
-    //     selector: (row) => row.date,
-    //     sortable: true
-    // },
     {
       name: "Nombre",
       selector: (row) => row.name,
@@ -105,21 +100,6 @@ export const PmTableTravelAll = () => {
       sortable: true,
       width: "120px",
     },
-    // {
-    //   name: 'Description',
-    //   selector: row => row.gender,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Total',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Status',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
     {
       name: "Actions",
       cell: (row) => <PmTableDropdown />,
