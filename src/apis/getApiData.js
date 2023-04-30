@@ -19,7 +19,7 @@ export async function getAuthenticationData(name, password) {
 }
 
 export async function tokenValidation(){
-    const url = 'http://localhost:3001/auth';
+    const url = 'http://localhost:3001/auth/rol';
     const options = {
         method: "GET",
         credentials:"include",
@@ -33,7 +33,7 @@ export async function tokenValidation(){
 }
 
 export async function tokenID(){
-    const url = 'http://localhost:3001/id';
+    const url = 'http://localhost:3001/auth/id';
     const options = {
         method: "GET",
         credentials:"include",
@@ -63,7 +63,7 @@ export async function sessionDelete() {
 
 export async function userViaticos(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/user/viaticos/' + JSON.stringify(id_user);
+    const url = 'http://localhost:3001/users/viaticos/' + JSON.stringify(id_user.id);
     console.log(url);
     const options = {
         method: "GET",
@@ -79,7 +79,7 @@ export async function userViaticos(){
 
 export async function userSaldo(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/user/saldo/' + JSON.stringify(id_user);
+    const url = 'http://localhost:3001/users/saldo/' + JSON.stringify(id_user.id);
     console.log(url);
     const options = {
         method: "GET",
@@ -95,7 +95,7 @@ export async function userSaldo(){
 
 export async function projectsPM(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user);
+    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user.id);
     console.log(url);
     const options = {
         method: "GET",
@@ -117,7 +117,7 @@ export async function postProject(nombre, codigo , desc) {
     }
 
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user);
+    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user.id);
     const options = {
         method: "POST",
         credentials:"include",
