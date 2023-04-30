@@ -6,11 +6,14 @@ import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
 import { getFormData } from "../../utils/getApiData";
 
-function saveButton(){
+function saveButton() {
     getFormData();
 }
 
-function Gastos({onAddInput}) {
+function Gastos({ onAddInput }) {
+    /* Se declaran las constantes de validacion */
+    const [validated, setValidated] = useState(false);
+
     /* Se declaran las constantes y los elementos del form*/
     const [formGasto, setFormGasto] = useState([{
         producto: "",
@@ -56,6 +59,14 @@ function Gastos({onAddInput}) {
 
     };
     const handleSubmit = (event) => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        setValidated(true);
+
         event.preventDefault();
         console.log(formGasto);
     };
@@ -80,20 +91,20 @@ function Gastos({onAddInput}) {
     return (
         <>
             <div className="mt-3">
-                <Form>
+                <Form >
                     {formGasto.map((form, index) => {
                         return (<div key={index}>
                             <div className="row" >
                                 <div className="col-md-4">
                                     <div className="form-group">
                                         <label htmlFor="exampleInputEmail1">Producto</label>{/*Aqui se encuentra el input para el producto que se uso el gasto*/}
-                                        <input type="text" name="producto" className="form-control" placeholder="Producto" value={formGasto.producto} onChange={(e) =>
+                                        <input type="text" name="producto" className="form-control" placeholder="Producto" required value={formGasto.producto} onChange={(e) =>
                                             setFormGasto(
                                                 formGasto.map((v, i) =>
                                                     i === index ? { ...v, producto: e.target.value } : v
                                                 )
                                             )
-                                        } required />
+                                        } />
                                     </div>
                                 </div>
                                 <div className="col-md-4">
@@ -158,20 +169,19 @@ function Gastos({onAddInput}) {
                                 </div>
                             </div>
                             <div className="d-flex justify-content-end">
-                                <Button type="submit" className="btn btn-danger" id="botonG" onClick={handleSubmit}>Guardar</Button>{/*Aqui esta puesto el boton que usara la funcion handelSubmit*/}
                                 <Button type="reset" className="btn btn-danger" id="botonB" onClick={e => DeleteLine(e, index)}>Borrar</Button>{/*Aqui esta puesto el boton que usara la funcion DeleteLine*/}
                             </div>
                             <hr />
                         </div>)
-                        
+
                     })}
-                    
+
                     <div className="d-flex justify-content-center" >
                         <Button className="justify-content-between" variant="danger" id="button" onClick={handleaddForm}>
-                            <BiMoney id="icon1"/>
+                            <BiMoney id="icon1" />
                             <label> AGREGAR GASTO </label>
                             {/*Este boton sirve para usar la funcion addForm*/}
-                            <HiPlus id="icon2"/>
+                            <HiPlus id="icon2" />
                         </Button>
                     </div>
                 </Form>
