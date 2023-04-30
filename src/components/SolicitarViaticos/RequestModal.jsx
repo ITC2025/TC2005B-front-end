@@ -1,5 +1,5 @@
 import { Modal, Button, Container, Row, Col, Table } from "react-bootstrap";
-import "../styles/RequestModal.css";
+import "../../styles/RequestModal.css";
 
 function RequestModal(props) {
   return (

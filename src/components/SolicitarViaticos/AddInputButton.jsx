@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { MdAdd, MdCreditCard, MdDelete } from "react-icons/md";
-import '../styles/AddInputButton.css';
+import '../../styles/AddInputButton.css';
 
 const AddInputButton = ({ onAddInput }) => {
   const add = <MdAdd />;
