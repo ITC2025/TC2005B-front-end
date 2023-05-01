@@ -34,8 +34,6 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
-          <Route element={<TablaGastos name="user tabla gastos" />} path="tablaGastos" />
-
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
             <Route element={<NavbarSC client={true} />} path="user">
