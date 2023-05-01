@@ -3,25 +3,37 @@ import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import gastos from './datos.json'  // archivo json
+import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
 
 export default function Subtotal() {
-    const [total, setTotal] = useState(0);
+    
+    const [suma, setSuma] = useState(0.0);
+    const [anticipo, setAnticipo] =useState(0.0);
 
-    // useEffect(() => {
-    //     fetch('./datos.json')
-    //         .then (response => response.json())
-    //         .then (data => {
-    //             const sumaTotal = data.reduce((i, gasto) => i + parseInt(gasto.total), 0);
-    //             setTotal(sumaTotal);
-    //         })
-    //         .catch(error => console.error(error));
-    // }, []);
+    const loadData = async () => {
+        const jsonInfo = await proyecto_sum(1);
+        console.log(jsonInfo);
+
+        setSuma(jsonInfo.monto)
+        
+    }
+
+    const loadData2 = async () => {
+        const jsonInfo = await proyecto_info(1);
+        console.log(jsonInfo);
+        
+        setAnticipo(jsonInfo[0].anticipo)
+    }
 
     useEffect(() => {
-        const sumaTotal = gastos.reduce((i, gasto) => i + parseInt(gasto.total), 0);
-        setTotal(sumaTotal);
-    }, [])
+        loadData();
+        loadData2();
+    })
+
+   
+
+    let total = anticipo - suma;
 
     return (
         <>
@@ -33,16 +45,16 @@ export default function Subtotal() {
                             <tbody>
                                 <tr>
                                     <th> TOTAL (MXN): </th>
-                                    <th> $ {total} </th>
+                                    <th> $ {suma} </th>
                                 </tr>
                                 <tr>
                                     <th> ANTICIPO (MXN): </th>
-                                    <th> $ -------</th>
+                                    <th> $ {anticipo} </th>
                                 </tr>
 
                                 <tr className="rowSaldo">
                                     <th> SALDO (MXN): </th>
-                                    <th> $ -------</th>
+                                    <th> $ {total} </th>
                                 </tr>
                             </tbody>
                         </Table>
