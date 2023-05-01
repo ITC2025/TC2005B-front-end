@@ -11,7 +11,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // homepage
     const home = () => {
-        navigate('/');
+        navigate('');
     }
 
     // user
