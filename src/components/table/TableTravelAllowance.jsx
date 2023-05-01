@@ -29,9 +29,10 @@ export const TableTravelAllowance = () => {
 
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
-    const url = "http://localhost:3001/viatico_request/user/4";
+    const url = "http://localhost:3001/viatico_request/user/";
     const options = {
       method: "GET",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -60,7 +61,7 @@ export const TableTravelAllowance = () => {
       name: "ID",
       selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
-      width: "120px",
+      width: "80px",
     }, {
       name: "Codigo Proyecto",
       selector: (row) => row.Proyecto.codigoProyecto,
@@ -125,7 +126,7 @@ export const TableTravelAllowance = () => {
   return (
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-4">
+        <div className="col-4 d-flex justify-content-start">
           <button id="basicButton" onClick={navSolicitar}>
             {" "}
             Solicitar Viaticos{" "}
