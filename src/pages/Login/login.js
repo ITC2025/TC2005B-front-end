@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import logoNb from '../../images/logoNb.png';
-import { getAuthenticationData, tokenValidation } from '../../apis/getApiData';
-import '../../styles/login.css'
+import logoNb from "../../images/logoNb.png";
+import { getAuthenticationData, tokenValidation } from "../../apis/getApiData";
+import "../../styles/login.css";
 import {
   Col,
   Button,
@@ -32,8 +32,7 @@ export default function Login() {
     login(email, userpassword); // login es una función que enviará los datos al servidor
   };
 
-  useEffect(() =>{
-
+  useEffect(() => {
     const autoRed = async () => {
       const route = await tokenValidation();
 
@@ -52,11 +51,10 @@ export default function Login() {
           break;
         default:
           navigate("/");
-        }
-    }
+      }
+    };
     autoRed();
-  
-  }, [])
+  }, []);
 
   const login = async (email, userpassword) => {
     // setTimeout(() => {
@@ -101,12 +99,12 @@ export default function Login() {
                           <Form.Label id="login-form-label">
                             Email address
                           </Form.Label>
-                          <InputGroup className="mb-3" id='input-form-group'>
+                          <InputGroup className="mb-3" id="input-form-group">
                             <InputGroup.Text id="basic-addon1">
                               <FaUserAlt id="login-icon" />
                             </InputGroup.Text>
                             <Form.Control
-                              id='login-input'
+                              id="login-input"
                               type="email"
                               placeholder="Enter email"
                               required
@@ -115,13 +113,15 @@ export default function Login() {
                           </InputGroup>
                         </Form.Group>
                         <Form.Group className="m-3" id="login-form-group">
-                          <Form.Label id="login-form-label">Password</Form.Label>
-                          <InputGroup className="mb-3" id='input-form-group'>
+                          <Form.Label id="login-form-label">
+                            Password
+                          </Form.Label>
+                          <InputGroup className="mb-3" id="input-form-group">
                             <InputGroup.Text id="basic-addon2">
                               <RiLockPasswordFill id="login-icon" />
                             </InputGroup.Text>
                             <Form.Control
-                              id='login-input'
+                              id="login-input"
                               type="password"
                               placeholder="Enter password"
                               required

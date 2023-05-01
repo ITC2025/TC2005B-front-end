@@ -14,6 +14,9 @@ import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import CrearProyecto from "./pages/CrearProyecto";
+import Proyectos from "./pages/Proyectos";
+import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import { NotFound } from "./pages/NotFound/NotFound";
 
@@ -24,14 +27,11 @@ function Expedientes() {
 }
 
 function App() {
-
-
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
-
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
             <Route element={<NavbarSC client={true} />} path="user">
@@ -41,18 +41,12 @@ function App() {
                 path="facturas"
               />
               <Route
-                element={<SolicitarViaticos />}
-                path="solicitar"
+                element={<TablaGastos name="user tabla gastos" />}
+                path="tablaGastos"
               />
-              <Route
-                element={<UserTable />}
-                path="viaticos"
-              />
-              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Expediente />}
-                path="expediente"
-              />
+              <Route element={<SolicitarViaticos />} path="solicitar" />
+              <Route element={<UserTable />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente" />
             </Route>
           </Route>
 
@@ -66,6 +60,9 @@ function App() {
                 path="expediente"
               />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<CrearProyecto />} path="crearproyecto" />
+              <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>

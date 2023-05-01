@@ -27,13 +27,13 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // pm
     const pmProyectos = () => {
-        navigate('/pm/');
+        navigate('/pm/proyectos');
     }
     const pmSolicitud = () => {
-        navigate('/pm/');
+        navigate('/pm/crearproyecto');
     }
     const pmHistorial = () => {
-        navigate('/pm/');
+        navigate('/pm/historico');
     }
 
     // admin
