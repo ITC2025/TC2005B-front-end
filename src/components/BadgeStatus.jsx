@@ -39,20 +39,3 @@ export const BadgeStatus = (props) => {
     );
   }
 };
-
-      <div className="container">
-        <h6>
-          <Badge className='borrador'>{props.status}</Badge>
-        </h6>
-      </div>
-    );
-  } else {
-    return (
-      <div className="container">
-        <h6>
-          <Badge className='pendiente'>{props.status}</Badge>
-        </h6>
-      </div>
-    );
-  }
-};

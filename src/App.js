@@ -27,6 +27,8 @@ function Expedientes() {
 }
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
@@ -41,12 +43,18 @@ function App() {
                 path="facturas"
               />
               <Route
-                element={<TablaGastos name="user tabla gastos" />}
-                path="tablaGastos"
+                element={<SolicitarViaticos />}
+                path="solicitar"
               />
-              <Route element={<SolicitarViaticos />} path="solicitar" />
-              <Route element={<UserTable />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente" />
+              <Route
+                element={<UserTable />}
+                path="viaticos"
+              />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />
             </Route>
           </Route>
 
@@ -60,9 +68,6 @@ function App() {
                 path="expediente"
               />
               <Route element={<Test name="pm tablero" />} path="tablero" />
-              <Route element={<CrearProyecto />} path="crearproyecto" />
-              <Route element={<Proyectos />} path="proyectos" />
-              <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>
