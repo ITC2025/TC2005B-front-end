@@ -16,7 +16,7 @@ import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
-import SolicitudesAprovadas from "./pages/ProyectosSolicitados/proyectosAdminTabla";
+import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
