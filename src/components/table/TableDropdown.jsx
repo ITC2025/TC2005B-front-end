@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
+import { Link } from "react-router-dom";
 
 
 export default function PmTableDropdown() {
@@ -37,6 +38,7 @@ export default function PmTableDropdown() {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
       </Menu>
     </div>
   );

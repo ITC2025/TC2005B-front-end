@@ -65,7 +65,10 @@ function RequestModal(props) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="primary" onClick={props.handleClose}>
-          Cerrar
+          EDITAR
+        </Button>
+        <Button variant="primary" onClick={props.handleModal}>
+          ENVIAR
         </Button>
       </Modal.Footer>
     </Modal>
