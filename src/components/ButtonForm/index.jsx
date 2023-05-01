@@ -3,19 +3,21 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import { saveFormData } from "../../utils/getApiData";
+import saveFormData from '../../apis/saveFormData';
 
 
 function Gastos() {
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([
     {
-      producto: "",
-      tipo: "",
+      ID_solicitud_viatico: "1",
+      concepto: "",
+      ID_tipo_gasto: "",
       monto: "",
       imagen: {},
       xml: {},
-      fecha: ""
+      fecha: "",
+      ID_status_reporte_gasto: "2"
     }
   ]);
 
@@ -77,24 +79,26 @@ function Gastos() {
 
   const handleAddForm = () => {
     const newForm = {
-      producto: "",
-      tipo: "",
+      concepto: "",
+      ID_tipo_gasto: "",
       monto: "",
       imagen: {},
       xml: {},
-      fecha: ""
+      fecha: "",
+      ID_status_reporte_gasto: "2"
     };
     setFormGasto((prevFormGasto) => [...prevFormGasto, newForm]);
   };
 
   return (
     <>
-      <Row>
-        <Col>
-          <Card id="container1">
-            <Container>
-              <div className="mt-3">
-                <Form noValidate validated={validated} onSubmit={handleSubmit}>
+      <Form validated={validated} onSubmit={handleSubmit}>
+        <Row>
+          <Col>
+            <Card id="container1">
+              <Container>
+                <div className="mt-3">
+
                   {formGasto.map((form, index) => (
                     <div key={index}>
                       <div className="row">
@@ -103,10 +107,9 @@ function Gastos() {
                             <label>Producto</label>
                             <input
                               type="text"
-                              name="producto"
-                              value={form.producto}
+                              name="concepto"
+                              value={form.concepto}
                               className="form-control"
-                              placeholder="Producto"
                               onChange={(e) => handleChange(e, index)}
                               required
                             />
@@ -117,8 +120,8 @@ function Gastos() {
                             <label>Tipo</label>
                             <select
                               className="form-select"
-                              name="tipo"
-                              value={form.tipo}
+                              name="ID_tipo_gasto"
+                              value={form.ID_tipo_gasto}
                               aria-label="Default select example"
                               onChange={(e) => handleChange(e, index)}
                               required
@@ -219,21 +222,20 @@ function Gastos() {
                       <HiPlus id="icon2" />
                     </Button>
                   </div>
-
-                  <div className="d-flex justify-content-end align-items-end" id="BotonesSC">
-                    <Button variant="danger" controlId="CGbutton" id="botonC1">
-                      CANCELAR
-                    </Button>
-                    <Button variant="danger" type="submit" id="botonG1">
-                      GUARDAR
-                    </Button>
-                  </div>
-                </Form>
-              </div>
-            </Container>
-          </Card>
-        </Col>
-      </Row>
+                </div>
+              </Container>
+            </Card>
+          </Col>
+        </Row>
+        <div className="d-flex justify-content-end align-items-end" id="BotonesSC">
+          <Button variant="danger" controlId="CGbutton" id="botonC1">
+            CANCELAR
+          </Button>
+          <Button variant="danger" type="submit" id="botonG1" noValidate>
+            GUARDAR
+          </Button>
+        </div>
+      </Form>
     </>
   );
 
