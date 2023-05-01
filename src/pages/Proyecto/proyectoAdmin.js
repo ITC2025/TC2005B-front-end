@@ -1,13 +1,13 @@
 
 import { Container, Row } from "react-bootstrap";
-import  ColInfoProyecto  from "../components/Gastos/colInfoProyecto";
+import  ColInfoProyecto  from "../../components/Gastos/colInfoProyecto";
 
 import styled from "styled-components";
-import ColDireccion from "../components/Gastos/colDireccion";
+import ColDireccion from "../../components/Gastos/colDireccion";
 
 // import Subtotal from "../../components/Gastos/subtotal";
 
-import Subtotal from "../components/Gastos/subtotal";
+import Subtotal from "../../components/Gastos/subtotal";
 
 
 export default function Proyecto  () {
