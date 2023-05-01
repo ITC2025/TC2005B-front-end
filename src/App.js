@@ -48,7 +48,7 @@ function App() {
               />
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente" />
+              <Route element={<Expediente />} path="expediente" />
             </Route>
           </Route>
 
