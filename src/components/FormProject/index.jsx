@@ -24,9 +24,6 @@ export default function FormProject({ PmData }) {
     postProject(formData.nombre, formData.codigoProyecto, formData.descripcion)
   }
 
-  // useEffect(() =>{
-  //   postProyectos();
-  // }, []);
 
   const handleForm = (event) => {
     event.preventDefault();
