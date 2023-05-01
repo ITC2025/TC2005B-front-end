@@ -7,10 +7,10 @@ import "../../styles/CardDashboard.css";
  * The image is passed as a prop and the link is passed as a prop.
 */
 
-function CardDashboard({ image }) {
+function CardDashboard({ image, lab }) {
   return (
     <Card> 
-        <Card.Img src={image} />
+        <Card.Img src={image} alt={lab}/>
     </Card>
   );
 }
