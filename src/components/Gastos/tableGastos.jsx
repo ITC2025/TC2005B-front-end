@@ -17,7 +17,7 @@ export const TableGastos = () => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expense_reports/vi/1";
+  const URL = "http://localhost:3001/expenses_table/vi/1";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
