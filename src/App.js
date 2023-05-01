@@ -14,6 +14,9 @@ import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import CrearProyecto from "./pages/CrearProyecto";
+import Proyectos from "./pages/Proyectos";
+import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import { NotFound } from "./pages/NotFound/NotFound";
 
@@ -45,15 +48,9 @@ function App() {
                 element={<SolicitarViaticos />}
                 path="solicitar"
               />
-              <Route
-                element={<UserTable />}
-                path="viaticos"
-              />
-              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Expediente />}
-                path="expediente"
-              />
+              <Route element={<SolicitarViaticos />} path="solicitar" />
+              <Route element={<UserTable />} path="viaticos" />
+              <Route element={<Expedientes />} path="expediente" />
             </Route>
           </Route>
 
@@ -67,6 +64,9 @@ function App() {
                 path="expediente"
               />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<CrearProyecto />} path="crearproyecto" />
+              <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>

@@ -27,6 +27,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // pm
     const pmProyectos = () => {
+<<<<<<< HEAD
         navigate('/pm/');
     }
     const pmSolicitud = () => {
@@ -34,6 +35,15 @@ const NavbarSC = ({ client, projectManager, admin }) => {
     }
     const pmHistorial = () => {
         navigate('/pm/');
+=======
+        navigate('/pm/proyectos');
+    }
+    const pmSolicitud = () => {
+        navigate('/pm/crearproyecto');
+    }
+    const pmHistorial = () => {
+        navigate('/pm/historico');
+>>>>>>> origin
     }
 
     // admin

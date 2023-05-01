@@ -4,7 +4,11 @@ import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
+<<<<<<< HEAD
 import { postEstimatedExpenses } from "../../util/PostExpenses";
+=======
+import { postEstimatedExpenses } from "../../utils/PostExpenses";
+>>>>>>> origin
 
 function SolicitarViaticos() {
   const [formData, setFormData] = useState({
