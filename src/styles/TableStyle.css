@@ -1,49 +1,4 @@
 .rdt_TableCol {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    background-color: #ececec;
-    border: none;
-    font-weight: 700;
-  }
-  
-  .rdt_TableCell {
-    background-color: rgb(250, 250, 250);
-  }
-  
-  #basicButton {
-    border: 1px solid rgba(255, 0, 0, 0.45) !important;
-    border-radius: 0.4em !important;
-    background-color: rgb(221, 110, 110) !important;
-    padding: 0.3em !important;
-    color: white !important;
-  }
-  
-  #basicButton:hover {
-    border: 1px solid rgba(255, 0, 0, 0.45) !important;
-    border-radius: 0.4em !important;
-    background-color: white  !important;
-    padding: 0.3em !important;
-    color: rgb(221, 110, 110) !important;
-  }
-  
-  [role="boton"] {
-    border: 1px solid rgba(255, 0, 0, 0.45) !important;
-    border-radius: 0.4em !important;
-    background-color: rgb(221, 110, 110) !important;
-    padding: 0.3em !important;
-    color: white;
-  }
-  
-  [role="boton"]:hover {
-    border: 1px solid rgba(255, 0, 0, 0.45) !important;
-    border-radius: 0.4em !important;
-    background-color: white  !important;
-    padding: 0.3em !important;
-    color: rgb(221, 110, 110);
-  }
-=======
-=======
->>>>>>> origin
   background-color: #ececec;
   border: none;
   font-weight: 700;
@@ -83,9 +38,4 @@
   background-color: white  !important;
   padding: 0.3em !important;
   color: rgb(221, 110, 110);
-<<<<<<< HEAD
 }
->>>>>>> origin
-=======
-}
->>>>>>> origin

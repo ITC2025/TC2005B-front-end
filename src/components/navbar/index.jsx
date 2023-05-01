@@ -4,8 +4,6 @@ import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
 import { sessionDelete } from "../../apis/getApiData";
 import { useNavigate } from 'react-router-dom';
-import { sessionDelete } from "../../apis/getApiData";
-import { useNavigate } from 'react-router-dom';
 
 const NavbarSC = ({ client, projectManager, admin }) => {
 
@@ -29,15 +27,6 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // pm
     const pmProyectos = () => {
-<<<<<<< HEAD
-        navigate('/pm/');
-    }
-    const pmSolicitud = () => {
-        navigate('/pm/');
-    }
-    const pmHistorial = () => {
-        navigate('/pm/');
-=======
         navigate('/pm/proyectos');
     }
     const pmSolicitud = () => {
@@ -45,7 +34,6 @@ const NavbarSC = ({ client, projectManager, admin }) => {
     }
     const pmHistorial = () => {
         navigate('/pm/historico');
->>>>>>> origin
     }
 
     // admin
