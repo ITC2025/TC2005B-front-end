@@ -41,7 +41,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
         navigate('/admin/solicitudes');
     }
     const adminHistorial = () => {
-        navigate('/admin/solicitudes');
+        navigate('/admin/historial');
     }
 
     return (

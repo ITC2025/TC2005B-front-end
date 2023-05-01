@@ -1,18 +1,10 @@
-
 import { Container, Row } from "react-bootstrap";
 import  ColInfoProyecto  from "../../components/Gastos/colInfoProyecto";
-
 import styled from "styled-components";
 import ColDireccion from "../../components/Gastos/colDireccion";
-
-// import Subtotal from "../../components/Gastos/subtotal";
-
 import Subtotal from "../../components/Gastos/subtotal";
 
-
 export default function Expediente  () {
-
-
     return (
         <>
             <Container>
@@ -27,11 +19,10 @@ export default function Expediente  () {
 
                 <div>
                     <strong>
-                        TABLAAAAA
+                        TABLA
                     </strong>
                 </div>
-
-                {/* TABLAAAAA */}
+                
                 {/* <Row>
                     <Col md={4} className="colGasto">
                         <div>

@@ -1,12 +1,13 @@
 import React from 'react'
+// import 
 
-
-export const adminTable = () => {
+export const AdminTable = () => {
   return (
-        <>
-            <h1> Historial Viaticos</h1>
+    <>
+      <div>
+        Historial de viaticos
+      </div>
+    </>
+  );
+};
 
-            <button onClick={Proyectos}> proyecto </button>
-        </>
-  )
-}

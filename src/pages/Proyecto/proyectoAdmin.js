@@ -1,18 +1,10 @@
-
 import { Container, Row } from "react-bootstrap";
 import  ColInfoProyecto  from "../../components/Gastos/colInfoProyecto";
-
 import styled from "styled-components";
 import ColDireccion from "../../components/Gastos/colDireccion";
-
-// import Subtotal from "../../components/Gastos/subtotal";
-
 import Subtotal from "../../components/Gastos/subtotal";
 
-
 export default function Proyecto  () {
-
-
     return (
         <>
             <Container>
@@ -27,11 +19,12 @@ export default function Proyecto  () {
 
                 <div>
                     <strong>
-                        TABLAAAAA
+                        TABLA
                     </strong>
                 </div>
+        
+                {/* Tabla del id del proyecto  */}
 
-                {/* TABLAAAAA */}
                 {/* <Row>
                     <Col md={4} className="colGasto">
                         <div>

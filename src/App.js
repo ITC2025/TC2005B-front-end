@@ -13,6 +13,7 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
+import { AdminTable } from "./pages/HistorialViaticos/adminTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
@@ -76,7 +77,9 @@ function App() {
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
               <Route index element={<AdminDashboard />} />
-              <Route element={<Test name="admin viaticos" />} path="viaticos" />
+              <Route element={<AdminTable />}
+                path="historial"
+              />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
               <Route
                 element={<Proyecto />}
