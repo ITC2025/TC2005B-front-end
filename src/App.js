@@ -11,7 +11,11 @@ import PrivateRoutes from "./apis/PrivateRoutes";
 import PmDashboard from "./pages/Dashboard/pmDashboard";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
-import TablaGastos from "./pages/TablaGastos/tablaGastos";
+import { UserTable } from "./pages/HistorialViaticos/UserTable";
+import { PmTable } from "./pages/HistorialViaticos/PmTable";
+import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import Expediente from "./pages/Expediente/expediente";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -21,7 +25,6 @@ function Expedientes() {
 
 function App() {
 
-  
 
   return (
     <div className="App">
@@ -39,34 +42,45 @@ function App() {
                 path="facturas"
               />
               <Route
-                element={<TablaGastos name="user tabla gastos" />}
-                path="tablaGastos"
-              />
-              <Route
-                element={<Test name="user solicitar" />}
+                element={<SolicitarViaticos />}
                 path="solicitar"
               />
-              <Route element={<Test name="user viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route
+                element={<UserTable />}
+                path="viaticos"
+              />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />
             </Route>
           </Route>
 
           {/*Rutas de Project Manager*/}
           <Route element={<PrivateRoutes rol={2} />}>
-            <Route element={<NavbarSC productManager={true} />} path="pm">
+            <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>
-          
+
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
               <Route index element={<AdminDashboard />} />
               <Route element={<Test name="admin viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Expediente />}
+                path="expediente"
+              />  
               <Route element={<Test name="admin tablero" />} path="tablero" />
             </Route>
           </Route>
@@ -87,7 +101,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<h>404 esta pagina no existe</h>} path="*" />
+          <Route element={<NotFound/>} path="*" />
         </Routes>
       </Router>
     </div>
