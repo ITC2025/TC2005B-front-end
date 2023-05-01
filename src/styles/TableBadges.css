@@ -1,4 +1,5 @@
 .badge {
+<<<<<<< HEAD
   width: 75px;
   border-radius: 4px;
   color: black;
@@ -14,10 +15,28 @@
   background-color: rgba(255, 0, 0, 0.1) !important;
   border: 1px solid rgba(255, 0, 0, 0.3); 
   color : black;
+=======
+    width: 75px;
+    border-radius: 4px;
+    color: black;
+}
+
+.badge.aceptado {
+    background-color: rgba(66, 255, 0, 0.1) !important;
+    border: 1px solid rgba(71, 151, 43, 0.3);
+    color : black;
+}
+
+.badge.rechazado {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 0, 0, 0.3); 
+    color : black;
+>>>>>>> origin
 
 }
 
 .badge.pendiente{
+<<<<<<< HEAD
   background-color: rgba(251, 235, 4, 0.3) !important;
   border: 1px solid rgba(208, 178, 20, 0.3);
 }
@@ -38,11 +57,39 @@ h6 {
 
 .rechazado {
   font-weight: 900;
+=======
+    background-color: rgba(251, 235, 4, 0.3) !important;
+    border: 1px solid rgba(208, 178, 20, 0.3);
+}
+
+.badge.borrador {
+    background-color: rgba(164, 164, 164, 0.1);
+    border: 1px solid rgba(164, 164, 164, 0.39);
+}
+
+.container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+h6 {
+    margin: 0;
+}
+
+.rechazado {
+    font-weight: 900;
+>>>>>>> origin
 }
 
 
 #icon {
+<<<<<<< HEAD
   color: rgba(28, 27, 31, 1) !important;
   width: 50% !important;
   height: 50% !important;
+=======
+    color: rgba(28, 27, 31, 1) !important;
+    width: 50% !important;
+    height: 50% !important;
+>>>>>>> origin
 }

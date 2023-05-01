@@ -88,7 +88,7 @@ export default function Gastos() {
                             >
                                 <Row>
                                     <Col>
-                                        <Form.Label>Ticker de factura</Form.Label>
+                                        <Form.Label>Ticket de factura</Form.Label>
                                         <InputGroup className="mb-3">
 
                                             <Form.Control
