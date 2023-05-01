@@ -16,7 +16,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // homepage
     const home = () => {
-        navigate('/');
+        navigate('');
     }
 
     // user
@@ -43,10 +43,10 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // admin
     const adminSolicitud = () => {
-        navigate('/admin/');
+        navigate('/admin/solicitudes');
     }
     const adminHistorial = () => {
-        navigate('/admin/');
+        navigate('/admin/historial');
     }
 
     useEffect(() => {

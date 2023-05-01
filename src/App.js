@@ -13,11 +13,14 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
+import { AdminTable } from "./pages/HistorialViaticos/adminTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import CrearProyecto from "./pages/CrearProyecto";
 import Proyectos from "./pages/Proyectos";
 import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
+import Proyecto from "./pages/Proyecto/proyectoAdmin";
+import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
@@ -56,8 +59,8 @@ function App() {
               <Route index element={<PmDashboard />} />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
               <Route
-                element={<Expediente />}
-                path="expediente"
+                element={<Proyecto />}
+                path="proyecto"
               />
               <Route element={<Test name="pm tablero" />} path="tablero" />
               <Route element={<CrearProyecto />} path="crearproyecto" />
@@ -71,13 +74,18 @@ function App() {
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
               <Route index element={<AdminDashboard />} />
-              <Route element={<Test name="admin viaticos" />} path="viaticos" />
+              <Route element={<AdminTable />}
+                path="historial"
+              />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
               <Route
-                element={<Expediente />}
-                path="expediente"
-              />  
-              <Route element={<Test name="admin tablero" />} path="tablero" />
+                element={<Proyecto />}
+                path="proyecto"
+              />
+              <Route
+                element={<SolicitudesAprovadas
+                  name="solicitudes Aprovadas" />}
+                path="solicitudes" />
             </Route>
           </Route>
 
@@ -97,7 +105,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<NotFound/>} path="*" />
+          <Route element={<NotFound />} path="*" />
         </Routes>
       </Router>
     </div>
