@@ -1,6 +1,5 @@
 .badge {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   width: 75px;
   border-radius: 4px;
   color: black;
@@ -16,9 +15,7 @@
   background-color: rgba(255, 0, 0, 0.1) !important;
   border: 1px solid rgba(255, 0, 0, 0.3); 
   color : black;
-=======
-=======
->>>>>>> origin
+
     width: 75px;
     border-radius: 4px;
     color: black;
@@ -34,16 +31,12 @@
     background-color: rgba(255, 0, 0, 0.1) !important;
     border: 1px solid rgba(255, 0, 0, 0.3); 
     color : black;
-<<<<<<< HEAD
->>>>>>> origin
-=======
->>>>>>> origin
+
 
 }
 
 .badge.pendiente{
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   background-color: rgba(251, 235, 4, 0.3) !important;
   border: 1px solid rgba(208, 178, 20, 0.3);
 }
@@ -64,9 +57,7 @@ h6 {
 
 .rechazado {
   font-weight: 900;
-=======
-=======
->>>>>>> origin
+
     background-color: rgba(251, 235, 4, 0.3) !important;
     border: 1px solid rgba(208, 178, 20, 0.3);
 }
@@ -87,27 +78,22 @@ h6 {
 
 .rechazado {
     font-weight: 900;
-<<<<<<< HEAD
->>>>>>> origin
-=======
->>>>>>> origin
+
 }
 
 
 #icon {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   color: rgba(28, 27, 31, 1) !important;
   width: 50% !important;
   height: 50% !important;
-=======
+
     color: rgba(28, 27, 31, 1) !important;
     width: 50% !important;
     height: 50% !important;
->>>>>>> origin
-=======
+
     color: rgba(28, 27, 31, 1) !important;
     width: 50% !important;
     height: 50% !important;
->>>>>>> origin
+
 }
