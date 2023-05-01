@@ -5,20 +5,23 @@ import { tokenValidation, tokenID } from "./getApiData";
     Aqui se debe de mandar un json con todos los objetos
 */
 
-export async function sendFact(data){
+export async function saveFormData(formData){
 
-    const url = 'http://localhost:3000' + JSON.stringify(tokenID);
+    const url = 'http://localhost:3000/models/reportegastos.js' +  JSON.stringify(tokenID);
     const options = {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(formData)
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
     console.log(JSON.stringify(response))
 }
+  
+export default saveFormData;
+
 
 ///////////////////////////////////////////////////////
 
@@ -117,5 +120,3 @@ export async function getImage(ID, Gasto){
 }
 
 ///////////////////////////////////////////////////////
-
-
