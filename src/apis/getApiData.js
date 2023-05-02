@@ -46,3 +46,17 @@ export async function sessionDelete() {
     window.location.replace('/');
     return response;
 }
+
+export async function adminSol(){
+    const url = 'http://localhost:3001/viatico_request';
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
