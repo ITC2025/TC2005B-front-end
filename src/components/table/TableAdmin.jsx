@@ -5,7 +5,8 @@ import TableDropdown from "./TableAdminDropdown.jsx";
 import { MdDisplaySettings } from "react-icons/md";
 
 export default function TableAdmin() {
-
+  
+  const [tableData, setTableData] = useState([]);
   // configuracion de columnas
   const columns = [
     {
@@ -51,7 +52,7 @@ export default function TableAdmin() {
   ];
 
   const data = [
-    {id: "", date: "", approve: "", responsable: "", project: "", description: "", total: ""},
+    {id: " ", date: "", approve: "", responsable: "", project: "", description: "", total: ""},
   ]
 
   const paginationTable = {
