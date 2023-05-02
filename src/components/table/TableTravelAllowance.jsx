@@ -29,10 +29,10 @@ export const TableTravelAllowance = () => {
 
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
-    const url = "http://localhost:3001/viatico_request/user";
+    const url = "http://localhost:3001/viatico_request/user/1";
     const options = {
-      method: "GET",
       credentials: "include",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
