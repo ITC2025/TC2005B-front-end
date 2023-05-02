@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ColDireccion from "../../components/Gastos/colDireccion";
 import Subtotal from "../../components/Gastos/subtotal";
 
-export default function Expediente  () {
+export default function Proyecto  () {
     return (
         <>
             <Container>
@@ -22,7 +22,9 @@ export default function Expediente  () {
                         TABLA
                     </strong>
                 </div>
-                
+        
+                {/* Tabla del id del proyecto  */}
+
                 {/* <Row>
                     <Col md={4} className="colGasto">
                         <div>
