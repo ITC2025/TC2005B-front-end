@@ -22,6 +22,14 @@ export const PmTableTravelAll = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const idToEstado = (id) => {
+    if (id === 1) return "Borrador";
+    if (id === 2) return "Enviado";
+    if (id === 3) return "Aprobado";
+    if (id === 4) return "Rechazado";
+    return ""
+  }
+
   // Funcion para mostrar datos con fetch
   const getTravelAllowance = async () => {
     const usuario = await tokenID()
@@ -100,7 +108,7 @@ export const PmTableTravelAll = () => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} />,
+      selector: (row) => <BadgeStatus status={idToEstado(row.ID_status_solicitud_viaticos)} />,
       sortable: true,
       width: "120px",
     },
