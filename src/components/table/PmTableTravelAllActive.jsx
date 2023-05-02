@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = () => {
+export const PmTableTravelAllActive = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -26,6 +26,7 @@ export const PmTableTravelAll = () => {
   const getTravelAllowance = async () => {
     const usuario = await tokenID()
     let data = await solicitudViaticosPM(usuario.id)
+    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
