@@ -9,7 +9,6 @@ import Test from "./pages/test/index.js";
 import Facturas from "./pages/Gastos/gastos";
 import PrivateRoutes from "./apis/PrivateRoutes";
 import PmDashboard from "./pages/Dashboard/pmDashboard";
-import PmProyectos from "./pages/Proyectos/pmProyectos";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
@@ -47,11 +46,8 @@ function App() {
               {/* <Route
                 element={<TablaGastos name="user tabla gastos" />}
                 path="tablaGastos"
-              />
-              <Route
-                element={<SolicitarViaticos />}
-                path="solicitar"
-              />
+              /> */}
+              <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente" />
             </Route>
@@ -61,9 +57,16 @@ function App() {
           <Route element={<PrivateRoutes rol={2} />}>
             <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<Test name="pm viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Proyecto />}
+                path="proyecto"
+              />
               <Route element={<Test name="pm tablero" />} path="tablero" />
+              <Route element={<CrearProyecto />} path="crearproyecto" />
+              <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<SeeProjectTable />} path="vertablaproyectos" />
+              <Route element={<PmTable/> } path={"solicitudes"} />
             </Route>
           </Route>
 
