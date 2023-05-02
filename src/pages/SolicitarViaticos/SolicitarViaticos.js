@@ -79,7 +79,7 @@ function SolicitarViaticos() {
         <div id="FormSolicitBody">
           <Container id="FormSolicitComponent">
             <Row id="SolicitFormRow">
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formFechaInicio-input"
                   inputControlID="fechaInicio"
@@ -90,7 +90,7 @@ function SolicitarViaticos() {
                   onChange={handleInputChange}
                 />
               </Col>
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formFechaTermino-input"
                   inputControlID="fechaTermino"
@@ -103,7 +103,7 @@ function SolicitarViaticos() {
               </Col>
             </Row>
             <Row id="SolicitFormRow">
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formDestino-input"
                   inputControlID="destino"
@@ -114,24 +114,25 @@ function SolicitarViaticos() {
                   onChange={handleInputChange}
                 />
               </Col>
-              <Col sm={10} md={5}>
-                <label htmlFor="proyectos">Selecciona un proyecto:</label>
-                <select
-                  id="proyectos"
-                  value={selectedProyecto}
-                  onChange={handleProyectoChange}
-                >
-                  <option value="">--Selecciona un proyecto--</option>
-                  {nombresProyectos.map((nombre, index) => (
-                    <option key={index} value={nombre}>
-                      {nombre}
-                    </option>
-                  ))}
-                </select>
+              <Col sm={12} md={5}>
+                <div id="ProyectosDropdown">
+                  <Form.Label id="FormInputLabel">Proyecto</Form.Label>
+                  <Form.Select
+                    value={selectedProyecto}
+                    onChange={handleProyectoChange}
+                  >
+                    <option value="">Selecciona un proyecto</option>
+                    {nombresProyectos.map((nombre, index) => (
+                      <option key={index} value={nombre}>
+                        {nombre}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </div>
               </Col>
             </Row>
             <Row id="SolicitFormRow" className="mx-1">
-              <Col sm={10} md={10}>
+              <Col sm={12} md={10}>
                 <AddInputButton
                   className="form-button"
                   onAddInput={handleDataFromAddInput}
