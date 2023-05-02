@@ -10,9 +10,11 @@ import { imagen_gastos } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md"
 import { Button } from "react-bootstrap";
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { useLocation } from "react-router-dom";
 
 export const TableGastos = ({ id }) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
 
   const navSolicitar = () => {
@@ -140,13 +142,39 @@ export const TableGastos = ({ id }) => {
       cell: (row) => <MdImage onClick={() => OpenModal(row.id)}/>,
       width: "8%",
     },
-    {
+  ];
+
+  const actions = {
       name: "Acciones",
       cell: (row) => <GastosDropdown />,
       width: "8%",
-      style: { paddingLeft: "0.5em" },
-    },
-  ];
+      style: { paddingLeft: "0.5em" }
+  };
+
+  const empty = {
+    name: "",
+    width: "8%",
+    style: { paddingLeft: "0.5em" }
+  };
+
+  {pathname === "/user/expediente/" + id &&
+    columns.push(actions);
+           
+  }
+
+  {pathname === "/admin/expediente/" + id &&
+    columns.push(empty);
+           
+  }
+
+  {pathname === "/pm/expediente/" + id &&
+    columns.push(empty);
+           
+  }
+
+
+
+  
 
   const paginationTable = {
     rowsPerPageText: "Filas por pagina",
