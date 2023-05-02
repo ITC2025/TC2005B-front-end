@@ -3,18 +3,25 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
-import "../../styles/TableBadges.css";
-import { Link } from "react-router-dom";
+// import "../../styles/TableBadges.css";
+import { useNavigate } from "react-router-dom";
 
+export default function ProyectosDropdown() {
+  const navigate = useNavigate();
 
-export default function PmTableDropdown() {
+  const verViaticosProyecto = () => {
+    navigate("/pm/vertablaproyectos"); // cambiar ruta
+  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    verViaticosProyecto();
   };
 
   return (
@@ -37,8 +44,7 @@ export default function PmTableDropdown() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose}>Ver</MenuItem>
       </Menu>
     </div>
   );

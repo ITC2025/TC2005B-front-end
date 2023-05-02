@@ -3,11 +3,9 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
-import "../../styles/TableBadges.css";
-import { Link } from "react-router-dom";
+// import "../../styles/TableBadges.css";
 
-
-export default function PmTableDropdown() {
+export default function ViaticosDropdown({ status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -37,8 +35,8 @@ export default function PmTableDropdown() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose}>Abrir Solicitud</MenuItem>
+        <MenuItem onClick={handleClose}>Abrir Gastos</MenuItem>
       </Menu>
     </div>
   );

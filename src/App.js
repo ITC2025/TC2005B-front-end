@@ -1,6 +1,6 @@
-import { useParams } from "react-router";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { useParams } from 'react-router';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 
 // Import components
 import NavbarSC from "./components/navbar/index.jsx";
@@ -12,10 +12,17 @@ import PmDashboard from "./pages/Dashboard/pmDashboard";
 import PmProyectos from "./pages/Proyectos/pmProyectos";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
-import TablaGastos from "./pages/TablaGastos/tablaGastos";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
-import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
+import { AdminTable } from "./pages/HistorialViaticos/adminTable";
+import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
+import CrearProyecto from "./pages/CrearProyecto";
+import Proyectos from "./pages/Proyectos";
+import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
+import Expediente from "./pages/Expediente/expediente";
+import Proyecto from "./pages/Proyecto/proyectoAdmin";
+import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -24,15 +31,11 @@ function Expedientes() {
 }
 
 function App() {
-
-  
-
   return (
     <div className="App">
       <Router>
         <Routes>
           <Route element={<Login name="Login" />} path="/" />
-
           {/*Rutas de usuario*/}
           <Route element={<PrivateRoutes rol={1} />}>
             <Route element={<NavbarSC client={true} />} path="user">
@@ -41,36 +44,45 @@ function App() {
                 element={<Facturas name="user facturas" />}
                 path="facturas"
               />
-              <Route
+              {/* <Route
                 element={<TablaGastos name="user tabla gastos" />}
                 path="tablaGastos"
               />
               <Route
                 element={<SolicitarViaticos />}
-                path="solicitud"
+                path="solicitar"
               />
               <Route element={<UserTable />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Expedientes />} path="expediente" />
             </Route>
           </Route>
 
           {/*Rutas de Project Manager*/}
           <Route element={<PrivateRoutes rol={2} />}>
-            <Route element={<NavbarSC productManager={true} />} path="pm">
+            <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
-              <Route element={<PmTable name="pm viaticos" />} path="viaticos" />
-              <Route element={<PmProyectos name="pm proyectos" />} path="proyectos" />
+              <Route element={<Test name="pm viaticos" />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<Test name="pm tablero" />} path="tablero" />
             </Route>
           </Route>
-          
+
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
               <Route index element={<AdminDashboard />} />
-              <Route element={<Test name="admin viaticos" />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente/:id" />
-              <Route element={<Test name="admin tablero" />} path="tablero" />
+              <Route element={<AdminTable />}
+                path="historial"
+              />
+              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route
+                element={<Proyecto />}
+                path="proyecto"
+              />
+              <Route
+                element={<SolicitudesAprovadas
+                  name="solicitudes Aprovadas" />}
+                path="solicitudes" />
             </Route>
           </Route>
 
@@ -90,7 +102,7 @@ function App() {
             </Route>
           </Route>
 
-          <Route element={<h>404 esta pagina no existe</h>} path="*" />
+          <Route element={<NotFound />} path="*" />
         </Routes>
       </Router>
     </div>

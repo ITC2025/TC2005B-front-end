@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Row, Col, Form, InputGroup } from "react-bootstrap";
 import { MdAdd, MdCreditCard, MdDelete } from "react-icons/md";
-import '../../styles/AddInputButton.css';
+import "../../styles/AddInputButton.css";
 
 const AddInputButton = ({ onAddInput }) => {
   const add = <MdAdd />;
@@ -18,6 +18,15 @@ const AddInputButton = ({ onAddInput }) => {
   const handleAddRow = () => {
     setValues([...values, { concepto: "", monto: "" }]);
     setNumRows(numRows + 1);
+  };
+
+  const handleDelete = (idx) => {
+    if (idx === 0) {
+      setValues([{ concepto: "", monto: "" }, ...values.slice(1)]);
+    } else {
+      setValues(values.filter((_, i) => i !== idx));
+    }
+    sendValuesToParent();
   };
 
   return (
@@ -63,10 +72,7 @@ const AddInputButton = ({ onAddInput }) => {
             </InputGroup>
           </Col>
           <Col md={1} id="IconButton">
-            <Button 
-              onClick={() => setValues(values.filter((_, i) => i !== idx))}>
-              {trash}
-            </Button>
+            <Button onClick={() => handleDelete(idx)}>{trash}</Button>
           </Col>
         </Row>
       ))}
@@ -74,9 +80,9 @@ const AddInputButton = ({ onAddInput }) => {
   );
 };
 
-// Utilizar memo nos permite no renderizar un componente hijo
-// cada que su componente padre lo es, esto permite reducir el uso de recursos
-// del programa. Como funciona es que React.memo guarda la ultima copia creada
-// del componente hijo, y al momento de actualizar al padre, deja al componente hijo con
-// su mismo valor previo
+/*Utilizar memo nos permite no renderizar un componente hijo
+  cada que su componente padre lo es, esto permite reducir el uso de recursos
+  del programa. Como funciona es que React.memo guarda la ultima copia creada
+  del componente hijo, y al momento de actualizar al padre, deja al componente hijo con
+  su mismo valor previo*/
 export default React.memo(AddInputButton);
