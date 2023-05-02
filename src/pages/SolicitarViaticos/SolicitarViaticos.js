@@ -1,5 +1,5 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
@@ -15,6 +15,29 @@ function SolicitarViaticos() {
   });
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
+  const [proyectos, setProyectos] = useState([]);
+  const [nombresProyectos, setNombresProyectos] = useState([]);
+  const [selectedProyecto, setSelectedProyecto] = useState("");
+
+  const URL = "https://jsonplaceholder.typicode.com/users";
+  const getProyectos = async () => {
+    const res = await fetch(URL);
+    const data = await res.json();
+    setProyectos(data);
+  };
+
+  useEffect(() => {
+    getProyectos();
+  }, []);
+
+  useEffect(() => {
+    const nombres = proyectos.map((proyecto) => proyecto.name);
+    setNombresProyectos(nombres);
+  }, [proyectos]);
+
+  const handleProyectoChange = (event) => {
+    setSelectedProyecto(event.target.value);
+  };
 
   const handleDataFromAddInput = (gastos) => {
     setDataFromAddInput(gastos);
@@ -92,15 +115,19 @@ function SolicitarViaticos() {
                 />
               </Col>
               <Col sm={10} md={5}>
-                <FormInputIcon
-                  className="formProyecto-input"
-                  inputControlID="proyecto"
-                  inputLabel="Proyecto"
-                  inputName="proyecto"
-                  inputType="text"
-                  value={formData.proyecto}
-                  onChange={handleInputChange}
-                />
+                <label htmlFor="proyectos">Selecciona un proyecto:</label>
+                <select
+                  id="proyectos"
+                  value={selectedProyecto}
+                  onChange={handleProyectoChange}
+                >
+                  <option value="">--Selecciona un proyecto--</option>
+                  {nombresProyectos.map((nombre, index) => (
+                    <option key={index} value={nombre}>
+                      {nombre}
+                    </option>
+                  ))}
+                </select>
               </Col>
             </Row>
             <Row id="SolicitFormRow" className="mx-1">
