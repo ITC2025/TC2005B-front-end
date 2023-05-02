@@ -40,10 +40,6 @@ function App() {
                 element={<Facturas name="user facturas" />}
                 path="facturas"
               />
-              <Route
-                element={<TablaGastos name="user tabla gastos" />}
-                path="tablaGastos"
-              />
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente" />
