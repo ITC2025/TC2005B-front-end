@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = () => {
+export const PmTableTravelAllActive = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -29,13 +29,14 @@ export const PmTableTravelAll = () => {
     if (id === 4) return "Pagado";
     if (id === 5) return "Cerrado";
     if (id === 6) return "Rechazado";
-    return ""
+    return "404"
   }
 
   // Funcion para mostrar datos con fetch
   const getTravelAllowance = async () => {
     const usuario = await tokenID()
     let data = await solicitudViaticosPM(usuario.id)
+    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -112,7 +113,7 @@ export const PmTableTravelAll = () => {
       name: "Estado",
       selector: (row) => <BadgeStatus status={idToEstado(row.ID_status_solicitud_viaticos)} />,
       sortable: true,
-      width: "120px",
+      width: "130px",
     },
     {
       name: "Actions",
