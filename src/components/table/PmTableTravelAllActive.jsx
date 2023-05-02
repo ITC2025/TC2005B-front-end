@@ -34,12 +34,12 @@ export const PmTableTravelAllActive = () => {
 
   // Funcion para mostrar datos con fetch
   const getTravelAllowance = async () => {
-    const usuario = await tokenID()
-    let data = await solicitudViaticosPM(usuario.id)
+    let data = await solicitudViaticosPM()
     data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
+  
   };
 
   // const getTravelAllowance = async () => {
