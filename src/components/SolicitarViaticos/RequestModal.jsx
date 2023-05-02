@@ -25,7 +25,7 @@ function RequestModal(props) {
                     Destino: <strong>{props.formData.destino}</strong>
                   </p>
                   <p>
-                    Proyecto: <strong>{props.formData.proyecto}</strong>
+                    Proyecto: <strong>{props.proyecto}</strong>
                   </p>
                 </Col>
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>

@@ -167,6 +167,7 @@ function SolicitarViaticos() {
         formData={formData}
         gastosValues={dataFromAddInput}
         totalGastos={totalGastos}
+        proyecto={selectedProyecto}
         handleClose={() => setShowModal(false)}
         handleModal={postToDB}
       />
