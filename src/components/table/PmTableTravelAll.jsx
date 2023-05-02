@@ -6,8 +6,9 @@ import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
+import { solicitudViaticosPM } from "../../apis/getApiData";
 
-export const PmTableTravelAll = () => {
+export const PmTableTravelAll = ({showAll}) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -25,8 +26,7 @@ export const PmTableTravelAll = () => {
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
+    let data = await solicitudViaticosPM(5)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -71,7 +71,7 @@ export const PmTableTravelAll = () => {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -80,7 +80,7 @@ export const PmTableTravelAll = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.id,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
       width: "120px",
     },
@@ -90,18 +90,18 @@ export const PmTableTravelAll = () => {
     //     sortable: true
     // },
     {
-      name: "Nombre",
-      selector: (row) => row.name,
+      name: "Descripcion",
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
-      name: "Project",
-      selector: (row) => row.email,
+      name: "Proyecto",
+      selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.status} />,
+      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} />,
       sortable: true,
       width: "120px",
     },

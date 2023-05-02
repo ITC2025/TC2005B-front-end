@@ -3,11 +3,11 @@ import "../../styles/PmTable.css";
 
 import { PmTableTravelAll } from "../../components/table/PmTableTravelAll";
 
-export const PmTable = () => {
+export const PmTable = ({all}) => {
   
   return (
     <div className="p-5">
-      <PmTableTravelAll />
+      <PmTableTravelAll showAll={all}/>
     </div>
   );
 };

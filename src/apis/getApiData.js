@@ -46,3 +46,31 @@ export async function sessionDelete() {
     window.location.replace('/');
     return response;
 }
+
+export async function tokenID(){
+    const url = 'http://localhost:3001/auth/id';
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
+
+export async function solicitudViaticosPM(id){
+    const url = 'http://localhost:3001/viatico_request/pm/' + JSON.stringify(id);
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
+    return response;
+}
