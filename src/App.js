@@ -67,6 +67,7 @@ function App() {
               <Route element={<Test name="pm tablero" />} path="tablero" />
               <Route element={<CrearProyecto />} path="crearproyecto" />
               <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
               <Route element={<PmTable/> } path={"historico"} />
@@ -89,6 +90,7 @@ function App() {
                 element={<SolicitudesAprovadas
                   name="solicitudes Aprovadas" />}
                 path="solicitudes" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
             </Route>
           </Route>
 

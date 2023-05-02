@@ -157,16 +157,19 @@ export const TableGastos = ({ id }) => {
     style: { paddingLeft: "0.5em" }
   };
 
+  {/*user*/}
   {pathname === "/user/expediente/" + id &&
     columns.push(actions);
            
   }
 
+  {/*pm*/}
   {pathname === "/admin/expediente/" + id &&
     columns.push(empty);
            
   }
 
+  {/*admin*/}
   {pathname === "/pm/expediente/" + id &&
     columns.push(empty);
            
