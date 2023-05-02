@@ -6,11 +6,11 @@ import { MdOutlineMoreVert } from "react-icons/md";
 // import "../../styles/TableBadges.css";
 import { useNavigate } from "react-router-dom";
 
-export default function ProyectosDropdown({codigoproyecto}) {
+export default function ProyectosDropdown() {
   const navigate = useNavigate();
 
   const verViaticosProyecto = () => {
-    navigate("/pm/solicitudes/" + codigoproyecto); // cambiar ruta
+    navigate("/pm/solicitudes"); // cambiar ruta
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
