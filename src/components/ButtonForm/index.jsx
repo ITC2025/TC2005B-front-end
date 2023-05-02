@@ -79,6 +79,7 @@ function Gastos() {
 
   const handleAddForm = () => {
     const newForm = {
+      ID_solicitud_viatico: "1",
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
