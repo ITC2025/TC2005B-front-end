@@ -7,7 +7,7 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 
 
-export default function PmTableDropdown() {
+export default function TableDropdown() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
