@@ -36,13 +36,6 @@ export const TableGastos = ({ id }) => {
     getTravelAllowance();
   }, []);
 
-  // Funcion para filtrar datos
-  const handleFilter = (e) => {
-    const newData = filtertravelAllowance.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setTravelAllowance(newData);
-  };
 
   const [suma, setSuma] = useState(0.0);
   const [anticipo, setAnticipo] =useState(0.0);
@@ -139,12 +132,7 @@ export const TableGastos = ({ id }) => {
             <button id="basicButton" className="ms-2" > Guardar </button>
           </div>
           <div className="d-flex justify-content-end">
-            <TextField
-              id="outlined-basic"
-              label="Buscar"
-              variant="standard"
-              onChange={handleFilter}
-            />
+            
           </div>
 
         </div>
@@ -155,7 +143,6 @@ export const TableGastos = ({ id }) => {
         pagination
         paginationPerPage={5}
         paginationComponentOptions={paginationTable}
-        fixedHeader
       />
       
       <Modal estado={modal}
