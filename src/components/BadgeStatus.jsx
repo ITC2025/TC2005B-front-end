@@ -3,64 +3,46 @@ import { Badge } from "react-bootstrap";
 import "../styles/TableBadges.css";
 
 export const BadgeStatus = (props) => {
-  if (props.status === 1) {
+  if (props.status === "Enviado") {
     return (
       <div className="container">
         <h6>
-          <Badge className='borrador'>{props.statusName}</Badge>
+          <Badge className='enviado'>{props.status}</Badge>
         </h6>
       </div>
     );
-  } else if (props.status === 2) {
+  } else if (props.status === "Aprobado") {
     return (
 
       <div className="container">
         <h6>
-          <Badge className='enrevision'>{props.statusName}</Badge>
+          <Badge className='aprobado'>{props.status}</Badge>
         </h6>
       </div>
     );
-  } else if (props.status === 3) {
+  } else if (props.status === "Borrador") {
     return (
 
       <div className="container">
         <h6>
-          <Badge className='aprobado'>{props.statusName}</Badge>
+          <Badge className='borrador'>{props.status}</Badge>
         </h6>
       </div>
     );
-  } else if (props.status === 4) {
+  } else if (props.status === "Rechazado") {
     return (
           
       <div className="container">
         <h6>
-          <Badge className='pagado'>{props.statusName}</Badge>
+          <Badge className='rechazado'>{props.status}</Badge>
         </h6>
       </div>
     );
-  } else if (props.status === 5){
-    return (
-          
-      <div className="container">
-        <h6>
-          <Badge className='cerrado'>{props.statusName}</Badge>
-        </h6>
-      </div>
-    );
-  } else if (props.status === 6) {
-    return (
-          
-      <div className="container">
-        <h6>
-          <Badge className='rechazado'>{props.statusName}</Badge>
-        </h6>
-      </div>
-    );
-  }else {
+  } else {
     return (
       <div className="container">
         <h6>
-          <Badge className='no-status'>{props.statusName}</Badge>
+          <Badge className='pendiente'>{props.status}</Badge>
         </h6>
       </div>
     );

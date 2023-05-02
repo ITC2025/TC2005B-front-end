@@ -100,7 +100,7 @@ export const PmTableTravelAll = () => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} statusName={row.StatusSolicitudViatico.descripcion}/>,
+      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} />,
       sortable: true,
       width: "120px",
     },
