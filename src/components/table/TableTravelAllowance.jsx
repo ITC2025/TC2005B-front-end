@@ -90,7 +90,7 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
+      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} statusName={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
       style: { paddingLeft: "0px" },
     },
