@@ -23,8 +23,6 @@ export const PmTableTravelAllActive = () => {
   const handleShow = () => setShow(true);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
-  // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const usuario = await tokenID()
     let data = await solicitudViaticosPM(usuario.id)
