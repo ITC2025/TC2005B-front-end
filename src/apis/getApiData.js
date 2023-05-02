@@ -19,7 +19,7 @@ export async function getAuthenticationData(name, password) {
 }
 
 export async function tokenValidation(){
-    const url = 'http://localhost:3001/auth';
+    const url = 'http://localhost:3001/auth/rol';
     const options = {
         method: "GET",
         credentials:"include",
@@ -44,5 +44,19 @@ export async function sessionDelete() {
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
     window.location.replace('/');
+    return response;
+}
+
+export async function adminSol(){
+    const url = 'http://localhost:3001/viatico_request';
+    const options = {
+        method: "GET",
+        credentials:"include",
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }
+    const rawResponse = await fetch(url, options)
+    const response = await rawResponse.json();
     return response;
 }
