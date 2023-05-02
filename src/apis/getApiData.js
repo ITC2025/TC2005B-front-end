@@ -195,17 +195,3 @@ export async function adminSol(){
     const response = await rawResponse.json();
     return response;
 }
-
-export async function solicitudViaticosPM(id){
-    const url = 'http://localhost:3001/viatico_request/pm/' + JSON.stringify(id);
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
-}

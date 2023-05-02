@@ -6,7 +6,7 @@ import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
+import { tokenID } from "../../apis/getApiData";
 
 export const PmTableTravelAll = ({codigoproyecto}) => {
   // Configurar hooks
@@ -22,19 +22,11 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const idToEstado = (id) => {
-    if (id === 1) return "Borrador";
-    if (id === 2) return "En revisión";
-    if (id === 3) return "Aprobado";
-    if (id === 4) return "Pagado";
-    if (id === 5) return "Cerrado";
-    if (id === 6) return "Rechazado";
-    return ""
-  }
-
   // Funcion para mostrar datos con fetch
   // const URL = "https://jsonplaceholder.typicode.com/users";
+  //
   
+
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;
@@ -92,7 +84,7 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
+      row.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -105,6 +97,11 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
       sortable: true,
       width: "120px",
     },
+    // {
+    //     name:"Fecha",
+    //     selector: (row) => row.date,
+    //     sortable: true
+    // },
     {
       name: "Nombre",
       selector: (row) => row.Empleado.name,
@@ -116,16 +113,26 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
       sortable: true,
     },
     {
-      name: 'Total',
-      selector: (row) => row.monto,
-      sortable: true
-    },
-    {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
     },
+    // {
+    //   name: 'Description',
+    //   selector: row => row.gender,
+    //   sortable: true
+    // },
+    // {
+    //   name: 'Total',
+    //   selector: row => row.status,
+    //   sortable: true
+    // },
+    // {
+    //   name: 'Status',
+    //   selector: row => row.status,
+    //   sortable: true
+    // },
     {
       name: "Actions",
       cell: (row) => <PmTableDropdown/>,
