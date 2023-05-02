@@ -1,11 +1,11 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import React, { useState } from "react";
-import NavbarSC from "../components/navbar";
-import FormInputIcon from "../components/FormInputIcon";
-import AddInputButton from "../components/AddInputButton";
-import RequestModal from "../components/RequestModal";
-import "../styles/SolicitarViaticos.css";
-import { postEstimatedExpenses} from "../utils/getApiData";
+import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
+import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
+import RequestModal from "../../components/SolicitarViaticos/RequestModal";
+import "../../styles/SolicitarViaticos.css";
+import { postEstimatedExpenses } from "../../utils/PostExpenses";
+
 function SolicitarViaticos() {
   const [formData, setFormData] = useState({
     fechaInicio: "",

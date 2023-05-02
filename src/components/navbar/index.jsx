@@ -4,14 +4,19 @@ import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
 import { sessionDelete } from "../../apis/getApiData";
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const NavbarSC = ({ client, projectManager, admin }) => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const [activeTab, setActiveTab] = useState('nav-link');
 
     // homepage
     const home = () => {
-        navigate('/');
+        navigate('');
     }
 
     // user
@@ -27,22 +32,27 @@ const NavbarSC = ({ client, projectManager, admin }) => {
 
     // pm
     const pmProyectos = () => {
-        navigate('/pm/');
+        navigate('/pm/proyectos');
     }
     const pmSolicitud = () => {
-        navigate('/pm/');
+        navigate('/pm/crearproyecto');
     }
     const pmHistorial = () => {
-        navigate('/pm/');
+        navigate('/pm/historico');
     }
 
     // admin
     const adminSolicitud = () => {
-        navigate('/admin/');
+        navigate('/admin/solicitudes');
     }
     const adminHistorial = () => {
-        navigate('/admin/');
+        navigate('/admin/historial');
     }
+
+    useEffect(() => {
+        const path = location.pathname;
+        setActiveTab(path);
+    }, [location]);
 
     return (
         <>
@@ -62,24 +72,24 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                         <Nav>
                             {client &&
                                 <>
-                                    <Nav.Link className="nav-link" onClick={misViaticos}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" onClick={userSolicitud}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/user/viaticos" ? 'active' : 'nav-link'} onClick={misViaticos}> <strong> MIS VIÁTICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/user/solicitar" ? 'active' : 'nav-link'} onClick={userSolicitud}> <strong> SOLICITAR VIÁTICOS </strong> </Nav.Link>
                                     {/* <Nav.Link className="nav-link" onClick={facturarViaticos}> <strong> FACTURAR VIÁTICOS </strong> </Nav.Link> */}
                                 </>
                             }
 
                             {projectManager &&
                                 <>
-                                    <Nav.Link className="nav-link" onClick={pmProyectos}> <strong> MIS PROYECTOS</strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" onClick={pmSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" onClick={pmHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/pm/proyectos" ? 'active' : 'nav-link'} onClick={pmProyectos}> <strong> MIS PROYECTOS</strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/pm/crearproyecto" ? 'active' : 'nav-link'} onClick={pmSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/pm/historico" ? 'active' : 'nav-link'} onClick={pmHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
                             }
 
                             {admin &&
                                 <>
-                                    <Nav.Link className="nav-link" onClick={adminSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className="nav-link" onClick={adminHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/admin/" ? 'active' : 'nav-link'} onClick={adminSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/admin/" ? 'active' : 'nav-link'} onClick={adminHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
                                 </>
                             }
                         </Nav>
