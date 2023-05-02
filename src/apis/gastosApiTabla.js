@@ -91,12 +91,11 @@ export async function imagen_gastos(g_id) {
     if (!response.ok) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
-    const data = await response.json();
-    console.log(JSON.stringify(data));
+    const data = await response.blob();
+    console.log(data);
+    console.log("api jala")
     return data;
   } catch (error) {
     console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
-
-
 }

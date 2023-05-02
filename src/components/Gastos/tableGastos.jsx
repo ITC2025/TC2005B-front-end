@@ -5,16 +5,22 @@ import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import GastosDropdown from "./gastosOptDropdown";
 import { useNavigate } from 'react-router-dom';
+import Modal from "../modal/index"
+import { imagen_gastos } from "../../apis/gastosApiTabla";
+import { MdImage } from "react-icons/md"
+import { Button } from "react-bootstrap";
 
 export const TableGastos = ({id}) => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
     navigate('/user/solicitar');
-} 
+  } 
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
+  const [modalImgEstado, modalCambiarEstado] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
 
   // Funcion para mostrar datos con fetch
   const URL = "http://localhost:3001/expenses_table/vi/"+id;
@@ -38,6 +44,26 @@ export const TableGastos = ({id}) => {
       row.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
+  };
+
+  const ImageComponent = async ({ idGasto }) => {
+
+    const imageBlob = await imagen_gastos(idGasto);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(imageBlob);
+    reader.onloadend = () => {
+      setImageUrl(reader.result);
+    };
+  
+    return imageUrl;
+  };
+
+  const OpenModal = (idRow) => {
+    modalCambiarEstado(!modalImgEstado);
+    const imgURL = ImageComponent(idRow);
+    console.log(idRow);
+    console.log(imgURL);
   };
 
   // configuracion de columnas
@@ -84,9 +110,14 @@ export const TableGastos = ({id}) => {
     //  style: { paddingLeft: "0px" },
     //},
     {
+      name: "Ticket",
+      cell: (row) => <MdImage onClick={() => OpenModal(row.id)}/>,
+      width: "8%",
+    },
+    {
       name: "Acciones",
       cell: (row) => <GastosDropdown />,
-      width: "16%",
+      width: "8%",
       style: { paddingLeft: "0.5em" },
     },
   ];
@@ -123,8 +154,13 @@ export const TableGastos = ({id}) => {
         pagination
         paginationPerPage={5}
         paginationComponentOptions={paginationTable}
-        fixedHeader
+        
       />
+      <Modal estado={modalImgEstado}
+        cambiarEstado={modalCambiarEstado}
+        ImgSrc={imageUrl}
+        imagenTicket={true}>
+      </Modal>
     </div>
   );
 };

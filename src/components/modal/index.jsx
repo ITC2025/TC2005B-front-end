@@ -13,7 +13,9 @@ const Modal = ({ estado,
     confirmar,
     cancelar,
     aprovacionSolicitud,
-    proyectoCreado }) => {
+    imagenTicket,
+    proyectoCreado,
+    ImgSrc }) => {
     return (
         <>
             {estado &&
@@ -79,9 +81,16 @@ const Modal = ({ estado,
 
                         {aprovacionSolicitud &&
                             <>
-                                <h1> APROVACION DE SOLICITUD </h1>
+                                <h1> APROBACION DE SOLICITUD </h1>
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {imagenTicket &&
+                            <>
+                                <img src={ImgSrc} alt="Imagen ticket"></img>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }
                     </ContModal>
