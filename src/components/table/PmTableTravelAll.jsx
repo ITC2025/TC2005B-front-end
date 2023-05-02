@@ -99,6 +99,11 @@ export const PmTableTravelAll = () => {
       sortable: true,
     },
     {
+      name: 'Total',
+      selector: (row) => row.monto,
+      sortable: true
+    },
+    {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} />,
       sortable: true,
