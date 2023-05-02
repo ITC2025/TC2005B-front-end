@@ -3,12 +3,20 @@ import "../../styles/PmTable.css";
 import { useParams } from "react-router";
 
 import { PmTableTravelAll } from "../../components/table/PmTableTravelAll";
+import { PmTableTravelAllActive } from "../../components/table/PmTableTravelAllActive";
 
-export const PmTable = () => {
-  const { codigoproyecto } = useParams();
+export const PmTable = ({all}) => {
+  if (all){
   return (
     <div className="p-5">
-      <PmTableTravelAll codigoproyecto={codigoproyecto} />
+      <PmTableTravelAll codigoproyecto={codigoproyecto}/>
     </div>
   );
+  } else {
+    return (
+      <div className="p-5">
+        <PmTableTravelAllActive/>
+      </div>
+    );
+  }
 };

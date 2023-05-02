@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = ({codigoproyecto}) => {
+export const PmTableTravelAllActive = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -29,25 +29,14 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
     if (id === 4) return "Pagado";
     if (id === 5) return "Cerrado";
     if (id === 6) return "Rechazado";
-    return ""
+    return "404"
   }
 
   // Funcion para mostrar datos con fetch
-  // const URL = "https://jsonplaceholder.typicode.com/users";
-  
   const getTravelAllowance = async () => {
-    const response = await tokenID();
-    const user_id = response.id;
-    let URL = "http://localhost:3001/viatico_request/pm/" + user_id;
-
-    if (codigoproyecto) {
-      URL = URL + "/" + codigoproyecto;
-    } 
-
-    console.log(URL);
-
-    const res = await fetch(URL);
-    const data = await res.json();
+    const usuario = await tokenID()
+    let data = await solicitudViaticosPM(usuario.id)
+    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -106,12 +95,12 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
       width: "120px",
     },
     {
-      name: "Nombre",
-      selector: (row) => row.Empleado.name,
+      name: "Descripcion",
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
-      name: "Project",
+      name: "Proyecto",
       selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
@@ -122,13 +111,13 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
+      selector: (row) => <BadgeStatus status={idToEstado(row.ID_status_solicitud_viaticos)} />,
       sortable: true,
-      width: "120px",
+      width: "130px",
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown/>,
+      cell: (row) => <PmTableDropdown />,
       width: "80px",
     },
   ];
