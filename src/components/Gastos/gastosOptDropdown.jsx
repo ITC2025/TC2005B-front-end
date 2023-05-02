@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState, useEffect } from "react"
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,7 +7,9 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 
-export default function TableDropdown({viaticoID}) {
+
+export default function GastosDropdown() {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -14,7 +17,7 @@ export default function TableDropdown({viaticoID}) {
   };
   const handleClose = () => {
     setAnchorEl(null);
-  };
+  };  
 
   return (
     <div>
@@ -37,8 +40,10 @@ export default function TableDropdown({viaticoID}) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
       </Menu>
+
     </div>
   );
 }
