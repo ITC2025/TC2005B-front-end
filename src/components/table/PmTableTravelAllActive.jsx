@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { solicitudViaticosPM } from "../../apis/getApiData";
 
-export const PmTableTravelAll = () => {
+export const PmTableTravelAllActive = () => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -27,6 +27,7 @@ export const PmTableTravelAll = () => {
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     let data = await solicitudViaticosPM(5)
+    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
