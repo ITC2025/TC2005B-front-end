@@ -19,7 +19,7 @@ function SolicitarViaticos() {
   const [nombresProyectos, setNombresProyectos] = useState([]);
   const [selectedProyecto, setSelectedProyecto] = useState("");
 
-  const URL = "https://jsonplaceholder.typicode.com/users";
+  const URL = "http://localhost:3001/projects";
   const getProyectos = async () => {
     const res = await fetch(URL);
     const data = await res.json();
@@ -31,7 +31,7 @@ function SolicitarViaticos() {
   }, []);
 
   useEffect(() => {
-    const nombres = proyectos.map((proyecto) => proyecto.name);
+    const nombres = proyectos.map((proyecto) => proyecto.codigoProyecto);
     setNombresProyectos(nombres);
   }, [proyectos]);
 
