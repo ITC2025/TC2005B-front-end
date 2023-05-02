@@ -6,6 +6,7 @@ import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
+import { tokenID } from "../../apis/getApiData";
 
 export const PmTableTravelAll = () => {
   // Configurar hooks
@@ -22,9 +23,12 @@ export const PmTableTravelAll = () => {
   const handleShow = () => setShow(true);
 
   // Funcion para mostrar datos con fetch
-  const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
+    const response = await tokenID();
+    const user_id = response.id;
+    const URL = "http://localhost:3001/viatico_request/pm/" + user_id;
+    console.log(URL);
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
@@ -80,7 +84,7 @@ export const PmTableTravelAll = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.id,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
       width: "120px",
     },
@@ -91,17 +95,17 @@ export const PmTableTravelAll = () => {
     // },
     {
       name: "Nombre",
-      selector: (row) => row.name,
+      selector: (row) => row.Empleado.name,
       sortable: true,
     },
     {
       name: "Project",
-      selector: (row) => row.email,
+      selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.status} />,
+      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
     },
