@@ -4,8 +4,10 @@ import DataTable from "react-data-table-component";
 // import { BadgeStatus } from "../BadgeStatus";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function TablaProyectos() {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const createProject = () => {
@@ -71,9 +73,11 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={createProject}>
-            Crear proyecto
-          </button>
+          {pathname !== "/admin/proyectos" &&
+
+            <button id="basicButton" onClick={createProject}>
+              Crear proyecto
+            </button>}
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div>
