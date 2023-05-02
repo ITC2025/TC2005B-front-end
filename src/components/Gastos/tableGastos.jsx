@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
-import TableDropdown from "../table/TableDropdown";
+import GastosDropdown from "./gastosOptDropdown";
 import { useNavigate } from 'react-router-dom';
 
 export const TableGastos = () => {
@@ -85,7 +85,7 @@ export const TableGastos = () => {
     //},
     {
       name: "Acciones",
-      cell: (row) => <TableDropdown />,
+      cell: (row) => <GastosDropdown />,
       width: "16%",
       style: { paddingLeft: "0.5em" },
     },
