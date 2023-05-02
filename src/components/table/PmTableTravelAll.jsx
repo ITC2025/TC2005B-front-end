@@ -24,9 +24,11 @@ export const PmTableTravelAll = () => {
 
   const idToEstado = (id) => {
     if (id === 1) return "Borrador";
-    if (id === 2) return "Enviado";
+    if (id === 2) return "En revisión";
     if (id === 3) return "Aprobado";
-    if (id === 4) return "Rechazado";
+    if (id === 4) return "Pagado";
+    if (id === 5) return "Cerrado";
+    if (id === 6) return "Rechazado";
     return ""
   }
 
