@@ -28,7 +28,6 @@ export const PmTableTravelAll = () => {
     const response = await tokenID();
     const user_id = response.id;
     const URL = "http://localhost:3001/viatico_request/pm/" + user_id;
-    console.log(URL);
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
