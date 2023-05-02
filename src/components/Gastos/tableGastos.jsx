@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from "../modal/index"
 import { imagen_gastos } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md"
-import { Button } from "react-bootstrap";
+import { Button, useAccordionButton } from "react-bootstrap";
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
@@ -16,10 +16,9 @@ export const TableGastos = ({ id }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-
   const navSolicitar = () => {
     navigate('/user/solicitar');
-  } 
+  }
 
   const navGastos = () => {
     navigate('/user/facturas');
@@ -31,6 +30,9 @@ export const TableGastos = ({ id }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   const [modal, modalEstado] = useState(false);
+  const [modalSolicitud, modalEstadoSolicitud] = useState(false);
+  const [modalRechazo, modalEstadoRechazo] = useState(false);
+  const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
   const URL = "http://localhost:3001/expenses_table/vi/" + id;
@@ -48,28 +50,26 @@ export const TableGastos = ({ id }) => {
     getTravelAllowance();
   }, []);
 
-
   const [suma, setSuma] = useState(0.0);
-  const [anticipo, setAnticipo] =useState(0.0);
+  const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-      const jsonInfo = await proyecto_sum(id);
-      console.log(jsonInfo);
+    const jsonInfo = await proyecto_sum(id);
+    console.log(jsonInfo);
+    setSuma(jsonInfo.monto)
 
-      setSuma(jsonInfo.monto)
-      
   }
 
   const loadData2 = async () => {
-      const jsonInfo = await proyecto_info(id);
-      console.log(jsonInfo);
-      
-      setAnticipo(jsonInfo[0].anticipo)
+    const jsonInfo = await proyecto_info(id);
+    console.log(jsonInfo);
+
+    setAnticipo(jsonInfo[0].anticipo)
   }
 
   useEffect(() => {
-      loadData();
-      loadData2();
+    loadData();
+    loadData2();
   })
 
   let total = anticipo - suma;
@@ -83,7 +83,7 @@ export const TableGastos = ({ id }) => {
     reader.onloadend = () => {
       setImageUrl(reader.result);
     };
-  
+
     return imageUrl;
   };
 
@@ -139,16 +139,16 @@ export const TableGastos = ({ id }) => {
     //},
     {
       name: "Ticket",
-      cell: (row) => <MdImage onClick={() => OpenModal(row.id)}/>,
+      cell: (row) => <MdImage onClick={() => OpenModal(row.id)} />,
       width: "8%",
     },
   ];
 
   const actions = {
-      name: "Acciones",
-      cell: (row) => <GastosDropdown />,
-      width: "8%",
-      style: { paddingLeft: "0.5em" }
+    name: "Acciones",
+    cell: (row) => <GastosDropdown />,
+    width: "8%",
+    style: { paddingLeft: "0.5em" }
   };
 
   const empty = {
@@ -157,27 +157,26 @@ export const TableGastos = ({ id }) => {
     style: { paddingLeft: "0.5em" }
   };
 
-  {/*user*/}
-  {pathname === "/user/expediente/" + id &&
-    columns.push(actions);
-           
+  {/*user*/ }
+  {
+    pathname === "/user/expediente/" + id &&
+      columns.push(actions);
+
   }
 
-  {/*pm*/}
-  {pathname === "/admin/expediente/" + id &&
-    columns.push(empty);
-           
+  {/*pm*/ }
+  {
+    pathname === "/admin/expediente/" + id &&
+      columns.push(empty);
+
   }
 
-  {/*admin*/}
-  {pathname === "/pm/expediente/" + id &&
-    columns.push(empty);
-           
+  {/*admin*/ }
+  {
+    pathname === "/pm/expediente/" + id &&
+      columns.push(empty);
+
   }
-
-
-
-  
 
   const paginationTable = {
     rowsPerPageText: "Filas por pagina",
@@ -190,15 +189,45 @@ export const TableGastos = ({ id }) => {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navGastos} > Nuevo Gasto </button>
+
+          {pathname === "/user/expediente/" + id &&
+            <>
+              <button id="basicButton" onClick={navGastos} > Nuevo Gasto </button>
+            </>
+          }
+
+
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div className="col-4 mt-3">
-            <button id="basicButton" onClick={() => modalEstado(!modal)} > Cerrar y Enviar </button>
-            <button id="basicButton" className="ms-2" > Guardar </button>
+
+            {/* user */}
+            {pathname === "/user/expediente/" + id &&
+              <>
+                <button id="basicButton" onClick={() => modalEstado(!modal)} > Cerrar y Enviar </button>
+                <button id="basicButton" className="ms-2" > Guardar </button>
+              </>
+            }
+
+            {/* admin */}
+            {pathname === "/admin/expediente/" + id &&
+              <>
+                <button id="basicButton" onClick={() => modalEstadoPagar(!modalPagar)} > Pagar </button>
+                <button id="basicButton" onClick={() => modalEstadoRechazo(!modalRechazo)} className="ms-2" > Rechazar </button>
+              </>
+            }
+
+            {/* pm */}
+            {pathname === "/pm/expediente/" + id &&
+              <>
+                <button id="basicButton" onClick={() => modalEstadoSolicitud(!modalSolicitud)} > Aceptar </button>
+                <button id="basicButton" onClick={() => modalEstadoRechazo(!modalRechazo)} className="ms-2" > Rechazar </button>
+              </>
+            }
+
           </div>
           <div className="d-flex justify-content-end">
-            
+
           </div>
 
         </div>
@@ -209,20 +238,27 @@ export const TableGastos = ({ id }) => {
         pagination
         paginationPerPage={5}
         paginationComponentOptions={paginationTable}
-
-        
       />
       <Modal estado={modalImgEstado}
         cambiarEstado={modalCambiarEstado}
         ImgSrc={imageUrl}
-        imagenTicket={true}>
-      </Modal>
+        imagenTicket={true} />
 
-
-      
       <Modal estado={modal}
         cambiarEstado={modalEstado}
         saldo={total} />
+
+      <Modal estado={modalSolicitud}
+        cambiarEstado={modalEstadoSolicitud}
+        aprovacionSolicitud={true} />
+
+      <Modal estado={modalRechazo}
+        cambiarEstado={modalEstadoRechazo}
+        rechazarPago={true} />
+
+      <Modal estado={modalPagar}
+        cambiarEstado={modalEstadoPagar}
+        confirmarPago={true} />
 
     </div>
   );

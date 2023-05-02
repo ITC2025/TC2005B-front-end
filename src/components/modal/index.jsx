@@ -13,8 +13,8 @@ const Modal = ({ estado,
     aprovacionSolicitud,
     imagenTicket,
     proyectoCreado,
-    ImgSrc, 
-    saldo }) => {
+    ImgSrc,
+    saldo, rechazarPago, confirmarPago }) => {
     return (
         <>
             {estado &&
@@ -56,7 +56,7 @@ const Modal = ({ estado,
                                 <BsCashCoin />
                                 <h1> SALDO NEGATIVO</h1>
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> REENBOLSO EN CAJA </Button>
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
                             </>
                         }
 
@@ -88,6 +88,33 @@ const Modal = ({ estado,
                             <>
                                 <img src={ImgSrc} alt="Imagen ticket"></img>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
+                        {rechazarPago &&
+                            <>
+                                <h1> RECHAZAR PAGO </h1>
+
+                                <div class="modal-textarea">
+                                    <p>Motivo de rechazo: </p>
+                                    <textarea rows="8" />
+                                </div>
+
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {confirmarPago &&
+                            <>
+                                <h1> CONFIRMACION DE PAGO </h1>
+                                <div class="modal-textarea">
+                                    <p>Confirmacion de pago: </p>
+                                    <textarea rows="8" />
+                                </div>
+
+                                <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
                     </ContModal>
@@ -124,6 +151,19 @@ const ContModal = styled.div`
     position:relative;
     padding-top: 3em;
     padding-bottom: 3em;
+
+    .modal-textarea {
+        background-color: #ECECEC;
+        padding-top: 1em;
+        padding-bottom: 2em;
+        margin-right: 2em;
+        margin-left: 2em;
+        border-radius: 15px;
+    }
+
+    .modal-textarea p {
+        font-weight:bold;
+    }
 
     h1 {
         color: rgba(254,128,127);
