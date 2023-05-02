@@ -5,8 +5,8 @@ import ColDireccion from "../../components/Gastos/colDireccion";
 import Subtotal from "../../components/Gastos/subtotal";
 import GastosTabla from "../../components/Gastos";
 
-export default function Expediente({id}) {
 
+export default function Expediente({id}) {
     return (
         <GastosTabla viaticoID={id}></ GastosTabla>
     );
