@@ -40,10 +40,10 @@ function App() {
                 element={<Facturas name="user facturas" />}
                 path="facturas"
               />
-              <Route
+              {/* <Route
                 element={<TablaGastos name="user tabla gastos" />}
                 path="tablaGastos"
-              />
+              /> */}
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<Expedientes />} path="expediente" />
@@ -64,6 +64,7 @@ function App() {
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
+              <Route element={<PmTable/> } path={"historico"} />
             </Route>
           </Route>
 

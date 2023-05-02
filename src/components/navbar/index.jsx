@@ -30,7 +30,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
         navigate('/pm/proyectos');
     }
     const pmSolicitud = () => {
-        navigate('/pm/crearproyecto');
+        navigate('/pm/solicitudes');
     }
     const pmHistorial = () => {
         navigate('/pm/historico');

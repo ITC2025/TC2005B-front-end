@@ -38,7 +38,7 @@ export default function TablaProyectos() {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID_proyecto,
+      selector: (row) => row.codigoProyecto,
       width: "120px",
       sortable: true,
     },
