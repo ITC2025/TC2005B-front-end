@@ -1,7 +1,5 @@
+//Archivo para guardar los datos del formulario de gastos en la base de datos
 export async function saveFormData(formData){
-
-    
-
     const url = 'http://localhost:3001/expense_reports/';
     const options = {
         method: "POST",
