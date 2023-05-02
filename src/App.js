@@ -22,6 +22,7 @@ import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
 import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
 import { NotFound } from "./pages/NotFound/NotFound";
+import AdminViaticos from './pages/Viaticos/adminViaticos';
 
 function Expedientes() {
   //Agarra el id del expediente del ult
@@ -85,7 +86,7 @@ function App() {
                 path="proyecto"
               />
               <Route
-                element={<SolicitudesAprovadas
+                element={<AdminViaticos
                   name="solicitudes Aprovadas" />}
                 path="solicitudes" />
             </Route>
