@@ -34,10 +34,18 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
 
   // Funcion para mostrar datos con fetch
   // const URL = "https://jsonplaceholder.typicode.com/users";
+  
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;
-    const URL = "http://localhost:3001/viatico_request/pm/" + user_id + "/" + codigoproyecto;
+    let URL = "http://localhost:3001/viatico_request/pm/" + user_id;
+
+    if (codigoproyecto) {
+      URL = URL + "/" + codigoproyecto;
+    } 
+
+    console.log(URL);
+
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
@@ -120,7 +128,7 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <PmTableDropdown/>,
       width: "80px",
     },
   ];

@@ -57,7 +57,7 @@ export default function TablaProyectos() {
     },
     {
       name: "Actions",
-      cell: (row) => <ProyectosDropdown />,
+      cell: (row) => <ProyectosDropdown codigoproyecto={row.codigoProyecto}/>,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
