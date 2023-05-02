@@ -11,25 +11,29 @@ export default function PmDashboard() {
   const navigateSolicitudes = () => {
     navigate("/pm/solicitudes");
   };
-
+  const navigateProjects = () => {
+    navigate("/pm/proyectos")
+  }
   return (
     <div className="container p-5">
       <div className="container text-center">
         <div className="my-3"></div>
         <div className="row justify-content-center">
           <div className="col-md-6">
-            <CardDashboard
-              image={CardProject}
-              link={
-                "https://schemazone.com/wp-content/uploads/2021/03/Project-Manager.jpg"
-              }
-            ></CardDashboard>
+            <a onClick={navigateProjects}>
+              <CardDashboard
+                image={CardProject}
+                link={
+                  "https://schemazone.com/wp-content/uploads/2021/03/Project-Manager.jpg"
+                }
+              ></CardDashboard>
+            </a>
           </div>
           <div className="col-md-6">
             <a onClick={navigateSolicitudes}>
               <CardDashboard
                 image={CardRequest}
-                
+
               ></CardDashboard>
             </a>
           </div>
