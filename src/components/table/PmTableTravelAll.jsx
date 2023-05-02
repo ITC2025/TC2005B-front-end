@@ -6,7 +6,7 @@ import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import { solicitudViaticosPM } from "../../apis/getApiData";
+import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
 
 export const PmTableTravelAll = () => {
   // Configurar hooks
@@ -26,7 +26,8 @@ export const PmTableTravelAll = () => {
   const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
-    let data = await solicitudViaticosPM(5)
+    const usuario = await tokenID()
+    let data = await solicitudViaticosPM(usuario.id)
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
