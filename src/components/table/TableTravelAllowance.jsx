@@ -41,6 +41,7 @@ export const TableTravelAllowance = () => {
     const response = await rawResponse.json();
     console.log(response[0]);
     setTravelAllowance(response);
+    setFilterTravelAllowance(response);
   };
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export const TableTravelAllowance = () => {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -89,7 +90,7 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
+      selector: (row) => <BadgeStatus status={row.ID_status_solicitud_viaticos} statusName={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
       style: { paddingLeft: "0px" },
     },
