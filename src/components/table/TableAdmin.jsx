@@ -2,27 +2,47 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import "../../styles/TableAdminStyle.css";
 import TableDropdown from "./TableAdminDropdown.jsx";
-import { MdDisplaySettings } from "react-icons/md";
-import { adminSol } from "../../apis/getApiData";
 
 export default function TableAdmin() {
 
-  const [tableData, setTableData] = useState([]);
+  const [travelAllowance, setTravelAllowance] = useState([]);
+  const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
+
+  const getTravelAllowance = async () => {
+    const url = "http://localhost:3001/viatico_request";
+    const options = {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    console.log(response[0]);
+    setTravelAllowance(response);
+    setFilterTravelAllowance(response);
+  };
+
+  useEffect(() => {
+    getTravelAllowance();
+  }, []);
+
   // configuracion de columnas
   const columns = [
     {
       name: "ID Solicitud",
-      selector: (row) => row.id,
+      selector: (row) => row.ID,
       sortable: true,
     },
     {
       name: "Fecha",
-      selector: (row) => row.date,
+      selector: (row) => row.fecha,
       sortable: true,
     },
     {
       name: "Fecha de aprobacion",
-      selector: (row) => row.approve,
+      selector: (row) => row.fechaAprob,
       sortable: true,
     },
     {
@@ -31,13 +51,13 @@ export default function TableAdmin() {
       sortable: true,
     },
     {
-      name: "Descripción",
-      selector: (row) => row.description,
+      name: "Proyecto",
+      selector: (row) => row.proyecto,
       sortable: true,
     },
     {
-      name: "Proyecto",
-      selector: (row) => row.project,
+      name: "Descripción",
+      selector: (row) => row.desc,
       sortable: true,
     },
     {
@@ -52,11 +72,12 @@ export default function TableAdmin() {
     },
   ];
 
-
-
-  const data = [
-    { id: "Waza", date: "", approve: "", responsable: "", project: "", description: "", total: "" },
-  ]
+  const handleFilter = (e) => {
+    const newData = filtertravelAllowance.filter((row) =>
+      row.desc.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setTravelAllowance(newData);
+  };
 
   const paginationTable = {
     rowsPerPageText: "Filas por pagina",
@@ -72,7 +93,7 @@ export default function TableAdmin() {
         <div className="d-flex justify-content-end">
           <div>
             <div className="input-group">
-              <input type="text" placeholder="Buscar" />
+              <input onChange={handleFilter} type="text" placeholder="Buscar" />
               <label>Buscar</label>
             </div>
           </div>
@@ -80,7 +101,7 @@ export default function TableAdmin() {
       </div>
       <DataTable
         columns={columns}
-        data={data}
+        data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
