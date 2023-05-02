@@ -20,6 +20,10 @@
     padding-right: 40px;
 }
 
+.bg-white td {
+    font-weight: bold;
+}
+
 .modal-thead {
     font-size: 20;
     text-align: center;

@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import gastos from './datos.json'  // archivo json
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
 
