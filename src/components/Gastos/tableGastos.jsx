@@ -155,7 +155,6 @@ export const TableGastos = ({ id }) => {
         pagination
         paginationPerPage={5}
         paginationComponentOptions={paginationTable}
-        fixedHeader
       />
       
       <Modal estado={modal}
