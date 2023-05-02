@@ -196,9 +196,9 @@ export async function adminSol(){
     return response;
 }
 
-export async function sumaTablaGastos(id){
-    const url = 'http://localhost:3001/expenses_table/vis/' + JSON.stringify(id);
-    console.log(url);
+export async function solicitudViaticosPM(){
+    const usuario = await tokenID()
+    const url = 'http://localhost:3001/viatico_request/pm/' + JSON.stringify(usuario.id);
     const options = {
         method: "GET",
         credentials:"include",

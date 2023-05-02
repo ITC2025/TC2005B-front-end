@@ -69,8 +69,8 @@ function App() {
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
-              <Route element={<PmTable/> } path={"solicitudes"} />
-              <Route element={<PmTable/> } path={"historico"} />
+              <Route element={<PmTable all={false}/> } path={"solicitudes"} />
+              <Route element={<PmTable all={true}/> } path={"historico"} />
             </Route>
           </Route>
 
