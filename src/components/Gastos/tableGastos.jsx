@@ -28,7 +28,8 @@ export const TableGastos = ({ id }) => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [modalImgEstado, modalCambiarEstado] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-
+  
+  // hooks de modales
   const [modal, modalEstado] = useState(false);
   const [modalSolicitud, modalEstadoSolicitud] = useState(false);
   const [modalRechazo, modalEstadoRechazo] = useState(false);
@@ -158,22 +159,19 @@ export const TableGastos = ({ id }) => {
   };
 
   {/*user*/ }
-  {
-    pathname === "/user/expediente/" + id &&
+  {pathname === "/user/expediente/" + id &&
       columns.push(actions);
 
   }
 
   {/*pm*/ }
-  {
-    pathname === "/admin/expediente/" + id &&
+  {pathname === "/admin/expediente/" + id &&
       columns.push(empty);
 
   }
 
   {/*admin*/ }
-  {
-    pathname === "/pm/expediente/" + id &&
+  {pathname === "/pm/expediente/" + id &&
       columns.push(empty);
 
   }
@@ -196,7 +194,6 @@ export const TableGastos = ({ id }) => {
             </>
           }
 
-
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div className="col-4 mt-3">
@@ -205,7 +202,6 @@ export const TableGastos = ({ id }) => {
             {pathname === "/user/expediente/" + id &&
               <>
                 <button id="basicButton" onClick={() => modalEstado(!modal)} > Cerrar y Enviar </button>
-                <button id="basicButton" className="ms-2" > Guardar </button>
               </>
             }
 
@@ -226,12 +222,9 @@ export const TableGastos = ({ id }) => {
             }
 
           </div>
-          <div className="d-flex justify-content-end">
-
-          </div>
-
         </div>
       </div>
+
       <DataTable
         columns={columns}
         data={travelAllowance}
@@ -259,7 +252,6 @@ export const TableGastos = ({ id }) => {
       <Modal estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
         confirmarPago={true} />
-
     </div>
   );
 };
