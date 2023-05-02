@@ -1,6 +1,6 @@
-import { useParams } from "react-router";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { useParams } from 'react-router';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
 
 // Import components
 import NavbarSC from "./components/navbar/index.jsx";
