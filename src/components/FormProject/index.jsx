@@ -27,7 +27,6 @@ export default function FormProject({ PmData }) {
 
 
   const handleForm = (event) => {
-    event.preventDefault();
     postToDB();
   }
 
