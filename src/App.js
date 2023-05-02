@@ -77,6 +77,7 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
+              <Route element={<Proyectos/> } path="proyectos"/>
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
               <Route
                 element={<Proyecto />}
