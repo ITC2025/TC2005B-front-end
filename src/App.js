@@ -6,7 +6,7 @@ import './App.css';
 import NavbarSC from "./components/navbar/index.jsx";
 import Login from "./pages/Login/login";
 import Test from "./pages/test/index.js";
-import Facturas from "./pages/Gastos/gastos";
+import Facturas from "./pages/Gastos/Gastos";
 import PrivateRoutes from "./apis/PrivateRoutes";
 import PmDashboard from "./pages/Dashboard/pmDashboard";
 import { UserDashboard } from "./pages/Dashboard/userDashboard";
@@ -67,6 +67,7 @@ function App() {
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes"} />
+              <Route element={<PmTable/> } path={"historico"} />
             </Route>
           </Route>
 
