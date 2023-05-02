@@ -10,7 +10,7 @@ export default function ProyectosDropdown() {
   const navigate = useNavigate();
 
   const verViaticosProyecto = () => {
-    navigate("viatico_request/project/:id"); // cambiar ruta
+    navigate("/pm/solicitudes"); // cambiar ruta
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
