@@ -5,19 +5,23 @@ import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import GastosDropdown from "./gastosOptDropdown";
 import { useNavigate } from 'react-router-dom';
+import Modal from "../modal";
+import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
-export const TableGastos = ({id}) => {
+export const TableGastos = ({ id }) => {
   const navigate = useNavigate();
 
-  const navSolicitar = () => {
-    navigate('/user/solicitar');
-} 
+  const navGastos = () => {
+    navigate('/user/facturas');
+  }
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
+  const [modal, modalEstado] = useState(false);
+
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/"+id;
+  const URL = "http://localhost:3001/expenses_table/vi/" + id;
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
@@ -39,6 +43,31 @@ export const TableGastos = ({id}) => {
     );
     setTravelAllowance(newData);
   };
+
+  const [suma, setSuma] = useState(0.0);
+  const [anticipo, setAnticipo] =useState(0.0);
+
+  const loadData = async () => {
+      const jsonInfo = await proyecto_sum(id);
+      console.log(jsonInfo);
+
+      setSuma(jsonInfo.monto)
+      
+  }
+
+  const loadData2 = async () => {
+      const jsonInfo = await proyecto_info(id);
+      console.log(jsonInfo);
+      
+      setAnticipo(jsonInfo[0].anticipo)
+  }
+
+  useEffect(() => {
+      loadData();
+      loadData2();
+  })
+
+  let total = anticipo - suma;
 
   // configuracion de columnas
   const columns = [
@@ -66,16 +95,16 @@ export const TableGastos = ({id}) => {
       width: "16%",
     },
     {
-        name: "Concepto",
-        selector: (row) => row.concepto,
-        sortable: true,
-        width: "20%",
+      name: "Concepto",
+      selector: (row) => row.concepto,
+      sortable: true,
+      width: "20%",
     },
     {
-        name: "Total",
-        selector: (row) => row.total,
-        sortable: true,
-        width: "16%",
+      name: "Total",
+      selector: (row) => row.total,
+      sortable: true,
+      width: "16%",
     },
     //{
     //  name: "Estado",
@@ -102,19 +131,22 @@ export const TableGastos = ({id}) => {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={navSolicitar} > Solicitar Viaticos </button>
+          <button id="basicButton" onClick={navGastos} > Nuevo Gasto </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
-          <div>
-            <div className="d-flex justify-content-end">
-              <TextField
-                id="outlined-basic"
-                label="Buscar"
-                variant="standard"
-                onChange={handleFilter}
-              />
-            </div>
+          <div className="col-4 mt-3">
+            <button id="basicButton" onClick={() => modalEstado(!modal)} > Cerrar y Enviar </button>
+            <button id="basicButton" className="ms-2" > Guardar </button>
           </div>
+          <div className="d-flex justify-content-end">
+            <TextField
+              id="outlined-basic"
+              label="Buscar"
+              variant="standard"
+              onChange={handleFilter}
+            />
+          </div>
+
         </div>
       </div>
       <DataTable
@@ -125,6 +157,10 @@ export const TableGastos = ({id}) => {
         paginationComponentOptions={paginationTable}
         fixedHeader
       />
+      
+      <Modal estado={modal}
+        cambiarEstado={modalEstado}
+        saldo={total} />
     </div>
   );
 };

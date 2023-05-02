@@ -6,7 +6,7 @@ import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
 
 export default function Subtotal({id}) {
-    
+     
     const [suma, setSuma] = useState(0.0);
     const [anticipo, setAnticipo] =useState(0.0);
 
@@ -30,9 +30,9 @@ export default function Subtotal({id}) {
         loadData2();
     })
 
-   
-
     let total = anticipo - suma;
+
+
 
     return (
         <>

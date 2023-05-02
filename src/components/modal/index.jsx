@@ -8,12 +8,10 @@ const Modal = ({ estado,
     cambiarEstado,
     solicitudExitosa,
     ocurrioError,
-    saldoPositivo,
-    saldoNegativo,
     confirmar,
     cancelar,
     aprovacionSolicitud,
-    proyectoCreado }) => {
+    proyectoCreado, saldo }) => {
     return (
         <>
             {estado &&
@@ -43,16 +41,14 @@ const Modal = ({ estado,
                             </>
                         }
 
-                        {saldoPositivo &&
+                        {saldo > 0 &&
                             <>
                                 <BsCashCoin />
                                 <h1> SALDO POSITIVO</h1>
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
                             </>
-                        }
-
-                        {saldoNegativo &&
+                        } {saldo <= 0 &&
                             <>
                                 <BsCashCoin />
                                 <h1> SALDO NEGATIVO</h1>
