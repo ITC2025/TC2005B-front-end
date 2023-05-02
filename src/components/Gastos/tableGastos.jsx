@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import TableDropdown from "../table/TableDropdown";
 import { useNavigate } from 'react-router-dom';
 
-export const TableGastos = () => {
+export const TableGastos = ({id}) => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
@@ -17,7 +17,7 @@ export const TableGastos = () => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/1";
+  const URL = "http://localhost:3001/expenses_table/vi/"+id;
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);

@@ -7,7 +7,7 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 
 
-export default function PmTableDropdown() {
+export default function PmTableDropdown({viaticoID}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -38,7 +38,7 @@ export default function PmTableDropdown() {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
       </Menu>
     </div>
   );

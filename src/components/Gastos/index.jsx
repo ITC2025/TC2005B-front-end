@@ -5,18 +5,18 @@ import ColInfoProyecto from "./colInfoProyecto";
 import {TableGastos} from "./tableGastos";
 import Subtotal from "./subtotal";
 
-const GastosTabla = () => {
+const GastosTabla = ({viaticoID}) => {
     return (
         <>
             <Container>
                 <Section>
                     <Row>
                         <ColDireccion></ColDireccion>
-                        <ColInfoProyecto></ColInfoProyecto>
+                        <ColInfoProyecto id={viaticoID} ></ColInfoProyecto>
                     </Row>
                 </Section>
-                <TableGastos></TableGastos>
-                <Subtotal></Subtotal>
+                <TableGastos id={viaticoID}></TableGastos>
+                <Subtotal id={viaticoID}></Subtotal>
             </Container>
         </>
     );

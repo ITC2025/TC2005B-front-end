@@ -7,11 +7,10 @@ import styled from "styled-components";
 import GastosTabla from "../../components/Gastos/index"
 
 
-export default function Expediente  () {
-
+export default function Expediente({id}) {
 
     return (
-        <GastosTabla></ GastosTabla>
+        <GastosTabla viaticoID={id}></ GastosTabla>
     );
 }
 

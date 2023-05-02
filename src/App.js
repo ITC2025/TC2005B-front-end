@@ -20,10 +20,10 @@ import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import { NotFound } from "./pages/NotFound/NotFound";
 
-function Expedientes() {
+function ExpedientesID() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
-  return <Test name={routeParams.id} />;
+  return <Expediente id={routeParams.id} />;
 }
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
               />
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
-              <Route element={<Expediente />} path="expediente" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
             </Route>
           </Route>
 
@@ -91,7 +91,7 @@ function App() {
                 element={<Test name="sysadmin viaticos" />}
                 path="viaticos"
               />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route
                 element={<Test name="sysadmin tablero" />}
                 path="tablero"

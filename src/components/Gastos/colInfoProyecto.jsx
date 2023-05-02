@@ -4,17 +4,16 @@ import { proyecto_info } from "../../apis/gastosApiTabla";
 import { useEffect} from "react";
 import { useState } from "react";
 
-function ColInfoProyecto() {
+function ColInfoProyecto({id}) {
 
-    const [id, setId] = useState(0);
+    
     const [fechaI, setFechaI] = useState("");
     const [fechaF, setFechaF] = useState("");
     const [anticipo, setAnticipo] =useState(0.0);
 
     const loadData = async () => {
-        const jsonInfo = await proyecto_info(1);
+        const jsonInfo = await proyecto_info(id);
 
-        setId(jsonInfo[0].id)
         setFechaI(jsonInfo[0].fechaInicio)
         setFechaF(jsonInfo[0].fechaTermino)
         setAnticipo(jsonInfo[0].anticipo)

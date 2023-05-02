@@ -6,13 +6,13 @@ import gastos from './datos.json'  // archivo json
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
 
-export default function Subtotal() {
+export default function Subtotal({id}) {
     
     const [suma, setSuma] = useState(0.0);
     const [anticipo, setAnticipo] =useState(0.0);
 
     const loadData = async () => {
-        const jsonInfo = await proyecto_sum(1);
+        const jsonInfo = await proyecto_sum(id);
         console.log(jsonInfo);
 
         setSuma(jsonInfo.monto)
@@ -20,7 +20,7 @@ export default function Subtotal() {
     }
 
     const loadData2 = async () => {
-        const jsonInfo = await proyecto_info(1);
+        const jsonInfo = await proyecto_info(id);
         console.log(jsonInfo);
         
         setAnticipo(jsonInfo[0].anticipo)

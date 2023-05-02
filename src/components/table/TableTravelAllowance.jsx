@@ -86,7 +86,7 @@ export const TableTravelAllowance = () => {
     // },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown />,
+      cell: (row) => <TableDropdown viaticoID={row.id} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
