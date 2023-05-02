@@ -1,4 +1,4 @@
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import logoNb from "../../images/logoNb.png";
 import { getAuthenticationData, tokenValidation } from "../../apis/getApiData";
