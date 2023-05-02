@@ -1,0 +1,15 @@
+/* form {
+    background-color: lightgray;
+    border-radius: .375rem;
+    padding-bottom: 1rem;
+    margin: 3rem 5rem 0 5rem;
+}
+
+.input-group>.form-control, .input-group>.form-floating, .input-group>.form-select{
+    background-color: white !important;
+    border-color: black !important;
+    border-radius: .375rem !important;
+}
+textarea{
+    resize: none;
+} */

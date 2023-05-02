@@ -4,30 +4,45 @@ import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export const TableTravelAllowance = () => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
-    navigate('/user/solicitar');
-} 
+    navigate("/user/solicitar");
+  };
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // Funcion para mostrar datos con fetch
-  const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
-  // const URL = "https://jsonplaceholder.typicode.com/users";
-  const getTravelAllowance = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setTravelAllowance(data);
-    setFilterTravelAllowance(data);
-    // console.log(data);
-  };
+  // // Funcion para mostrar datos con fetch
+  // const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
+  // // const URL = "https://jsonplaceholder.typicode.com/users";
+  // const getTravelAllowance = async () => {
+  //   const res = await fetch(URL);
+  //   const data = await res.json();
+  //   setTravelAllowance(data);
+  //   setFilterTravelAllowance(data);
+  //   // console.log(data);
+  // };
 
   // const getTravelAllowance = async () => {
+  const getTravelAllowance = async () => {
+    const url = "http://localhost:3001/viatico_request/user/1";
+    const options = {
+      credentials: "include",
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    console.log(response[0]);
+    setTravelAllowance(response);
+  };
+
   useEffect(() => {
     getTravelAllowance();
   }, []);
@@ -44,28 +59,37 @@ export const TableTravelAllowance = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.id,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
-      width: "120px",
+      width: "80px",
+    }, {
+      name: "Codigo Proyecto",
+      selector: (row) => row.Proyecto.codigoProyecto,
     },
-    // {
-    //     name:"Fecha",
-    //     selector: (row) => row.date,
-    //     sortable: true
-    // },
+
     {
-      name: "Nombre",
-      selector: (row) => row.name,
+      name: "Concepto",
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
-      name: "Project",
-      selector: (row) => row.email,
+      name: "Fecha Inicio",
+      selector: (row) => row.fechaInicio,
+      sortable: true,
+    },
+    {
+      name: "Fecha Fin",
+      selector: (row) => row.fechaTermino,
+      sortable: true,
+    },
+    {
+      name: "Monto",
+      selector: (row) => row.monto,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.status} />,
+      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
       style: { paddingLeft: "0px" },
     },
@@ -102,8 +126,11 @@ export const TableTravelAllowance = () => {
   return (
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-4">
-          <button id="basicButton" onClick={navSolicitar} > Solicitar Viaticos </button>
+        <div className="col-4 d-flex justify-content-start">
+          <button id="basicButton" onClick={navSolicitar}>
+            {" "}
+            Solicitar Viaticos{" "}
+          </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div>

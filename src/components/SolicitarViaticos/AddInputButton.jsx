@@ -80,9 +80,9 @@ const AddInputButton = ({ onAddInput }) => {
   );
 };
 
-// Utilizar memo nos permite no renderizar un componente hijo
-// cada que su componente padre lo es, esto permite reducir el uso de recursos
-// del programa. Como funciona es que React.memo guarda la ultima copia creada
-// del componente hijo, y al momento de actualizar al padre, deja al componente hijo con
-// su mismo valor previo
+/*Utilizar memo nos permite no renderizar un componente hijo
+  cada que su componente padre lo es, esto permite reducir el uso de recursos
+  del programa. Como funciona es que React.memo guarda la ultima copia creada
+  del componente hijo, y al momento de actualizar al padre, deja al componente hijo con
+  su mismo valor previo*/
 export default React.memo(AddInputButton);
