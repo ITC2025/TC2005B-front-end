@@ -64,7 +64,7 @@ export default function FormProject({ PmData }) {
               <Col>
                 <Form.Label>Descripcion</Form.Label>
                 <textarea
-                  class="form-control"
+                  className="form-control"
                   id="exampleFormControlTextarea2"
                   rows="6"
                   name="descripcion"
