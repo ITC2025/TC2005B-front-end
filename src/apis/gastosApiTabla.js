@@ -211,6 +211,24 @@ export async function send_expenses(id) {
   return response;
 }
 
+export async function send_viatico(id) {
+  const url =
+    "http://localhost:3001/viatico_request/" + JSON.stringify(id);
+  console.log(url);
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ID_status_solicitud_viaticos: 2,
+    }),
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
+}
+
 export async function accept_viatico(id) {
   const url =
     "http://localhost:3001/viatico_request/" + JSON.stringify(id);

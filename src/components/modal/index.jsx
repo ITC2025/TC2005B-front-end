@@ -9,7 +9,8 @@ import {
   paid_viatico,
   reject_viatico,
   approve_expenses,
-  reject_expenses
+  reject_expenses,
+  send_viatico
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -68,15 +69,15 @@ const Modal = ({ estado,
                             <>
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO POSITIVO</h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
                             </>
                         } {saldo <= 0 &&
                             <>
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO NEGATIVO</h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
                             </>
                         }
 
@@ -99,7 +100,7 @@ const Modal = ({ estado,
                         {aprovacionSolicitud &&
                             <>
                                 <h1> APROBACION DE SOLICITUD </h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -133,7 +134,7 @@ const Modal = ({ estado,
                                     <textarea value={refBank} onChange={enviarRef} rows="3" />
                                 </div>
 
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
+                                <Button onClick={() => pagadoViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -158,8 +159,9 @@ const Modal = ({ estado,
 
     function cambioEstadoGasto() {
         send_expenses(JSON.parse(id));
+        send_viatico(JSON.parse(id));
         cambiarEstado(false);
-        navigate(-1);
+        navigate("/user/viaticos");
     }
 
     function aceptarViatico(){
