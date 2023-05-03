@@ -115,7 +115,7 @@ const Modal = ({ estado,
                                     <textarea rows="8" />
                                 </div>
 
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
+                                <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
