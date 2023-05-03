@@ -145,6 +145,7 @@ function Gastos({viaticoID}) {
                             <input
                               type="number"
                               name="monto"
+                              min="0"
                               className="form-control"
                               placeholder="Monto"
                               onChange={(e) => handleChange(e, index)}
