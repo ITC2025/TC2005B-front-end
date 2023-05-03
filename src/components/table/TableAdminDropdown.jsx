@@ -2,7 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { MdOutlineMoreVert} from 'react-icons/md';
 import "../../styles/TableBadges.css"
 
-function TableAdminDropdown() {
+function TableAdminDropdown({travelToId}) {
 
   return (
     <Dropdown>
@@ -11,7 +11,7 @@ function TableAdminDropdown() {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#">Ver</Dropdown.Item>
+        <Dropdown.Item href={"http://localhost:3000/admin/expediente/"+travelToId}>Ver</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

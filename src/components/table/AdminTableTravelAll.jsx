@@ -1,7 +1,7 @@
 import "../../styles/TableAdminStyle.css";
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import PmTableDropdown from "./PmTableDropdown";
+import TableAdminDropdown from "./TableAdminDropdown";
 import TextField from "@mui/material/TextField";
 import { adminSol } from "../../apis/getApiData";
 
@@ -56,7 +56,7 @@ export default function AdminTableTravelAll() {
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <TableAdminDropdown travelToId={row.ID} />,
       width: "80px",
     },
   ];

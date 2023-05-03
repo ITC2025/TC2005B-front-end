@@ -30,6 +30,11 @@ function ExpedientesID() {
   return <Expediente id={routeParams.id} />;
 }
 
+function AdminExpedientesID() {
+  const routeParams = useParams();
+  return <Test name={routeParams.id} />;
+}
+
 function App() {
 
 
@@ -75,6 +80,7 @@ function App() {
             </Route>
           </Route>
 {/* comentario */}
+
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
@@ -83,7 +89,7 @@ function App() {
                 path="historial"
               />
               <Route element={<Proyectos />} path="proyectos" />
-              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
+              <Route element={<AdminExpedientesID />} path="expediente/:id" />
               <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>
