@@ -1,10 +1,10 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
-import { postEstimatedExpenses } from "../../utils/PostExpenses";
+import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticos() {
   const [formData, setFormData] = useState({
@@ -12,9 +12,33 @@ function SolicitarViaticos() {
     fechaTermino: "",
     destino: "",
     proyecto: "",
+    descripcion: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
+  const [proyectos, setProyectos] = useState([]);
+  const [nombresProyectos, setNombresProyectos] = useState([]);
+  const [selectedProyecto, setSelectedProyecto] = useState("");
+
+  const URL = "http://localhost:3001/projects";
+  const getProyectos = async () => {
+    const res = await fetch(URL);
+    const data = await res.json();
+    setProyectos(data);
+  };
+
+  useEffect(() => {
+    getProyectos();
+  }, []);
+
+  useEffect(() => {
+    const nombres = proyectos.map((proyecto) => proyecto.codigoProyecto);
+    setNombresProyectos(nombres);
+  }, [proyectos]);
+
+  const handleProyectoChange = (event) => {
+    setSelectedProyecto(event.target.value);
+  };
 
   const handleDataFromAddInput = (gastos) => {
     setDataFromAddInput(gastos);
@@ -30,12 +54,41 @@ function SolicitarViaticos() {
   };
 
   const postToDB = () => {
-    for (let i = 0; i < dataFromAddInput.length; i++) {
-      postEstimatedExpenses(
-        dataFromAddInput[i].concepto,
-        dataFromAddInput[i].monto
-      );
-    }
+    submitSV(
+      totalGastos,
+      formData.proyecto,
+      2,
+      formData.destino,
+      formData.fechaInicio,
+      formData.fechaTermino
+    ).then((res) => {
+      for (let i = 0; i < dataFromAddInput.length; i++) {
+        postEstimatedExpenses(
+          dataFromAddInput[i].concepto,
+          dataFromAddInput[i].monto,
+          res
+        );
+      }
+    });
+  };
+
+  const saveAsDraft = () => {
+    submitSV(
+      totalGastos,
+      formData.proyecto,
+      1,
+      formData.destino,
+      formData.fechaInicio,
+      formData.fechaTermino
+    ).then((res) => {
+      for (let i = 0; i < dataFromAddInput.length; i++) {
+        postEstimatedExpenses(
+          dataFromAddInput[i].concepto,
+          dataFromAddInput[i].monto,
+          res
+        );
+      }
+    });
   };
 
   let totalGastos = 0;
@@ -56,7 +109,7 @@ function SolicitarViaticos() {
         <div id="FormSolicitBody">
           <Container id="FormSolicitComponent">
             <Row id="SolicitFormRow">
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formFechaInicio-input"
                   inputControlID="fechaInicio"
@@ -67,7 +120,7 @@ function SolicitarViaticos() {
                   onChange={handleInputChange}
                 />
               </Col>
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formFechaTermino-input"
                   inputControlID="fechaTermino"
@@ -80,7 +133,7 @@ function SolicitarViaticos() {
               </Col>
             </Row>
             <Row id="SolicitFormRow">
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
                 <FormInputIcon
                   className="formDestino-input"
                   inputControlID="destino"
@@ -91,20 +144,38 @@ function SolicitarViaticos() {
                   onChange={handleInputChange}
                 />
               </Col>
-              <Col sm={10} md={5}>
+              <Col sm={12} md={5}>
+                <div id="ProyectosDropdown">
+                  <Form.Label id="FormInputLabel">Proyecto</Form.Label>
+                  <Form.Select
+                    value={selectedProyecto}
+                    onChange={handleProyectoChange}
+                  >
+                    <option value="">Selecciona un proyecto</option>
+                    {nombresProyectos.map((nombre, index) => (
+                      <option key={index} value={nombre}>
+                        {nombre}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </div>
+              </Col>
+            </Row>
+            <Row id="SolicitFormRow">
+              <Col sm={12} md={10}>
                 <FormInputIcon
-                  className="formProyecto-input"
-                  inputControlID="proyecto"
-                  inputLabel="Proyecto"
-                  inputName="proyecto"
+                  className="formDescripcion-input"
+                  inputControlID="descripcion"
+                  inputLabel="Descripcion"
+                  inputName="descripcion"
                   inputType="text"
-                  value={formData.proyecto}
+                  value={formData.descripcion}
                   onChange={handleInputChange}
                 />
               </Col>
             </Row>
             <Row id="SolicitFormRow" className="mx-1">
-              <Col sm={10} md={10}>
+              <Col sm={12} md={10}>
                 <AddInputButton
                   className="form-button"
                   onAddInput={handleDataFromAddInput}
@@ -123,7 +194,11 @@ function SolicitarViaticos() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                <Button id="SendSaveButtons" variant="primary">
+                <Button
+                  id="SendSaveButtons"
+                  variant="primary"
+                  onClick={saveAsDraft}
+                >
                   GUARDAR CAMBIOS
                 </Button>
                 <Button id="SendSaveButtons" variant="primary" type="submit">
@@ -139,6 +214,7 @@ function SolicitarViaticos() {
         formData={formData}
         gastosValues={dataFromAddInput}
         totalGastos={totalGastos}
+        proyecto={selectedProyecto}
         handleClose={() => setShowModal(false)}
         handleModal={postToDB}
       />

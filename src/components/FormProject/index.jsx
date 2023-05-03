@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { Col, Row, Button, Container, Form, InputGroup } from "react-bootstrap";
 import {
   MdCalendarMonth,
@@ -26,12 +26,11 @@ export default function FormProject({ PmData }) {
 
 
   const handleForm = (event) => {
-    event.preventDefault();
-    postToDB();    
+    postToDB();
   }
 
-  const handleInputChange = (event) =>{
-    setFormData({...formData, [ event.target.name]: event.target.value});
+  const handleInputChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
   return (
@@ -41,7 +40,7 @@ export default function FormProject({ PmData }) {
       </Container>
       <Container className="justify-content-center">
         <hr />
-        <Form onSubmit = {handleForm}>
+        <Form onSubmit={handleForm}>
           <Form.Group className="m-3" controlId="formBasicUp">
             <Row>
               <Col>
@@ -76,7 +75,9 @@ export default function FormProject({ PmData }) {
               </Col>
             </Row>
           </Form.Group>
-          <Button type = "submit" > Submit </Button>
+          <Container className="d-flex justify-content-end">
+            <Button type="submit" > Crear Proyecto </Button>
+          </Container>
         </Form>
       </Container>
       <Container className="fixed-bottom">
