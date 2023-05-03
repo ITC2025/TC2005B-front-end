@@ -6,11 +6,12 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 
-export default function GastosDropdown(props) {
+export default function GastosDropdown({id}) {
 
-  console.log(props.id);
+  console.log(id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -25,7 +26,7 @@ export default function GastosDropdown(props) {
   
 
   const handleModal = () => {
-    props.doIt(props.id)
+    smart_delete_expenses(id);
     handleClose();
 
   } 
