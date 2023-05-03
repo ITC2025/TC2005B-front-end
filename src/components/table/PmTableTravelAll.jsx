@@ -143,7 +143,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     // },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown/>,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico}/>,
       width: "80px",
     },
   ];
