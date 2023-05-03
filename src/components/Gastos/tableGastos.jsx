@@ -146,10 +146,10 @@ export const TableGastos = ({ id }) => {
   ];
 
   const actions = {
-    name: "Acciones",
-    cell: (row) => <GastosDropdown />,
-    width: "8%",
-    style: { paddingLeft: "0.5em" }
+      name: "Acciones",
+      cell: (row) => <GastosDropdown id={row.id} />,
+      width: "8%",
+      style: { paddingLeft: "0.5em" }
   };
 
   const empty = {

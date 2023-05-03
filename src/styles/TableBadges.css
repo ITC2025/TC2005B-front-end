@@ -63,3 +63,9 @@ h6 {
     width: 50% !important;
     height: 50% !important;
 }
+
+#basic-button {
+    background: none !important;
+    display: inline !important;
+    border: none !important;
+}

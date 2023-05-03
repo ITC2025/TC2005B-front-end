@@ -117,6 +117,7 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
       selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
+      style: { paddingLeft: "0px", },
     },
     // {
     //   name: 'Description',

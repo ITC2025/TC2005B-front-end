@@ -99,3 +99,26 @@ export async function imagen_gastos(g_id) {
     console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
+
+
+export async function smart_delete_expenses(id){
+  const url = 'http://localhost:3001/expense_reports/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_reporte_gasto: 5
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+
+
+
+
