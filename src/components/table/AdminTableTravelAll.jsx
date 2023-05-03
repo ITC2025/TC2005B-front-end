@@ -1,27 +1,14 @@
 import "../../styles/TableAdminStyle.css";
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
-import { Button } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
-import { solicitudViaticosPM } from "../../apis/getApiData";
 import { adminSol } from "../../apis/getApiData";
 
 export default function AdminTableTravelAll() {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
-
-  // Estado de los botones, para deshabilitarlos o habilitarlos
-  const [estadoBoton, setEstadoBoton] = useState([false]);
-  const [estadoBoton2, setEstadoBoton2] = useState([false]);
-
-  // Estado para mostrar modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   // Funcion para mostrar datos con fetch
   const getTravelAllowance = async () => {
@@ -35,37 +22,6 @@ export default function AdminTableTravelAll() {
   useEffect(() => {
     getTravelAllowance();
   }, []);
-
-  // Funcion para aceptar o rechazar solicitudes
-  const handleAceptar = () => {
-    console.log("aceptar");
-  };
-
-  const handleSend = () => {
-    console.log("enviar");
-    //refrescar la pagina
-    window.location.reload();
-  };
-
-  // Funcion con checkbox
-  const handleSelected = ({ selectedRows }) => {
-    console.log(selectedRows);
-    if (selectedRows.length === 1) {
-      console.log("row seleccionada");
-      setEstadoBoton2(false);
-      setEstadoBoton(false);
-    }
-    else if (selectedRows.length > 1) {
-      console.log("mas de una row seleccionadas");
-      setEstadoBoton2(true);
-      setEstadoBoton(false);
-    }
-    else {
-      console.log("no hay row seleccionadas");
-      setEstadoBoton(true);
-      setEstadoBoton2(true);
-    }
-  };
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
@@ -135,18 +91,7 @@ export default function AdminTableTravelAll() {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
-        selectableRows
-        onSelectedRowsChange={handleSelected}
       />
-      <div className="d-flex justify-content-end mr-4">
-        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleAceptar}>
-          Aceptar
-        </Button>
-        <div className="mx-2"></div>
-        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleShow}>
-          Rechazar
-        </Button>
-      </div>
     </div>
   );
 
