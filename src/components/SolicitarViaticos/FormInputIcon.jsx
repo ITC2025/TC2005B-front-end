@@ -6,7 +6,6 @@ function FormInputIcon(props) {
     <>
       <Container>
         <Row>
-          <Col sm={5} md={10}>
             <Form.Group controlId={props.inputControlID}>
               <Form.Label id="FormInputLabel">{props.inputLabel}</Form.Label>
               <Form.Control
@@ -17,7 +16,6 @@ function FormInputIcon(props) {
                 required
               />
             </Form.Group>
-          </Col>
         </Row>
       </Container>
     </>
