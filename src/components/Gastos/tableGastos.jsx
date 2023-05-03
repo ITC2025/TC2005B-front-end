@@ -71,6 +71,7 @@ export const TableGastos = ({ id }) => {
     loadData2();
   })
 
+  let idV = id;
   let total = anticipo - suma;
 
   const ImageComponent = async ({ idGasto }) => {
@@ -237,7 +238,8 @@ export const TableGastos = ({ id }) => {
 
       <Modal estado={modal}
         cambiarEstado={modalEstado}
-        saldo={total} />
+        saldo={total} 
+        id={idV} />
 
       <Modal estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
