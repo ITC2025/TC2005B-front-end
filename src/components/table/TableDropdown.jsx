@@ -5,17 +5,24 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import Modal from "../modal";
 
-export default function TableDropdown({viaticoID}) {
+export default function TableDropdown({ viaticoID, status }) {
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [modalEstado, cambiarEstadoModal] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
+    cambiarEstadoModal(!modalEstado)
   };
-
+// test
   return (
     <div>
       <Button
@@ -37,8 +44,17 @@ export default function TableDropdown({viaticoID}) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/" + viaticoID} >Ver gastos</MenuItem>
+        {status === "Rechazado" &&
+          <>
+            <MenuItem onClick={handleClose} > Motivo de rechazo </MenuItem>
+          </>
+        }
       </Menu>
+
+      <Modal estado={modalEstado}
+        cambiarEstado={cambiarEstadoModal}
+        motivoRechazo={true} />
     </div>
   );
 }

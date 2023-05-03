@@ -135,6 +135,15 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {motivoRechazo &&
+                            <>
+                                <h1> MOTIVO DE RECHAZO</h1>
+                                <p className='mt-2'> warala warala </p>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
                     </ContModal>
                 </Overlay >
             }
