@@ -35,10 +35,34 @@ export const TableGastos = ({ id }) => {
   const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/" + id;
+  
+  const URL = [];
+
+
+  {/*user*/ }
+  {pathname === "/user/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+
+  }
+
+  {/*pm*/ }
+  {pathname === "/admin/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/admin/" + id);
+
+  }
+
+  {/*admin*/ }
+  {pathname === "/pm/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/pm/" + id);
+
+  }
+
+  const URLs = URL[0];
+  console.log(URLs)
+
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
-    const res = await fetch(URL);
+    const res = await fetch(URLs);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
