@@ -39,7 +39,7 @@ export const PmTableTravelAllActive = () => {
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
-  
+
   };
 
   // const getTravelAllowance = async () => {
@@ -117,7 +117,7 @@ export const PmTableTravelAllActive = () => {
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
     },
   ];

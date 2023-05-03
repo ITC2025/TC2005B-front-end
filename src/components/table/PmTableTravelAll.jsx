@@ -116,7 +116,7 @@ export const PmTableTravelAll = () => {
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
     },
   ];
