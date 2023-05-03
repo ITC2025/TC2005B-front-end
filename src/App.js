@@ -20,7 +20,7 @@ import Proyectos from "./pages/Proyectos";
 import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
-import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
+import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 
 function Expedientes() {
@@ -66,8 +66,8 @@ function App() {
               <Route element={<CrearProyecto />} path="crearproyecto" />
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
-              <Route element={<PmTable all={false}/> } path={"solicitudes"} />
-              <Route element={<PmTable all={true}/> } path={"historico"} />
+              <Route element={<PmTable all={false} />} path={"solicitudes"} />
+              <Route element={<PmTable all={true} />} path={"historico"} />
             </Route>
           </Route>
 
@@ -78,16 +78,9 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
-              <Route element={<Proyectos/> } path="proyectos"/>
+              <Route element={<Proyectos />} path="proyectos" />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Proyecto />}
-                path="proyecto"
-              />
-              <Route
-                element={<SolicitudesAprovadas
-                  name="solicitudes Aprovadas" />}
-                path="solicitudes" />
+              <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>
 
