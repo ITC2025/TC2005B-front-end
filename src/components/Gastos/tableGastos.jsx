@@ -146,7 +146,7 @@ export const TableGastos = ({ id }) => {
 
   const actions = {
       name: "Acciones",
-      cell: (row) => <GastosDropdown />,
+      cell: (row) => <GastosDropdown id={row.id} />,
       width: "8%",
       style: { paddingLeft: "0.5em" }
   };
