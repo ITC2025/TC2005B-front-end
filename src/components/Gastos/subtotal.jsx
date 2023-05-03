@@ -6,12 +6,13 @@ import { proyecto_sum_user, proyecto_sum_pm, proyecto_sum_admin, proyecto_info }
 import { useLocation } from "react-router-dom";
 
 
-export default function Subtotal({id}) {
+export default function Subtotal({id,reloadTrigger}) {
 
     const location = useLocation();
      
     const [suma, setSuma] = useState(0.0);
     const [anticipo, setAnticipo] =useState(0.0);
+    
 
 
     const loadData2 = async () => {
@@ -20,6 +21,7 @@ export default function Subtotal({id}) {
         
         setAnticipo(jsonInfo[0].anticipo)
     }
+
 
     useEffect(() => {
         if (location.pathname === "/user/expediente/" + id) {
@@ -53,10 +55,9 @@ export default function Subtotal({id}) {
             loadData();
         }
         loadData2();
-    })
+    }, [reloadTrigger])
 
-    let total = anticipo - suma;
-
+    let total = anticipo - suma
 
 
     return (
