@@ -10,7 +10,7 @@ export default function TablaProyectos() {
 
   // Funcion para mostrar datos con fetch
   const getProyectos = async () => {
-    const url = "http://localhost:3000/viatico_request/pm/2";
+    const url = "localhost:3000/pm/proyectos/viatico_request/project/:id";
     const options = {
       method: "GET",
       headers: {

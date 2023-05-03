@@ -4,7 +4,7 @@ import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
-import { postEstimatedExpenses } from "../../utils/PostExpenses";
+import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticos() {
   const [formData, setFormData] = useState({
@@ -54,12 +54,41 @@ function SolicitarViaticos() {
   };
 
   const postToDB = () => {
-    for (let i = 0; i < dataFromAddInput.length; i++) {
-      postEstimatedExpenses(
-        dataFromAddInput[i].concepto,
-        dataFromAddInput[i].monto
-      );
-    }
+    submitSV(
+      totalGastos,
+      formData.proyecto,
+      2,
+      formData.destino,
+      formData.fechaInicio,
+      formData.fechaTermino
+    ).then((res) => {
+      for (let i = 0; i < dataFromAddInput.length; i++) {
+        postEstimatedExpenses(
+          dataFromAddInput[i].concepto,
+          dataFromAddInput[i].monto,
+          res
+        );
+      }
+    });
+  };
+
+  const saveAsDraft = () => {
+    submitSV(
+      totalGastos,
+      formData.proyecto,
+      1,
+      formData.destino,
+      formData.fechaInicio,
+      formData.fechaTermino
+    ).then((res) => {
+      for (let i = 0; i < dataFromAddInput.length; i++) {
+        postEstimatedExpenses(
+          dataFromAddInput[i].concepto,
+          dataFromAddInput[i].monto,
+          res
+        );
+      }
+    });
   };
 
   let totalGastos = 0;
@@ -165,7 +194,11 @@ function SolicitarViaticos() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                <Button id="SendSaveButtons" variant="primary">
+                <Button
+                  id="SendSaveButtons"
+                  variant="primary"
+                  onClick={saveAsDraft}
+                >
                   GUARDAR CAMBIOS
                 </Button>
                 <Button id="SendSaveButtons" variant="primary" type="submit">
