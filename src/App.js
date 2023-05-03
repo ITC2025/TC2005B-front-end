@@ -78,7 +78,7 @@ function App() {
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
-              <Route index element={<AdminDashboard />} />
+              <Route index elementA={<dminDashboard />} />
               <Route element={<AdminTable />}
                 path="historial"
               />
