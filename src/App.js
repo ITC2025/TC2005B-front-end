@@ -73,7 +73,7 @@ function App() {
               <Route element={<PmTable all={true} />} path={"historico"} />
             </Route>
           </Route>
-
+{/* comentario */}
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
