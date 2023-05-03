@@ -15,6 +15,7 @@ const Modal = ({ estado,
     proyectoCreado,
     ImgSrc,
     saldo,
+    id,
     rechazarPago,
     confirmarPago }) => {
     return (
@@ -53,9 +54,9 @@ const Modal = ({ estado,
                         {saldo > 0 &&
                             <>
                                 <BsCashCoin id='imagen' />
-                                <h1> SALDO POSITIVO</h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
+                                <h1> SALDO POSITIVO </h1>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
                             </>
                         } {saldo <= 0 &&
                             <>
@@ -133,6 +134,11 @@ const Modal = ({ estado,
     function enviarData() {
         cambiarEstado(false)
         alert('si sirve');
+    }
+
+    function cambioEstadoGasto(){
+        cambiarEstado(false);
+        console.log(id);
     }
 }
 
