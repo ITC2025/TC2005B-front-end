@@ -63,7 +63,7 @@ export async function sessionDelete() {
 
 export async function userViaticos(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/users/viaticos/' + JSON.stringify(id_user.id);
+    const url = 'http://localhost:3001/viatico_request/user/' + JSON.stringify(id_user.id);
     console.log(url);
     const options = {
         method: "GET",
@@ -74,6 +74,7 @@ export async function userViaticos(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+    console.log(response);  
     return response;
 }
 
@@ -131,14 +132,14 @@ export async function postProject(nombre, codigo , desc) {
     return response;
 }
 
-export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, nomEmpleado, codProyecto, descStatus){
+export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, codProyecto, descStatus){
     let data = {
         monto: montoViatico,
         descripcion: descripcionSolicitud,
         destino: destinoViatico,
         fechaInicio: fechaI,
         fechaTermino: fechaF,
-        nombre_empleado: nomEmpleado,
+        ID_empleado: tokenID(),
         codigo_proyecto: codProyecto,
         status_descripcion: descStatus
     }

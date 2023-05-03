@@ -4,8 +4,11 @@ import DataTable from "react-data-table-component";
 // import { BadgeStatus } from "../BadgeStatus";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { tokenID } from "../../apis/getApiData";
 
 export default function TablaProyectos() {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const createProject = () => {
@@ -16,7 +19,9 @@ export default function TablaProyectos() {
 
   // Funcion para mostrar datos con fetch
   const getProyectos = async () => {
-    const url = "http://localhost:3000/projects/2";
+    const token_res = await tokenID();
+    const user_id = token_res.id;
+    const url = "http://localhost:3001/projects/" + user_id;
     const options = {
       method: "GET",
       headers: {
@@ -54,7 +59,7 @@ export default function TablaProyectos() {
     },
     {
       name: "Actions",
-      cell: (row) => <ProyectosDropdown />,
+      cell: (row) => <ProyectosDropdown codigoproyecto={row.codigoProyecto}/>,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -71,9 +76,11 @@ export default function TablaProyectos() {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-          <button id="basicButton" onClick={createProject}>
-            Crear proyecto
-          </button>
+          {pathname !== "/admin/proyectos" &&
+
+            <button id="basicButton" onClick={createProject}>
+              Crear proyecto
+            </button>}
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div>

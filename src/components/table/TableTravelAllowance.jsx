@@ -54,12 +54,12 @@ export const TableTravelAllowance = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
       width: "80px",
     }, {
       name: "Codigo Proyecto",
-      selector: (row) => row.proyecto,
+      selector: (row) => row.Proyecto.codigoProyecto ? row.Proyecto.codigoProyecto : 'Sin Proyecto',
     },
 
     {
@@ -79,18 +79,18 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Monto",
-      selector: (row) => row.total,
+      selector: (row) => row.monto,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.estado} />,
+      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
       style: { paddingLeft: "0px", },
     },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown viaticoID={row.ID} />,
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
