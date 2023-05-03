@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
+import { send_expenses } from '../../apis/gastosApiTabla';
 // Styled Components
 import styled from 'styled-components'
 
@@ -62,8 +63,8 @@ const Modal = ({ estado,
                             <>
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO NEGATIVO</h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
                             </>
                         }
 
@@ -137,8 +138,8 @@ const Modal = ({ estado,
     }
 
     function cambioEstadoGasto(){
-        cambiarEstado(false);
-        console.log(id);
+        send_expenses(JSON.parse(id));
+        //cambiarEstado(false);
     }
 }
 
