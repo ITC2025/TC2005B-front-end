@@ -5,6 +5,7 @@ import DataTable from "react-data-table-component";
 import ProyectosDropdown from "./ProyectosDropdown";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { tokenID } from "../../apis/getApiData";
 
 export default function TablaProyectos() {
   const { pathname } = useLocation();
@@ -18,7 +19,9 @@ export default function TablaProyectos() {
 
   // Funcion para mostrar datos con fetch
   const getProyectos = async () => {
-    const url = "http://localhost:3000/projects/2";
+    const token_res = await tokenID();
+    const user_id = token_res.id;
+    const url = "http://localhost:3001/projects/" + user_id;
     const options = {
       method: "GET",
       headers: {
@@ -56,7 +59,7 @@ export default function TablaProyectos() {
     },
     {
       name: "Actions",
-      cell: (row) => <ProyectosDropdown />,
+      cell: (row) => <ProyectosDropdown codigoproyecto={row.codigoProyecto}/>,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
