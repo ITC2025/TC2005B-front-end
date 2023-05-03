@@ -18,7 +18,7 @@ export default function Facturas({id}) {
                 <h2 id="gastos">Gastos</h2>
                 <hr></hr>
 
-                <Gastos viaticoID={id} onAddInput={handleNewGastos}  />
+                <Gastos onAddInput={handleNewGastos} viaticoID={id}  />
             </Container>
 
         </>
