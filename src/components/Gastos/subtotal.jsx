@@ -5,7 +5,9 @@ import styled from "styled-components";
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 
 
-export default function Subtotal({id}) {
+export default function Subtotal({id,reloadTrigger}) {
+
+    const location = useLocation();
      
     const [suma, setSuma] = useState(0.0);
     const [anticipo, setAnticipo] =useState(0.0);
@@ -18,6 +20,7 @@ export default function Subtotal({id}) {
         
     }
 
+
     const loadData2 = async () => {
         const jsonInfo = await proyecto_info(id);
         console.log(jsonInfo);
@@ -25,13 +28,13 @@ export default function Subtotal({id}) {
         setAnticipo(jsonInfo[0].anticipo)
     }
 
+
     useEffect(() => {
         loadData();
         loadData2();
-    })
+    }, [reloadTrigger])
 
-    let total = anticipo - suma;
-
+    let total = anticipo - suma
 
 
     return (

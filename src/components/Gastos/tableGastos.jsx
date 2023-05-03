@@ -12,7 +12,7 @@ import { Button, useAccordionButton } from "react-bootstrap";
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
-export const TableGastos = ({ id }) => {
+export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -25,7 +25,6 @@ export const TableGastos = ({ id }) => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [modalImgEstado, modalCambiarEstado] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-
   // hooks de modales
   const [modal, modalEstado] = useState(false);
   const [modalSolicitud, modalEstadoSolicitud] = useState(false);
@@ -103,6 +102,7 @@ export const TableGastos = ({ id }) => {
     getTravelAllowance();
     loadData();
     loadData2();
+    handleReloadSubtotal();
   };
 
 =======
