@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
@@ -19,6 +20,7 @@ const Modal = ({ estado,
     id,
     rechazarPago,
     confirmarPago }) => {
+    const [refBank, setRefBank] = useState('');
     return (
         <>
             {estado &&
@@ -118,7 +120,7 @@ const Modal = ({ estado,
                                 <h1> CONFIRMACION DE PAGO </h1>
                                 <div class="modal-textarea">
                                     <p>Confirmacion de pago: </p>
-                                    <textarea rows="8" />
+                                    <textarea value={refBank} onChange={enviarRef} rows="3" />
                                 </div>
 
                                 <Button onClick={() => pagadoViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
@@ -136,20 +138,22 @@ const Modal = ({ estado,
         alert('si sirve');
     }
 
+    function enviarRef(event){
+        setRefBank(event.target.value);
+    }
+
     function cambioEstadoGasto(){
         send_expenses(JSON.parse(id));
         cambiarEstado(false);
     }
 
     function aceptarViatico(){
-        console.log("aceptado");
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
     }
 
-    function pagadoViatico(){
-        console.log("pagado");
-        paid_viatico(JSON.parse(id));
+    function pagadoViatico(){;
+        paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
     }
 }

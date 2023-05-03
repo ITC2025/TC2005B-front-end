@@ -186,7 +186,7 @@ export async function accept_viatico(id){
   return response;
 }
 
-export async function paid_viatico(id){
+export async function paid_viatico(id, refBank){
   const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
   console.log(url);
   const options = {
@@ -195,7 +195,8 @@ export async function paid_viatico(id){
           'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        ID_status_solicitud_viaticos: 4
+        ID_status_solicitud_viaticos: 4,
+        referenciaBancaria: refBank
       }),
   }
   const rawResponse = await fetch(url, options)
