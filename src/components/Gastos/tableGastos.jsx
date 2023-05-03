@@ -9,7 +9,7 @@ import Modal from "../modal/index";
 import { imagen_gastos } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
@@ -82,7 +82,7 @@ export const TableGastos = ({ id }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum(id);
+    const jsonInfo = await proyecto_sum_user(id);
     console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
