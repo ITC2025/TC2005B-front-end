@@ -138,6 +138,7 @@ export default function AdminTableTravelAll() {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
+        selectableRows
         onSelectedRowsChange={handleSelected}
       />
       <div className="d-flex justify-content-end mr-4">
