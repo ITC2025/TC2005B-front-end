@@ -35,8 +35,8 @@ export default function FormProject({ PmData }) {
   }
 
     // hooks de modales
-    const [modalEstado3, modalCambiarEstado3] = useState(false);
-    const [modalEstado4, modalCambiarEstado4] = useState(false);
+    const [modalProyectoCreado, modalCambiarProyectoCreado] = useState(false);
+    const [modalError, modalCambiarError] = useState(false);
 
   return (
     <>
@@ -67,7 +67,7 @@ export default function FormProject({ PmData }) {
           <Form.Group className="m-3" controlId="formBasicDown" id="group2">
             <Row>
               <Col>
-                <Form.Label>Descripcion</Form.Label>
+                <Form.Label>Descripción</Form.Label>
                 <textarea
                   class="form-control"
                   id="exampleFormControlTextarea2"
@@ -90,15 +90,15 @@ export default function FormProject({ PmData }) {
       </Container>
 
       {/* Modales */}
-      < Modal estado={modalEstado3}
-          cambiarEstado={modalCambiarEstado3}
+      < Modal estado={modalProyectoCreado}
+          cambiarEstado={modalCambiarProyectoCreado}
           msg={'PROYECTO CREADO'}
           oneButton={true}
           succesIcon={true}>
       </Modal>
 
-      < Modal estado={modalEstado4}
-          cambiarEstado={modalCambiarEstado4}
+      < Modal estado={modalError}
+          cambiarEstado={modalCambiarError}
           msg={'OCURRIÓ UN ERROR'}
           oneButton={true}
           excalmartionIcon={true}>
