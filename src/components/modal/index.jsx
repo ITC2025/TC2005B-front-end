@@ -36,7 +36,6 @@ const Modal = ({ estado,
 
                         {proyectoCreado &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <MdCheckCircle id='imagen' />
                                 <h1> PROYECTO CREADO </h1>
                                 <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
@@ -45,7 +44,6 @@ const Modal = ({ estado,
 
                         {ocurrioError &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <MdOutlineError id='imagen' />
                                 <h1> SOLICITUD EXITOSA </h1>
                                 <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
@@ -54,7 +52,6 @@ const Modal = ({ estado,
 
                         {saldo > 0 &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO POSITIVO</h1>
                                 <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
@@ -62,7 +59,6 @@ const Modal = ({ estado,
                             </>
                         } {saldo <= 0 &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO NEGATIVO</h1>
                                 <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
@@ -72,7 +68,6 @@ const Modal = ({ estado,
 
                         {confirmar &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <h1> CONFIRMAR </h1>
                                 <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
@@ -81,7 +76,6 @@ const Modal = ({ estado,
 
                         {cancelar &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <h1> CONFIRMAR </h1>
                                 <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
