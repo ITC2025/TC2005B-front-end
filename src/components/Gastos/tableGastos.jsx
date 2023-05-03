@@ -11,6 +11,7 @@ import { MdImage } from "react-icons/md"
 import { Button, useAccordionButton } from "react-bootstrap";
 import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
+import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 export const TableGastos = ({ id }) => {
   const navigate = useNavigate();
@@ -66,6 +67,13 @@ export const TableGastos = ({ id }) => {
     setAnticipo(jsonInfo[0].anticipo)
   }
 
+  const handleBorrar = async (id) => {
+    await smart_delete_expenses(id);
+    getTravelAllowance();
+    loadData();
+    loadData2();
+  }
+
   useEffect(() => {
     loadData();
     loadData2();
@@ -101,7 +109,7 @@ export const TableGastos = ({ id }) => {
       sortable: true,
       width: "16%",
     },
-    // {
+    // {f
     //     name:"Fecha",
     //     selector: (row) => row.date,
     //     sortable: true
@@ -145,7 +153,7 @@ export const TableGastos = ({ id }) => {
 
   const actions = {
       name: "Acciones",
-      cell: (row) => <GastosDropdown id={row.id} />,
+      cell: (row) => <GastosDropdown id={row.id} doIt={handleBorrar}/>, //Pasa la funcion de borrar como componente
       width: "8%",
       style: { paddingLeft: "0.5em" }
   };
