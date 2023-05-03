@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
-import { send_expenses } from '../../apis/gastosApiTabla';
+import { send_expenses, accept_viatico } from '../../apis/gastosApiTabla';
 // Styled Components
 import styled from 'styled-components'
 
@@ -87,7 +87,7 @@ const Modal = ({ estado,
                         {aprovacionSolicitud &&
                             <>
                                 <h1> APROBACION DE SOLICITUD </h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -139,7 +139,13 @@ const Modal = ({ estado,
 
     function cambioEstadoGasto(){
         send_expenses(JSON.parse(id));
-        //cambiarEstado(false);
+        cambiarEstado(false);
+    }
+
+    function aceptarViatico(){
+        console.log("aceptado");
+        accept_viatico(JSON.parse(id));
+        cambiarEstado(false);
     }
 }
 

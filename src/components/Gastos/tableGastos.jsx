@@ -275,7 +275,8 @@ export const TableGastos = ({ id }) => {
 
       <Modal estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
-        aprovacionSolicitud={true} />
+        aprovacionSolicitud={true} 
+        id = {idV} />
 
       <Modal estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
