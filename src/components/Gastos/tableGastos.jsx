@@ -20,9 +20,7 @@ export const TableGastos = ({ id }) => {
     navigate('/user/solicitar');
   }
 
-  const navGastos = () => {
-    navigate('/user/facturas');
-  }
+  
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -190,7 +188,7 @@ export const TableGastos = ({ id }) => {
 
           {pathname === "/user/expediente/" + id &&
             <>
-              <button id="basicButton" onClick={navGastos} > Nuevo Gasto </button>
+              <button id="basicButton" onClick={() => navigate('/user/facturas/' + id)} > Nuevo Gasto </button>
             </>
           }
 
