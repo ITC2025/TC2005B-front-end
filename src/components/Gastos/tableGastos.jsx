@@ -331,6 +331,7 @@ export const TableGastos = ({ id }) => {
         estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
         confirmarPago={true}
+        id={idV}
       />
     </div>
   );

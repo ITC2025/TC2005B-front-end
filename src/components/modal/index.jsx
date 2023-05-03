@@ -4,7 +4,7 @@ import { BsCashCoin } from "react-icons/bs";
 import {
   send_expenses,
   accept_viatico,
-  reject_viatico,
+  paid_viatico,
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -230,7 +230,7 @@ const Modal = ({
                   <textarea rows="8" />
                 </div>
                 <Button
-                  onClick={() => rechazarViatico()}
+                  onClick={() => cambiarEstado(false)}
                   id="basicButton"
                   className="mt-3"
                   size="lg"
@@ -299,12 +299,6 @@ const Modal = ({
   function aceptarViatico() {
     console.log("aceptado");
     accept_viatico(JSON.parse(id));
-    cambiarEstado(false);
-  }
-
-  function rechazarViatico() {
-    console.log("rechazado");
-    reject_viatico(JSON.parse(id));
     cambiarEstado(false);
   }
 };
