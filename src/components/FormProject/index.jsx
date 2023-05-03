@@ -34,9 +34,16 @@ export default function FormProject({ PmData }) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-    // hooks de modales
-    const [modalProyectoCreado, modalCambiarProyectoCreado] = useState(false);
-    const [modalError, modalCambiarError] = useState(false);
+  // function that if an error occurs, it will show the error modal
+  const errorModal = () => {
+    modalCambiarError(!modalError);
+    console.log("Error al crear proyecto");
+
+  }
+
+  // hooks de modales
+  const [modalProyectoCreado, modalCambiarProyectoCreado] = useState(false);
+  const [modalError, modalCambiarError] = useState(false);
 
   return (
     <>
@@ -81,7 +88,7 @@ export default function FormProject({ PmData }) {
             </Row>
           </Form.Group>
           <Container className="d-flex justify-content-end">
-            <Button type="submit" onClick={() => modalCambiarEstado3(!modalEstado3)} variant="primary"> Crear Proyecto </Button>
+            <Button type="submit" onClick={() => modalCambiarProyectoCreado(!modalProyectoCreado)} variant="primary"> Crear Proyecto </Button>
           </Container>
         </Form>
       </Container>
