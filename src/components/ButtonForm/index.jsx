@@ -74,6 +74,7 @@ function Gastos({viaticoID}) {
     });
 
     console.log(formGasto);
+    window.location.href = "/user/expediente/" + viaticoID;
   };
 
   const handleAddForm = () => {
