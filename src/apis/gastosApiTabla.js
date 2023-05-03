@@ -99,3 +99,80 @@ export async function imagen_gastos(g_id) {
     console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
+
+
+export async function smart_delete_expenses(id){
+  const url = 'http://localhost:3001/expense_reports/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_reporte_gasto: 5
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function approve_expenses(id){
+  const url = 'http://localhost:3001/expense_reports/choice/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_reporte_gasto: 3
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function reject_expenses(id){
+  const url = 'http://localhost:3001/expense_reports/choice/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_reporte_gasto: 4
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function send_expenses(id){
+  const url = 'http://localhost:3001/expense_reports/choice/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_reporte_gasto: 2
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+
+
+
+
+
+
+

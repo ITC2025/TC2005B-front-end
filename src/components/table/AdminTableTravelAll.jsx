@@ -1,25 +1,24 @@
+import "../../styles/TableAdminStyle.css";
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import "../../styles/TableStyle.css";
-import { BadgeStatus } from "../BadgeStatus";
+import TableAdminDropdown from "./TableAdminDropdown";
 import TextField from "@mui/material/TextField";
-import AdminTableDropdown from "./AdminTableDropdown";
-import { userViaticos } from "../../apis/getApiData";
+import { adminSol } from "../../apis/getApiData";
 
-export const AdminTableTravelAllowance = () => {
+export default function AdminTableTravelAll() {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // const getTravelAllowance = async () => {
-    const getTravelAllowance = async () => {
-      let data = await userViaticos();
-      data = data.filter((row) => row.ID_status_solicitud_viaticos !== 1).filter((row) => row.ID_status_solicitud_viaticos !== 5);
-      setTravelAllowance(data);
-      setFilterTravelAllowance(data);
-      // console.log(data);
-    };
+  // Funcion para mostrar datos con fetch
+  const getTravelAllowance = async () => {
+    let data = await adminSol()
+    setTravelAllowance(data);
+    setFilterTravelAllowance(data);
+    // console.log(data);
+  };
 
+  // const getTravelAllowance = async () => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
@@ -27,7 +26,7 @@ export const AdminTableTravelAllowance = () => {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
+      row.desc.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -36,45 +35,29 @@ export const AdminTableTravelAllowance = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID_solicitud_viatico,
+      selector: (row) => row.ID,
       sortable: true,
-      width: "80px",
-    }, {
-      name: "Codigo Proyecto",
-      selector: (row) => row.proyecto,
-    },
-
-    {
-      name: "Concepto",
-      selector: (row) => row.descripcion,
-      sortable: true,
-    },
-    {
-      name: "Fecha Inicio",
-      selector: (row) => row.fechaInicio,
-      sortable: true,
-    },
-    {
-      name: "Fecha Fin",
-      selector: (row) => row.fechaTermino,
-      sortable: true,
-    },
-    {
-      name: "Monto",
-      selector: (row) => row.total,
-      sortable: true,
-    },
-    {
-      name: "Estado",
-      selector: (row) => <BadgeStatus status={row.estado} />,
       width: "120px",
-      style: { paddingLeft: "0px", },
+    },
+    {
+      name: "Descripcion",
+      selector: (row) => row.desc,
+      sortable: true,
+    },
+    {
+      name: "Proyecto",
+      selector: (row) => row.proyecto,
+      sortable: true,
+    },
+    {
+      name: 'Total',
+      selector: (row) => row.total,
+      sortable: true
     },
     {
       name: "Actions",
-      cell: (row) => <AdminTableDropdown viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableAdminDropdown travelToId={row.ID} />,
       width: "80px",
-      style: { paddingLeft: "0.5em" },
     },
   ];
 
@@ -87,17 +70,18 @@ export const AdminTableTravelAllowance = () => {
   // mostrar la tabla
   return (
     <div className="container">
-      <div className="row my-2 d-flex align-items-end">
-        <div className="col-8 d-flex justify-content-end">
-          <div>
-            <div className="d-flex justify-content-end">
-              <TextField
-                id="outlined-basic"
-                label="Buscar"
-                variant="standard"
-                onChange={handleFilter}
-              />
-            </div>
+      <div className="row my-2">
+        <div className="col justify-content-start">
+          <p>Solicitudes faltantes de referencia de pago</p>
+        </div>
+        <div className="col justify-content-end">
+          <div className="d-flex justify-content-end">
+            <TextField
+              id="outlined-basic"
+              label="Buscar"
+              variant="standard"
+              onChange={handleFilter}
+            />
           </div>
         </div>
       </div>
@@ -110,4 +94,5 @@ export const AdminTableTravelAllowance = () => {
       />
     </div>
   );
+
 };

@@ -1,10 +1,10 @@
 .badge {
-    width: 75px;
+    width: 80px;
     border-radius: 4px;
-    color: black;
+    color: black !important;
 }
 
-.badge.aprobado {
+.badge.pagado {
     background-color: rgba(66, 255, 0, 0.1) !important;
     border: 1px solid rgba(71, 151, 43, 0.3);
     color : black;
@@ -17,13 +17,7 @@
 
 }
 
-.badge.enviado {
-    background-color: rgba(0, 0, 255, 0.1) !important;
-    border: 1px solid rgba(0, 0, 255, 0.3);
-    color : black;
-}
-
-.badge.pendiente{
+.badge.enrevision{
     background-color: rgba(251, 235, 4, 0.3) !important;
     border: 1px solid rgba(208, 178, 20, 0.3);
 }
@@ -33,6 +27,23 @@
     border: 1px solid rgba(164, 164, 164, 0.39) !important;
     color : black;
 }
+
+.badge.aprobado {
+    background-color: rgba(0, 255, 255, 0.2) !important;
+    border: 1px solid rgb(0, 138, 176, 0.3);
+}
+
+.badge.cerrado {
+    background-color: rgba(0, 0, 255, 0.1) !important;
+    border: 1px solid rgba(0, 0, 255, 0.3);
+    color : black;
+}
+
+.badge.no-status {
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color : black;
+}	
 
 .container {
     padding-left: 0px;
@@ -51,4 +62,10 @@ h6 {
     color: rgba(28, 27, 31, 1) !important;
     width: 50% !important;
     height: 50% !important;
+}
+
+#basic-button {
+    background: none !important;
+    display: inline !important;
+    border: none !important;
 }
