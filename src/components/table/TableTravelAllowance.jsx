@@ -17,17 +17,6 @@ export const TableTravelAllowance = () => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // // Funcion para mostrar datos con fetch
-  // const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
-  // // const URL = "https://jsonplaceholder.typicode.com/users";
-  // const getTravelAllowance = async () => {
-  //   const res = await fetch(URL);
-  //   const data = await res.json();
-  //   setTravelAllowance(data);
-  //   setFilterTravelAllowance(data);
-  //   // console.log(data);
-  // };
-
   // const getTravelAllowance = async () => {
     const getTravelAllowance = async () => {
       let data = await userViaticos()
@@ -37,11 +26,6 @@ export const TableTravelAllowance = () => {
       // console.log(data);
     
     };
-    const rawResponse = await fetch(url, options);
-    const response = await rawResponse.json();
-    console.log(response[0]);
-    setTravelAllowance(response);
-  };
 
   useEffect(() => {
     getTravelAllowance();
@@ -50,7 +34,7 @@ export const TableTravelAllowance = () => {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
