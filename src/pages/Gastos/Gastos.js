@@ -5,7 +5,7 @@ import {Container} from "react-bootstrap";
 
 import '../../styles/gastos.css';
 
-export default function Facturas() {
+export default function Facturas({id}) {
     const [newGastos, setNewGastos] = useState([]);
 
     const handleNewGastos = (gastos) => {
@@ -18,7 +18,7 @@ export default function Facturas() {
                 <h2 id="gastos">Gastos</h2>
                 <hr></hr>
 
-                <Gastos onAddInput={handleNewGastos} />
+                <Gastos viaticoID={id} onAddInput={handleNewGastos}  />
             </Container>
 
         </>

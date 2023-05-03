@@ -6,11 +6,11 @@ import { BiMoney } from "react-icons/bi";
 import saveFormData from '../../apis/saveFormData';
 
 
-function Gastos() {
+function Gastos({viaticoID}) {
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([
     {
-      ID_solicitud_viatico: "1",
+      ID_solicitud_viatico: viaticoID,
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
