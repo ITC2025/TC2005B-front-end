@@ -9,8 +9,9 @@ import Modal from "../modal/index"
 import { imagen_gastos } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md"
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
+import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 export const TableGastos = ({ id }) => {
   const navigate = useNavigate();
@@ -34,10 +35,34 @@ export const TableGastos = ({ id }) => {
   const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/" + id;
+  
+  const URL = [];
+
+
+  {/*user*/ }
+  {pathname === "/user/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+
+  }
+
+  {/*pm*/ }
+  {pathname === "/admin/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/admin/" + id);
+
+  }
+
+  {/*admin*/ }
+  {pathname === "/pm/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/pm/" + id);
+
+  }
+
+  const URLs = URL[0];
+  console.log(URLs)
+
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
-    const res = await fetch(URL);
+    const res = await fetch(URLs);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
@@ -53,7 +78,7 @@ export const TableGastos = ({ id }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum(id);
+    const jsonInfo = await proyecto_sum_user(id);
     console.log(jsonInfo);
     setSuma(jsonInfo.monto)
 
@@ -66,11 +91,19 @@ export const TableGastos = ({ id }) => {
     setAnticipo(jsonInfo[0].anticipo)
   }
 
+  const handleBorrar = async (id) => {
+    await smart_delete_expenses(id);
+    getTravelAllowance();
+    loadData();
+    loadData2();
+  }
+
   useEffect(() => {
     loadData();
     loadData2();
   })
 
+  let idV = id;
   let total = anticipo - suma;
 
   const ImageComponent = async ({ idGasto }) => {
@@ -101,7 +134,7 @@ export const TableGastos = ({ id }) => {
       sortable: true,
       width: "16%",
     },
-    // {
+    // {f
     //     name:"Fecha",
     //     selector: (row) => row.date,
     //     sortable: true
@@ -145,7 +178,7 @@ export const TableGastos = ({ id }) => {
 
   const actions = {
       name: "Acciones",
-      cell: (row) => <GastosDropdown id={row.id} />,
+      cell: (row) => <GastosDropdown id={row.id} doIt={handleBorrar}/>, //Pasa la funcion de borrar como componente
       width: "8%",
       style: { paddingLeft: "0.5em" }
   };
@@ -237,11 +270,13 @@ export const TableGastos = ({ id }) => {
 
       <Modal estado={modal}
         cambiarEstado={modalEstado}
-        saldo={total} />
+        saldo={total} 
+        id={idV} />
 
       <Modal estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
-        aprovacionSolicitud={true} />
+        aprovacionSolicitud={true} 
+        id = {idV} />
 
       <Modal estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
@@ -249,7 +284,8 @@ export const TableGastos = ({ id }) => {
 
       <Modal estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
-        confirmarPago={true} />
+        confirmarPago={true}
+        id = {idV} />
     </div>
   );
 };
