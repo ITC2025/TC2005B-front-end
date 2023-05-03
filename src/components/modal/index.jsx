@@ -7,6 +7,8 @@ import {
   accept_viatico,
   paid_viatico,
   reject_viatico,
+  approve_expenses,
+  reject_expenses
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -26,6 +28,7 @@ const Modal = ({ estado,
     rechazarPago,
     confirmarPago }) => {
     const [refBank, setRefBank] = useState('');
+    const [comRechazo, setComRechazo] = useState('');
     return (
         <>
             {estado &&
@@ -112,7 +115,7 @@ const Modal = ({ estado,
 
                                 <div class="modal-textarea">
                                     <p>Motivo de rechazo: </p>
-                                    <textarea rows="8" />
+                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
                                 </div>
 
                                 <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
@@ -147,25 +150,29 @@ const Modal = ({ estado,
         setRefBank(event.target.value);
     }
 
-  function cambioEstadoGasto() {
-    send_expenses(JSON.parse(id));
-    cambiarEstado(false);
-  }
+    function enviarCom(event){
+        setComRechazo(event.target.value);
+    }
+
+    function cambioEstadoGasto() {
+        send_expenses(JSON.parse(id));
+        cambiarEstado(false);
+    }
 
     function aceptarViatico(){
-        console.log("aceptado");
+        approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
     }
 
     function rechazarViatico() {
-        console.log("rechazado");
-        accept_viatico(JSON.parse(id));
+        reject_expenses(JSON.parse(id));
+        reject_viatico(JSON.parse(id), comRechazo);
         cambiarEstado(false);
-      }
+    }
     
 
-      function pagadoViatico(){;
+    function pagadoViatico(){;
         paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
     }
