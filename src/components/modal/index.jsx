@@ -24,8 +24,8 @@ const Modal = ({ estado,
     saldo,
     id,
     rechazarPago,
-    confirmarPago }) => {
-    const [refBank, setRefBank] = useState('');
+    confirmarPago,
+    motivoRechazo }) => {
     return (
         <>
             {estado &&
@@ -132,6 +132,15 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {motivoRechazo &&
+                            <>
+                                <h1> MOTIVO DE RECHAZO</h1>
+                                <p className='mt-2'> warala warala </p>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
                     </ContModal>
                 </Overlay >
             }
@@ -143,30 +152,20 @@ const Modal = ({ estado,
         alert('si sirve');
     }
 
-    function enviarRef(event){
-        setRefBank(event.target.value);
+    function cambioEstadoGasto() {
+        send_expenses(JSON.parse(id));
+        cambiarEstado(false);
     }
 
-  function cambioEstadoGasto() {
-    send_expenses(JSON.parse(id));
-    cambiarEstado(false);
-  }
-
-    function aceptarViatico(){
+    function aceptarViatico() {
         console.log("aceptado");
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
     }
 
-    function rechazarViatico() {
-        console.log("rechazado");
-        accept_viatico(JSON.parse(id));
-        cambiarEstado(false);
-      }
-    
-
-      function pagadoViatico(){;
-        paid_viatico(JSON.parse(id), refBank);
+    function pagadoViatico() {
+        console.log("pagado");
+        paid_viatico(JSON.parse(id));
         cambiarEstado(false);
     }
 }
