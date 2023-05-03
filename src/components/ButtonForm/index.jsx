@@ -6,11 +6,10 @@ import { BiMoney } from "react-icons/bi";
 import {postCrearReporteGastos} from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
-
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([
     {
-      ID_solicitud_viatico: "1",
+      ID_solicitud_viatico: viaticoID,
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
@@ -75,11 +74,12 @@ function Gastos({viaticoID}) {
     });
 
     console.log(formGasto);
+    window.location.href = "/user/expediente/" + viaticoID;
   };
 
   const handleAddForm = () => {
     const newForm = {
-      ID_solicitud_viatico: "1",
+      ID_solicitud_viatico: viaticoID,
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
@@ -229,7 +229,7 @@ function Gastos({viaticoID}) {
           </Col>
         </Row>
         <div className="d-flex justify-content-end align-items-end" id="BotonesSC">
-          <Button variant="danger" controlId="CGbutton" id="botonC1" href={"/user/expediente/" + viaticoID} >
+          <Button variant="danger" controlId="CGbutton" id="botonC1" href={"/user/expediente/" + viaticoID}>
             CANCELAR
           </Button>
           <Button variant="danger" type="submit" id="botonG1" noValidate>
