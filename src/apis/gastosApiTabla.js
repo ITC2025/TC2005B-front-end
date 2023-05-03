@@ -49,9 +49,9 @@ export async function proyecto_info(v_id) {
   }
 }
 
-  export async function proyecto_sum(v_id) {
+  export async function proyecto_sum_user(v_id) {
 
-    const url = 'http://localhost:3001/expenses_table/vis/' + v_id;
+    const url = 'http://localhost:3001/expenses_table/sumuser/' + v_id;
   
     const options = {
       method: "GET"
@@ -71,6 +71,58 @@ export async function proyecto_info(v_id) {
     } catch (error) {
       console.error("Ocurrió un error al intentar obtener los gastos:", error);
     }
+
+
+}
+
+export async function proyecto_sum_pm(v_id) {
+
+  const url = 'http://localhost:3001/expenses_table/sumpm/' + v_id;
+
+  const options = {
+    method: "GET"
+    //tambien en caso de que se mande info por parte del front, se agrega el header
+  }
+
+  try {
+    //aqui se usa una variable para llamar a traves del fetch al servidor
+    const response = await fetch(url, options);
+    //da un error en caso de que no responda bien
+    if (!response.ok) {
+      throw new Error("La respuesta de la API no fue exitosa.");
+    }
+    const data = await response.json();
+    console.log(JSON.stringify(data));
+    return data;
+  } catch (error) {
+    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+  }
+
+
+}
+
+export async function proyecto_sum_admin(v_id) {
+
+  const url = 'http://localhost:3001/expenses_table/sumadmin/' + v_id;
+
+  const options = {
+    method: "GET"
+    //tambien en caso de que se mande info por parte del front, se agrega el header
+  }
+
+  try {
+    //aqui se usa una variable para llamar a traves del fetch al servidor
+    const response = await fetch(url, options);
+    //da un error en caso de que no responda bien
+    if (!response.ok) {
+      throw new Error("La respuesta de la API no fue exitosa.");
+    }
+    const data = await response.json();
+    console.log(JSON.stringify(data));
+    return data;
+  } catch (error) {
+    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+  }
 
 
 }
