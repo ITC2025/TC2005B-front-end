@@ -5,12 +5,15 @@ import "../../styles/TableBadges.css"
 function TableAdminDropdown({travelToId}) {
 
   return (
+    
     <Dropdown>
-      <Dropdown.Toggle >
+      <Dropdown.Toggle id="basic-button">
         <MdOutlineMoreVert id='icon'  />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu>
+      <Dropdown.Menu id="basic-menu" MenuListProps={{
+          "aria-labelledby": "basic-button",
+        }}>
         <Dropdown.Item href={"http://localhost:3000/admin/expediente/"+travelToId}>Ver</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
