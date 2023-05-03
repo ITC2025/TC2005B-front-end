@@ -87,7 +87,7 @@ const Modal = ({ estado,
                         {aprovacionSolicitud &&
                             <>
                                 <h1> APROBACION DE SOLICITUD </h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -143,6 +143,7 @@ const Modal = ({ estado,
     }
 
     function aceptarViatico(){
+        console.log("aceptado");
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
     }
