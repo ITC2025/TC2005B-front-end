@@ -26,7 +26,8 @@ const Modal = ({ estado,
     saldo,
     id,
     rechazarPago,
-    confirmarPago }) => {
+    confirmarPago,
+    motivoRechazo }) => {
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
     return (
