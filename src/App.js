@@ -35,6 +35,11 @@ function AdminExpedientesID() {
   return <Test name={routeParams.id} />;
 }
 
+function FacturasID() {
+  const routeParams = useParams();
+  return <Facturas id={routeParams.id} />;
+}
+
 function App() {
 
 
@@ -48,8 +53,8 @@ function App() {
             <Route element={<NavbarSC client={true} />} path="user">
               <Route index element={<UserDashboard />} />
               <Route
-                element={<Facturas name="user facturas" />}
-                path="facturas"
+                element={<FacturasID name="user facturas" />}
+                path="facturas/:id"
               />
               {/* <Route
                 element={<TablaGastos name="user tabla gastos" />}
