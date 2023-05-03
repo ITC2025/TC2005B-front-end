@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import {
   send_expenses,
   accept_viatico,
   paid_viatico,
   reject_viatico,
+  approve_expenses,
+  reject_expenses
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -24,8 +27,11 @@ const Modal = ({ estado,
     saldo,
     id,
     rechazarPago,
-    confirmarPago }) => {
+    confirmarPago,
+    motivoRechazo }) => {
     const [refBank, setRefBank] = useState('');
+    const [comRechazo, setComRechazo] = useState('');
+    const navigate = useNavigate();
     return (
         <>
             {estado &&
@@ -112,7 +118,7 @@ const Modal = ({ estado,
 
                                 <div class="modal-textarea">
                                     <p>Motivo de rechazo: </p>
-                                    <textarea rows="8" />
+                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
                                 </div>
 
                                 <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
@@ -132,6 +138,15 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {motivoRechazo &&
+                            <>
+                                <h1> MOTIVO DE RECHAZO</h1>
+                                <p className='mt-2'> warala warala </p>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
                     </ContModal>
                 </Overlay >
             }
@@ -147,27 +162,35 @@ const Modal = ({ estado,
         setRefBank(event.target.value);
     }
 
-  function cambioEstadoGasto() {
-    send_expenses(JSON.parse(id));
-    cambiarEstado(false);
-  }
+    function enviarCom(event){
+        setComRechazo(event.target.value);
+    }
+
+    function cambioEstadoGasto() {
+        send_expenses(JSON.parse(id));
+        cambiarEstado(false);
+        navigate(-1);
+    }
 
     function aceptarViatico(){
-        console.log("aceptado");
+        approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
+        navigate(-1);
     }
 
     function rechazarViatico() {
-        console.log("rechazado");
-        accept_viatico(JSON.parse(id));
+        reject_expenses(JSON.parse(id));
+        reject_viatico(JSON.parse(id), comRechazo);
         cambiarEstado(false);
-      }
+        navigate(-1);
+    }
     
 
-      function pagadoViatico(){;
+    function pagadoViatico(){;
         paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
+        navigate(-1);
     }
 }
 
