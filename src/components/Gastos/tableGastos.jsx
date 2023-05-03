@@ -6,10 +6,10 @@ import TextField from "@mui/material/TextField";
 import GastosDropdown from "./gastosOptDropdown";
 import { useNavigate } from "react-router-dom";
 import Modal from "../modal/index";
-import { imagen_gastos } from "../../apis/gastosApiTabla";
+import { imagen_gastos, smart_delete_expenses } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
 export const TableGastos = ({ id, handleReloadSubtotal }) => {
@@ -80,7 +80,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum(id);
+    const jsonInfo = await proyecto_sum_user(id);
     console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
@@ -309,28 +309,28 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
         estado={modal}
         cambiarEstado={modalEstado}
         saldo={total}
-        id={idV}
+        id={id}
       />
 
       <Modal
         estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
         aprovacionSolicitud={true}
-        id={idV}
+        id={id}
       />
 
       <Modal
         estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
         rechazarPago={true}
-        id={idV}
+        id={id}
       />
 
       <Modal
         estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
         confirmarPago={true}
-        id={idV}
+        id={id}
       />
     </div>
   );
