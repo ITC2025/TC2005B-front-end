@@ -1,7 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
-import { send_expenses, accept_viatico, paid_viatico } from '../../apis/gastosApiTabla';
 // Styled Components
 import styled from 'styled-components'
 
@@ -16,10 +15,8 @@ const Modal = ({ estado,
     proyectoCreado,
     ImgSrc,
     saldo,
-    id,
     rechazarPago,
-    confirmarPago,
-    motivoRechazo }) => {
+    confirmarPago }) => {
     return (
         <>
             {estado &&
@@ -56,16 +53,16 @@ const Modal = ({ estado,
                         {saldo > 0 &&
                             <>
                                 <BsCashCoin id='imagen' />
-                                <h1> SALDO POSITIVO </h1>
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
+                                <h1> SALDO POSITIVO</h1>
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
                             </>
                         } {saldo <= 0 &&
                             <>
                                 <BsCashCoin id='imagen' />
                                 <h1> SALDO NEGATIVO</h1>
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
                             </>
                         }
 
@@ -88,7 +85,7 @@ const Modal = ({ estado,
                         {aprovacionSolicitud &&
                             <>
                                 <h1> APROBACION DE SOLICITUD </h1>
-                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -122,19 +119,10 @@ const Modal = ({ estado,
                                     <textarea rows="8" />
                                 </div>
 
-                                <Button onClick={() => pagadoViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
-
-                        {motivoRechazo &&
-                            <>
-                                <h1> MOTIVO DE RECHAZO</h1>
-                                <p className='mt-2'> warala warala </p>
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
-                            </>
-                        }
-
                     </ContModal>
                 </Overlay >
             }
@@ -144,23 +132,6 @@ const Modal = ({ estado,
     function enviarData() {
         cambiarEstado(false)
         alert('si sirve');
-    }
-
-    function cambioEstadoGasto() {
-        send_expenses(JSON.parse(id));
-        cambiarEstado(false);
-    }
-
-    function aceptarViatico() {
-        console.log("aceptado");
-        accept_viatico(JSON.parse(id));
-        cambiarEstado(false);
-    }
-
-    function pagadoViatico() {
-        console.log("pagado");
-        paid_viatico(JSON.parse(id));
-        cambiarEstado(false);
     }
 }
 
