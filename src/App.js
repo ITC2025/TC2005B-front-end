@@ -22,6 +22,7 @@ import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
 import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
+import AdminViaticos from './pages/Viaticos/adminViaticos';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
