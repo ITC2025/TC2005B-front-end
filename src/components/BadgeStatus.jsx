@@ -3,11 +3,20 @@ import { Badge } from "react-bootstrap";
 import "../styles/TableBadges.css";
 
 export const BadgeStatus = (props) => {
-  if (props.status === "Enviado") {
+  if (props.status === "Borrador") {
     return (
       <div className="container">
         <h6>
-          <Badge className='enviado'>{props.status}</Badge>
+          <Badge className='borrador'>{props.status}</Badge>
+        </h6>
+      </div>
+    );
+  } else if (props.status === "En revisión") {
+    return (
+
+      <div className="container">
+        <h6>
+          <Badge className='enrevision'>{props.status}</Badge>
         </h6>
       </div>
     );
@@ -20,12 +29,21 @@ export const BadgeStatus = (props) => {
         </h6>
       </div>
     );
-  } else if (props.status === "Borrador") {
+  } else if (props.status === "Pagado") {
     return (
-
+          
       <div className="container">
         <h6>
-          <Badge className='borrador'>{props.status}</Badge>
+          <Badge className='pagado'>{props.status}</Badge>
+        </h6>
+      </div>
+    );
+  } else if (props.status === "Cerrado") {
+    return (
+          
+      <div className="container">
+        <h6>
+          <Badge className='cerrado'>{props.status}</Badge>
         </h6>
       </div>
     );
@@ -38,11 +56,11 @@ export const BadgeStatus = (props) => {
         </h6>
       </div>
     );
-  } else {
+  }else {
     return (
       <div className="container">
         <h6>
-          <Badge className='pendiente'>{props.status}</Badge>
+          <Badge className='no-status'>{props.status}</Badge>
         </h6>
       </div>
     );
