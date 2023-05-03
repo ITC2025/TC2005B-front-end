@@ -30,6 +30,10 @@ function ExpedientesID() {
   return <Expediente id={routeParams.id} />;
 }
 
+function AdminExpedientesID() {
+  const routeParams = useParams();
+  return <Test name={routeParams.id} />;
+}
 
 function FacturasID() {
   const routeParams = useParams();
@@ -91,7 +95,7 @@ function App() {
                 path="historial"
               />
               <Route element={<Proyectos />} path="proyectos" />
-              <Route element={<ExpedientesID />} path="expediente/:id" />
+              <Route element={<AdminExpedientesID />} path="expediente/:id" />
               <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>

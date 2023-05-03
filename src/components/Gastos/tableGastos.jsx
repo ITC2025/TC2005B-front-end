@@ -9,9 +9,8 @@ import Modal from "../modal/index";
 import { imagen_gastos } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
-import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const navigate = useNavigate();
@@ -65,7 +64,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
 
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
-    const res = await fetch(URLs);
+    const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
@@ -81,7 +80,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum_user(id);
+    const jsonInfo = await proyecto_sum(id);
     console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
@@ -106,7 +105,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     loadData2();
   });
 
-  let idV = id;
   let total = anticipo - suma;
 
   const ImageComponent = async ({ idGasto }) => {
@@ -136,7 +134,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       sortable: true,
       width: "16%",
     },
-    // {f
+    // {
     //     name:"Fecha",
     //     selector: (row) => row.date,
     //     sortable: true
