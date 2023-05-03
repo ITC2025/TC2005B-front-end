@@ -3,10 +3,10 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import saveFormData from '../../apis/saveFormData';
+import {postCrearReporteGastos} from '../../apis/getApiData';
 
+function Gastos({viaticoID}) {
 
-function Gastos() {
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([
     {
@@ -69,9 +69,9 @@ function Gastos() {
       return;
     }
 
-    // Aquí puedes enviar los datos a la API utilizando la función saveFormData
+    // Aquí puedes enviar los datos a la API utilizando la función postCrearReporteGastos
     formGasto.forEach((data) => {
-      saveFormData(data);
+      postCrearReporteGastos(data);
     });
 
     console.log(formGasto);
@@ -229,7 +229,7 @@ function Gastos() {
           </Col>
         </Row>
         <div className="d-flex justify-content-end align-items-end" id="BotonesSC">
-          <Button variant="danger" controlId="CGbutton" id="botonC1">
+          <Button variant="danger" controlId="CGbutton" id="botonC1" href={"/user/expediente/" + viaticoID} >
             CANCELAR
           </Button>
           <Button variant="danger" type="submit" id="botonG1" noValidate>
