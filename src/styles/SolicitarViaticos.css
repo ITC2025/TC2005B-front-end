@@ -24,12 +24,6 @@
     line-height: 20px;
 }
 
-Container {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
 #SolicitFormRow {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -64,7 +58,12 @@ Container {
     padding-left: 20px;
     padding-right: 20px;
     margin-top: 3px;
-}  
+}
+
+#ProyectosDropdown {
+    padding-left: 12px;
+    padding-right: 12px;
+}
 
 ::-webkit-scrollbar {
     width: 8px;

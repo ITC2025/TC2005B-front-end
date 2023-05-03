@@ -1,24 +1,45 @@
 import { Col } from "react-bootstrap";
 import '../../styles/colProyecto.css'
+import { proyecto_info } from "../../apis/gastosApiTabla";
+import { useEffect} from "react";
+import { useState } from "react";
 
-function ColInfoProyecto() {
+function ColInfoProyecto({id}) {
+
+    
+    const [fechaI, setFechaI] = useState("");
+    const [fechaF, setFechaF] = useState("");
+    const [anticipo, setAnticipo] =useState(0.0);
+
+    const loadData = async () => {
+        const jsonInfo = await proyecto_info(id);
+
+        setFechaI(jsonInfo[0].fechaInicio)
+        setFechaF(jsonInfo[0].fechaTermino)
+        setAnticipo(jsonInfo[0].anticipo)
+    }
+
+    useEffect(() => {
+        loadData();
+    })
+
     return (
         <>
             <Col md={4} className="colDatos">
                 <div className="idProyecto">
                     ID del proyecto:
-                    <div>------</div>
+                    <div>&nbsp;{id}</div>
                 </div>
                 <div>
                     Fecha de creación:
-                    <div>------</div>
+                    <div>&nbsp;{fechaI}</div>
                 </div>
                 <div>
                     Fecha de vencimiento:
-                    <div>------</div>
+                    <div>&nbsp;{fechaF}</div>
                 </div>
                 <div className="anticipoProyecto mt-2"> ANTICIPO DEL PROYECTO (MXN):
-                    <div>------</div>
+                    <div>&nbsp;{anticipo}</div>
                 </div>
             </Col>
         </>

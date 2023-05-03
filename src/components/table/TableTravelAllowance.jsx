@@ -5,6 +5,7 @@ import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
+import { userViaticos } from "../../apis/getApiData";
 
 export const TableTravelAllowance = () => {
   const navigate = useNavigate();
@@ -28,14 +29,13 @@ export const TableTravelAllowance = () => {
   // };
 
   // const getTravelAllowance = async () => {
-  const getTravelAllowance = async () => {
-    const url = "http://localhost:3001/viatico_request/user/1";
-    const options = {
-      credentials: "include",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const getTravelAllowance = async () => {
+      let data = await userViaticos()
+      data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
+      setTravelAllowance(data);
+      setFilterTravelAllowance(data);
+      // console.log(data);
+    
     };
     const rawResponse = await fetch(url, options);
     const response = await rawResponse.json();
@@ -59,12 +59,12 @@ export const TableTravelAllowance = () => {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID_solicitud_viatico,
+      selector: (row) => row.ID,
       sortable: true,
       width: "80px",
     }, {
       name: "Codigo Proyecto",
-      selector: (row) => row.Proyecto.codigoProyecto,
+      selector: (row) => row.proyecto,
     },
 
     {
@@ -84,33 +84,18 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Monto",
-      selector: (row) => row.monto,
+      selector: (row) => row.total,
       sortable: true,
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
+      selector: (row) => <BadgeStatus status={row.estado} />,
       width: "120px",
-      style: { paddingLeft: "0px" },
+      style: { paddingLeft: "0px", },
     },
-    // {
-    //   name: 'Description',
-    //   selector: row => row.gender,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Total',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Status',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown />,
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },

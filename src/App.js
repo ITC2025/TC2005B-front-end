@@ -23,13 +23,15 @@ import Proyecto from "./pages/Proyecto/proyectoAdmin";
 import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 
-function Expedientes() {
+function ExpedientesID() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
-  return <Test name={routeParams.id} />;
+  return <Expediente id={routeParams.id} />;
 }
 
 function App() {
+
+
   return (
     <div className="App">
       <Router>
@@ -49,7 +51,7 @@ function App() {
               /> */}
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
-              <Route element={<Expedientes />} path="expediente" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
             </Route>
           </Route>
 
@@ -65,6 +67,7 @@ function App() {
               <Route element={<Test name="pm tablero" />} path="tablero" />
               <Route element={<CrearProyecto />} path="crearproyecto" />
               <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
               <Route element={<PmTable/> } path={"solicitudes/:codigoproyecto"} />
               <Route element={<PmTable/> } path={"solicitudes"} />
@@ -88,6 +91,7 @@ function App() {
                 element={<SolicitudesAprovadas
                   name="solicitudes Aprovadas" />}
                 path="solicitudes" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
             </Route>
           </Route>
 
@@ -99,7 +103,7 @@ function App() {
                 element={<Test name="sysadmin viaticos" />}
                 path="viaticos"
               />
-              <Route element={<Expedientes />} path="expediente/:id" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route
                 element={<Test name="sysadmin tablero" />}
                 path="tablero"

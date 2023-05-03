@@ -8,7 +8,7 @@ export async function postEstimatedExpenses(
     monto: monto,
     ID_solicitud_viatico: ID_solicitud_viatico,
   };
-  const url = "http://localhost:3001/viaticos/";
+  const url = "http://localhost:3001/viaticos";
   const options = {
     method: "POST",
     body: JSON.stringify(expense),
