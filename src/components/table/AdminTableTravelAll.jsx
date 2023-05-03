@@ -1,8 +1,6 @@
 import "../../styles/TableAdminStyle.css";
-
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
@@ -121,7 +119,6 @@ export default function AdminTableTravelAll() {
           <p>Solicitudes faltantes de referencia de pago</p>
         </div>
         <div className="col justify-content-end">
-
           <div className="d-flex justify-content-end">
             <TextField
               id="outlined-basic"

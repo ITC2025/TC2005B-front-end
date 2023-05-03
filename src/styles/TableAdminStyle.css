@@ -41,11 +41,6 @@
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   
-  input:focus {
-    outline: none;
-    border: 1.5px solid rgb(221, 110, 110);
-  }
-  
   input:focus::placeholder {
     color: transparent;
   }
