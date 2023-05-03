@@ -222,7 +222,7 @@ export async function send_expenses(id){
 }
 
 export async function accept_viatico(id){
-  const url = 'http://localhost:3001/viatico_request/aceptarSol/' + JSON.stringify(id);
+  const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
   console.log(url);
   const options = {
       method: "PATCH",
@@ -237,6 +237,24 @@ export async function accept_viatico(id){
   const response = await rawResponse.json();
   return response;
 }
+
+export async function paid_viatico(id){
+  const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_solicitud_viaticos: 4
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
 
 
 

@@ -284,7 +284,8 @@ export const TableGastos = ({ id }) => {
 
       <Modal estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
-        confirmarPago={true} />
+        confirmarPago={true}
+        id = {idV} />
     </div>
   );
 };
