@@ -131,14 +131,14 @@ export async function postProject(nombre, codigo , desc) {
     return response;
 }
 
-export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, nomEmpleado, codProyecto, descStatus){
+export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, codProyecto, descStatus){
     let data = {
         monto: montoViatico,
         descripcion: descripcionSolicitud,
         destino: destinoViatico,
         fechaInicio: fechaI,
         fechaTermino: fechaF,
-        nombre_empleado: nomEmpleado,
+        ID_empleado: tokenID(),
         codigo_proyecto: codProyecto,
         status_descripcion: descStatus
     }
