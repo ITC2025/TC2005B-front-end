@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import {postCrearReporteGastos} from '../../apis/getApiData';
+import saveFormData from '../../apis/saveFormData';
 
 function Gastos({viaticoID}) {
   const [validated, setValidated] = useState(false);
@@ -58,7 +58,7 @@ function Gastos({viaticoID}) {
     );
   };
 
-  const handleSubmit = (event) => {
+const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
