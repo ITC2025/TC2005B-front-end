@@ -10,6 +10,7 @@ import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
 import "../../styles/formProject.css";
 import { postProject } from "../../utils/PostProject";
+import Modal from "../modal/index"
 
 export default function FormProject({ PmData }) {
 
@@ -32,6 +33,10 @@ export default function FormProject({ PmData }) {
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
+
+    // hooks de modales
+    const [modalEstado3, modalCambiarEstado3] = useState(false);
+    const [modalEstado4, modalCambiarEstado4] = useState(false);
 
   return (
     <>
@@ -76,13 +81,29 @@ export default function FormProject({ PmData }) {
             </Row>
           </Form.Group>
           <Container className="d-flex justify-content-end">
-            <Button type="submit" > Crear Proyecto </Button>
+            <Button type="submit" onClick={() => modalCambiarEstado3(!modalEstado3)} variant="primary"> Crear Proyecto </Button>
           </Container>
         </Form>
       </Container>
       <Container className="fixed-bottom">
         <hr />
       </Container>
+
+      {/* Modales */}
+      < Modal estado={modalEstado3}
+          cambiarEstado={modalCambiarEstado3}
+          msg={'PROYECTO CREADO'}
+          oneButton={true}
+          succesIcon={true}>
+      </Modal>
+
+      < Modal estado={modalEstado4}
+          cambiarEstado={modalCambiarEstado4}
+          msg={'OCURRIÓ UN ERROR'}
+          oneButton={true}
+          excalmartionIcon={true}>
+      </Modal>
+
     </>
   );
 }
