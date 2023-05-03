@@ -170,7 +170,7 @@ export async function send_expenses(id){
 }
 
 export async function accept_viatico(id){
-  const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
+  const url = 'http://localhost:3001/viatico_request/aceptarSol/' + JSON.stringify(id);
   console.log(url);
   const options = {
       method: "PATCH",
