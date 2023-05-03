@@ -6,8 +6,7 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 
-
-export default function PmTableDropdown({viaticoID}) {
+export default function TableDropdown({viaticoID}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
