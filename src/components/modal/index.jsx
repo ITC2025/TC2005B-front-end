@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
-import { send_expenses } from '../../apis/gastosApiTabla';
+import { send_expenses, accept_viatico } from '../../apis/gastosApiTabla';
 // Styled Components
 import styled from 'styled-components'
 
@@ -139,7 +139,12 @@ const Modal = ({ estado,
 
     function cambioEstadoGasto(){
         send_expenses(JSON.parse(id));
-        //cambiarEstado(false);
+        cambiarEstado(false);
+    }
+
+    function aceptarViatico(){
+        accept_viatico(JSON.parse(id));
+        cambiarEstado(false);
     }
 }
 
