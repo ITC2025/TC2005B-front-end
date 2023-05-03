@@ -94,7 +94,6 @@ const Modal = ({ estado,
 
                         {imagenTicket &&
                             <>
-                                <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
                                 <img src={ImgSrc} alt="Imagen ticket"></img>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
