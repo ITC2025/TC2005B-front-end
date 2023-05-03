@@ -12,6 +12,7 @@ function SolicitarViaticos() {
     fechaTermino: "",
     destino: "",
     proyecto: "",
+    descripcion: ""
   });
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
@@ -129,6 +130,19 @@ function SolicitarViaticos() {
                     ))}
                   </Form.Select>
                 </div>
+              </Col>
+            </Row>
+            <Row id="SolicitFormRow">
+              <Col sm={12} md={10}>
+                <FormInputIcon
+                  className="formDescripcion-input"
+                  inputControlID="descripcion"
+                  inputLabel="Descripcion"
+                  inputName="descripcion"
+                  inputType="text"
+                  value={formData.descripcion}
+                  onChange={handleInputChange}
+                />
               </Col>
             </Row>
             <Row id="SolicitFormRow" className="mx-1">
