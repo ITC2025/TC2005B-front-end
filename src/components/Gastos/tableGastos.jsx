@@ -6,10 +6,10 @@ import TextField from "@mui/material/TextField";
 import GastosDropdown from "./gastosOptDropdown";
 import { useNavigate } from "react-router-dom";
 import Modal from "../modal/index";
-import { imagen_gastos } from "../../apis/gastosApiTabla";
+import { imagen_gastos, smart_delete_expenses } from "../../apis/gastosApiTabla";
 import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
 export const TableGastos = ({ id, handleReloadSubtotal }) => {
@@ -32,7 +32,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
-<<<<<<< HEAD
 
   const URL = [];
 
@@ -63,9 +62,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const URLs = URL[0];
   console.log(URLs);
 
-=======
-  const URL = "http://localhost:3001/expenses_table/vi/" + id;
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
@@ -84,7 +80,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum(id);
+    const jsonInfo = await proyecto_sum_user(id);
     console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
@@ -96,7 +92,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     setAnticipo(jsonInfo[0].anticipo);
   };
 
-<<<<<<< HEAD
   const handleBorrar = async (id) => {
     await smart_delete_expenses(id);
     getTravelAllowance();
@@ -105,8 +100,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     handleReloadSubtotal();
   };
 
-=======
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
   useEffect(() => {
     loadData();
     loadData2();
@@ -184,17 +177,10 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   ];
 
   const actions = {
-<<<<<<< HEAD
     name: "Acciones",
     cell: (row) => <GastosDropdown id={row.id} doIt={handleBorrar} />, //Pasa la funcion de borrar como componente
     width: "8%",
     style: { paddingLeft: "0.5em" },
-=======
-      name: "Acciones",
-      cell: (row) => <GastosDropdown id={row.id} />,
-      width: "8%",
-      style: { paddingLeft: "0.5em" }
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
   };
 
   const empty = {
@@ -321,42 +307,30 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       <Modal
         estado={modal}
         cambiarEstado={modalEstado}
-<<<<<<< HEAD
         saldo={total}
-        id={idV}
+        id={id}
       />
-=======
-        saldo={total} />
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
 
       <Modal
         estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
-<<<<<<< HEAD
         aprovacionSolicitud={true}
-        id={idV}
+        id={id}
       />
-=======
-        aprovacionSolicitud={true} />
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
 
       <Modal
         estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
         rechazarPago={true}
-        id={idV}
+        id={id}
       />
 
       <Modal
         estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
-<<<<<<< HEAD
         confirmarPago={true}
-        id={idV}
+        id={id}
       />
-=======
-        confirmarPago={true} />
->>>>>>> 867b7ca8e479ba5aa2df5750523338c2487be12f
     </div>
   );
 };

@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 
-export default function GastosDropdown({id}) {
+export default function GastosDropdown(props) {
 
-  console.log(id);
+  console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -26,7 +26,7 @@ export default function GastosDropdown({id}) {
   
 
   const handleModal = () => {
-    smart_delete_expenses(id);
+    props.doIt(props.id);
     handleClose();
 
   } 

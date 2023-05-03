@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
-
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
+import { useLocation } from "react-router-dom";
 
 export default function Subtotal({id,reloadTrigger}) {
 
@@ -13,7 +13,7 @@ export default function Subtotal({id,reloadTrigger}) {
     const [anticipo, setAnticipo] =useState(0.0);
 
     const loadData = async () => {
-        const jsonInfo = await proyecto_sum(id);
+        const jsonInfo = await proyecto_sum_user(id);
         console.log(jsonInfo);
 
         setSuma(jsonInfo.monto)
