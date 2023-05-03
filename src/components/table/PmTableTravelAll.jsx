@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = ({codigoproyecto}) => {
+export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -32,14 +32,21 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
     const user_id = response.id;
     let URL = "http://localhost:3001/viatico_request/pm/" + user_id;
 
-    if (codigoproyecto) {
-      URL = URL + "/" + codigoproyecto;
+    if (project_code) {
+      URL = URL + "/" + project_code;
     } 
 
     console.log(URL);
 
     const res = await fetch(URL);
-    const data = await res.json();
+    let data = await res.json();
+    
+    if (closed_requests_only) {
+      data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Enviado");
+    } else if (!project_code) {
+      data = data.filter((row) => row.StatusSolicitudViatico.descripcion == "Enviado");
+    }
+
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -117,6 +124,7 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
       selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
+      style: { paddingLeft: "0px", },
     },
     // {
     //   name: 'Description',
@@ -135,7 +143,7 @@ export const PmTableTravelAll = ({codigoproyecto}) => {
     // },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown/>,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico}/>,
       width: "80px",
     },
   ];
