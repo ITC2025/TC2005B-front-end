@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import {
   send_expenses,
   accept_viatico,
@@ -30,6 +31,7 @@ const Modal = ({ estado,
     motivoRechazo }) => {
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
+    const navigate = useNavigate();
     return (
         <>
             {estado &&
@@ -167,24 +169,28 @@ const Modal = ({ estado,
     function cambioEstadoGasto() {
         send_expenses(JSON.parse(id));
         cambiarEstado(false);
+        navigate(-1);
     }
 
     function aceptarViatico(){
         approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
+        navigate(-1);
     }
 
     function rechazarViatico() {
         reject_expenses(JSON.parse(id));
         reject_viatico(JSON.parse(id), comRechazo);
         cambiarEstado(false);
+        navigate(-1);
     }
     
 
     function pagadoViatico(){;
         paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
+        navigate(-1);
     }
 }
 

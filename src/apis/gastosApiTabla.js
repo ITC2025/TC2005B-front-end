@@ -239,7 +239,7 @@ export async function reject_viatico(id, comRechazo) {
     },
     body: JSON.stringify({
       ID_status_solicitud_viaticos: 6,
-      comentario: comRechazo
+      motivoRechazo: comRechazo
     }),
   };
   const rawResponse = await fetch(url, options);
