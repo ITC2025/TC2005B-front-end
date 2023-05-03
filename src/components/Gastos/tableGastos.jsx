@@ -106,6 +106,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   });
 
   let total = anticipo - suma;
+  let idV = id;
 
   const ImageComponent = async ({ idGasto }) => {
     const imageBlob = await imagen_gastos(idGasto);
