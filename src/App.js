@@ -20,13 +20,19 @@ import Proyectos from "./pages/Proyectos";
 import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
-import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
+import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
+import AdminViaticos from './pages/Viaticos/adminViaticos';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
   return <Expediente id={routeParams.id} />;
+}
+
+function AdminExpedientesID() {
+  const routeParams = useParams();
+  return <Test name={routeParams.id} />;
 }
 
 function App() {
@@ -74,6 +80,7 @@ function App() {
               <Route element={<PmTable/> } path={"historico"} />
             </Route>
           </Route>
+{/* comentario */}
 
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
@@ -82,16 +89,9 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
-              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Proyecto />}
-                path="proyecto"
-              />
-              <Route
-                element={<SolicitudesAprovadas
-                  name="solicitudes Aprovadas" />}
-                path="solicitudes" />
-              <Route element={<ExpedientesID />} path="expediente/:id" />
+              <Route element={<Proyectos />} path="proyectos" />
+              <Route element={<AdminExpedientesID />} path="expediente/:id" />
+              <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>
 
