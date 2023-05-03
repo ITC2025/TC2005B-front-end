@@ -86,11 +86,11 @@ export const TableTravelAllowance = () => {
       name: "Estado",
       selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
-      style: { paddingLeft: "0px", },
+      style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico}  Status={row.StatusSolicitudViatico.descripcion} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
