@@ -35,10 +35,8 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const getRole = async () => {
     const response = await tokenValidation()
-    console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      console.log('Yo soy Admin')
     }
   }
 
@@ -71,7 +69,7 @@ export default function TableDropdown({ viaticoID, Status }) {
         <MenuItem
           onClick={handleClose}
           as={Link}
-          to={isAdmin ? "../expediente/" + viaticoID : "../user/expediente/" + viaticoID}
+          to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
         >
           Ver gastos
         </MenuItem>
