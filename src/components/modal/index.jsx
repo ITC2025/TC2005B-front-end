@@ -12,7 +12,8 @@ import {
     approve_expenses,
     reject_expenses,
     send_viatico,
-    comentarioRechazo
+    comentarioRechazo,
+    refBancaria
 } from "../../apis/gastosApiTabla";
 
 const Modal = ({ estado,
@@ -35,7 +36,8 @@ const Modal = ({ estado,
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
     const [msgRechazo, setMsgRechazo] = useState('');
-    
+    const [bancoRef, setBancoRef] = useState('');
+
     const navigate = useNavigate();
     
     // comentario de rechazo
@@ -45,6 +47,13 @@ const Modal = ({ estado,
             setMsgRechazo(data);
         }
         fetchComentario();
+
+        async function fetchReferencia() {
+            const ref = await refBancaria(id)
+            setBancoRef(ref);
+        }
+        fetchReferencia();
+
     }, [id]);
     
     if (!msgRechazo) {
@@ -54,6 +63,23 @@ const Modal = ({ estado,
             </>
         );
     }
+
+    // useEffect  (() => {
+    //     async function fetchReferencia() {
+    //         const ref = await refBancaria(id)
+    //         setBancoRef(ref);
+    //     }
+    //     fetchReferencia();
+    // }, [id]);
+    
+    if (!bancoRef) {
+        return (
+            <>
+                <p> NO HAY MOTIVO DE RECHAZO.</p>
+            </>
+        );
+    }
+
 
     return (
         <>
@@ -175,7 +201,7 @@ const Modal = ({ estado,
                             <>
                                 <h1> REFERENCIA DE PAGO </h1>
                                 <div class="modal-textarea">
-                                    <p> warala warala </p>
+                                    <p> {bancoRef.refBancaria} </p>
                                 </div>
 
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
