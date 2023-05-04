@@ -283,3 +283,17 @@ export async function paid_viatico(id, refBank){
   const response = await rawResponse.json();
   return response;
 }
+
+export async function comentarioRechazo(id){
+  const url = 'http://localhost:3001/viatico_request/comentario/' + JSON.stringify(id);
+  const options = {
+      method: "GET",
+      credentials:"include",
+      headers: {
+          'Content-Type': 'application/json',
+      }
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
