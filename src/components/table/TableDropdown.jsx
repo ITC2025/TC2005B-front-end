@@ -12,6 +12,7 @@ export default function TableDropdown({ viaticoID, Status }) {
   const open = Boolean(anchorEl);
 
   const [modal, mostrarModal] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,7 +21,13 @@ export default function TableDropdown({ viaticoID, Status }) {
   const handleClose = () => {
     setAnchorEl(null);
     {
-      Status === "Rechazado" && mostrarModal(!modal);
+      Status === "Rechazado" && 
+      mostrarModal(!modal);
+    }
+
+    {
+      Status === "Pagado" &&
+      mostrarModalPagado(!modalPagado);
     }
   };
 
@@ -58,9 +65,23 @@ export default function TableDropdown({ viaticoID, Status }) {
             <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
           </>
         )}
+
+        {Status === "Pagado" && (
+          <>
+            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
+          </>
+        )}
       </Menu>
 
-      <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
+      <Modal estado={modal} 
+          cambiarEstado={mostrarModal}
+          motivoRechazo={true} 
+          id={viaticoID}/>
+
+      <Modal estado={modalPagado} 
+            cambiarEstado={mostrarModalPagado}
+            mostrarReferencia={true}
+            id={viaticoID}/>
     </div>
   );
 }
