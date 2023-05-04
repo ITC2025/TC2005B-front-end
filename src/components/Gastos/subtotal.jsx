@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_sum_pm, proyecto_sum_admin, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
 export default function Subtotal({id,reloadTrigger}) {
@@ -12,13 +12,6 @@ export default function Subtotal({id,reloadTrigger}) {
     const [suma, setSuma] = useState(0.0);
     const [anticipo, setAnticipo] =useState(0.0);
 
-    const loadData = async () => {
-        const jsonInfo = await proyecto_sum_user(id);
-        console.log(jsonInfo);
-
-        setSuma(jsonInfo.monto)
-        
-    }
 
 
     const loadData2 = async () => {
@@ -30,7 +23,37 @@ export default function Subtotal({id,reloadTrigger}) {
 
 
     useEffect(() => {
-        loadData();
+        if (location.pathname === "/user/expediente/" + id) {
+            const loadData = async () => {
+                const jsonInfo = await proyecto_sum_user(id);
+                console.log(jsonInfo);
+        
+                setSuma(jsonInfo.monto)
+                
+            }
+            loadData();
+        }
+        else if (location.pathname === "/pm/expediente/" + id) {
+            const loadData = async () => {
+                const jsonInfo = await proyecto_sum_pm(id);
+                console.log(jsonInfo);
+        
+                setSuma(jsonInfo.monto)
+                
+            }
+            loadData();
+        }
+        else if (location.pathname === "/admin/expediente/" + id) {
+            const loadData = async () => {
+                const jsonInfo = await proyecto_sum_admin(id);
+                console.log(jsonInfo);
+        
+                setSuma(jsonInfo.monto)
+                
+            }
+            loadData();
+        }
+        
         loadData2();
     }, [reloadTrigger])
 
