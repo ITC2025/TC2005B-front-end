@@ -54,7 +54,7 @@ export default function GastosDropdown(props) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Editar</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to={"/user/EG/" + props.id} >Editar</MenuItem>
         <MenuItem onClick={handleModal}>Borrar</MenuItem>
       </Menu>
 
