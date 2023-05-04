@@ -60,8 +60,6 @@ const handleSubmit = (event) => {
         data.append(key, form[key]);
       }
 
-      console.log(data);
-
       postCrearReporteGastos(data);
 
       window.location.href = "/user/expediente/" + viaticoID;
