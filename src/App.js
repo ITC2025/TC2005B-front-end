@@ -79,6 +79,7 @@ function App() {
               <Route element={<PmTable/> } path={"solicitudes/:project_code"} />
               <Route element={<PmTable/> } path={"solicitudes"} />
               <Route element={<PmTable/> } path={"historico"} />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
             </Route>
           </Route>
 {/* comentario */}
@@ -90,6 +91,7 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SolicitudesAprobadas />} path="solicitudes" />

@@ -59,6 +59,16 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       URL.push("http://localhost:3001/expenses_table/pm/" + id);
   }
 
+  {
+    pathname === "/pm/hexpediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
+  {
+    pathname === "/admin/hexpediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
   const URLs = URL[0];
   console.log(URLs);
 
@@ -209,6 +219,14 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
   {
     pathname === "/pm/expediente/" + id && columns.push(empty);
+  }
+
+  {
+    pathname === "/pm/hexpediente/" + id && columns.push(empty);
+  }
+
+  {
+    pathname === "/admin/hexpediente/" + id && columns.push(empty);
   }
 
   const paginationTable = {

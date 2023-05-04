@@ -23,7 +23,7 @@ export default function Subtotal({id,reloadTrigger}) {
 
 
     useEffect(() => {
-        if (location.pathname === "/user/expediente/" + id) {
+        if (location.pathname === "/user/expediente/" + id || location.pathname === "/pm/hexpediente/" + id || location.pathname === "/admin/hexpediente/" + id) {
             const loadData = async () => {
                 const jsonInfo = await proyecto_sum_user(id);
                 console.log(jsonInfo);
