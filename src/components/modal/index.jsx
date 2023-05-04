@@ -201,7 +201,7 @@ const Modal = ({ estado,
                             <>
                                 <h1> REFERENCIA DE PAGO </h1>
                                 <div class="modal-textarea">
-                                    <p> {bancoRef.refBancaria} </p>
+                                    <p> {bancoRef.referencia} </p>
                                 </div>
 
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
