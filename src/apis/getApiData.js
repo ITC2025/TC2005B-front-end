@@ -29,6 +29,7 @@ export async function tokenValidation(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+
     return response;
 }
 
@@ -163,10 +164,7 @@ export async function postCrearReporteGastos(data){
     const options = {
         method: "POST",
         credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: data
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();

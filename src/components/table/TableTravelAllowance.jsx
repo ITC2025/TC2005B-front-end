@@ -29,14 +29,12 @@ export const TableTravelAllowance = () => {
   // };
 
   // const getTravelAllowance = async () => {
-    const getTravelAllowance = async () => {
-      let data = await userViaticos()
-      data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4)
-      setTravelAllowance(data);
-      setFilterTravelAllowance(data);
-      // console.log(data);
-    
-    };
+  const getTravelAllowance = async () => {
+    let data = await userViaticos();
+    setTravelAllowance(data);
+    setFilterTravelAllowance(data);
+    // console.log(data);
+  };
 
   useEffect(() => {
     getTravelAllowance();
@@ -57,9 +55,13 @@ export const TableTravelAllowance = () => {
       selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
       width: "80px",
-    }, {
+    },
+    {
       name: "Codigo Proyecto",
-      selector: (row) => row.Proyecto.codigoProyecto ? row.Proyecto.codigoProyecto : 'Sin Proyecto',
+      selector: (row) =>
+        row.Proyecto.codigoProyecto
+          ? row.Proyecto.codigoProyecto
+          : "Sin Proyecto",
     },
 
     {
@@ -84,13 +86,20 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
+      selector: (row) => (
+        <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
+      ),
       width: "120px",
-      style: { paddingLeft: "0px", },
+      style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => (
+        <TableDropdown
+          viaticoID={row.ID_solicitud_viatico}
+          Status={row.StatusSolicitudViatico.descripcion}
+        />
+      ),
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -130,7 +139,6 @@ export const TableTravelAllowance = () => {
         data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
-        fixedHeader
       />
     </div>
   );

@@ -5,15 +5,30 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import Modal from "../modal";
 
-export default function TableDropdown({viaticoID}) {
+export default function TableDropdown({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [modal, mostrarModal] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    {
+      Status === "Rechazado" && 
+      mostrarModal(!modal);
+    }
+
+    {
+      Status === "Pagado" &&
+      mostrarModalPagado(!modalPagado);
+    }
   };
 
   return (
@@ -37,8 +52,36 @@ export default function TableDropdown({viaticoID}) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={"/user/expediente/" + viaticoID}
+        >
+          Ver gastos
+        </MenuItem>
+
+        {Status === "Rechazado" && (
+          <>
+            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
+          </>
+        )}
+
+        {Status === "Pagado" && (
+          <>
+            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
+          </>
+        )}
       </Menu>
+
+      <Modal estado={modal} 
+          cambiarEstado={mostrarModal}
+          motivoRechazo={true} 
+          id={viaticoID}/>
+
+      <Modal estado={modalPagado} 
+            cambiarEstado={mostrarModalPagado}
+            mostrarReferencia={true}
+            id={viaticoID}/>
     </div>
   );
 }
