@@ -13,7 +13,7 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
-import { AdminTable } from "./pages/HistorialViaticos/adminTable";
+import { AdminTable }  from "./pages/HistorialViaticos/adminTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import CrearProyecto from "./pages/CrearProyecto";
 import Proyectos from "./pages/Proyectos";
