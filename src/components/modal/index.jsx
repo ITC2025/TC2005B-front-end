@@ -1,306 +1,190 @@
-import { Button } from "react-bootstrap";
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import {
+  send_expenses,
+  accept_viatico,
+  paid_viatico,
+  reject_viatico,
+  approve_expenses,
+  reject_expenses,
+  send_viatico
+} from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
 
-const Modal = ({
-  estado,
-  cambiarEstado,
-  solicitudExitosa,
-  ocurrioError,
-  confirmar,
-  cancelar,
-  aprovacionSolicitud,
-  imagenTicket,
-  proyectoCreado,
-  ImgSrc,
-  saldo,
-  rechazarPago,
-  confirmarPago,
-  motivoRechazo,
-}) => {
-  return (
-    <>
-      {estado && (
-        <Overlay>
-          <ContModal>
-            <BotonCerrar>
-              <MdClose id="cerrar" onClick={() => cambiarEstado(false)} />
-            </BotonCerrar>
-            {solicitudExitosa && (
-              <>
-                <MdCheckCircle id="imagen" />
-                <h1> SOLICITUD EXITOSA </h1>
-                <Button
-                  onClick={() => enviarData()}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>
-              </>
-            )}
-            {proyectoCreado && (
-              <>
-                <MdCheckCircle id="imagen" />
-                <h1> PROYECTO CREADO </h1>
-                <Button
-                  onClick={() => enviarData()}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>
-              </>
-            )}
-            {ocurrioError && (
-              <>
-                <MdOutlineError id="imagen" />
-                <h1> SOLICITUD EXITOSA </h1>
-                <Button
-                  onClick={() => enviarData()}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>
-              </>
-            )}
-            {saldo > 0 && (
-              <>
-                <BsCashCoin id="imagen" />
-                <h1> SALDO POSITIVO</h1>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ABONAR A OTRO VIATICO{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  PAGAR EN CAJA{" "}
-                </Button>
-              </>
-            )}{" "}
-            {saldo <= 0 && (
-              <>
-                <BsCashCoin id="imagen" />
-                <h1> SALDO NEGATIVO</h1>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ABONAR A OTRO VIATICO{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  REEMBOLSO EN CAJA{" "}
-                </Button>
-              </>
-            )}
-            {confirmar && (
-              <>
-                <h1> CONFIRMAR </h1>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  {" "}
-                  CANCELAR{" "}
-                </Button>
-              </>
-            )}
-            {cancelar && (
-              <>
-                <h1> CONFIRMAR </h1>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  {" "}
-                  CANCELAR{" "}
-                </Button>
-              </>
-            )}
-            {aprovacionSolicitud && (
-              <>
-                <h1> APROBACION DE SOLICITUD </h1>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  ACEPTAR{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  {" "}
-                  CANCELAR{" "}
-                </Button>
-              </>
-            )}
-            {imagenTicket && (
-              <>
-                <img src={ImgSrc} alt="Imagen ticket"></img>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  CLOSE
-                </Button>
-              </>
-            )}
-            {rechazarPago && (
-              <>
-                <h1> RECHAZAR PAGO </h1>
-                <div class="modal-textarea">
-                  <p>Motivo de rechazo: </p>
-                  <textarea rows="8" />
-                </div>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  RECHAZAR{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  {" "}
-                  CANCELAR{" "}
-                </Button>
-              </>
-            )}
-            {confirmarPago && (
-              <>
-                <h1> CONFIRMACION DE PAGO </h1>
-                <div class="modal-textarea">
-                  <p>Confirmacion de pago: </p>
-                  <textarea rows="8" />
-                </div>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="basicButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="ligth"
-                >
-                  {" "}
-                  PAGAR{" "}
-                </Button>{" "}
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  {" "}
-                  CANCELAR{" "}
-                </Button>
-              </>
-            )}
-            {motivoRechazo && (
-              <>
-                <h1> MOTIVO DE RECHAZO</h1>
-                <p> warala warala </p>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  CLOSE
-                </Button>
-              </>
-            )}
-          </ContModal>
-        </Overlay>
-      )}
-    </>
-  );
+const Modal = ({ estado,
+    cambiarEstado,
+    solicitudExitosa,
+    ocurrioError,
+    confirmar,
+    cancelar,
+    aprovacionSolicitud,
+    imagenTicket,
+    proyectoCreado,
+    ImgSrc,
+    saldo,
+    rechazarPago,
+    confirmarPago,
+    motivoRechazo, id}) => {
+    const [refBank, setRefBank] = useState('');
+    const [comRechazo, setComRechazo] = useState('');
+    const navigate = useNavigate();
+    return (
+        <>
+            {estado &&
+                <Overlay>
+                    <ContModal>
+                        <BotonCerrar>
+                            <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
+                        </BotonCerrar>
 
-  function enviarData() {
-    cambiarEstado(false);
-    alert("si sirve");
-  }
-};
+                        {solicitudExitosa &&
+                            <>
+                                <MdCheckCircle id='imagen' />
+                                <h1> SOLICITUD EXITOSA </h1>
+                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
+                            </>
+                        }
+
+                        {proyectoCreado &&
+                            <>
+                                <MdCheckCircle id='imagen' />
+                                <h1> PROYECTO CREADO </h1>
+                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
+                            </>
+                        }
+
+                        {ocurrioError &&
+                            <>
+                                <MdOutlineError id='imagen' />
+                                <h1> SOLICITUD EXITOSA </h1>
+                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
+                            </>
+                        }
+
+                        {saldo > 0 &&
+                            <>
+                                <BsCashCoin id='imagen' />
+                                <h1> SALDO POSITIVO</h1>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
+                            </>
+                        } {saldo <= 0 &&
+                            <>
+                                <BsCashCoin id='imagen' />
+                                <h1> SALDO NEGATIVO</h1>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                            </>
+                        }
+
+                        {confirmar &&
+                            <>
+                                <h1> CONFIRMAR </h1>
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {cancelar &&
+                            <>
+                                <h1> CONFIRMAR </h1>
+                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {aprovacionSolicitud &&
+                            <>
+                                <h1> APROBACION DE SOLICITUD </h1>
+                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {imagenTicket &&
+                            <>
+                                <img src={ImgSrc} alt="Imagen ticket"></img>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
+                        {rechazarPago &&
+                            <>
+                                <h1> RECHAZAR PAGO </h1>
+
+                                <div class="modal-textarea">
+                                    <p>Motivo de rechazo: </p>
+                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
+                                </div>
+
+                                <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {confirmarPago &&
+                            <>
+                                <h1> CONFIRMACION DE PAGO </h1>
+                                <div class="modal-textarea">
+                                    <p>Confirmacion de pago: </p>
+                                    <textarea value={refBank} onChange={enviarRef} rows="3" />
+                                </div>
+
+                                <Button onClick={() => pagadoViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+                    </ContModal>
+                </Overlay >
+            }
+        </>
+    );
+
+    function enviarData() {
+        cambiarEstado(false)
+        alert('si sirve');
+    }
+
+    function enviarRef(event){
+        setRefBank(event.target.value);
+    }
+
+    function enviarCom(event){
+        setComRechazo(event.target.value);
+    }
+
+    function cambioEstadoGasto() {
+        send_expenses(JSON.parse(id));
+        send_viatico(JSON.parse(id));
+        cambiarEstado(false);
+        navigate("/user/viaticos");
+    }
+
+    function aceptarViatico(){
+        approve_expenses(JSON.parse(id));
+        accept_viatico(JSON.parse(id));
+        cambiarEstado(false);
+        navigate(-1);
+    }
+
+    function rechazarViatico() {
+        reject_expenses(JSON.parse(id));
+        reject_viatico(JSON.parse(id), comRechazo);
+        cambiarEstado(false);
+        navigate(-1);
+    }
+    
+
+    function pagadoViatico(){;
+        paid_viatico(JSON.parse(id), refBank);
+        cambiarEstado(false);
+        navigate(-1);
+    }
+}
 
 export default Modal;
 
@@ -314,6 +198,7 @@ const Overlay = styled.div`
   top: 0 !important;
   left: 0 !important;
   z-index: 9999 !important;
+
   background: rgba(0, 0, 0, 0.6);
 `;
 
