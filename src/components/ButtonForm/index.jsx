@@ -163,7 +163,7 @@ const handleSubmit = (event) => {
                           <div className="input-group mb-3">
                             <input
                               className="form-control"
-                              name="factura"
+                              name="xml"
                               type="file"
                               onChange={(e) => handleFileUpload(e, index)}
                             />
