@@ -30,10 +30,6 @@ function ExpedientesID() {
   return <Expediente id={routeParams.id} />;
 }
 
-function AdminExpedientesID() {
-  const routeParams = useParams();
-  return <Test name={routeParams.id} />;
-}
 
 function FacturasID() {
   const routeParams = useParams();
@@ -83,6 +79,7 @@ function App() {
               <Route element={<PmTable/> } path={"solicitudes/:project_code"} />
               <Route element={<PmTable/> } path={"solicitudes"} />
               <Route element={<PmTable/> } path={"historico"} />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
             </Route>
           </Route>
 {/* comentario */}
@@ -94,8 +91,9 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
               <Route element={<Proyectos />} path="proyectos" />
-              <Route element={<AdminExpedientesID />} path="expediente/:id" />
+              <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>

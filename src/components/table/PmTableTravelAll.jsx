@@ -60,10 +60,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     getTravelAllowance();
   }, []);
 
-  // Funcion para aceptar o rechazar solicitudes
-  const handleAceptar = () => {
-    console.log("aceptar");
-  };
 
   const handleSend = () => {
     console.log("enviar");
@@ -71,30 +67,10 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     window.location.reload();
   };
 
-  // Funcion con checkbox
-  const handleSelected = ({ selectedRows }) => {
-    console.log(selectedRows);
-    if (selectedRows.length === 1) {
-      console.log("row seleccionada");
-      setEstadoBoton2(false);
-      setEstadoBoton(false);
-    }
-    else if (selectedRows.length > 1) {
-      console.log("mas de una row seleccionadas");
-      setEstadoBoton2(true);
-      setEstadoBoton(false);
-    }
-    else {
-      console.log("no hay row seleccionadas");
-      setEstadoBoton(true);
-      setEstadoBoton2(true);
-    }
-  };
-
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.name.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -107,11 +83,17 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       sortable: true,
       width: "120px",
     },
-    // {
-    //     name:"Fecha",
-    //     selector: (row) => row.date,
-    //     sortable: true
-    // },
+    {
+      name: "Fecha",
+      selector: (row) => row.fechaInicio,
+      sortable: true,
+    },
+    {
+      name: "Descripcion",
+      selector: (row) => row.descripcion,
+      sortable: true,
+
+    },
     {
       name: "Nombre",
       selector: (row) => row.Empleado.name,
@@ -129,21 +111,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       width: "120px",
       style: { paddingLeft: "0px", },
     },
-    // {
-    //   name: 'Description',
-    //   selector: row => row.gender,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Total',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
-    // {
-    //   name: 'Status',
-    //   selector: row => row.status,
-    //   sortable: true
-    // },
     {
       name: "Actions",
       cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico}/>,
@@ -178,19 +145,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
-        selectableRows
-        onSelectedRowsChange={handleSelected}
       />
-      <div className="d-flex justify-content-end mr-4">
-        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleAceptar}>
-          Aceptar
-        </Button>
-        <div className="mx-2"></div>
-        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleShow}>
-          Rechazar
-        </Button>
-      </div>
-
       <Modal
         show={show}
         onHide={handleClose}

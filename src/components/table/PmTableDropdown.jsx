@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Modal from "../modal/index"
 
 export default function PmTableDropdown({ viaticoID }) {
@@ -20,6 +21,8 @@ export default function PmTableDropdown({ viaticoID }) {
     setAnchorEl(null);
   };
 
+  const {pathname} = useLocation();
+  
   return (
     <div>
       <Button
@@ -40,7 +43,20 @@ export default function PmTableDropdown({ viaticoID }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver gastos</MenuItem>
+
+        {(pathname === "/pm/solicitudes" &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver gastos</MenuItem>
+
+          </>
+        )}
+
+        {(pathname === "/pm/historico" &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/hexpediente/" + viaticoID}  >Ver gastos</MenuItem>
+          </>
+        )}
+
         <MenuItem onClick={() => setShowModal(!showModal)}>Ver solicitud</MenuItem>
       </Menu>
       <Modal
