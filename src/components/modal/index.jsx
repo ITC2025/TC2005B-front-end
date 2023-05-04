@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import {
-  send_expenses,
-  accept_viatico,
-  paid_viatico,
-  reject_viatico,
-  approve_expenses,
-  reject_expenses,
-  send_viatico
-} from "../../apis/gastosApiTabla";
-// Styled Components
 import styled from "styled-components";
+import { 
+    send_expenses,
+    accept_viatico,
+    paid_viatico,
+    reject_viatico,
+    approve_expenses,
+    reject_expenses,
+    send_viatico,
+    comentarioRechazo,
+    refBancaria
+} from "../../apis/gastosApiTabla";
 
 const Modal = ({ estado,
     cambiarEstado,
@@ -28,10 +29,58 @@ const Modal = ({ estado,
     saldo,
     rechazarPago,
     confirmarPago,
-    motivoRechazo, id}) => {
+    motivoRechazo, 
+    mostrarReferencia, id }) => {
+    
+    // hooks 
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
+    const [msgRechazo, setMsgRechazo] = useState('');
+    const [bancoRef, setBancoRef] = useState('');
+
     const navigate = useNavigate();
+    
+    // comentario de rechazo
+    useEffect  (() => {
+        async function fetchComentario() {
+            const data = await comentarioRechazo(id)
+            setMsgRechazo(data);
+        }
+        fetchComentario();
+
+        async function fetchReferencia() {
+            const ref = await refBancaria(id)
+            setBancoRef(ref);
+        }
+        fetchReferencia();
+
+    }, [id]);
+    
+    if (!msgRechazo) {
+        return (
+            <>
+                <p> NO HAY MOTIVO DE RECHAZO.</p>
+            </>
+        );
+    }
+
+    // useEffect  (() => {
+    //     async function fetchReferencia() {
+    //         const ref = await refBancaria(id)
+    //         setBancoRef(ref);
+    //     }
+    //     fetchReferencia();
+    // }, [id]);
+    
+    if (!bancoRef) {
+        return (
+            <>
+                <p> NO HAY MOTIVO DE RECHAZO.</p>
+            </>
+        );
+    }
+
+
     return (
         <>
             {estado &&
@@ -107,7 +156,7 @@ const Modal = ({ estado,
 
                         {imagenTicket &&
                             <>
-                                <img src={ImgSrc} alt="Imagen ticket"></img>
+                                <img src={ImgSrc} class="ticket_image" alt="Imagen ticket"></img>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }
@@ -130,7 +179,7 @@ const Modal = ({ estado,
                             <>
                                 <h1> CONFIRMACION DE PAGO </h1>
                                 <div class="modal-textarea">
-                                    <p>Confirmacion de pago: </p>
+                                    <p> Introduce la referencia bancaria: </p>
                                     <textarea value={refBank} onChange={enviarRef} rows="3" />
                                 </div>
 
@@ -138,6 +187,27 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {motivoRechazo &&
+                            <>  
+                                <h1> MOTIVO RECHAZO </h1>
+                                <p> {msgRechazo.comentario} </p>
+                                {console.log(id)}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
+                        {mostrarReferencia &&
+                            <>
+                                <h1> REFERENCIA DE PAGO </h1>
+                                <div class="modal-textarea">
+                                    <p> {bancoRef.referencia} </p>
+                                </div>
+
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
                     </ContModal>
                 </Overlay >
             }
@@ -149,11 +219,11 @@ const Modal = ({ estado,
         alert('si sirve');
     }
 
-    function enviarRef(event){
+    function enviarRef(event) {
         setRefBank(event.target.value);
     }
 
-    function enviarCom(event){
+    function enviarCom(event) {
         setComRechazo(event.target.value);
     }
 
@@ -164,7 +234,7 @@ const Modal = ({ estado,
         navigate("/user/viaticos");
     }
 
-    function aceptarViatico(){
+    function aceptarViatico() {
         approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
@@ -177,9 +247,9 @@ const Modal = ({ estado,
         cambiarEstado(false);
         navigate(-1);
     }
-    
 
-    function pagadoViatico(){;
+
+    function pagadoViatico() {
         paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
         navigate(-1);
@@ -257,6 +327,11 @@ const ContModal = styled.div`
 
   h1 {
     color: rgba(254, 128, 127);
+  }
+
+  p {
+    padding-top: 1em;
+    font-weight: bold;
   }
 
   #imagen {
