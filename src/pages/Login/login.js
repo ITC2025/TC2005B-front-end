@@ -147,7 +147,6 @@ export default function Login() {
                             Login
                           </Button>
                         </div>
-                        {RenderIncorrect && <div className="error">{RenderIncorrect}</div>}
                       </Form>
                     </div>
                   </div>
