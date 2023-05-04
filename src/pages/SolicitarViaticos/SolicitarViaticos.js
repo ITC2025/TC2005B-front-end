@@ -5,11 +5,8 @@ import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
-import { useNavigate } from "react-router-dom";
 
 function SolicitarViaticos() {
-  const navigate = useNavigate();
-
   const pageRefresher = () => {
     window.location.reload(); // cambiar ruta
   };
