@@ -25,6 +25,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [modalImgEstado, modalCambiarEstado] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
+  const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
   const [modalSolicitud, modalEstadoSolicitud] = useState(false);
@@ -115,17 +116,27 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   let idV = id;
 
   const ImageComponent = async ({ idGasto }) => {
-    let imageUrl = await imagen_gastos(idGasto);
+    const data = await imagen_gastos(idGasto);
 
+    let imageUrl = data.imagen;
     imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
-    return imageUrl;
+
+    let facturaUrl = null;
+
+    if (data.factura) {
+      facturaUrl = data.factura;
+      facturaUrl = "http://localhost:3001/reporte_gastos/" + facturaUrl;
+    }
+
+    return { imageUrl, facturaUrl };
   };
 
   const OpenModal = (idGasto) => {
     modalCambiarEstado(!modalImgEstado);
     ImageComponent({ idGasto })
-      .then((imgUrl) => {
-        setImageUrl(imgUrl);
+      .then(({ imageUrl, facturaUrl }) => {
+        setImageUrl(imageUrl);
+        setFacturaUrl(facturaUrl);
       });
   };
 
@@ -313,6 +324,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
         className="test_class"
         cambiarEstado={modalCambiarEstado}
         ImgSrc={imageUrl}
+        FacturaSrc={facturaUrl}
         imagenTicket={true}
       />
 
