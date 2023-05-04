@@ -19,7 +19,7 @@ export const AdminTableTravelAll = () => {
 
   const getTravelAllowance = async () => {
     let data = await adminSol();
-    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4);
+   
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
