@@ -101,15 +101,14 @@ export default function FormProject({ PmData }) {
           cambiarEstado={modalCambiarProyectoCreado}
           msg={'PROYECTO CREADO'}
           oneButton={true}
-          succesIcon={true}>
-      </Modal>
+          proyectoCreado={true}
+        />
 
       < Modal estado={modalError}
           cambiarEstado={modalCambiarError}
           msg={'OCURRIÓ UN ERROR'}
           oneButton={true}
-          excalmartionIcon={true}>
-      </Modal>
+      />
 
     </>
   );
