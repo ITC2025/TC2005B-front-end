@@ -1,17 +1,17 @@
 import * as React from "react";
+import { useState, useEffect } from "react"
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
-// import "../../styles/TableBadges.css";
-import { useNavigate } from "react-router-dom";
+import "../../styles/TableBadges.css";
+import { Link } from "react-router-dom";
+import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
-export default function ProyectosDropdown({codigoproyecto}) {
-  const navigate = useNavigate();
 
-  const verViaticosProyecto = () => {
-    navigate("/pm/solicitudes/" + codigoproyecto); // cambiar ruta
-  };
+export default function GastosDropdown(props) {
+
+  console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,8 +21,17 @@ export default function ProyectosDropdown({codigoproyecto}) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    verViaticosProyecto();
-  };
+  }; 
+
+  
+
+  const handleModal = () => {
+    props.doIt(props.id);
+    handleClose();
+
+  } 
+
+
 
   return (
     <div>
@@ -44,8 +53,11 @@ export default function ProyectosDropdown({codigoproyecto}) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Ver</MenuItem>
+        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Editar</MenuItem>
+        <MenuItem onClick={handleModal}>Borrar</MenuItem>
       </Menu>
+
     </div>
   );
 }

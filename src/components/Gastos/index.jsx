@@ -2,21 +2,29 @@ import styled from "styled-components";
 import { Container, Row } from "react-bootstrap";
 import ColDireccion from "./colDireccion";
 import ColInfoProyecto from "./colInfoProyecto";
-import TableGastos from "./tableGastos";
+import {TableGastos} from "./tableGastos";
 import Subtotal from "./subtotal";
+import { useState } from "react";
 
-const GastosTabla = () => {
+const GastosTabla = ({viaticoID}) => {
+
+    const [reloadTrigger,setReloadTrigger] = useState(0);
+
+    const handleReload = () => {
+        setReloadTrigger(reloadTrigger + 1)
+    }
+
     return (
         <>
             <Container>
                 <Section>
                     <Row>
                         <ColDireccion></ColDireccion>
-                        <ColInfoProyecto></ColInfoProyecto>
+                        <ColInfoProyecto id={viaticoID} ></ColInfoProyecto>
                     </Row>
                 </Section>
-                <TableGastos></TableGastos>
-                <Subtotal></Subtotal>
+                <TableGastos id={viaticoID} handleReloadSubtotal={handleReload}></TableGastos>
+                <Subtotal id={viaticoID} reloadTrigger={reloadTrigger}></Subtotal>
             </Container>
         </>
     );
