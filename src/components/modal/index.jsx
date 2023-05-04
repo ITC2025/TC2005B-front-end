@@ -4,13 +4,13 @@ import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import {
-  send_expenses,
-  accept_viatico,
-  paid_viatico,
-  reject_viatico,
-  approve_expenses,
-  reject_expenses,
-  send_viatico
+    send_expenses,
+    accept_viatico,
+    paid_viatico,
+    reject_viatico,
+    approve_expenses,
+    reject_expenses,
+    send_viatico
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -28,7 +28,7 @@ const Modal = ({ estado,
     saldo,
     rechazarPago,
     confirmarPago,
-    motivoRechazo, id}) => {
+    motivoRechazo, id }) => {
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
     const navigate = useNavigate();
@@ -138,6 +138,15 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {motivoRechazo &&
+                            <>
+                                <h1> Motivo rechazo</h1>
+                                <p> Warala warala</p>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                            </>
+                        }
+
                     </ContModal>
                 </Overlay >
             }
@@ -149,11 +158,11 @@ const Modal = ({ estado,
         alert('si sirve');
     }
 
-    function enviarRef(event){
+    function enviarRef(event) {
         setRefBank(event.target.value);
     }
 
-    function enviarCom(event){
+    function enviarCom(event) {
         setComRechazo(event.target.value);
     }
 
@@ -164,7 +173,7 @@ const Modal = ({ estado,
         navigate("/user/viaticos");
     }
 
-    function aceptarViatico(){
+    function aceptarViatico() {
         approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
@@ -177,9 +186,10 @@ const Modal = ({ estado,
         cambiarEstado(false);
         navigate(-1);
     }
-    
 
-    function pagadoViatico(){;
+
+    function pagadoViatico() {
+        ;
         paid_viatico(JSON.parse(id), refBank);
         cambiarEstado(false);
         navigate(-1);
