@@ -1,13 +1,9 @@
 import React from 'react'
-// import 
+import AdminTableTravelAll from '../../components/table/AdminTableTravelAll';
 
 export const AdminTable = () => {
   return (
-    <>
-      <div>
-        Historial de viaticos
-      </div>
-    </>
+    <AdminTableTravelAll />
   );
 };
 

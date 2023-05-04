@@ -35,7 +35,7 @@ export default function AdminTableTravelAll() {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
       width: "120px",
     },
@@ -56,7 +56,7 @@ export default function AdminTableTravelAll() {
     },
     {
       name: "Actions",
-      cell: (row) => <TableAdminDropdown travelToId={row.ID} />,
+      cell: (row) => <TableAdminDropdown travelToId={row.ID_solicitud_viatico} />,
       width: "80px",
     },
   ];
@@ -90,7 +90,6 @@ export default function AdminTableTravelAll() {
         data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
-        fixedHeader
       />
     </div>
   );

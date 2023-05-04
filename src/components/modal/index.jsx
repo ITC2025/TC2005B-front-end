@@ -16,7 +16,8 @@ const Modal = ({ estado,
     ImgSrc,
     saldo,
     rechazarPago,
-    confirmarPago }) => {
+    confirmarPago,
+    solicitudViatico}) => {
     return (
         <>
             {estado &&
@@ -121,6 +122,16 @@ const Modal = ({ estado,
 
                                 <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {solicitudViatico &&
+                            <>
+                                <h1>SOLICITUD DE VIATICO</h1>
+                                <div>
+                                    <p>informacion</p>
+                                </div>
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }
                     </ContModal>

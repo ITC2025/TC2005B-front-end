@@ -1,12 +1,15 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import Modal from "../modal/index"
 
 export default function TableDropdown({viaticoID}) {
+  const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -36,9 +39,13 @@ export default function TableDropdown({viaticoID}) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
+        <MenuItem onClick={() => setShowModal(!showModal)}>Abrir solicitud</MenuItem>
         <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
       </Menu>
+      <Modal 
+      estado= {showModal}
+      cambiarEstado={setShowModal}
+      solicitudViatico={true}/>
     </div>
   );
 }
