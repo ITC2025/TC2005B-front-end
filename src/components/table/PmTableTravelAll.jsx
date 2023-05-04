@@ -40,11 +40,17 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
     const res = await fetch(URL);
     let data = await res.json();
-    
+
     if (closed_requests_only) {
-      data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Enviado");
+      data = data.filter((row) => {
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
+                row.StatusSolicitudViatico.descripcion != "En revisión")
+      });
     } else if (!project_code) {
-      data = data.filter((row) => row.StatusSolicitudViatico.descripcion == "Enviado");
+      data = data.filter((row) => {
+        return (row.StatusSolicitudViatico.descripcion == "Enviado" || 
+                row.StatusSolicitudViatico.descripcion == "En revisión")
+      });
     }
 
     setTravelAllowance(data);

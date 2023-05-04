@@ -34,7 +34,7 @@ export const TableGastos = ({ id }) => {
   const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/" + id;
+  const URL = "http://localhost:3001/expenses_table/user/" + id;
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
