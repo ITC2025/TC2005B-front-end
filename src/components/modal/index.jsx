@@ -156,7 +156,7 @@ const Modal = ({ estado,
 
                         {imagenTicket &&
                             <>
-                                <img src={ImgSrc} alt="Imagen ticket"></img>
+                                <img src={ImgSrc} class="ticket_image" alt="Imagen ticket"></img>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }

@@ -118,7 +118,7 @@ export async function proyecto_sum_admin(v_id) {
 }
 
 export async function imagen_gastos(g_id) {
-  const url = "http://localhost:3001/expenses_table/img/" + g_id;
+  const url = "http://localhost:3001/expense_reports/" + g_id;
 
   const options = {
     method: "GET",
@@ -132,10 +132,9 @@ export async function imagen_gastos(g_id) {
     if (!response.ok) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
-    const data = await response.blob();
-    console.log(data);
-    console.log("api jala");
-    return data;
+
+    const data = await response.json();
+    return data.imagen;
   } catch (error) {
     console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
