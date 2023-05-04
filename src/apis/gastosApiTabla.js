@@ -3,7 +3,7 @@ export async function gastosApi(v_id) {
 
     //Se tiene el url de la ruta del servidor hacia donde se hace el request
     //Esta ruta del back esta conectada a un controlador designado
-    const url = 'http://localhost:3001/expenses_table/vi/' + v_id;
+    const url = 'http://localhost:3001/expenses_table/user/' + v_id;
     //En options se ponen cosas como el metodo que se realizara
     const options = {
         method: "GET"

@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import saveFormData from '../../apis/saveFormData';
+import {postCrearReporteGastos} from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
   const [validated, setValidated] = useState(false);
@@ -58,7 +58,7 @@ function Gastos({viaticoID}) {
     );
   };
 
-  const handleSubmit = (event) => {
+const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -68,9 +68,9 @@ function Gastos({viaticoID}) {
       return;
     }
 
-    // Aquí puedes enviar los datos a la API utilizando la función saveFormData
+    // Aquí puedes enviar los datos a la API utilizando la función postCrearReporteGastos
     formGasto.forEach((data) => {
-      saveFormData(data);
+      postCrearReporteGastos(data);
     });
 
     console.log(formGasto);
