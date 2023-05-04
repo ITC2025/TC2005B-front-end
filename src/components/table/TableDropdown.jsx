@@ -78,13 +78,13 @@ export default function TableDropdown({ viaticoID, Status }) {
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
           </>
         )}
 
         {Status === "Pagado" && (
           <>
-            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
           </>
         )}
       </Menu>
