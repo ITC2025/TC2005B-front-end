@@ -19,7 +19,8 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [userpassword, setPassword] = useState("");
-  const [RenderIncorrect, setIncorrect] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
 
   let formData = {
@@ -57,14 +58,14 @@ export default function Login() {
   }, []);
 
   const login = async (email, userpassword) => {
-    if(email !== 'validEmail' || userpassword !== 'validPassword'){
-      setIncorrect('Invalid email or password')
-    }
-    
-    
+
     // setTimeout(() => {
     const response1 = await getAuthenticationData(email, userpassword);
-    console.log(response1);
+    if (response1.errors) {
+      setEmailError(response1.errors.email);
+      setPasswordError(response1.errors.password);
+    }
+
     const response2 = await tokenValidation();
     console.log(response2.role);
 
@@ -117,6 +118,7 @@ export default function Login() {
                             />
                           </InputGroup>
                         </Form.Group>
+                        {emailError && <div className="error">{emailError}</div>}
                         <Form.Group className="m-3" id="login-form-group">
                           <Form.Label id="login-form-label">
                             Password
@@ -134,6 +136,7 @@ export default function Login() {
                             />
                           </InputGroup>
                         </Form.Group>
+                        {passwordError && <div className="error">{passwordError}</div>}
                         <div className="d-flex justify-content-center ">
                           <Button
                             variant="primary"

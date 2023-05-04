@@ -29,6 +29,7 @@ export async function tokenValidation(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+
     return response;
 }
 
