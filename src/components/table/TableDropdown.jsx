@@ -6,9 +6,11 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal";
+import { tokenValidation } from "../../apis/getApiData";
 
 export default function TableDropdown({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const [modal, mostrarModal] = React.useState(false);
@@ -21,15 +23,29 @@ export default function TableDropdown({ viaticoID, Status }) {
   const handleClose = () => {
     setAnchorEl(null);
     {
-      Status === "Rechazado" && 
-      mostrarModal(!modal);
+      Status === "Rechazado" &&
+        mostrarModal(!modal);
     }
 
     {
       Status === "Pagado" &&
-      mostrarModalPagado(!modalPagado);
+        mostrarModalPagado(!modalPagado);
     }
   };
+
+  const getRole = async () => {
+    const response = await tokenValidation()
+    console.log(response.role)
+    if (response.role === 3) {
+      setIsAdmin(true);
+      console.log('Yo soy Admin')
+    }
+  }
+
+  React.useEffect(() => {
+    getRole()
+  })
+
 
   return (
     <div>
@@ -51,11 +67,11 @@ export default function TableDropdown({ viaticoID, Status }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
+        {isAdmin ? null : <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>}
         <MenuItem
           onClick={handleClose}
           as={Link}
-          to={"/user/expediente/" + viaticoID}
+          to={isAdmin ? "../expediente/" + viaticoID : "../user/expediente/" + viaticoID}
         >
           Ver gastos
         </MenuItem>
@@ -73,15 +89,15 @@ export default function TableDropdown({ viaticoID, Status }) {
         )}
       </Menu>
 
-      <Modal estado={modal} 
-          cambiarEstado={mostrarModal}
-          motivoRechazo={true} 
-          id={viaticoID}/>
+      <Modal estado={modal}
+        cambiarEstado={mostrarModal}
+        motivoRechazo={true}
+        id={viaticoID} />
 
-      <Modal estado={modalPagado} 
-            cambiarEstado={mostrarModalPagado}
-            mostrarReferencia={true}
-            id={viaticoID}/>
+      <Modal estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID} />
     </div>
   );
 }
