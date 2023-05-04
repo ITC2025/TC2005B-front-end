@@ -8,7 +8,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 import '../../styles/navbar.css'
 import { Outlet } from "react-router-dom";
-import { sessionDelete } from "../../apis/getApiData";
+import { sessionDelete, tokenID } from "../../apis/getApiData";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -19,6 +19,24 @@ const NavbarSC = ({ client, projectManager, admin }) => {
     const location = useLocation();
 
     const [activeTab, setActiveTab] = useState('nav-link');
+    const [username, setUserName] = useState('USERNAME');
+
+    const getUserName = async () => {
+        const token = await tokenID();
+        
+        const url = 'http://localhost:3001/users/' + token.id;
+        const options = {
+            method: "GET",
+            credentials:"include",
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+        const rawResponse = await fetch(url, options)
+        const response = await rawResponse.json();
+        setUserName(`${response[0].name} ${response[0].apellido}`)
+        return;
+    }
 
     // homepage
     const home = () => {
@@ -58,6 +76,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
     useEffect(() => {
         const path = location.pathname;
         setActiveTab(path);
+        getUserName();
     }, [location]);
 
     return (
@@ -110,7 +129,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                                 alt="user"
                                 className="roundedCircle"
                             />
-                            <NavDropdown title="USERNAME" id="basic-nav-dropdown">
+                            <NavDropdown title={username} id="basic-nav-dropdown">
 
                             <NavDropdown.Item className="nav-link" onClick={sessionDelete}>  LOG OUT </NavDropdown.Item>
                             </NavDropdown>

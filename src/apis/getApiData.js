@@ -29,6 +29,7 @@ export async function tokenValidation(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+
     return response;
 }
 
@@ -158,25 +159,12 @@ export async function postSolicitarViatico(montoViatico,descripcionSolicitud, de
     return response;
 }
 
-export async function postCrearReporteGastos(conceptoGasto,montoGasto,fechaGasto,imagenGasto,idSolicitud,descTipoGasto,descStatusReporte){
-    let data = {
-        concepto: conceptoGasto,
-        monto: montoGasto,
-        fecha: fechaGasto,
-        imagen: imagenGasto,
-        ID_solicitud_viatico: idSolicitud,
-        tipo: descTipoGasto,
-        status: descStatusReporte
-    }
-
-    const url = 'http://localhost:3001/expense_reports/crear';
+export async function postCrearReporteGastos(data){
+    const url = 'http://localhost:3001/expense_reports';
     const options = {
         method: "POST",
         credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: data
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();

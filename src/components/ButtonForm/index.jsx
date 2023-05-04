@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import saveFormData from '../../apis/saveFormData';
+import { postCrearReporteGastos } from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
   const [validated, setValidated] = useState(false);
@@ -13,8 +13,8 @@ function Gastos({viaticoID}) {
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
-      imagen: {},
-      xml: {},
+      imagen: "",
+      xml: "",
       fecha: "",
       ID_status_reporte_gasto: "2"
     }
@@ -28,28 +28,12 @@ function Gastos({viaticoID}) {
   };
 
   const handleFileUpload = (event, index) => {
+    const { name } = event.target;
     const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      const blob = new Blob([reader.result], { type: file.type });
-
-      if (file.type === "text/xml") {
-        setFormGasto((prevFormGasto) =>
-          prevFormGasto.map((form, i) =>
-            i === index ? { ...form, xml: blob } : form
-          )
-        );
-      } else {
-        setFormGasto((prevFormGasto) =>
-          prevFormGasto.map((form, i) =>
-            i === index ? { ...form, imagen: blob } : form
-          )
-        );
-      }
-    };
-
-    reader.readAsArrayBuffer(file);
+    const updatedFormGasto = [...formGasto];
+    updatedFormGasto[index][name] = file;
+    setFormGasto(updatedFormGasto);
   };
 
   const handleDeleteLine = (index) => {
@@ -58,7 +42,7 @@ function Gastos({viaticoID}) {
     );
   };
 
-  const handleSubmit = (event) => {
+const handleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -68,13 +52,18 @@ function Gastos({viaticoID}) {
       return;
     }
 
-    // Aquí puedes enviar los datos a la API utilizando la función saveFormData
-    formGasto.forEach((data) => {
-      saveFormData(data);
-    });
+    // Aquí puedes enviar los datos a la API utilizando la función postCrearReporteGastos
+    formGasto.forEach((form) => {
+      let data = new FormData();
 
-    console.log(formGasto);
-    window.location.href = "/user/expediente/" + viaticoID;
+      for (let key in form) {
+        data.append(key, form[key]);
+      }
+
+      postCrearReporteGastos(data);
+
+      window.location.href = "/user/expediente/" + viaticoID;
+    });
   };
 
   const handleAddForm = () => {
@@ -83,8 +72,8 @@ function Gastos({viaticoID}) {
       concepto: "",
       ID_tipo_gasto: "",
       monto: "",
-      imagen: {},
-      xml: {},
+      imagen: "",
+      xml: "",
       fecha: "",
       ID_status_reporte_gasto: "2"
     };
@@ -158,7 +147,7 @@ function Gastos({viaticoID}) {
 
                       <div className="row">
                         <div className="col-md-4">
-                          <label>Ticker de compra (PNG)</label>
+                          <label>Ticket de compra (PNG)</label>
                           <div className="input-group mb-3">
                             <input
                               className="form-control"
@@ -177,7 +166,6 @@ function Gastos({viaticoID}) {
                               name="xml"
                               type="file"
                               onChange={(e) => handleFileUpload(e, index)}
-                              required
                             />
                           </div>
                         </div>
