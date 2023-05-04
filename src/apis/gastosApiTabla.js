@@ -134,7 +134,7 @@ export async function imagen_gastos(g_id) {
     }
 
     const data = await response.json();
-    return data.imagen;
+    return  {imagen: data.imagen, factura: data.factura};
   } catch (error) {
     console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
