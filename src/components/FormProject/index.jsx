@@ -26,9 +26,23 @@ export default function FormProject({ PmData }) {
   }
 
 
-  const handleForm = (event) => {
+  const handleForm = async (event) => {
     postToDB();
+    event.preventDefault();
+    try {
+      setSuccess(true);
+    } catch (error) {
+      setError("Error al crear proyecto");
+    }
   }
+
+  const handleCloseError = () => {
+    setError(null);
+  };
+
+  const handleCloseSuccess = () => {
+    setSuccess(false);
+  };
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -44,6 +58,9 @@ export default function FormProject({ PmData }) {
   // hooks de modales
   const [modalProyectoCreado, modalCambiarProyectoCreado] = useState(false);
   const [modalError, modalCambiarError] = useState(false);
+
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   return (
     <>
@@ -97,18 +114,25 @@ export default function FormProject({ PmData }) {
       </Container>
 
       {/* Modales */}
-      < Modal estado={modalProyectoCreado}
-          cambiarEstado={modalCambiarProyectoCreado}
-          msg={'PROYECTO CREADO'}
-          oneButton={true}
-          proyectoCreado={true}
-        />
+      {success && (
+          < Modal estado={modalProyectoCreado}
+            cambiarEstado={modalCambiarProyectoCreado}
+            msg={'PROYECTO CREADO'}
+            oneButton={true}
+            proyectoCreado={true}
+            onClosed={handleCloseSuccess}
+          />
+      )}
 
-      < Modal estado={modalError}
-          cambiarEstado={modalCambiarError}
-          msg={'OCURRIÓ UN ERROR'}
-          oneButton={true}
-      />
+      {error && (
+          < Modal estado={modalError}
+            cambiarEstado={modalCambiarError}
+            msg={'OCURRIÓ UN ERROR'}
+            oneButton={true}
+            onClosed={handleCloseError}
+          />
+      )}
+
 
     </>
   );
