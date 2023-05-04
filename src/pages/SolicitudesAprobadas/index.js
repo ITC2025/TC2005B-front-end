@@ -1,10 +1,10 @@
 
 import { useNavigate } from "react-router-dom"
-import AdminTableTravelAll from "../../components/table/AdminTableTravelAll"
+import AdminTableTravelAllRequest from "../../components/table/AdminTableTravelAllRequest"
 export default function solicitudesAprobadas () {
     return (
         <>
-            <AdminTableTravelAll/>
+            <AdminTableTravelAllRequest/>
         </>
     )
 }
