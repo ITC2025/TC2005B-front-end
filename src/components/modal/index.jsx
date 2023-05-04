@@ -26,6 +26,7 @@ const Modal = ({ estado,
     imagenTicket,
     proyectoCreado,
     ImgSrc,
+    FacturaSrc,
     saldo,
     rechazarPago,
     confirmarPago,
@@ -158,6 +159,11 @@ const Modal = ({ estado,
                             <>
                                 <img src={ImgSrc} class="ticket_image" alt="Imagen ticket"></img>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
+                                {FacturaSrc && 
+                                    <>
+                                        <Button onClick={() => {window.open(FacturaSrc, "_blank")}} id='cancelButton' className='mt-3' size="lg" variant="danger">FACTURA</Button>
+                                    </>
+                                }
                             </>
                         }
 

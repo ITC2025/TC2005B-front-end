@@ -20,15 +20,6 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    {
-      Status === "Rechazado" && 
-      mostrarModal(!modal);
-    }
-
-    {
-      Status === "Pagado" &&
-      mostrarModalPagado(!modalPagado);
-    }
   };
 
   return (
@@ -52,36 +43,40 @@ export default function TableDropdown({ viaticoID, Status }) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          as={Link}
-          to={"/user/expediente/" + viaticoID}
-        >
-          Ver gastos
-        </MenuItem>
+
+        {Status !== "Pagado" &&
+          <MenuItem
+            onClick={handleClose}
+            as={Link}
+            to={"/user/expediente/" + viaticoID} >
+            <>
+              Ver gastos
+            </>
+          </MenuItem>
+        }
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
           </>
         )}
 
         {Status === "Pagado" && (
           <>
-            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
           </>
         )}
       </Menu>
 
-      <Modal estado={modal} 
-          cambiarEstado={mostrarModal}
-          motivoRechazo={true} 
-          id={viaticoID}/>
+      <Modal estado={modal}
+        cambiarEstado={mostrarModal}
+        motivoRechazo={true}
+        id={viaticoID} />
 
-      <Modal estado={modalPagado} 
-            cambiarEstado={mostrarModalPagado}
-            mostrarReferencia={true}
-            id={viaticoID}/>
+      <Modal estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID} />
     </div>
   );
 }
