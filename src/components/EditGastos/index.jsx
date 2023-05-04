@@ -12,7 +12,7 @@ function EG({ viaticoID }) {
       ID_tipo_gasto: "",
       monto: "",
       imagen: {},
-      xml: {},
+      factura: {},
       fecha: "",
       ID_status_reporte_gasto: "2"
     }
@@ -45,7 +45,7 @@ function EG({ viaticoID }) {
       if (file.type === "text/xml") {
         setFormGasto((prevFormGasto) =>
           prevFormGasto.map((form, i) =>
-            i === index ? { ...form, xml: blob } : form
+            i === index ? { ...form, factura: blob } : form
           )
         );
       } else {
@@ -81,12 +81,6 @@ function EG({ viaticoID }) {
     } catch (error) {
       console.error("Error al actualizar los gastos:", error);
     }
-  };
-
-  const handleDeleteLine = (index) => {
-    setFormGasto((prevFormGasto) =>
-      prevFormGasto.filter((_, i) => i !== index)
-    );
   };
 
   return (
@@ -172,7 +166,7 @@ function EG({ viaticoID }) {
                           <div className="input-group mb-3">
                             <input
                               className="form-control"
-                              name="xml"
+                              name="factura"
                               type="file"
                               onChange={(e) => handleFileUpload(e, index)}
                               required

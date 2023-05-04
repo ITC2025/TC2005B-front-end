@@ -14,7 +14,7 @@ function Gastos({viaticoID}) {
       ID_tipo_gasto: "",
       monto: "",
       imagen: {},
-      xml: {},
+      factura: {},
       fecha: "",
       ID_status_reporte_gasto: "2"
     }
@@ -74,7 +74,7 @@ const handleSubmit = (event) => {
     });
 
     console.log(formGasto);
-    window.location.href = "/user/expediente/" + viaticoID;
+    //window.location.href = "/user/expediente/" + viaticoID;
   };
 
   const handleAddForm = () => {
@@ -174,7 +174,7 @@ const handleSubmit = (event) => {
                           <div className="input-group mb-3">
                             <input
                               className="form-control"
-                              name="xml"
+                              name="factura"
                               type="file"
                               onChange={(e) => handleFileUpload(e, index)}
                               required
