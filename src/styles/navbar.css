@@ -1,29 +1,25 @@
 .navbar {
-    background-color: rgb(254, 241, 0);
+    background-color:rgb(254, 241, 0);
     margin-bottom: 1em;
 }
 
 .nav-link:hover {
     text-decoration: underline;
-}
+} 
 
 .navbar div.dropdown-menu {
     background-color:  rgb(255, 249, 132);
     border: solid 1px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+} 
 
-.navbar div.dropdown-menu a {
-    display: flex;
-    justify-content: center;
-}
 
 .navbar div.dropdown-menu a:hover{
     color: #000;
     background-color: rgb(255, 249, 132);
-}
+} 
 
 .active {
     color : red !important;
     text-decoration: underline !important;
-}
+} 

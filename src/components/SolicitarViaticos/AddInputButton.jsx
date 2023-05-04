@@ -37,7 +37,7 @@ const AddInputButton = ({ onAddInput }) => {
 
       {values.map((value, idx) => (
         <Row key={idx} id="NewSolicitFormRow">
-          <Col md={7}>
+          <Col md={8}>
             <InputGroup>
               <Form.Control
                 placeholder="Concepto de gasto"
