@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { HiPlus } from "react-icons/hi";
 import { BiMoney } from "react-icons/bi";
-import saveFormData from '../../apis/saveFormData';
+import {postCrearReporteGastos} from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
   const [validated, setValidated] = useState(false);
