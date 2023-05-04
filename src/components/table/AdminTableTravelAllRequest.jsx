@@ -7,7 +7,7 @@ import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 
-export const AdminTableTravelAll = () => {
+export const AdminTableTravelAllRequest = () => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
@@ -21,6 +21,9 @@ export const AdminTableTravelAll = () => {
     let data = await adminSol();
    
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Pagado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Rechazado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
