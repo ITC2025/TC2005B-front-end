@@ -1,3 +1,5 @@
+import { tokenID } from "../apis/getApiData";
+
 export async function postEstimatedExpenses(
   concepto,
   monto,
@@ -27,14 +29,16 @@ export async function submitSV(
   ID_status_solicitud_viaticos,
   destino,
   fechaInicio,
-  fechaTermino
+  fechaTermino,
+  descripcion
 ) {
+  let idEmpleado = await tokenID();
   let solicitud = {
     monto: totalGastos,
-    ID_empleado: 1, // CAMBIAR AL OBTENER EL ID DEL EMPLEADO ACTIVO
-    ID_proyecto: parseInt(proyecto),
+    ID_empleado: idEmpleado.id, // CAMBIAR AL OBTENER EL ID DEL EMPLEADO ACTIVO
+    ID_proyecto: proyecto,
     ID_status_solicitud_viaticos: ID_status_solicitud_viaticos,
-    descripcion: "No hay campo",
+    descripcion: descripcion,
     destino: destino,
     fechaInicio: fechaInicio,
     fechaTermino: fechaTermino,
