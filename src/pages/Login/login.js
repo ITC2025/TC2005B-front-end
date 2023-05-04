@@ -19,7 +19,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [userpassword, setPassword] = useState("");
-  const [RenderIncorrect, setIncorrect] = useState(true);
+  const [RenderIncorrect, setIncorrect] = useState("");
   const navigate = useNavigate();
 
   let formData = {
@@ -57,6 +57,11 @@ export default function Login() {
   }, []);
 
   const login = async (email, userpassword) => {
+    if(email !== 'validEmail' || userpassword !== 'validPassword'){
+      setIncorrect('Invalid email or password')
+    }
+    
+    
     // setTimeout(() => {
     const response1 = await getAuthenticationData(email, userpassword);
     console.log(response1);
@@ -139,13 +144,11 @@ export default function Login() {
                             Login
                           </Button>
                         </div>
+                        {RenderIncorrect && <div className="error">{RenderIncorrect}</div>}
                       </Form>
                     </div>
                   </div>
                 </Card.Body>
-                {RenderIncorrect ? null : (
-                  <div>Incorrect email or password</div>
-                )}
               </Card>
             </Col>
           </Row>
