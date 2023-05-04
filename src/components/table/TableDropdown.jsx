@@ -20,8 +20,7 @@ export default function TableDropdown({ viaticoID, Status }) {
   const handleClose = () => {
     setAnchorEl(null);
     {
-      Status === "Rechazado" &&
-        mostrarModal(!modal);
+      Status === "Rechazado" && mostrarModal(!modal);
     }
   };
 
@@ -46,22 +45,22 @@ export default function TableDropdown({ viaticoID, Status }) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/" + viaticoID} >Ver gastos</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={"/user/expediente/" + viaticoID}
+        >
+          Ver gastos
+        </MenuItem>
 
-        {Status === "Rechazado" &&
+        {Status === "Rechazado" && (
           <>
             <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
           </>
-        }
-
+        )}
       </Menu>
 
-      <Modal estado={modal}
-      cambiarEstado={mostrarModal}
-      motivoRechazo={true} />
-
+      <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
     </div>
-
-
   );
 }
