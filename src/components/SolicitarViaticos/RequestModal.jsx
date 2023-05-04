@@ -38,6 +38,11 @@ function RequestModal(props) {
                     <strong>{props.formData.fechaTermino}</strong>
                   </p>
                 </Col>
+                <Col>
+                  <p>
+                    Descripcion: <strong>{props.formData.descripcion}</strong>
+                  </p>
+                </Col>
               </Row>
               <Row>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12}>
