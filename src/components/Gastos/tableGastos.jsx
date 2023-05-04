@@ -70,7 +70,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
 
   const URLs = URL[0];
-  console.log(URLs);
 
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
@@ -78,7 +77,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
   // const getTravelAllowance = async () => {
@@ -91,13 +89,11 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
 
   const loadData = async () => {
     const jsonInfo = await proyecto_sum_user(id);
-    console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
 
   const loadData2 = async () => {
     const jsonInfo = await proyecto_info(id);
-    console.log(jsonInfo);
 
     setAnticipo(jsonInfo[0].anticipo);
   };
@@ -119,22 +115,18 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   let idV = id;
 
   const ImageComponent = async ({ idGasto }) => {
-    const imageBlob = await imagen_gastos(idGasto);
+    let imageUrl = await imagen_gastos(idGasto);
 
-    const reader = new FileReader();
-    reader.readAsDataURL(imageBlob);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
-
+    imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
     return imageUrl;
   };
 
-  const OpenModal = (idRow) => {
+  const OpenModal = (idGasto) => {
     modalCambiarEstado(!modalImgEstado);
-    const imgURL = ImageComponent(idRow);
-    console.log(idRow);
-    console.log(imgURL);
+    ImageComponent({ idGasto })
+      .then((imgUrl) => {
+        setImageUrl(imgUrl);
+      });
   };
 
   // configuracion de columnas
@@ -318,6 +310,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       />
       <Modal
         estado={modalImgEstado}
+        className="test_class"
         cambiarEstado={modalCambiarEstado}
         ImgSrc={imageUrl}
         imagenTicket={true}
