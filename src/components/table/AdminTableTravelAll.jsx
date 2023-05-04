@@ -1,24 +1,31 @@
-import "../../styles/TableAdminStyle.css";
 import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import TableAdminDropdown from "./TableAdminDropdown";
+import "../../styles/TableStyle.css";
+import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
+import TableDropdown from "./TableDropdown";
+import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 
-export default function AdminTableTravelAll() {
+export const AdminTableTravelAll = () => {
+  const navigate = useNavigate();
+
+  const navSolicitar = () => {
+    navigate("/user/solicitar");
+  };
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // Funcion para mostrar datos con fetch
   const getTravelAllowance = async () => {
-    let data = await adminSol()
+    let data = await adminSol();
+    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4);
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
   };
 
-  // const getTravelAllowance = async () => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
@@ -26,7 +33,7 @@ export default function AdminTableTravelAll() {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.desc.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -35,29 +42,39 @@ export default function AdminTableTravelAll() {
   const columns = [
     {
       name: "ID",
-      selector: (row) => row.ID,
+      selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
-      width: "120px",
+      width: "80px",
     },
     {
       name: "Descripcion",
-      selector: (row) => row.desc,
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
-      name: "Proyecto",
-      selector: (row) => row.proyecto,
+      name: "Destino",
+      selector: (row) => row.destino,
       sortable: true,
     },
     {
-      name: 'Total',
-      selector: (row) => row.total,
-      sortable: true
+      name: "Total",
+      selector: (row) => row.monto,
+      sortable: true,
+    },
+    {
+      name: "Estado",
+      selector: (row) => (
+        <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
+      ),
+      sortable: true,
+      width: "120px",
+      style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
-      cell: (row) => <TableAdminDropdown travelToId={row.ID} />,
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
+      style: { paddingLeft: "0.5em" },
     },
   ];
 
@@ -70,18 +87,19 @@ export default function AdminTableTravelAll() {
   // mostrar la tabla
   return (
     <div className="container">
-      <div className="row my-2">
-        <div className="col justify-content-start">
-          <p>Solicitudes faltantes de referencia de pago</p>
+      <div className="row my-2 d-flex align-items-end">
+        <div className="col-4 d-flex justify-content-start">
         </div>
-        <div className="col justify-content-end">
-          <div className="d-flex justify-content-end">
-            <TextField
-              id="outlined-basic"
-              label="Buscar"
-              variant="standard"
-              onChange={handleFilter}
-            />
+        <div className="col-8 d-flex justify-content-end">
+          <div>
+            <div className="d-flex justify-content-end">
+              <TextField
+                id="outlined-basic"
+                label="Buscar"
+                variant="standard"
+                onChange={handleFilter}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -94,5 +112,4 @@ export default function AdminTableTravelAll() {
       />
     </div>
   );
-
 };
