@@ -90,6 +90,7 @@ export default function Subtotal({id,reloadTrigger}) {
     );
 }
 
+
 const Column = styled.div`
     width: 35%;
 
