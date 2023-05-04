@@ -12,13 +12,14 @@ function SolicitarViaticos() {
     fechaTermino: "",
     destino: "",
     proyecto: "",
-    descripcion: ""
+    descripcion: "",
   });
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
   const [proyectos, setProyectos] = useState([]);
   const [nombresProyectos, setNombresProyectos] = useState([]);
   const [selectedProyecto, setSelectedProyecto] = useState("");
+  let idProyecto = 0;
 
   const URL = "http://localhost:3001/projects";
   const getProyectos = async () => {
@@ -53,14 +54,25 @@ function SolicitarViaticos() {
     setShowModal(true);
   };
 
+  const mostrarIDProyecto = () => {
+    for (let i = 0; i < proyectos.length; i++) {
+      if (proyectos[i].codigoProyecto === selectedProyecto) {
+        idProyecto = proyectos[i].ID_proyecto;
+      }
+    }
+  };
+
   const postToDB = () => {
+    mostrarIDProyecto();
+    console.log(idProyecto);
     submitSV(
       totalGastos,
-      formData.proyecto,
+      idProyecto,
       2,
       formData.destino,
       formData.fechaInicio,
-      formData.fechaTermino
+      formData.fechaTermino,
+      formData.descripcion
     ).then((res) => {
       for (let i = 0; i < dataFromAddInput.length; i++) {
         postEstimatedExpenses(
@@ -73,13 +85,15 @@ function SolicitarViaticos() {
   };
 
   const saveAsDraft = () => {
+    mostrarIDProyecto();
     submitSV(
       totalGastos,
-      formData.proyecto,
+      idProyecto,
       1,
       formData.destino,
       formData.fechaInicio,
-      formData.fechaTermino
+      formData.fechaTermino,
+      formData.descripcion
     ).then((res) => {
       for (let i = 0; i < dataFromAddInput.length; i++) {
         postEstimatedExpenses(
