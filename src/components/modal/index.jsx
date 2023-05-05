@@ -45,8 +45,7 @@ const Modal = ({ estado,
     useEffect  (() => {
         async function fetchComentario() {
             const data = await comentarioRechazo(id)
-            setMsgRechazo(data);            
-            console.log(data)
+            setMsgRechazo(data);
         }
         fetchComentario();
 
