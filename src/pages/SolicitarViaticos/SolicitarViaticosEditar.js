@@ -38,16 +38,12 @@ function SolicitarViaticosEditar() {
     await SolInd(routeParams.id).then((formData)=>{
       console.log("hola")
       setFormData({
-        // fechaInicio: formData[0].fechaInicio,
-        // fechaTermino: formData[0].fechaTermino,
-        // destino: formData[0].destino,
-        // ID_proyecto: formData[0].ID_proyecto,
-        // descripcion: formData[0].descripcion
         fechaInicio: formData[0].fechaInicio,
         fechaTermino: formData[0].fechaTermino,
-        destino: "hola",
+        destino: formData[0].destino,
         ID_proyecto: formData[0].ID_proyecto,
         descripcion: formData[0].descripcion
+        
       })
     });
     console.log(formData)
