@@ -263,7 +263,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
             )}
 
             {/* admin */}
-            {pathname === "/admin/hexpediente/" + id && (
+            {pathname === "/admin/expediente/" + id && (
               <>
                 <button
                   id="basicButton"
