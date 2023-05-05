@@ -32,7 +32,7 @@ const AddInputButton = ({ onAddInput }) => {
   return (
     <>
       <Button variant="primary" onClick={handleAddRow}>
-        {card}AGREGAR GASTOS{add}
+        {card}<div style={{ margin: '0 .5rem' }}>AGREGAR GASTO</div>{add}
       </Button>
 
       {values.map((value, idx) => (

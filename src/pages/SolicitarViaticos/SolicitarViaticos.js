@@ -68,7 +68,6 @@ function SolicitarViaticos() {
 
   const postToDB = () => {
     mostrarIDProyecto();
-    console.log(idProyecto);
     submitSV(
       totalGastos,
       idProyecto,
@@ -125,7 +124,7 @@ function SolicitarViaticos() {
 
   return (
     <>
-      <h1 id="HeaderTitle">Solicitar viaticos</h1>
+      <h1 id="HeaderTitle">Solicitar viáticos</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
         <div id="FormSolicitBody">
@@ -146,7 +145,7 @@ function SolicitarViaticos() {
                 <FormInputIcon
                   className="formFechaTermino-input"
                   inputControlID="fechaTermino"
-                  inputLabel="Fecha Termino"
+                  inputLabel="Fecha de Finalización"
                   inputName="fechaTermino"
                   inputType="date"
                   value={formData.fechaTermino}
@@ -188,7 +187,7 @@ function SolicitarViaticos() {
                 <FormInputIcon
                   className="formDescripcion-input"
                   inputControlID="descripcion"
-                  inputLabel="Descripcion"
+                  inputLabel="Descripción"
                   inputName="descripcion"
                   inputType="text"
                   value={formData.descripcion}
