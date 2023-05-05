@@ -27,19 +27,15 @@ function RequestModal(props) {
                   <p>
                     Destino: <strong>{props.formData.destino}</strong>
                   </p>
-                </Col>
-                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                   <p>
                     Proyecto: <strong>{props.proyecto}</strong>
                   </p>
+                </Col>
+                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                   <p>
                     Fecha de termino:{" "}
                     <strong>{props.formData.fechaTermino}</strong>
                   </p>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
                   <p>
                     Descripcion: <strong>{props.formData.descripcion}</strong>
                   </p>

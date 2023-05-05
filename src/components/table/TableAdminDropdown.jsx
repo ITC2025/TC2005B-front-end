@@ -6,7 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
-import Modal from "../modal";
+import Modal from "../modal/index";
 
 export default function TableAdminDropdown({ viaticoID, info, status }) {
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +20,8 @@ export default function TableAdminDropdown({ viaticoID, info, status }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [modal, mostrarModal] = React.useState(false);
 
   return (
     <div>
@@ -41,26 +43,44 @@ export default function TableAdminDropdown({ viaticoID, info, status }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem
+
+        <>
+          <MenuItem
           onClick={handleClose}
           as={Link}
           to={"/admin/hexpediente/" + viaticoID}
         >
           Ver solicitud
         </MenuItem>
-        {status === "Rechazado" && (
-          <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>
-            Ver motivo de rechazo
-          </MenuItem>
-        )}
-        {status === "Pagado" && (
-          <>
-            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>
-              Mostrar pago
+          {status === "Rechazado" && (
+            <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>
+              Ver motivo de rechazo
             </MenuItem>
-            <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
-          </>
-        )}
+          )}
+          {status === "Pagado" && (
+            <>
+              <MenuItem
+                onClick={handleClose}
+                as={Link}
+                to={"/admin/hexpediente/" + viaticoID}
+              >
+                Ver expediente
+              </MenuItem>
+              <MenuItem onClick={() => mostrarModalPagado(!modalRechazo)}>Mostrar pago</MenuItem>
+            </>
+          )}
+          {status === "Aprobado" && (
+            <>
+              <MenuItem
+                onClick={handleClose}
+                as={Link}
+                to={"/admin/hexpediente/" + viaticoID}
+              >
+                Ver expediente
+              </MenuItem>
+            </>
+          )}
+        </>
       </Menu>
 
       <Modal

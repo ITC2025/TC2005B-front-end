@@ -21,6 +21,10 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
+  // Estado para mostrar modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
 
   // Funcion para mostrar datos con fetch
   // const URL = "https://jsonplaceholder.typicode.com/users";

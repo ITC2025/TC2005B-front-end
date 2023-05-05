@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import Modal from "../modal/index";
 import { useLocation } from "react-router-dom";
 import Modal from "../modal/index";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
@@ -17,9 +18,13 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
 
   const open = Boolean(anchorEl);
 
+  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -37,6 +42,7 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
     abrirSolicitudDB().then(() => setShowModal(!showModal));
   };
 
+  const [modal, mostrarModal] = React.useState(false);
   const { pathname } = useLocation();
 
   return (
@@ -62,6 +68,9 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
         {pathname === "/pm/solicitudes" && (
           <>
             <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
+            <MenuItem>
+              Ver solicitud
+            </MenuItem>
           </>
         )}
         {pathname === "/pm/solicitudes/" + codigoPr && (
@@ -78,33 +87,56 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
                 <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
               </>
             )}
+
           </>
         )}
 
         {pathname === "/pm/historico" && (
           <>
             <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
+            <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
             {status === "Rechazado" && (
-              <MenuItem onClick={handleClose}>
-                Mostrar motivo de rechazo
-              </MenuItem>
+              <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>Ver motivo de rechazo</MenuItem>
             )}
             {status === "Pagado" && (
               <>
-                <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
-                <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/pm/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
+                <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
+              </>
+            )}
+            {status === "Aprobado" && (
+              <>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/pm/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
               </>
             )}
           </>
         )}
       </Menu>
+
       <Modal
-        dataDB={datosSV}
-        estado={showModal}
-        cambiarEstado={setShowModal}
-        solicitudViatico={true}
-        info={info}
-        dosBotones={true}
+        estado={modalRechazo}
+        cambiarEstado={mostrarModalRechazo}
+        motivoRechazo={true}
+        id={viaticoID}
+      />
+
+      <Modal
+        estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID}
       />
     </div>
   );
