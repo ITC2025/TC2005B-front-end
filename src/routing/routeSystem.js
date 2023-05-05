@@ -3,26 +3,26 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import components
 import NavbarSC from "../components/navbar/index.jsx";
-import Login from "../pages/Login/login";
+import Login from "../pages/Login/login.js";
 import Test from "../pages/test/index.js";
-import Facturas from "../pages/Gastos/Gastos";
+import Facturas from "../pages/Gastos/Gastos.js";
 import PrivateRoutes from "./PrivateRoutes.js";
-import PmDashboard from "../pages/Dashboard/pmDashboard";
-import { UserDashboard } from "../pages/Dashboard/userDashboard";
-import AdminDashboard from "../pages/Dashboard/adminDashboard";
-import { UserTable } from "../pages/HistorialViaticos/UserTable";
-import { PmTable } from "../pages/HistorialViaticos/PmTable";
-import { AdminTable }  from "../pages/HistorialViaticos/adminTable";
-import SolicitarViaticos from "../pages/SolicitarViaticos/SolicitarViaticos";
-import CrearProyecto from "../pages/CrearProyecto";
-import Proyectos from "../pages/Proyectos";
-import SeeProjectTable from "../pages/VerProyectosTabla/verproyectosTabla";
-import Expediente from "../pages/Expediente/expediente";
-import Proyecto from "../pages/Proyecto/proyectoAdmin";
-import SolicitudesAprobadas from "../pages/SolicitudesAprobadas";
-import { NotFound } from "../pages/NotFound/NotFound";
-import AdminViaticos from '../pages/Viaticos/adminViaticos';
-import EditarGastp from '../pages/Gastos/EditarGasto';
+import PmDashboard from "../pages/Dashboard/pmDashboard.js";
+import { UserDashboard } from "../pages/Dashboard/userDashboard.js";
+import AdminDashboard from "../pages/Dashboard/adminDashboard.js";
+import { UserTable } from "../pages/HistorialViaticos/UserTable.js";
+import { PmTable } from "../pages/HistorialViaticos/PmTable.js";
+import { AdminTable }  from "../pages/HistorialViaticos/adminTable.js";
+import SolicitarViaticos from "../pages/SolicitarViaticos/SolicitarViaticos.js";
+import CrearProyecto from "../pages/CrearProyecto/index.js";
+import Proyectos from "../pages/Proyectos/index.js";
+import SeeProjectTable from "../pages/VerProyectosTabla/verproyectosTabla.js";
+import Expediente from "../pages/Expediente/expediente.js";
+import Proyecto from "../pages/Proyecto/proyectoAdmin.js";
+import SolicitudesAprobadas from "../pages/SolicitudesAprobadas/index.js";
+import { NotFound } from "../pages/NotFound/NotFound.js";
+import AdminViaticos from '../pages/Viaticos/adminViaticos.js';
+import EditarGastp from '../pages/Gastos/EditarGasto.js';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
