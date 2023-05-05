@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { getGastos, updateGasto } from "../../apis/getApiData";
+import { useNavigate } from "react-router-dom";
 
 function EG({ viaticoID }) {
+  const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,7 +51,8 @@ function EG({ viaticoID }) {
     try {
       await updateGasto(formGasto, viaticoID);
       console.log("Gasto actualizado:", formGasto);
-      
+      navigate(-1);
+      // window.location.href = "/user/expediente/" + viaticoID;
     } catch (error) {
       console.error("Error al actualizar el gasto:", error);
     }
@@ -172,7 +175,7 @@ function EG({ viaticoID }) {
             variant="danger"
             controlId="CGbutton"
             id="botonC1"
-            href={"/user/expediente/" + viaticoID}
+            onClick={() =>navigate(-1)}
           >
             CANCELAR
           </Button>
