@@ -68,10 +68,11 @@ export default function GastosDropdown(props) {
         {(estadoExp === 6 || estadoExp === 1) && (
           <>
             <MenuItem onClick={handleClose} as={Link} to={"/user/EG/" + props.id} >Editar</MenuItem>
+            <MenuItem onClick={handleModal}>Borrar</MenuItem>
           </>
         )
         }
-        <MenuItem onClick={handleModal}>Borrar</MenuItem>
+        
       </Menu>
 
     </div>
