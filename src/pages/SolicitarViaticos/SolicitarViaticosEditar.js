@@ -6,6 +6,7 @@ import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
 import { SolInd } from "../../apis/getApiData";
+import { updateSolicitud } from "../../apis/gastosApiTabla";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticosEditar() {
@@ -18,7 +19,7 @@ function SolicitarViaticosEditar() {
   const [formData, setFormData] = useState({
     fechaInicio: "",
     fechaTermino: "",
-    destino: "",
+    destino: "hermosillo",
     ID_proyecto: "",
     descripcion: "",
   });
@@ -83,13 +84,13 @@ function SolicitarViaticosEditar() {
   const postToDB = () => {
     mostrarIDProyecto();
     console.log(idProyecto);
-    submitSV(
-      totalGastos,
-      idProyecto,
+    updateSolicitud(
+      routeParams.id,
+      3,
       2,
-      formData.destino,
       formData.fechaInicio,
       formData.fechaTermino,
+      formData.destino,
       formData.descripcion
     ).then((res) => {
       for (let i = 0; i < dataFromAddInput.length; i++) {
@@ -103,29 +104,29 @@ function SolicitarViaticosEditar() {
     pageRefresher();
   };
 
-  //   const saveAsDraft = () => {
-  //     mostrarIDProyecto();
+    const saveAsDraft = () => {
+      mostrarIDProyecto();
 
-  //     alert("Solicitud de Viatico guardado como borrador");
-  //     submitSV(
-  //       totalGastos,
-  //       idProyecto,
-  //       1,
-  //       formData.destino,
-  //       formData.fechaInicio,
-  //       formData.fechaTermino,
-  //       formData.descripcion
-  //     ).then((res) => {
-  //       for (let i = 0; i < dataFromAddInput.length; i++) {
-  //         postEstimatedExpenses(
-  //           dataFromAddInput[i].concepto,
-  //           dataFromAddInput[i].monto,
-  //           res
-  //         );
-  //       }
-  //     });
-  //     pageRefresher();
-  //   };
+      alert("Solicitud de Viatico guardado como borrador");
+      updateSolicitud(
+        routeParams.id,
+        3,
+        2,
+        formData.fechaInicio,
+        formData.fechaTermino,
+        formData.destino,
+        formData.descripcion
+      ).then((res) => {
+        for (let i = 0; i < dataFromAddInput.length; i++) {
+          postEstimatedExpenses(
+            dataFromAddInput[i].concepto,
+            dataFromAddInput[i].monto,
+            res
+          );
+        }
+      });
+      pageRefresher();
+    };
 
   let totalGastos = 0;
 
@@ -230,15 +231,15 @@ function SolicitarViaticosEditar() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                {/* <Button
+                <Button
                   id="SendSaveButtons"
                   variant="primary"
                   onClick={saveAsDraft}
                 >
                   GUARDAR CAMBIOS
-                </Button> */}
+                </Button>
                 <Button id="SendSaveButtons" variant="primary" type="submit">
-                  GUARDAR CAMBIOS
+                GUARDAR Y ENVIAR
                 </Button>
               </Col>
             </Row>
