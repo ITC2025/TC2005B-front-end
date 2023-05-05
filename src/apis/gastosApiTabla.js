@@ -142,7 +142,6 @@ export async function imagen_gastos(g_id) {
 
 export async function smart_delete_expenses(id) {
   const url = "http://localhost:3001/expense_reports/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -160,7 +159,6 @@ export async function smart_delete_expenses(id) {
 export async function approve_expenses(id) {
   const url =
     "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -211,7 +209,6 @@ export async function reject_expenses(id, comRechazo) {
 export async function send_expenses(id) {
   const url =
     "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -229,7 +226,6 @@ export async function send_expenses(id) {
 export async function send_viatico(id) {
   const url =
     "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -247,7 +243,6 @@ export async function send_viatico(id) {
 export async function accept_viatico(id) {
   const url =
     "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -264,7 +259,6 @@ export async function accept_viatico(id) {
 
 export async function reject_viatico(id, comRechazo) {
   const url = "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -282,7 +276,6 @@ export async function reject_viatico(id, comRechazo) {
 
 export async function paid_viatico(id, refBank){
   const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
-  //console.log(url);
   const options = {
       method: "PATCH",
       headers: {
@@ -290,12 +283,45 @@ export async function paid_viatico(id, refBank){
       },
       body: JSON.stringify({
         ID_status_solicitud_viaticos: 4,
-        referenciaBancaria: refBank
+        referenciaBancariaSolicitud: refBank
       }),
   }
   const rawResponse = await fetch(url, options)
   const response = await rawResponse.json();
   return response;
+}
+
+export async function paid_expenses(id, comRechazo) {
+  // Modify expense report status
+  const statusUrl = "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
+  const statusOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ID_status_reporte_gasto: 6,
+    }),
+  };
+
+  const statusRawResponse = await fetch(statusUrl, statusOptions);
+  const statusResponse = await statusRawResponse.json();
+
+  // Modify viatico request comment
+  const commentUrl = "http://localhost:3001/viatico_request/" + JSON.stringify(id);
+  const commentOptions = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      referenciaBancariaGastos: comRechazo
+    }),
+  };
+
+  const commentRawResponse = await fetch(commentUrl, commentOptions);
+  const commentResponse = await commentRawResponse.json();
+  return statusResponse;
 }
 
 export async function comentarioRechazo(id){

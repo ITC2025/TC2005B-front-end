@@ -28,9 +28,9 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
-  const [modalGastos, modalEstadoGastos] = useState(false);
-  const [modalRechazo, modalEstadoRechazo] = useState(false);
-  const [modalPagar, modalEstadoPagar] = useState(false);
+  const [modalAprobarGastos, modalEstadoAprobarGastos] = useState(false);
+  const [modalRechazoGastos, modalEstadoRechazoGastos] = useState(false);
+  const [modalPagarGastos, modalEstadoPagarGastos] = useState(false);
 
   // Funcion para mostrar datos con fetch
 
@@ -48,14 +48,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     /*pm*/
   }
   {
-    pathname === "/admin/expediente/" + id &&
-      URL.push("http://localhost:3001/expenses_table/admin/" + id);
-  }
-
-  {
-    /*admin*/
-  }
-  {
     pathname === "/pm/expediente/" + id &&
       URL.push("http://localhost:3001/expenses_table/pm/" + id);
   }
@@ -63,6 +55,14 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   {
     pathname === "/pm/hexpediente/" + id &&
       URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
+  {
+    /*admin*/
+  }
+  {
+    pathname === "/admin/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/admin/" + id);
   }
 
   {
@@ -263,18 +263,18 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
             )}
 
             {/* admin */}
-            {pathname === "/admin/expediente/" + id && (
+            {pathname === "/admin/hexpediente/" + id && (
               <>
                 <button
                   id="basicButton"
-                  onClick={() => modalEstadoPagar(!modalPagar)}
+                  onClick={() => modalEstadoPagarGastos(!modalPagarGastos)}
                 >
                   {" "}
                   Pagar{" "}
                 </button>
                 <button
                   id="basicButton"
-                  onClick={() => modalEstadoRechazo(!modalRechazo)}
+                  onClick={() => modalEstadoRechazoGastos(!modalRechazoGastos)}
                   className="ms-2"
                 >
                   {" "}
@@ -288,14 +288,14 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
               <>
                 <button
                   id="basicButton"
-                  onClick={() => modalEstadoGastos(!modalGastos)}
+                  onClick={() => modalEstadoAprobarGastos(!modalAprobarGastos)}
                 >
                   {" "}
                   Aceptar{" "}
                 </button>
                 <button
                   id="basicButton"
-                  onClick={() => modalEstadoRechazo(!modalRechazo)}
+                  onClick={() => modalEstadoRechazoGastos(!modalRechazoGastos)}
                   className="ms-2"
                 >
                   {" "}
@@ -331,23 +331,23 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       />
 
       <Modal
-        estado={modalGastos}
-        cambiarEstado={modalEstadoGastos}
+        estado={modalAprobarGastos}
+        cambiarEstado={modalEstadoAprobarGastos}
         aprovacionGastos={true}
         id={id}
       />
 
       <Modal
-        estado={modalRechazo}
-        cambiarEstado={modalEstadoRechazo}
+        estado={modalRechazoGastos}
+        cambiarEstado={modalEstadoRechazoGastos}
         rechazoGastos={true}
         id={id}
       />
 
       <Modal
-        estado={modalPagar}
-        cambiarEstado={modalEstadoPagar}
-        confirmarPago={true}
+        estado={modalPagarGastos}
+        cambiarEstado={modalEstadoPagarGastos}
+        pagarGastos={true}
         id={id}
       />
     </div>

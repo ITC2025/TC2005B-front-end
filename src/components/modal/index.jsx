@@ -8,6 +8,7 @@ import {
     send_expenses,
     accept_viatico,
     paid_viatico,
+    paid_expenses,
     reject_viatico,
     approve_expenses,
     reject_expenses,
@@ -32,6 +33,7 @@ const Modal = ({ estado,
     FacturaSrc,
     saldo,
     pagarViaticos,
+    pagarGastos,
     motivoRechazoSolicitud, 
     mostrarReferencia, id }) => {
     
@@ -128,7 +130,7 @@ const Modal = ({ estado,
 
                         {aprovacionSolicitud &&
                             <>
-                                <h1> APROBACION DE SOLICITUD </h1>
+                                <h1> APROBAR SOLICITUD </h1>
                                 <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
@@ -136,7 +138,7 @@ const Modal = ({ estado,
 
                         {aprovacionGastos &&
                             <>
-                                <h1> APROBACION DE GASTOS </h1>
+                                <h1> APROBAR GASTOS </h1>
                                 <Button onClick={() => aceptarGastos()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
@@ -144,7 +146,7 @@ const Modal = ({ estado,
 
                         {rechazoGastos &&
                             <>
-                                <h1> RECHAZO DE GASTOS </h1>
+                                <h1> RECHAZAR GASTOS </h1>
 
                                 <div class="modal-textarea">
                                     <p>Motivo de rechazo: </p>
@@ -158,7 +160,7 @@ const Modal = ({ estado,
 
                         {rechazoViaticos &&
                             <>
-                                <h1> RECHAZO DE SOLICITUD DE VIÁTICOS </h1>
+                                <h1> RECHAZAR SOLICITUD DE VIÁTICOS </h1>
 
                                 <div class="modal-textarea">
                                     <p>Motivo de rechazo: </p>
@@ -198,6 +200,20 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
+
+                        {pagarGastos &&
+                            <>
+                                <h1> CONFIRMACION DE PAGO DE GASTOS</h1>
+                                <div class="modal-textarea">
+                                    <p> Introduce la referencia bancaria: </p>
+                                    <textarea value={refBank} onChange={enviarRef} rows="3" />
+                                </div>
+
+                                <Button onClick={() => pagadoGastos()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+                        
 
                         {motivoRechazoSolicitud &&
                             <>  
@@ -267,9 +283,14 @@ const Modal = ({ estado,
         navigate(-1);
     }
 
-
     function pagadoViatico() {
         paid_viatico(JSON.parse(id), refBank);
+        cambiarEstado(false);
+        navigate(-1);
+    }
+
+    function pagadoGastos() {
+        paid_expenses(JSON.parse(id), refBank);
         cambiarEstado(false);
         navigate(-1);
     }
