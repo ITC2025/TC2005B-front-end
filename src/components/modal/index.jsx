@@ -245,7 +245,6 @@ const Modal = ({ estado,
     }
 
     function aceptarViatico() {
-        approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
         navigate(-1);
