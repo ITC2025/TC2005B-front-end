@@ -1,6 +1,6 @@
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
@@ -9,8 +9,10 @@ import { SolInd } from "../../apis/getApiData";
 import { updateSolicitud } from "../../apis/gastosApiTabla";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
+
 function SolicitarViaticosEditar() {
   const routeParams = useParams();
+  const navigate = useNavigate();
 
   const pageRefresher = () => {
     window.location.reload(); // cambiar ruta
@@ -43,7 +45,6 @@ function SolicitarViaticosEditar() {
         destino: formData[0].destino,
         ID_proyecto: formData[0].ID_proyecto,
         descripcion: formData[0].descripcion
-        
       })
     });
     console.log(formData)
@@ -77,7 +78,8 @@ function SolicitarViaticosEditar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setShowModal(true);
+    saveAsDraft()
+    navigate(-1)
   };
 
   const mostrarIDProyecto = () => {
@@ -162,6 +164,7 @@ function SolicitarViaticosEditar() {
                   inputType="date"
                   value={formData.fechaInicio}
                   onChange={handleInputChange}
+                  required
                 />
               </Col>
               <Col sm={12} md={5}>
@@ -171,13 +174,14 @@ function SolicitarViaticosEditar() {
                   inputLabel="Fecha Termino"
                   inputName="fechaTermino"
                   inputType="date"
-                  value={formData.fechaTermino || ""}
+                  value={formData.fechaTermino}
                   onChange={handleInputChange}
+                  required
                 />
               </Col>
             </Row>
             <Row id="SolicitFormRow">
-              <Col sm={12} md={5}>
+              <Col sm={12} md={10}>
                 <FormInputIcon
                   className="formDestino-input"
                   inputControlID="destino"
@@ -186,23 +190,8 @@ function SolicitarViaticosEditar() {
                   inputType="text"
                   value={formData.destino}
                   onChange={handleInputChange}
+                  required
                 />
-              </Col>
-              <Col sm={12} md={5}>
-                <div id="ProyectosDropdown">
-                  <Form.Label id="FormInputLabel">Proyecto</Form.Label>
-                  <Form.Select
-                    value={selectedProyecto}
-                    onChange={handleProyectoChange}
-                  >
-                    <option value="">Selecciona un proyecto</option>
-                    {nombresProyectos.map((nombre, index) => (
-                      <option key={index} value={nombre}>
-                        {nombre}
-                      </option>
-                    ))}
-                  </Form.Select>
-                </div>
               </Col>
             </Row>
             <Row id="SolicitFormRow">
@@ -215,6 +204,7 @@ function SolicitarViaticosEditar() {
                   inputType="text"
                   value={formData.descripcion}
                   onChange={handleInputChange}
+                  required
                 />
               </Col>
             </Row>
@@ -230,13 +220,13 @@ function SolicitarViaticosEditar() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                <Button
+                {/* <Button
                   id="SendSaveButtons"
                   variant="primary"
                   onClick={saveAsDraft}
                 >
                   GUARDAR CAMBIOS
-                </Button>
+                </Button> */}
                 <Button id="SendSaveButtons" variant="primary" type="submit">
                 GUARDAR Y ENVIAR
                 </Button>
@@ -245,15 +235,6 @@ function SolicitarViaticosEditar() {
           </Container>
         </div>
       </Form>
-      <RequestModal
-        showModal={showModal}
-        formData={formData}
-        gastosValues={dataFromAddInput}
-        totalGastos={totalGastos}
-        proyecto={selectedProyecto}
-        handleClose={() => setShowModal(false)}
-        handleModal={postToDB}
-      />
     </>
   );
 }
