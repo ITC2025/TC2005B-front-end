@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
+import mxnFormat from "../../utils/mxnFormat";
 
 export const AdminTableTravelAllRequest = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ export const AdminTableTravelAllRequest = () => {
     },
     {
       name: "Total",
-      selector: (row) => row.monto,
+      selector: (row) => mxnFormat(row.monto),
       sortable: true,
     },
     {
