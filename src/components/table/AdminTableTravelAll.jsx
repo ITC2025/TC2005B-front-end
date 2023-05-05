@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
+import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 import TableDropdownHistorial from "./TableDropdownHistorial";
@@ -20,8 +21,16 @@ export const AdminTableTravelAll = () => {
 
   const getTravelAllowance = async () => {
     let data = await adminSol();
-   
-    data = data.filter((row) => row.StatusSolicitudViatico.descripcion !== "Borrador");
+
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "Borrador"
+    );
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "En revisión"
+    );
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "Eliminado"
+    );
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -48,7 +57,7 @@ export const AdminTableTravelAll = () => {
       width: "80px",
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
     },
@@ -63,21 +72,25 @@ export const AdminTableTravelAll = () => {
       sortable: true,
     },
     {
-      name: 'Total',
+      name: "Total",
       selector: (row) => row.total,
-      sortable: true
+      sortable: true,
     },
     {
-      name: "Actions",
-      //cell: (row) => <TableAdminDropdown travelToId={row.ID_solicitud_viatico}  info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]} />,
-      cell: (row) => <TableDropdownHistorial viaticoID={row.ID_solicitud_viatico} />,
-      width: "80px",
+      name: "Acciones",
+      cell: (row) => (
+        <TableAdminDropdown
+          viaticoID={row.ID_solicitud_viatico}
+          status={row.StatusSolicitudViatico.descripcion}
+        />
+      ),
+      width: "90px",
       style: { paddingLeft: "0.5em" },
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
@@ -85,9 +98,10 @@ export const AdminTableTravelAll = () => {
   // mostrar la tabla
   return (
     <div className="container">
+      <h1 id="HeaderTitle">Historial de solicitudes</h1>
+      <hr />
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-4 d-flex justify-content-start">
-        </div>
+        <div className="col-4 d-flex justify-content-start"></div>
         <div className="col-8 d-flex justify-content-end">
           <div>
             <div className="d-flex justify-content-end">

@@ -385,7 +385,7 @@ const Modal = ({
               <>
                 <h1> CONFIRMACION DE PAGO </h1>
                 <div class="modal-textarea">
-                  <p>Confirmacion de pago: </p>
+                  <p> Introduce la referencia bancaria: </p>
                   <textarea value={refBank} onChange={enviarRef} rows="3" />
                 </div>
                 <Button

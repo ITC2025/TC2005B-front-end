@@ -7,7 +7,8 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal";
-import { tokenValidation } from "../../apis/getApiData";
+import { tokenValidation, eliminarSolicitud } from "../../apis/getApiData";
+import { useNavigate } from "react-router-dom";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
 export default function TableDropdown({ viaticoID, Status, info }) {
@@ -15,7 +16,8 @@ export default function TableDropdown({ viaticoID, Status, info }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
-  const [modal, mostrarModal] = React.useState(false);
+  const navigate = useNavigate();
+  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
   const [datosSV, setDatosSV] = React.useState([]);
   const [modalPagado, mostrarModalPagado] = React.useState(false);
 
@@ -25,6 +27,11 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const deleteSolicitud = (id) => {
+    eliminarSolicitud(id);
+    window.location.reload();
   };
 
   const abrirSolicitudDB = async () => {
@@ -41,10 +48,8 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
   const getRole = async () => {
     const response = await tokenValidation();
-    // console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      // console.log('Yo soy Admin')
     }
   };
 
@@ -100,7 +105,7 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={() => mostrarModal(!modal)}>
+            <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>
               {" "}
               Motivo de rechazo
             </MenuItem>
@@ -115,11 +120,19 @@ export default function TableDropdown({ viaticoID, Status, info }) {
             </MenuItem>
           </>
         )}
+
+        {Status === "Borrador" && (
+          <>
+            <MenuItem onClick={() => deleteSolicitud(viaticoID)}>
+              Eliminar
+            </MenuItem>
+          </>
+        )}
       </Menu>
 
       <Modal
-        estado={modal}
-        cambiarEstado={mostrarModal}
+        estado={modalRechazo}
+        cambiarEstado={mostrarModalRechazo}
         motivoRechazo={true}
         id={viaticoID}
       />

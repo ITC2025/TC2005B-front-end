@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import Modal from "../modal/index";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
-export default function PmTableDropdown({ viaticoID, info, codigoPr }) {
+export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [datosSV, setDatosSV] = React.useState([]);
@@ -77,34 +77,34 @@ export default function PmTableDropdown({ viaticoID, info, codigoPr }) {
               as={Link}
               to={"/pm/expediente/" + viaticoID}
             >
-              Ver gastos
-            </MenuItem>
-          </>
-        )}
-
-        {pathname === "/pm/solicitudes/" + codigoPr && (
-          <>
-            <MenuItem
-              onClick={handleClose}
-              as={Link}
-              to={"/pm/expediente/" + viaticoID}
-            >
               Ver solicitud
             </MenuItem>
           </>
         )}
 
-        {pathname === "/pm/historico" && (
-          <>
-            <MenuItem
-              onClick={handleClose}
-              as={Link}
-              to={"/pm/hexpediente/" + viaticoID}
-            >
-              Ver gastos
-            </MenuItem>
-          </>
-        )}
+        {pathname === "/pm/historico" ||
+          ("/pm/solicitudes/" + codigoPr && (
+            <>
+              <MenuItem
+                onClick={handleClose}
+                as={Link}
+                to={"/pm/hexpediente/" + viaticoID}
+              >
+                Ver solicitud
+              </MenuItem>
+              {status === "Rechazado" && (
+                <MenuItem onClick={handleClose}>
+                  Mostrar motivo de rechazo
+                </MenuItem>
+              )}
+              {status === "Pagado" && (
+                <>
+                  <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+                  <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+                </>
+              )}
+            </>
+          ))}
 
         <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
       </Menu>
