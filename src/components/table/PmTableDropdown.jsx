@@ -72,7 +72,7 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
                 <MenuItem
                   onClick={handleClose}
                   as={Link}
-                  to={"/admin/hexpediente/" + viaticoID}
+                  to={"/pm/hexpediente/" + viaticoID}
                 >
                   Ver expediente
                 </MenuItem>
@@ -84,7 +84,7 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
                 <MenuItem
                   onClick={handleClose}
                   as={Link}
-                  to={"/admin/hexpediente/" + viaticoID}
+                  to={"/pm/hexpediente/" + viaticoID}
                 >
                   Ver expediente
                 </MenuItem>
