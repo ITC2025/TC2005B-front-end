@@ -49,7 +49,7 @@ function EG({ gastoID }) {
       await updateGasto(formGasto, gastoID);
       console.log("Gasto actualizado:", formGasto);
       navigate(-1);
-      // window.location.href = "/user/expediente/" + gastoID;
+      
     } catch (error) {
       console.error("Error al actualizar el gasto:", error);
     }
