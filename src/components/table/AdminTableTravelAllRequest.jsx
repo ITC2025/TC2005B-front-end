@@ -24,6 +24,7 @@ export const AdminTableTravelAllRequest = () => {
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Pagado");
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Rechazado");
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -50,7 +51,7 @@ export const AdminTableTravelAllRequest = () => {
       width: "80px",
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
     },
@@ -74,15 +75,15 @@ export const AdminTableTravelAllRequest = () => {
       style: { paddingLeft: "0px" },
     },
     {
-      name: "Actions",
+      name: "Acciones",
       cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
-      width: "80px",
+      width: "120px",
       style: { paddingLeft: "0.5em" },
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
@@ -90,6 +91,8 @@ export const AdminTableTravelAllRequest = () => {
   // mostrar la tabla
   return (
     <div className="container">
+      <h1 id="HeaderTitle">Solicitudes activas</h1>
+      <hr />
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4 d-flex justify-content-start">
         </div>

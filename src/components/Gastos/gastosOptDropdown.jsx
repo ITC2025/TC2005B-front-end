@@ -11,7 +11,7 @@ import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 export default function GastosDropdown(props) {
 
-  console.log(props.id);
+  //console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -54,7 +54,7 @@ export default function GastosDropdown(props) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Editar</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to={"/user/EG/" + props.id} >Editar</MenuItem>
         <MenuItem onClick={handleModal}>Borrar</MenuItem>
       </Menu>
 
