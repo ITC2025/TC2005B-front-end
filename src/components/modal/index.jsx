@@ -141,7 +141,7 @@ const Modal = ({
                   variant="ligth"
                 >
                   {" "}
-                  ABONAR A OTRO VIATICO{" "}
+                  ABONAR A OTRO VIÁTICO{" "}
                 </Button>{" "}
                 <Button
                   onClick={() => cambioEstadoGasto()}
@@ -167,7 +167,7 @@ const Modal = ({
                   variant="ligth"
                 >
                   {" "}
-                  ABONAR A OTRO VIATICO{" "}
+                  ABONAR A OTRO VIÁTICO{" "}
                 </Button>{" "}
                 <Button
                   onClick={() => cambioEstadoGasto()}
@@ -233,7 +233,7 @@ const Modal = ({
             )}
             {aprovacionSolicitud && (
               <>
-                <h1> APROBACION DE SOLICITUD </h1>
+                <h1> APROBACIÓN DE SOLICITUD </h1>
                 <Button
                   onClick={() => aceptarViatico()}
                   id="basicButton"
@@ -320,7 +320,7 @@ const Modal = ({
             )}
             {solicitudViatico && (
               <>
-                <h1>SOLICITUD DE VIATICO</h1>
+                <h1>SOLICITUD DE VIÁTICO</h1>
                 <div>
                   <Container className="white-bg">
                     <Container className="gray-bg" id="modalTable">
@@ -344,14 +344,14 @@ const Modal = ({
                               Proyecto: <strong>{info[3]}</strong>
                             </p>
                             <p>
-                              Fecha de termino: <strong>{info[2]}</strong>
+                              Fecha de término: <strong>{info[2]}</strong>
                             </p>
                           </Col>
                         </Row>
                         <Row>
                           <Col>
                             <p>
-                              Descripcion: <strong>{info[5]}</strong>
+                              Descripción: <strong>{info[5]}</strong>
                             </p>
                           </Col>
                         </Row>
@@ -383,7 +383,7 @@ const Modal = ({
             )}
             {confirmarPago && (
               <>
-                <h1> CONFIRMACION DE PAGO </h1>
+                <h1> CONFIRMACIÓN DE PAGO </h1>
                 <div class="modal-textarea">
                   <p> Introduce la referencia bancaria: </p>
                   <textarea value={refBank} onChange={enviarRef} rows="3" />
