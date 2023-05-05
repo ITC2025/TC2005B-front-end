@@ -162,7 +162,7 @@ const Modal = ({ estado,
                             </>
                         }
 
-            {solicitudViatico && (
+                        {solicitudViatico && (
                         <>
                             <h1>SOLICITUD DE VIATICO</h1>
                             <div>
