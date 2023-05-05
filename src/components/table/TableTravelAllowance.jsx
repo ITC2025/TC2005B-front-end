@@ -31,9 +31,10 @@ export const TableTravelAllowance = () => {
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
     let data = await userViaticos();
+    
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
   useEffect(() => {
@@ -57,7 +58,7 @@ export const TableTravelAllowance = () => {
       width: "80px",
     },
     {
-      name: "Codigo Proyecto",
+      name: "Código Proyecto",
       selector: (row) =>
         row.Proyecto.codigoProyecto
           ? row.Proyecto.codigoProyecto
@@ -75,7 +76,7 @@ export const TableTravelAllowance = () => {
       sortable: true,
     },
     {
-      name: "Fecha Fin",
+      name: "Fecha de Finalización",
       selector: (row) => row.fechaTermino,
       sortable: true,
     },
@@ -93,7 +94,7 @@ export const TableTravelAllowance = () => {
       style: { paddingLeft: "0px" },
     },
     {
-      name: "Actions",
+      name: "Acciones",
       cell: (row) => (
         <TableDropdown
           viaticoID={row.ID_solicitud_viatico}
@@ -101,7 +102,7 @@ export const TableTravelAllowance = () => {
           info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion, row.ID_solicitud_viatico]}
         />
       ),
-      width: "80px",
+      width: "100px",
       style: { paddingLeft: "0.5em" },
     },
   ];
@@ -114,12 +115,15 @@ export const TableTravelAllowance = () => {
   };
   // mostrar la tabla
   return (
+
     <div className="container">
+      <h1 id="HeaderTitle">Solicitudes de viáticos activas</h1>
+      <hr />
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4 d-flex justify-content-start">
           <button id="basicButton" onClick={navSolicitar}>
             {" "}
-            Solicitar Viaticos{" "}
+            Solicitar Viáticos{" "}
           </button>
         </div>
         <div className="col-8 d-flex justify-content-end">

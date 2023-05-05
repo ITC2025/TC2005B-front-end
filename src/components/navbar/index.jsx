@@ -108,15 +108,15 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             {projectManager &&
                                 <>
                                     <Nav.Link className={activeTab === "/pm/proyectos" ? 'active' : 'nav-link'} onClick={pmProyectos}> <strong> MIS PROYECTOS</strong> </Nav.Link>
-                                    <Nav.Link className={activeTab === "/pm/solicitudes" ? 'active' : 'nav-link'} onClick={pmSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className={activeTab === "/pm/historico" ? 'active' : 'nav-link'} onClick={pmHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/pm/solicitudes" ? 'active' : 'nav-link'} onClick={pmSolicitud}> <strong> SOLICITUDES A REVISAR </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/pm/historico" ? 'active' : 'nav-link'} onClick={pmHistorial}> <strong> HISTORIAL DE VIÁTICOS </strong> </Nav.Link>
                                 </>
                             }
 
                             {admin &&
                                 <>
-                                    <Nav.Link className={activeTab === "/admin/solicitudes" ? 'active' : 'nav-link'} onClick={adminSolicitud}> <strong> SOLICITUD DE VIATICOS </strong> </Nav.Link>
-                                    <Nav.Link className={activeTab === "/admin/historial" ? 'active' : 'nav-link'} onClick={adminHistorial}> <strong> HISTORIAL DE VIATICOS </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/admin/solicitudes" ? 'active' : 'nav-link'} onClick={adminSolicitud}> <strong> SOLICITUDES A REVISAR </strong> </Nav.Link>
+                                    <Nav.Link className={activeTab === "/admin/historial" ? 'active' : 'nav-link'} onClick={adminHistorial}> <strong> HISTORIAL DE SOLICITUDES </strong> </Nav.Link>
                                 </>
                             }                       
                     </Nav>
@@ -131,7 +131,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             />
                             <NavDropdown title={username} id="basic-nav-dropdown">
 
-                            <NavDropdown.Item className="nav-link" onClick={sessionDelete}>  LOG OUT </NavDropdown.Item>
+                            <NavDropdown.Item className="nav-link" onClick={sessionDelete} style={{textAlign: "center"}}>  LOG OUT </NavDropdown.Item>
                             </NavDropdown>
                         </div>
                     </Nav>
