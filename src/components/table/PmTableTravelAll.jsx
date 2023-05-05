@@ -40,6 +40,8 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
     const res = await fetch(URL);
     let data = await res.json();
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+
 
     if (closed_requests_only) {
       data = data.filter((row) => {
@@ -116,7 +118,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico}/>,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} codigoPr={project_code}/>,
       width: "80px",
     },
   ];
