@@ -115,17 +115,15 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   let total = anticipo - suma;
   let idV = id;
 
-  const ImageComponent = async ({ idGasto }) => {
+    const ImageComponent = async ({ idGasto }) => {
     const data = await imagen_gastos(idGasto);
 
     let imageUrl = data.imagen;
-    imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
 
     let facturaUrl = null;
 
     if (data.factura) {
       facturaUrl = data.factura;
-      facturaUrl = "http://localhost:3001/reporte_gastos/" + facturaUrl;
     }
 
     return { imageUrl, facturaUrl };
@@ -228,7 +226,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",

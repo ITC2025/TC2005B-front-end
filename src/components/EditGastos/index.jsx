@@ -28,11 +28,14 @@ function EG({ viaticoID }) {
     const { name, value } = event.target;
     setFormGasto({ ...formGasto, [name]: value });
   };
-  
-  const handleFileUpload = (event) => {
+
+  const handleFileUpload = (event, index) => {
     const { name } = event.target;
     const file = event.target.files[0];
-    setFormGasto({ ...formGasto, [name]: file });
+
+    const updatedFormGasto = [...formGasto];
+    updatedFormGasto[index][name] = file;
+    setFormGasto(updatedFormGasto);
   };
 
   const handleSubmit = async (event) => {
