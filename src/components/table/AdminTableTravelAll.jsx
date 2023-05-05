@@ -75,7 +75,10 @@ export const AdminTableTravelAll = () => {
     },
     {
       name: "Acciones",
-      cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
+      cell: (row) => <TableAdminDropdown 
+      viaticoID={row.ID_solicitud_viatico} 
+      status={row.StatusSolicitudViatico.descripcion}
+      />,
       width: "90px",
       style: { paddingLeft: "0.5em" },
     },
