@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -7,9 +8,14 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index";
 import { useLocation } from "react-router-dom";
+import Modal from "../modal/index";
+import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
-export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
+export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
+  const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [datosSV, setDatosSV] = React.useState([]);
+
   const open = Boolean(anchorEl);
 
   const [modalRechazo, mostrarModalRechazo] = React.useState(false);
@@ -21,6 +27,19 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const abrirSolicitudDB = async () => {
+    const getDatos = getSolicitudViaticoUser(viaticoID);
+    const datos = await getDatos;
+    setDatosSV(datos);
+    console.log(datosSV);
+  };
+
+  const handleOnClickSomething = () => {
+    console.log("datosSV");
+
+    abrirSolicitudDB().then(() => setShowModal(!showModal));
   };
 
   const [modal, mostrarModal] = React.useState(false);
@@ -48,6 +67,7 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
       >
         {pathname === "/pm/solicitudes" && (
           <>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
             <MenuItem>
               Ver solicitud
             </MenuItem>
@@ -55,14 +75,25 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
         )}
         {pathname === "/pm/solicitudes/" + codigoPr && (
           <>
-            <MenuItem>
-              Ver solicitud
-            </MenuItem>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
+            {status === "Rechazado" && (
+              <MenuItem onClick={handleClose}>
+                Mostrar motivo de rechazo
+              </MenuItem>
+            )}
+            {status === "Pagado" && (
+              <>
+                <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+                <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+              </>
+            )}
+
           </>
         )}
 
         {pathname === "/pm/historico" && (
           <>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
             <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
             {status === "Rechazado" && (
               <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>Ver motivo de rechazo</MenuItem>

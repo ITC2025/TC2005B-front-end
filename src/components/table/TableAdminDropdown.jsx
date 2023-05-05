@@ -1,23 +1,22 @@
-import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Dropdown from "react-bootstrap/Dropdown";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index";
 
-export default function TableAdminDropdown({ viaticoID, status }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function TableAdminDropdown({ viaticoID, info, status }) {
+  const [showModal, setShowModal] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [modalRechazo, mostrarModalRechazo] = useState(false);
+  const [modalPagado, mostrarModalPagado] = useState(false);
   const open = Boolean(anchorEl);
-
-  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
-  const [modalPagado, mostrarModalPagado] = React.useState(false);
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -44,8 +43,15 @@ export default function TableAdminDropdown({ viaticoID, status }) {
           "aria-labelledby": "basic-button",
         }}
       >
+
         <>
-          <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
+          <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={"/admin/hexpediente/" + viaticoID}
+        >
+          Ver solicitud
+        </MenuItem>
           {status === "Rechazado" && (
             <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>
               Ver motivo de rechazo
