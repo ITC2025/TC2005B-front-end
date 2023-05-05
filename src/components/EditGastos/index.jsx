@@ -4,7 +4,7 @@ import { Row, Col, Card, Container } from "react-bootstrap";
 import { getGastos, updateGasto } from "../../apis/getApiData";
 import { useNavigate } from "react-router-dom";
 
-function EG({ viaticoID }) {
+function EG({ gastoID }) {
   const navigate = useNavigate();
   const [validated, setValidated] = useState(false);
   const [formGasto, setFormGasto] = useState([]);
@@ -13,7 +13,7 @@ function EG({ viaticoID }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const gasto = await getGastos(viaticoID);
+        const gasto = await getGastos(gastoID);
         setFormGasto(gasto);
         setLoading(false);
       } catch (error) {
@@ -22,7 +22,7 @@ function EG({ viaticoID }) {
     };
 
     fetchData();
-  }, [viaticoID]);
+  }, [gastoID]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,16 +43,16 @@ function EG({ viaticoID }) {
     event.stopPropagation();
     
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       setValidated(true);
       return;
     }
 
     try {
-      await updateGasto(formGasto, viaticoID);
+      await updateGasto(formGasto, gastoID);
       console.log("Gasto actualizado:", formGasto);
       navigate(-1);
-      // window.location.href = "/user/expediente/" + viaticoID;
+      
     } catch (error) {
       console.error("Error al actualizar el gasto:", error);
     }
