@@ -14,8 +14,6 @@ import {
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
-import { getSolicitudViaticoUser } from "../../apis/getApiData";
-
 const Modal = ({
   estado,
   cambiarEstado,
@@ -35,8 +33,7 @@ const Modal = ({
   info,
   motivoRechazo,
   id,
-  gastosContemplados,
-  viaticoSV,
+  dataDB,
 }) => {
   const [refBank, setRefBank] = useState("");
   const [comRechazo, setComRechazo] = useState("");
@@ -344,13 +341,12 @@ const Modal = ({
                                 </tr>
                               </thead>
                               <tbody className="modal-tbody">
-                                {/* {gastosContemplados.map((value, idx) => (
+                                {dataDB.map((value, idx) => (
                                   <tr key={idx} className="bg-white">
                                     <td>{value.concepto}</td>
                                     <td>{parseInt(value.monto)} MXN</td>
                                   </tr>
-                                ))} */}
-                                {console.log(gastosContemplados)}
+                                ))}
                               </tbody>
                             </Table>
                           </Col>
@@ -416,12 +412,6 @@ const Modal = ({
     navigate(-1);
   }
 };
-
-// const abrirSolicitudDB = async () => {
-//   const getDatos = getSolicitudViaticoUser(viaticoSV);
-//   const data = await getDatos;
-//   console.log(data);
-// };
 
 export default Modal;
 

@@ -7,12 +7,14 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import Modal from "../modal/index"
+import Modal from "../modal/index";
+import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
-export default function PmTableDropdown({ viaticoID,info }) {
-
+export default function PmTableDropdown({ viaticoID, info }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [datosSV, setDatosSV] = React.useState([]);
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -21,8 +23,21 @@ export default function PmTableDropdown({ viaticoID,info }) {
     setAnchorEl(null);
   };
 
-  const {pathname} = useLocation();
-  
+  const abrirSolicitudDB = async () => {
+    const getDatos = getSolicitudViaticoUser(viaticoID);
+    const datos = await getDatos;
+    setDatosSV(datos);
+    console.log(datosSV);
+  };
+
+  const handleOnClickSomething = () => {
+    console.log("datosSV");
+
+    abrirSolicitudDB().then(() => setShowModal(!showModal));
+  };
+
+  const { pathname } = useLocation();
+
   return (
     <div>
       <Button
@@ -43,21 +58,31 @@ export default function PmTableDropdown({ viaticoID,info }) {
           "aria-labelledby": "basic-button",
         }}
       >
-
-        {(pathname === "/pm/solicitudes" &&
+        {pathname === "/pm/solicitudes" && (
           <>
-            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver gastos</MenuItem>
-
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/pm/expediente/" + viaticoID}
+            >
+              Ver gastos
+            </MenuItem>
           </>
         )}
 
-        {(pathname === "/pm/historico" &&
+        {pathname === "/pm/historico" && (
           <>
-            <MenuItem onClick={handleClose} as={Link} to={"/pm/hexpediente/" + viaticoID}  >Ver gastos</MenuItem>
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/pm/hexpediente/" + viaticoID}
+            >
+              Ver gastos
+            </MenuItem>
           </>
         )}
 
-        <MenuItem onClick={() => setShowModal(!showModal)}>Ver solicitud</MenuItem>
+        <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
       </Menu>
       <Modal
         estado={showModal}
