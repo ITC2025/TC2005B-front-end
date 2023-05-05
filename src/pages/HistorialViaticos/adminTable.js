@@ -1,9 +1,12 @@
+import "../../styles/PmTable.css";
+import { AdminTableTravelAll } from "../../components/table/AdminTableTravelAll";
 import React from 'react'
-import AdminTableTravelAll from '../../components/table/AdminTableTravelAll';
 
 export const AdminTable = () => {
+
   return (
-    <AdminTableTravelAll />
+    <>
+      <AdminTableTravelAll />
+    </>
   );
 };
-

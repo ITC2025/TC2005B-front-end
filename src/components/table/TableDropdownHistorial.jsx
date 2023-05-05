@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,8 +8,7 @@ import { Link } from "react-router-dom";
 import Modal from "../modal";
 import { tokenValidation } from "../../apis/getApiData";
 
-export default function TableDropdown({ viaticoID, Status, info }) {
-  const [showModal, setShowModal] = useState(false);
+export default function TableDropdownHistorial({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
@@ -28,10 +26,8 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
   const getRole = async () => {
     const response = await tokenValidation()
-    // console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      // console.log('Yo soy Admin')
     }
   }
 
@@ -60,27 +56,24 @@ export default function TableDropdown({ viaticoID, Status, info }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        {isAdmin ? null : <MenuItem onClick={() => setShowModal(!showModal)}>Abrir solicitud</MenuItem>}
-
-        {Status !== "Pagado" &&
-          <MenuItem
-            onClick={handleClose}
-            as={Link}
-            to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
-          >
-            Ver gastos
-          </MenuItem>
-        }
+        {isAdmin ? null : <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>}
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={isAdmin ? "../hexpediente/" + viaticoID : "../hexpediente/" + viaticoID}
+        >
+          Ver historial
+        </MenuItem>
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
           </>
         )}
 
         {Status === "Pagado" && (
           <>
-            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
+            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
           </>
         )}
       </Menu>
@@ -94,13 +87,6 @@ export default function TableDropdown({ viaticoID, Status, info }) {
         cambiarEstado={mostrarModalPagado}
         mostrarReferencia={true}
         id={viaticoID} />
-      <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
-      <Modal
-        estado={showModal}
-        cambiarEstado={setShowModal}
-        solicitudViatico={true}
-        info={info}
-      />
     </div>
   );
 }

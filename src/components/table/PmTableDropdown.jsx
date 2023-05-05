@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Modal from "../modal/index"
 
-export default function PmTableDropdown({ viaticoID,info }) {
-
+export default function PmTableDropdown({ viaticoID,info, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -21,8 +20,8 @@ export default function PmTableDropdown({ viaticoID,info }) {
     setAnchorEl(null);
   };
 
-  const {pathname} = useLocation();
-  
+  const { pathname } = useLocation();
+
   return (
     <div>
       <Button
@@ -47,6 +46,20 @@ export default function PmTableDropdown({ viaticoID,info }) {
         {(pathname === "/pm/solicitudes" &&
           <>
             <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver gastos</MenuItem>
+
+          </>
+        )}
+
+        {(pathname === "/pm/solicitudes/"+ codigoPr &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver gastos</MenuItem>
+
+          </>
+        )}
+
+        {(pathname === "/pm/solicitudes/"+ codigoPr &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver solicitud</MenuItem>
 
           </>
         )}

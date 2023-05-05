@@ -18,10 +18,10 @@ export async function gastosApi(v_id) {
           throw new Error("La respuesta de la API no fue exitosa.");
         }
         const data = await response.json();
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
         return data;
       } catch (error) {
-        console.error("Ocurrió un error al intentar obtener los gastos:", error);
+        //console.error("Ocurrió un error al intentar obtener los gastos:", error);
       }
     }
 
@@ -41,10 +41,10 @@ export async function proyecto_info(v_id) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     return data;
   } catch (error) {
-    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+    //console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
 
@@ -64,10 +64,10 @@ export async function proyecto_sum_user(v_id) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     return data;
   } catch (error) {
-    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+    //console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
 
@@ -87,10 +87,10 @@ export async function proyecto_sum_pm(v_id) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     return data;
   } catch (error) {
-    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+    //console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
 
@@ -110,15 +110,15 @@ export async function proyecto_sum_admin(v_id) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
     const data = await response.json();
-    console.log(JSON.stringify(data));
+    //console.log(JSON.stringify(data));
     return data;
   } catch (error) {
-    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+    //console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
 
 export async function imagen_gastos(g_id) {
-  const url = "http://localhost:3001/expenses_table/img/" + g_id;
+  const url = "http://localhost:3001/expense_reports/" + g_id;
 
   const options = {
     method: "GET",
@@ -132,18 +132,17 @@ export async function imagen_gastos(g_id) {
     if (!response.ok) {
       throw new Error("La respuesta de la API no fue exitosa.");
     }
-    const data = await response.blob();
-    console.log(data);
-    console.log("api jala");
-    return data;
+
+    const data = await response.json();
+    return  {imagen: data.imagen, factura: data.factura};
   } catch (error) {
-    console.error("Ocurrió un error al intentar obtener los gastos:", error);
+    //console.error("Ocurrió un error al intentar obtener los gastos:", error);
   }
 }
 
 export async function smart_delete_expenses(id) {
   const url = "http://localhost:3001/expense_reports/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -161,7 +160,7 @@ export async function smart_delete_expenses(id) {
 export async function approve_expenses(id) {
   const url =
     "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -179,7 +178,7 @@ export async function approve_expenses(id) {
 export async function reject_expenses(id) {
   const url =
     "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -197,7 +196,7 @@ export async function reject_expenses(id) {
 export async function send_expenses(id) {
   const url =
     "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -215,7 +214,7 @@ export async function send_expenses(id) {
 export async function send_viatico(id) {
   const url =
     "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -233,7 +232,7 @@ export async function send_viatico(id) {
 export async function accept_viatico(id) {
   const url =
     "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -250,7 +249,7 @@ export async function accept_viatico(id) {
 
 export async function reject_viatico(id, comRechazo) {
   const url = "http://localhost:3001/viatico_request/" + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
     method: "PATCH",
     headers: {
@@ -268,7 +267,7 @@ export async function reject_viatico(id, comRechazo) {
 
 export async function paid_viatico(id, refBank){
   const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
-  console.log(url);
+  //console.log(url);
   const options = {
       method: "PATCH",
       headers: {
@@ -278,6 +277,34 @@ export async function paid_viatico(id, refBank){
         ID_status_solicitud_viaticos: 4,
         referenciaBancaria: refBank
       }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function comentarioRechazo(id){
+  const url = 'http://localhost:3001/viatico_request/comentario/' + JSON.stringify(id);
+  const options = {
+      method: "GET",
+      credentials:"include",
+      headers: {
+          'Content-Type': 'application/json',
+      }
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function refBancaria(id){
+  const url = 'http://localhost:3001/viatico_request/refBancaria/' + JSON.stringify(id);
+  const options = {
+      method: "GET",
+      credentials:"include",
+      headers: {
+          'Content-Type': 'application/json',
+      }
   }
   const rawResponse = await fetch(url, options)
   const response = await rawResponse.json();
