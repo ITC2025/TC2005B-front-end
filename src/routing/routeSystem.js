@@ -6,7 +6,7 @@ import NavbarSC from "../components/navbar/index.jsx";
 import Login from "../pages/Login/login";
 import Test from "../pages/test/index.js";
 import Facturas from "../pages/Gastos/Gastos";
-import PrivateRoutes from "../apis/PrivateRoutes";
+import PrivateRoutes from "./PrivateRoutes.js";
 import PmDashboard from "../pages/Dashboard/pmDashboard";
 import { UserDashboard } from "../pages/Dashboard/userDashboard";
 import AdminDashboard from "../pages/Dashboard/adminDashboard";
