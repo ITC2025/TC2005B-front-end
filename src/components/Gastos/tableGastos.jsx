@@ -146,13 +146,8 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       name: "ID",
       selector: (row) => row.id,
       sortable: true,
-      width: "16%",
+      width: "8%",
     },
-    // {
-    //     name:"Fecha",
-    //     selector: (row) => row.date,
-    //     sortable: true
-    // },
     {
       name: "Fecha",
       selector: (row) => row.fecha,
@@ -175,14 +170,14 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       name: "Total",
       selector: (row) => row.total,
       sortable: true,
-      width: "16%",
+      width: "8%",
     },
-    //{
-    //  name: "Estado",
-    //  selector: (row) => <BadgeStatus status={row.status} />,
-    //  width: "120px",
-    //  style: { paddingLeft: "0px" },
-    //},
+    {
+     name: "Estado",
+     selector: (row) => <BadgeStatus status={row.status} />,
+     width: "16%",
+     style: { paddingLeft: "0px" },
+    },
     {
       name: "Ticket",
       cell: (row) => <MdImage onClick={() => OpenModal(row.id)} />,
