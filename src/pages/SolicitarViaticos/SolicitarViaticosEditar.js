@@ -32,29 +32,22 @@ function SolicitarViaticosEditar() {
 
   let idProyecto = 0;
 
-  //   const URL = "http://localhost:3001/projects";
-  //   const getProyectos = async () => {
-  //     const res = await fetch(URL);
-  //     const data = await res.json();
-  //     setProyectos(data);
-  //   };
-
   
 
-  const URL = "http://localhost:3001/projects";
-  const getProyectos = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setProyectos(data);
-  };
-
   useEffect(() => {
-    getProyectos();
+    const solicitud =  SolInd(routeParams.id)
+
     SolInd(routeParams.id).then((formData)=>{
-      setFormData(formData)
+      setFormData({
+        fechaInicio: formData[0].fechaInicio,
+        fechaTermino: formData[0].fechaTermino,
+        destino: formData[0].destino,
+        ID_proyecto: formData[0].ID_proyecto,
+        descripcion: formData[0].descripcion
+      })
     });
-    console.log(routeParams.id)
-  }, [routeParams.id]);
+    console.log(formData)
+  }, []);
 
   useEffect(() => {
     const nombres = proyectos.map((proyecto) => proyecto.codigoProyecto);
