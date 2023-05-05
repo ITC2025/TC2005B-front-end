@@ -11,6 +11,6 @@ export async function getProjectManagers() {
         const data = await response.json();
         return data;
     } catch (error) {
-        console.error("Occurió un error al intentar obtener los project managers")
+        // console.error("Occurió un error al intentar obtener los project managers")
     }
 }

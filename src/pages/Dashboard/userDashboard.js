@@ -1,11 +1,15 @@
 import React from "react";
 import CardDashboard from "../../components/cards/CardDashboard";
-import CardRequest from "../../images/CardRequest.png";
+import CardCreateRequest from "../../images/CardCreateRequest.png";
 import CardTravelAll from "../../images/CardTravelAll.png";
 import { useNavigate } from "react-router-dom";
 
 export const UserDashboard = () => {
   const navigate = useNavigate();
+
+  const navigateCreateViaticos = () => {
+    navigate("/user/solicitar");
+  };
 
   const navigateViaticos = () => {
     navigate("/user/viaticos");
@@ -29,12 +33,14 @@ export const UserDashboard = () => {
             </button>
           </div>
           <div className="col-md-6">
-            <button style={{
+            <button
+              onClick={navigateCreateViaticos}
+              style={{
                 border: "none",
                 backgroundColor: "none",
                 background: "none",
               }}>
-              <CardDashboard image={CardRequest} lab="Solicitudes"></CardDashboard>
+              <CardDashboard image={CardCreateRequest} lab="Crear Viaticos"></CardDashboard>
             </button>
           </div>
         </div>
