@@ -41,7 +41,6 @@ function SolicitarViaticosEditar() {
 
   const handleSolicitud = async () =>{
     const solicitud = await SolInd(routeParams.id)
-    console.log(solicitud);
     setFormData(solicitud);
   }
 
