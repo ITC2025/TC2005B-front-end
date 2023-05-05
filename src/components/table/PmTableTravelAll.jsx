@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
 import { tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
+export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -25,7 +25,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
   // Funcion para mostrar datos con fetch
   // const URL = "https://jsonplaceholder.typicode.com/users";
   //
-  
+
 
   const getTravelAllowance = async () => {
     const response = await tokenID();
@@ -34,7 +34,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
     if (project_code) {
       URL = URL + "/" + project_code;
-    } 
+    }
 
     //console.log(URL);
 
@@ -45,13 +45,13 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
     if (closed_requests_only) {
       data = data.filter((row) => {
-        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
-                row.StatusSolicitudViatico.descripcion != "En revisión")
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" &&
+          row.StatusSolicitudViatico.descripcion != "En revisión")
       });
     } else if (!project_code) {
       data = data.filter((row) => {
-        return (row.StatusSolicitudViatico.descripcion == "Enviado" || 
-                row.StatusSolicitudViatico.descripcion == "En revisión")
+        return (row.StatusSolicitudViatico.descripcion == "Enviado" ||
+          row.StatusSolicitudViatico.descripcion == "En revisión")
       });
     }
 
@@ -67,7 +67,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
 
   const handleSend = () => {
-    //console.log("enviar");
     //refrescar la pagina
     window.location.reload();
   };
@@ -86,7 +85,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       name: "ID",
       selector: (row) => row.ID_solicitud_viatico,
       sortable: true,
-      width: "120px",
+      width: "80px",
     },
     {
       name: "Fecha",
@@ -94,7 +93,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       sortable: true,
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
 
@@ -105,7 +104,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       sortable: true,
     },
     {
-      name: "Project",
+      name: "Proyecto",
       selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
@@ -114,24 +113,26 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
-      style: { paddingLeft: "0px", },
+      style: { paddingLeft: "0px", textAlign: "center" },
     },
     {
-      name: "Actions",
-      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} codigoPr={project_code}/>,
-      width: "80px",
+      name: "Acciones",
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} codigoPr={project_code} />,
+      width: "90px",
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
   };
   // mostrar la tabla
   return (
-    <div className="container">
+    <div className="container" style = {{paddingTop: "0rem"}}>
+      <h1 id="HeaderTitle">Solicitudes</h1>
+      <hr />
       <div className="row my-2">
         <div className="col justify-content-end">
           <div className="d-flex justify-content-end">
