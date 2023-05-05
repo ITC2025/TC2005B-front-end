@@ -15,5 +15,5 @@ export async function  postProject(nombre, codigoProyecto, descripcion) {
     };
     const rawResponse = await fetch(url, options);
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response));
+    // console.log(JSON.stringify(response));
 }

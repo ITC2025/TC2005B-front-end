@@ -46,42 +46,19 @@ const Modal = ({ estado,
         async function fetchComentario() {
             const data = await comentarioRechazo(id)
             setMsgRechazo(data);
+            
         }
         fetchComentario();
 
         async function fetchReferencia() {
             const ref = await refBancaria(id)
             setBancoRef(ref);
+
         }
         fetchReferencia();
 
     }, [id]);
     
-    if (!msgRechazo) {
-        return (
-            <>
-                <p> NO HAY MOTIVO DE RECHAZO.</p>
-            </>
-        );
-    }
-
-    // useEffect  (() => {
-    //     async function fetchReferencia() {
-    //         const ref = await refBancaria(id)
-    //         setBancoRef(ref);
-    //     }
-    //     fetchReferencia();
-    // }, [id]);
-    
-    if (!bancoRef) {
-        return (
-            <>
-                <p> NO HAY MOTIVO DE RECHAZO.</p>
-            </>
-        );
-    }
-
-
     return (
         <>
             {estado &&
@@ -202,7 +179,6 @@ const Modal = ({ estado,
                             <>  
                                 <h1> MOTIVO RECHAZO </h1>
                                 <p> {msgRechazo.comentario} </p>
-                                {console.log(id)}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }
