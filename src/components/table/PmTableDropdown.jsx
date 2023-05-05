@@ -14,8 +14,8 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [datosSV, setDatosSV] = React.useState([]);
-
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -61,54 +61,59 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
         {pathname === "/pm/solicitudes" && (
           <>
             <MenuItem
-              onClick={handleClose}
+              onClick={handleOnClickSomething}
               as={Link}
-              to={"/pm/expediente/" + viaticoID}
-            >
-              Ver gastos
-            </MenuItem>
-          </>
-        )}
-
-        
-
-        {(pathname === "/pm/historico" || "/pm/solicitudes/"+ codigoPr &&
-          <>
-            <MenuItem
-              onClick={handleClose}
-              as={Link}
-              to={"/pm/expediente/" + viaticoID}
+              // to={"/pm/expediente/" + viaticoID}
             >
               Ver solicitud
             </MenuItem>
           </>
         )}
-
-        {pathname === "/pm/historico" ||
-          ("/pm/solicitudes/" + codigoPr && (
-            <>
-              <MenuItem
-                onClick={handleClose}
-                as={Link}
-                to={"/pm/hexpediente/" + viaticoID}
-              >
-                Ver solicitud
+        {pathname === "/pm/solicitudes/" + codigoPr && (
+          <>
+            <MenuItem
+              onClick={handleOnClickSomething}
+              as={Link}
+              // to={"/pm/expediente/" + viaticoID}
+            >
+              Ver solicitud
+            </MenuItem>
+            {status === "Rechazado" && (
+              <MenuItem onClick={handleClose}>
+                Mostrar motivo de rechazo
               </MenuItem>
-              {status === "Rechazado" && (
-                <MenuItem onClick={handleClose}>
-                  Mostrar motivo de rechazo
-                </MenuItem>
-              )}
-              {status === "Pagado" && (
-                <>
-                  <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
-                  <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
-                </>
-              )}
-            </>
-          ))}
+            )}
+            {status === "Pagado" && (
+              <>
+                <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+                <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+              </>
+            )}
+          </>
+        )}
 
-        <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
+        {pathname === "/pm/historico" && (
+          <>
+            <MenuItem
+              onClick={handleOnClickSomething}
+              as={Link}
+              // to={"/pm/hexpediente/" + viaticoID}
+            >
+              Ver solicitud
+            </MenuItem>
+            {status === "Rechazado" && (
+              <MenuItem onClick={handleClose}>
+                Mostrar motivo de rechazo
+              </MenuItem>
+            )}
+            {status === "Pagado" && (
+              <>
+                <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+                <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+              </>
+            )}
+          </>
+        )}
       </Menu>
       <Modal
         estado={showModal}

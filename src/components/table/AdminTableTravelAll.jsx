@@ -7,7 +7,6 @@ import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 import TableDropdownHistorial from "./TableDropdownHistorial";
-import TableAdminDropdown from "./TableAdminDropdown";
 
 export const AdminTableTravelAll = () => {
   const navigate = useNavigate();

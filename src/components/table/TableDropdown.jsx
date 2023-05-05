@@ -18,8 +18,8 @@ export default function TableDropdown({ viaticoID, Status, info }) {
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
   const [modalRechazo, mostrarModalRechazo] = React.useState(false);
-  const [datosSV, setDatosSV] = React.useState([]);
   const [modalPagado, mostrarModalPagado] = React.useState(false);
+  const [datosSV, setDatosSV] = React.useState([]);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -143,7 +143,11 @@ export default function TableDropdown({ viaticoID, Status, info }) {
         mostrarReferencia={true}
         id={viaticoID}
       />
-      <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
+      <Modal
+        estado={showModal}
+        cambiarEstado={setShowModal}
+        motivoRechazo={true}
+      />
       <Modal
         dataDB={datosSV}
         estado={showModal}

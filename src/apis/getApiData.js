@@ -18,19 +18,19 @@ export async function getAuthenticationData(name, password) {
   return response;
 }
 
-export async function tokenValidation(){
-    const url = 'http://localhost:3001/auth/rol';
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
+export async function tokenValidation() {
+  const url = "http://localhost:3001/auth/rol";
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
 
-    return response;
+  return response;
 }
 
 export async function tokenID() {
@@ -62,53 +62,54 @@ export async function sessionDelete() {
   return response;
 }
 
-export async function userViaticos(){
-    const id_user = await tokenID();
-    const url = 'http://localhost:3001/viatico_request/user/' + JSON.stringify(id_user.id);
-    //console.log(url);
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    //console.log(response);  
-    return response;
+export async function userViaticos() {
+  const id_user = await tokenID();
+  const url =
+    "http://localhost:3001/viatico_request/user/" + JSON.stringify(id_user.id);
+  //console.log(url);
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  //console.log(response);
+  return response;
 }
 
-export async function userSaldo(){
-    const id_user = await tokenID();
-    const url = 'http://localhost:3001/users/saldo/' + JSON.stringify(id_user.id);
-    //console.log(url);
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
+export async function userSaldo() {
+  const id_user = await tokenID();
+  const url = "http://localhost:3001/users/saldo/" + JSON.stringify(id_user.id);
+  //console.log(url);
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
 }
 
-export async function projectsPM(){
-    const id_user = await tokenID();
-    const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user.id);
-    //console.log(url);
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
+export async function projectsPM() {
+  const id_user = await tokenID();
+  const url = "http://localhost:3001/projects/" + JSON.stringify(id_user.id);
+  //console.log(url);
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
 }
 
 export async function postProject(nombre, codigo, desc) {
@@ -167,61 +168,61 @@ export async function postSolicitarViatico(
   return response;
 }
 
-export async function postCrearReporteGastos(data){
-    const url = 'http://localhost:3001/expense_reports';
-    const options = {
-        method: "POST",
-        credentials:"include",
-        body: data
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
+export async function postCrearReporteGastos(data) {
+  const url = "http://localhost:3001/expense_reports";
+  const options = {
+    method: "POST",
+    credentials: "include",
+    body: data,
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
 }
 
 export async function getGastos(viaticoID) {
-    const url = 'http://localhost:3001/expense_reports/' + viaticoID;
-    const options = {
-      method: 'GET',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-  
-    const rawResponse = await fetch(url, options);
-    const response = await rawResponse.json();
-    return response;
-  }
-  
-  export async function updateGasto(data, viaticoID) {
-    const url = `http://localhost:3001/expense_reports/` + viaticoID;
-    const options = {
-      method: 'PATCH',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    };
-  
-    const rawResponse = await fetch(url, options);
-    const response = await rawResponse.json();
-    return response;
-  }
-  
-export async function adminSol(){
-    const url = 'http://localhost:3001/viatico_request';
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
+  const url = "http://localhost:3001/expense_reports/" + viaticoID;
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function updateGasto(data, viaticoID) {
+  const url = `http://localhost:3001/expense_reports/` + viaticoID;
+  const options = {
+    method: "PATCH",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function adminSol() {
+  const url = "http://localhost:3001/viatico_request";
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
 }
 
 export async function getSolicitudViaticoUser(idSV) {
@@ -236,50 +237,52 @@ export async function getSolicitudViaticoUser(idSV) {
   const rawResponse = await fetch(url, options);
   const response = await rawResponse.json();
   return response;
-  
-export async function SolInd(id){
-    const url = 'http://localhost:3001/viatico_request/'+id;
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
 }
 
-export async function solicitudViaticosPM(){
-    const usuario = await tokenID()
-    const url = 'http://localhost:3001/viatico_request/pm/' + JSON.stringify(usuario.id);
-    const options = {
-        method: "GET",
-        credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    }
-    const rawResponse = await fetch(url, options)
-    const response = await rawResponse.json();
-    return response;
+export async function SolInd(id) {
+  const url = "http://localhost:3001/viatico_request/" + id;
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
+}
+
+export async function solicitudViaticosPM() {
+  const usuario = await tokenID();
+  const url =
+    "http://localhost:3001/viatico_request/pm/" + JSON.stringify(usuario.id);
+  const options = {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
 }
 
 export async function eliminarSolicitud(ID) {
-    const url = `http://localhost:3001/viatico_request/` + ID;
-    const options = {
-      method: 'PATCH',
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ID_status_solicitud_viaticos: 7
-      }),
-    };
-  
-    const rawResponse = await fetch(url, options);
-    const response = await rawResponse.json();
-    return response;
-  }
+  const url = `http://localhost:3001/viatico_request/` + ID;
+  const options = {
+    method: "PATCH",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      ID_status_solicitud_viaticos: 7,
+    }),
+  };
+
+  const rawResponse = await fetch(url, options);
+  const response = await rawResponse.json();
+  return response;
+}

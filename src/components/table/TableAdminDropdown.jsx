@@ -8,7 +8,7 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal";
 
-function TableAdminDropdown({ viaticoID, info }) {
+export default function TableAdminDropdown({ viaticoID, info, status }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [modalRechazo, mostrarModalRechazo] = useState(false);

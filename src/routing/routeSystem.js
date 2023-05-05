@@ -1,5 +1,5 @@
-import { useParams } from 'react-router';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useParams } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import components
 import NavbarSC from "../components/navbar/index.jsx";
@@ -12,7 +12,7 @@ import { UserDashboard } from "../pages/Dashboard/userDashboard.js";
 import AdminDashboard from "../pages/Dashboard/adminDashboard.js";
 import { UserTable } from "../pages/HistorialViaticos/UserTable.js";
 import { PmTable } from "../pages/HistorialViaticos/PmTable.js";
-import { AdminTable }  from "../pages/HistorialViaticos/adminTable.js";
+import { AdminTable } from "../pages/HistorialViaticos/adminTable.js";
 import SolicitarViaticos from "../pages/SolicitarViaticos/SolicitarViaticos.js";
 import CrearProyecto from "../pages/CrearProyecto/index.js";
 import Proyectos from "../pages/Proyectos/index.js";
@@ -21,8 +21,8 @@ import Expediente from "../pages/Expediente/expediente.js";
 import Proyecto from "../pages/Proyecto/proyectoAdmin.js";
 import SolicitudesAprobadas from "../pages/SolicitudesAprobadas/index.js";
 import { NotFound } from "../pages/NotFound/NotFound.js";
-import AdminViaticos from '../pages/Viaticos/adminViaticos.js';
-import EditarGastp from '../pages/Gastos/EditarGasto.js';
+import AdminViaticos from "../pages/Viaticos/adminViaticos.js";
+import EditarGastp from "../pages/Gastos/EditarGasto.js";
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
@@ -41,8 +41,6 @@ function EditGastoID() {
 }
 
 function RouteSystem() {
-
-
   return (
     <>
       <Router>
@@ -75,30 +73,25 @@ function RouteSystem() {
             <Route element={<NavbarSC projectManager={true} />} path="pm">
               <Route index element={<PmDashboard />} />
               {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Proyecto />}
-                path="proyecto"
-              />
+              <Route element={<Proyecto />} path="proyecto" />
               <Route element={<Test name="pm tablero" />} path="tablero" />
               <Route element={<CrearProyecto />} path="crearproyecto" />
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
-              <Route element={<PmTable/> } path={"solicitudes/:project_code"} />
-              <Route element={<PmTable/> } path={"solicitudes"} />
-              <Route element={<PmTable/> } path={"historico"} />
+              <Route element={<PmTable />} path={"solicitudes/:project_code"} />
+              <Route element={<PmTable />} path={"solicitudes"} />
+              <Route element={<PmTable />} path={"historico"} />
               <Route element={<ExpedientesID />} path="hexpediente/:id" />
             </Route>
           </Route>
-{/* comentario */}
+          {/* comentario */}
 
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
             <Route element={<NavbarSC admin={true} />} path="admin">
               <Route index element={<AdminDashboard />} />
-              <Route element={<AdminTable />}
-                path="historial"
-              />
+              <Route element={<AdminTable />} path="historial" />
               <Route element={<ExpedientesID />} path="hexpediente/:id" />
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
@@ -129,4 +122,4 @@ function RouteSystem() {
   );
 }
 
-export default RouteSystem
+export default RouteSystem;
