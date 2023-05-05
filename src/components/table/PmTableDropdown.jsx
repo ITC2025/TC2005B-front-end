@@ -8,13 +8,18 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index";
 import { useLocation } from "react-router-dom";
-import Modal from "../modal/index";
+// import Modal from "../modal/index";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
 export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [datosSV, setDatosSV] = React.useState([]);
+
+
+
+
+
 
   const open = Boolean(anchorEl);
 
@@ -137,6 +142,14 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
         cambiarEstado={mostrarModalPagado}
         mostrarReferencia={true}
         id={viaticoID}
+      />
+      <Modal
+        dataDB={datosSV}
+        estado={showModal}
+        cambiarEstado={setShowModal}
+        solicitudViatico={true}
+        info={info}
+        dosBotones={true}
       />
     </div>
   );
