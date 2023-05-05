@@ -46,6 +46,7 @@ const Modal = ({ estado,
         async function fetchComentario() {
             const data = await comentarioRechazo(id)
             setMsgRechazo(data);            
+            console.log(data)
         }
         fetchComentario();
 
@@ -178,7 +179,7 @@ const Modal = ({ estado,
                             <>  
                                 <h1> MOTIVO RECHAZO </h1>
                                 <h5>
-                                    {msgRechazo.comentario != null? msgRechazo.comentario :"No hay motivo de rechazo"}
+                                    {msgRechazo.comentario == null || msgRechazo.comentario == "" ? "No hay motivo de rechazo" : msgRechazo.comentario}
                                 </h5>
                                 
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
