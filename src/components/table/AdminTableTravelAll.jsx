@@ -26,7 +26,7 @@ export default function AdminTableTravelAll() {
   // Funcion para filtrar datos
   const handleFilter = (e) => {
     const newData = filtertravelAllowance.filter((row) =>
-      row.desc.toLowerCase().includes(e.target.value.toLowerCase())
+      row.descripcion.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setTravelAllowance(newData);
   };
@@ -41,7 +41,7 @@ export default function AdminTableTravelAll() {
     },
     {
       name: "Descripcion",
-      selector: (row) => row.desc,
+      selector: (row) => row.descripcion,
       sortable: true,
     },
     {
@@ -51,7 +51,7 @@ export default function AdminTableTravelAll() {
     },
     {
       name: 'Total',
-      selector: (row) => row.total,
+      selector: (row) => row.monto,
       sortable: true
     },
     {

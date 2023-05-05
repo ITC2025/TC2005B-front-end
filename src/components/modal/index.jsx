@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Container, Row, Col, Table } from "react-bootstrap";
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -144,7 +144,64 @@ const Modal = ({ estado,
                             <>
                                 <h1>SOLICITUD DE VIATICO</h1>
                                 <div>
-                                    <p>informacion</p>
+                                    <Container className="white-bg">
+                                        <Container className="gray-bg" id="modalTable">
+                                            <Container>
+                                            <Row>
+                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                                                <p>
+                                                    Monto Total: <strong>${}</strong>
+                                                </p>
+                                                <p>
+                                                    Fecha de inicio:{" "}
+                                                    <strong>{}</strong>
+                                                </p>
+                                                </Col>
+                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                                                <p>
+                                                    Destino: <strong>{}</strong>
+                                                </p>
+                                                </Col>
+                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                                                <p>
+                                                    Proyecto: <strong>{}</strong>
+                                                </p>
+                                                <p>
+                                                    Fecha de termino:{" "}
+                                                    <strong>{}</strong>
+                                                </p>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col>
+                                                <p>
+                                                    Descripcion: <strong>{}</strong>
+                                                </p>
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                <Table bordered hover className="custom-table">
+                                                    <thead className="modal-thead">
+                                                    <tr>
+                                                        <td>Concepto de gasto</td>
+                                                        <td>Monto</td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody className="modal-tbody">
+                                                    {/* {.map((value, idx) => (
+                                                        <tr key={idx} className="bg-white">
+                                                        <td>{value.concepto}</td>
+                                                        <td>{parseInt(value.monto)} MXN</td>
+                                                        </tr>
+                                                    ))} */}
+                                                    </tbody>
+                                                </Table>
+                                                </Col>
+                                            </Row>
+                                            </Container>
+                                        </Container>
+                                        </Container>
                                 </div>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>

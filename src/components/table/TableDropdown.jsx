@@ -46,15 +46,8 @@ export default function TableDropdown({viaticoID, Status}) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
+        <MenuItem onClick={() => setShowModal(!showModal)}>Abrir solicitud</MenuItem>
         <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
-        <MenuItem
-          onClick={handleClose}
-          as={Link}
-          to={"/user/expediente/" + viaticoID}
-        >
-          Ver gastos
-        </MenuItem>
         {Status === "Rechazado" && (
           <>
             <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
