@@ -19,7 +19,7 @@ function SolicitarViaticosEditar() {
     fechaInicio: "",
     fechaTermino: "",
     destino: "",
-    proyecto: "",
+    ID_proyecto: "",
     descripcion: "",
   });
 
@@ -42,6 +42,7 @@ function SolicitarViaticosEditar() {
   const handleSolicitud = async () =>{
     const solicitud = await SolInd(routeParams.id)
     setFormData(solicitud);
+    console.log(formData)
   }
 
   useEffect(() => {
@@ -209,14 +210,14 @@ function SolicitarViaticosEditar() {
                 />
               </Col>
             </Row>
-            <Row id="SolicitFormRow" className="mx-1">
+            {/* <Row id="SolicitFormRow" className="mx-1">
               <Col sm={12} md={10}>
                 <AddInputButton
                   className="form-button"
                   onAddInput={handleDataFromAddInput}
                 />
               </Col>
-            </Row>
+            </Row> */}
           </Container>
         </div>
         <div id="Footer">
