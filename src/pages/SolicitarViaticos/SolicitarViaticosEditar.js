@@ -6,6 +6,7 @@ import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
 import { SolInd } from "../../apis/getApiData";
+import { updateSolicitud } from "../../apis/gastosApiTabla";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticosEditar() {
@@ -32,29 +33,29 @@ function SolicitarViaticosEditar() {
 
   let idProyecto = 0;
 
-  //   const URL = "http://localhost:3001/projects";
-  //   const getProyectos = async () => {
-  //     const res = await fetch(URL);
-  //     const data = await res.json();
-  //     setProyectos(data);
-  //   };
 
-  
-
-  const URL = "http://localhost:3001/projects";
-  const getProyectos = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setProyectos(data);
-  };
+  const getDatos = async () => {
+    await SolInd(routeParams.id).then((formData)=>{
+      console.log("hola")
+      setFormData({
+        fechaInicio: formData[0].fechaInicio,
+        fechaTermino: formData[0].fechaTermino,
+        destino: formData[0].destino,
+        ID_proyecto: formData[0].ID_proyecto,
+        descripcion: formData[0].descripcion
+        
+      })
+    });
+    console.log(formData)
+  }
 
   useEffect(() => {
-    getProyectos();
-    SolInd(routeParams.id).then((formData)=>{
-      setFormData(formData)
-    });
-    console.log(routeParams.id)
-  }, [routeParams.id]);
+    async function fetchData() {
+      await getDatos();
+    }
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const nombres = proyectos.map((proyecto) => proyecto.codigoProyecto);
@@ -90,13 +91,13 @@ function SolicitarViaticosEditar() {
   const postToDB = () => {
     mostrarIDProyecto();
     console.log(idProyecto);
-    submitSV(
-      totalGastos,
-      idProyecto,
+    updateSolicitud(
+      routeParams.id,
+      3,
       2,
-      formData.destino,
       formData.fechaInicio,
       formData.fechaTermino,
+      formData.destino,
       formData.descripcion
     ).then((res) => {
       for (let i = 0; i < dataFromAddInput.length; i++) {
@@ -110,29 +111,29 @@ function SolicitarViaticosEditar() {
     pageRefresher();
   };
 
-  //   const saveAsDraft = () => {
-  //     mostrarIDProyecto();
+    const saveAsDraft = () => {
+      mostrarIDProyecto();
 
-  //     alert("Solicitud de Viatico guardado como borrador");
-  //     submitSV(
-  //       totalGastos,
-  //       idProyecto,
-  //       1,
-  //       formData.destino,
-  //       formData.fechaInicio,
-  //       formData.fechaTermino,
-  //       formData.descripcion
-  //     ).then((res) => {
-  //       for (let i = 0; i < dataFromAddInput.length; i++) {
-  //         postEstimatedExpenses(
-  //           dataFromAddInput[i].concepto,
-  //           dataFromAddInput[i].monto,
-  //           res
-  //         );
-  //       }
-  //     });
-  //     pageRefresher();
-  //   };
+      alert("Solicitud de Viatico guardado como borrador");
+      updateSolicitud(
+        routeParams.id,
+        3,
+        2,
+        formData.fechaInicio,
+        formData.fechaTermino,
+        formData.destino,
+        formData.descripcion
+      ).then((res) => {
+        for (let i = 0; i < dataFromAddInput.length; i++) {
+          postEstimatedExpenses(
+            dataFromAddInput[i].concepto,
+            dataFromAddInput[i].monto,
+            res
+          );
+        }
+      });
+      pageRefresher();
+    };
 
   let totalGastos = 0;
 
@@ -170,7 +171,7 @@ function SolicitarViaticosEditar() {
                   inputLabel="Fecha Termino"
                   inputName="fechaTermino"
                   inputType="date"
-                  value={formData.fechaTermino}
+                  value={formData.fechaTermino || ""}
                   onChange={handleInputChange}
                 />
               </Col>
@@ -217,14 +218,6 @@ function SolicitarViaticosEditar() {
                 />
               </Col>
             </Row>
-            <Row id="SolicitFormRow" className="mx-1">
-              <Col sm={12} md={10}>
-                <AddInputButton
-                  className="form-button"
-                  onAddInput={handleDataFromAddInput}
-                />
-              </Col>
-            </Row>
           </Container>
         </div>
         <div id="Footer">
@@ -237,15 +230,15 @@ function SolicitarViaticosEditar() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                {/* <Button
+                <Button
                   id="SendSaveButtons"
                   variant="primary"
                   onClick={saveAsDraft}
                 >
                   GUARDAR CAMBIOS
-                </Button> */}
+                </Button>
                 <Button id="SendSaveButtons" variant="primary" type="submit">
-                  GUARDAR CAMBIOS
+                GUARDAR Y ENVIAR
                 </Button>
               </Col>
             </Row>

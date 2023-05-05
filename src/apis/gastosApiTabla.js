@@ -310,3 +310,25 @@ export async function refBancaria(id){
   const response = await rawResponse.json();
   return response;
 }
+
+export async function updateSolicitud(id, ID_p, status, fI, fT, dest, desc){
+  const url = 'http://localhost:3001/viatico_request/' + id;
+  console.log(url);
+  const options = {
+      method: "PATCH",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_proyecto: ID_p,
+        ID_status_solicitud_viaticos: status,
+        fechaInicio: fI,
+        fechaTermino: fT,
+        destino: dest,
+        descripcion: desc
+      }),
+  }
+  const rawResponse = await fetch(url, options)
+  const response = await rawResponse.json();
+  return response;
+}
