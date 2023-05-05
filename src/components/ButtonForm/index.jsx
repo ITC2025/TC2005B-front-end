@@ -6,19 +6,20 @@ import { BiMoney } from "react-icons/bi";
 import { postCrearReporteGastos } from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
+  const newForm = {
+    ID_solicitud_viatico: viaticoID,
+    concepto: "",
+    ID_tipo_gasto: "",
+    monto: "",
+    imagen: "",
+    xml: "",
+    fecha: "",
+    ID_status_reporte_gasto: "2"
+  };
+  
+  // Declaración de las variables de estado
   const [validated, setValidated] = useState(false);
-  const [formGasto, setFormGasto] = useState([
-    {
-      ID_solicitud_viatico: viaticoID,
-      concepto: "",
-      ID_tipo_gasto: "",
-      monto: "",
-      imagen: "",
-      xml: "",
-      fecha: "",
-      ID_status_reporte_gasto: "2"
-    }
-  ]);
+  const [formGasto, setFormGasto] = useState([newForm]);
 
   const handleChange = (event, index) => {
     const { name, value } = event.target;
@@ -47,17 +48,17 @@ const handleSubmit = (event) => {
     event.stopPropagation();
 
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (!form.checkValidity()) {
       setValidated(true);
       return;
     }
 
-    // Aquí puedes enviar los datos a la API utilizando la función postCrearReporteGastos
+    // Enviar los datos a la API utilizando la función postCrearReporteGastos
     formGasto.forEach((form) => {
       let data = new FormData();
 
       for (let key in form) {
-        data.append(key, form[key]);
+        data.append(key, form[key]); 
       }
 
       postCrearReporteGastos(data);
@@ -67,16 +68,6 @@ const handleSubmit = (event) => {
   };
 
   const handleAddForm = () => {
-    const newForm = {
-      ID_solicitud_viatico: viaticoID,
-      concepto: "",
-      ID_tipo_gasto: "",
-      monto: "",
-      imagen: "",
-      xml: "",
-      fecha: "",
-      ID_status_reporte_gasto: "2"
-    };
     setFormGasto((prevFormGasto) => [...prevFormGasto, newForm]);
   };
 

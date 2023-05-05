@@ -14,7 +14,7 @@ export default function EditarGasto({id}) {
                 <h2 id="gastos">Editar Gastos</h2>
                 <hr></hr>
 
-                <EditGastos viaticoID ={id}  />
+                <EditGastos gastoID ={id}  />
             </Container>
 
         </>

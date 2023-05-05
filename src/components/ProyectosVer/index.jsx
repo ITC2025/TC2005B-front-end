@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 // import "../../styles/TableStyle.css";
 import ViaticosDropdown from "./ViaticosDropdown";
 import { MdPadding } from "react-icons/md";
+import mxnFormat from "../../utils/mxnFormat";
 
 export default function TablaProyectos() {
   // Configurar hooks
@@ -67,7 +68,7 @@ export default function TablaProyectos() {
     },
     {
       name: "Total",
-      selector: (row) => row.monto,
+      selector: (row) => mxnFormat(row.monto),
       sortable: true,
     },
     {

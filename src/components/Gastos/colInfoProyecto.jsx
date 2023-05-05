@@ -3,6 +3,7 @@ import '../../styles/colProyecto.css'
 import { proyecto_info } from "../../apis/gastosApiTabla";
 import { useEffect} from "react";
 import { useState } from "react";
+import mxnFormat from "../../utils/mxnFormat";
 
 function ColInfoProyecto({id}) {
 
@@ -39,7 +40,7 @@ function ColInfoProyecto({id}) {
                     <div>&nbsp;{fechaF}</div>
                 </div>
                 <div className="anticipoProyecto mt-2"> ANTICIPO DEL PROYECTO (MXN):
-                    <div>&nbsp;{anticipo}</div>
+                    <div>&nbsp;{mxnFormat(anticipo)}</div>
                 </div>
             </Col>
         </>
