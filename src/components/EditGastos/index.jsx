@@ -1,3 +1,4 @@
+Nuevo:
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { Row, Col, Card, Container } from "react-bootstrap";
@@ -5,24 +6,12 @@ import { getGastos, updateGasto } from "../../apis/getApiData";
 
 function EG({ viaticoID }) {
   const [validated, setValidated] = useState(false);
-  const [formGasto, setFormGasto] = useState([
-    {
-      ID_solicitud_viatico: viaticoID,
-      concepto: "",
-      ID_tipo_gasto: "",
-      monto: "",
-      imagen: {},
-      factura: {},
-      fecha: "",
-      ID_status_reporte_gasto: "2"
-    }
-  ]);
+  const [formGasto, setFormGasto] = useState([]);
 
   useEffect(() => {
-    // Obtener los datos de los gastos utilizando el ID 
     const fetchData = async () => {
       const gastos = await getGastos(viaticoID);
-      setFormGasto(gastos);
+      setFormGasto(Array.isArray(gastos) ? gastos : []);
     };
 
     fetchData();
@@ -31,33 +20,17 @@ function EG({ viaticoID }) {
   const handleChange = (event, index) => {
     const { name, value } = event.target;
     const updatedFormGasto = [...formGasto];
-    updatedFormGasto[index][name] = value;
+    updatedFormGasto[index] = { ...updatedFormGasto[index], [name]: value };
     setFormGasto(updatedFormGasto);
   };
 
   const handleFileUpload = (event, index) => {
+    const { name } = event.target;
     const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = () => {
-      const blob = new Blob([reader.result], { type: file.type });
-
-      if (file.type === "text/xml") {
-        setFormGasto((prevFormGasto) =>
-          prevFormGasto.map((form, i) =>
-            i === index ? { ...form, factura: blob } : form
-          )
-        );
-      } else {
-        setFormGasto((prevFormGasto) =>
-          prevFormGasto.map((form, i) =>
-            i === index ? { ...form, imagen: blob } : form
-          )
-        );
-      }
-    };
-
-    reader.readAsArrayBuffer(file);
+    const updatedFormGasto = [...formGasto];
+    updatedFormGasto[index] = { ...updatedFormGasto[index], [name]: file };
+    setFormGasto(updatedFormGasto);
   };
 
   const handleSubmit = async (event) => {
@@ -72,9 +45,7 @@ function EG({ viaticoID }) {
 
     try {
       // Enviar los datos actualizados mediante una solicitud PUT
-      await Promise.all(
-        formGasto.map((data) => updateGasto(data, viaticoID))
-      );
+      await Promise.all(formGasto.map((data) => updateGasto(data, viaticoID)));
 
       console.log("Gastos actualizados:", formGasto);
       //window.location.href = "/user/expediente/" + viaticoID;
@@ -82,6 +53,10 @@ function EG({ viaticoID }) {
       console.error("Error al actualizar los gastos:", error);
     }
   };
+
+  if (!Array.isArray(formGasto)) {
+    return <div>Cargando datos...</div>;
+  }
 
   return (
     <>
@@ -145,9 +120,8 @@ function EG({ viaticoID }) {
                           </div>
                         </div>
                       </div>
-    
                       <div className="my-4"></div>
-    
+
                       <div className="row">
                         <div className="col-md-4">
                           <label>Ticker de compra (PNG)</label>
@@ -166,7 +140,7 @@ function EG({ viaticoID }) {
                           <div className="input-group mb-3">
                             <input
                               className="form-control"
-                              name="factura"
+                              name="xml"
                               type="file"
                               onChange={(e) => handleFileUpload(e, index)}
                               required
@@ -204,10 +178,10 @@ function EG({ viaticoID }) {
             ACTUALIZAR
           </Button>
         </div>
-        </Form>
-                    
+      </Form>
     </>
-    );
-};
+
+  );
+}
 
 export default EG;
