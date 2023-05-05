@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Modal from "../modal";
 import { tokenValidation } from "../../apis/getApiData";
 
-export default function TableDropdown({ viaticoID, Status }) {
+export default function TableDropdownHistorial({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
@@ -35,10 +35,8 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const getRole = async () => {
     const response = await tokenValidation()
-    // console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      // console.log('Yo soy Admin')
     }
   }
 
@@ -71,20 +69,20 @@ export default function TableDropdown({ viaticoID, Status }) {
         <MenuItem
           onClick={handleClose}
           as={Link}
-          to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
+          to={isAdmin ? "../hexpediente/" + viaticoID : "../hexpediente/" + viaticoID}
         >
-          Ver gastos
+          Ver historial
         </MenuItem>
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
           </>
         )}
 
         {Status === "Pagado" && (
           <>
-            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
+            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
           </>
         )}
       </Menu>

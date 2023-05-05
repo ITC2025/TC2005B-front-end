@@ -4,8 +4,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-export default function PmTableDropdown() {
+export default function PmTableDropdown({ viaticoID }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -15,6 +17,8 @@ export default function PmTableDropdown() {
     setAnchorEl(null);
   };
 
+  const {pathname} = useLocation();
+  
   return (
     <div>
       <Button
@@ -35,7 +39,20 @@ export default function PmTableDropdown() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
+
+        {(pathname === "/pm/solicitudes" &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver solicitud</MenuItem>
+
+          </>
+        )}
+
+        {(pathname === "/pm/historico" &&
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/pm/hexpediente/" + viaticoID}  >Ver solicitud</MenuItem>
+          </>
+        )}
+
       </Menu>
     </div>
   );

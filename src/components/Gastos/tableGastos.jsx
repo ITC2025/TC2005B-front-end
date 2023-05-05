@@ -4,31 +4,28 @@ import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import GastosDropdown from "./gastosOptDropdown";
-import { useNavigate } from 'react-router-dom';
-import Modal from "../modal/index"
-import { imagen_gastos } from "../../apis/gastosApiTabla";
-import { MdImage } from "react-icons/md"
+import { useNavigate } from "react-router-dom";
+import Modal from "../modal/index";
+import { imagen_gastos, smart_delete_expenses } from "../../apis/gastosApiTabla";
+import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
-import { proyecto_sum, proyecto_info } from "../../apis/gastosApiTabla";
+import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
 
-export const TableGastos = ({ id }) => {
+export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const navSolicitar = () => {
-    navigate('/user/solicitar');
-  }
+    navigate("/user/solicitar");
+  };
 
-  const navGastos = () => {
-    navigate('/user/facturas');
-  }
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [modalImgEstado, modalCambiarEstado] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
-  
+  const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
   const [modalSolicitud, modalEstadoSolicitud] = useState(false);
@@ -36,14 +33,51 @@ export const TableGastos = ({ id }) => {
   const [modalPagar, modalEstadoPagar] = useState(false);
 
   // Funcion para mostrar datos con fetch
-  const URL = "http://localhost:3001/expenses_table/vi/" + id;
+
+  const URL = [];
+
+  {
+    /*user*/
+  }
+  {
+    pathname === "/user/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
+  {
+    /*pm*/
+  }
+  {
+    pathname === "/admin/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/admin/" + id);
+  }
+
+  {
+    /*admin*/
+  }
+  {
+    pathname === "/pm/expediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/pm/" + id);
+  }
+
+  {
+    pathname === "/pm/hexpediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
+  {
+    pathname === "/admin/hexpediente/" + id &&
+      URL.push("http://localhost:3001/expenses_table/user/" + id);
+  }
+
+  const URLs = URL[0];
+
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
     const res = await fetch(URL);
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
   // const getTravelAllowance = async () => {
@@ -55,44 +89,55 @@ export const TableGastos = ({ id }) => {
   const [anticipo, setAnticipo] = useState(0.0);
 
   const loadData = async () => {
-    const jsonInfo = await proyecto_sum(id);
-    console.log(jsonInfo);
-    setSuma(jsonInfo.monto)
-
-  }
+    const jsonInfo = await proyecto_sum_user(id);
+    setSuma(jsonInfo.monto);
+  };
 
   const loadData2 = async () => {
     const jsonInfo = await proyecto_info(id);
-    console.log(jsonInfo);
 
-    setAnticipo(jsonInfo[0].anticipo)
-  }
+    setAnticipo(jsonInfo[0].anticipo);
+  };
+
+  const handleBorrar = async (id) => {
+    await smart_delete_expenses(id);
+    getTravelAllowance();
+    loadData();
+    loadData2();
+    handleReloadSubtotal();
+  };
 
   useEffect(() => {
     loadData();
     loadData2();
-  })
+  });
 
   let total = anticipo - suma;
+  let idV = id;
 
   const ImageComponent = async ({ idGasto }) => {
+    const data = await imagen_gastos(idGasto);
 
-    const imageBlob = await imagen_gastos(idGasto);
+    let imageUrl = data.imagen;
+    imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
 
-    const reader = new FileReader();
-    reader.readAsDataURL(imageBlob);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
+    let facturaUrl = null;
 
-    return imageUrl;
+    if (data.factura) {
+      facturaUrl = data.factura;
+      facturaUrl = "http://localhost:3001/reporte_gastos/" + facturaUrl;
+    }
+
+    return { imageUrl, facturaUrl };
   };
 
-  const OpenModal = (idRow) => {
+  const OpenModal = (idGasto) => {
     modalCambiarEstado(!modalImgEstado);
-    const imgURL = ImageComponent(idRow);
-    console.log(idRow);
-    console.log(imgURL);
+    ImageComponent({ idGasto })
+      .then(({ imageUrl, facturaUrl }) => {
+        setImageUrl(imageUrl);
+        setFacturaUrl(facturaUrl);
+      });
   };
 
   // configuracion de columnas
@@ -147,33 +192,44 @@ export const TableGastos = ({ id }) => {
 
   const actions = {
     name: "Acciones",
-    cell: (row) => <GastosDropdown />,
+    cell: (row) => <GastosDropdown id={row.id} doIt={handleBorrar} />, //Pasa la funcion de borrar como componente
     width: "8%",
-    style: { paddingLeft: "0.5em" }
+    style: { paddingLeft: "0.5em" },
   };
 
   const empty = {
     name: "",
     width: "8%",
-    style: { paddingLeft: "0.5em" }
+    style: { paddingLeft: "0.5em" },
   };
 
-  {/*user*/ }
-  {pathname === "/user/expediente/" + id &&
-      columns.push(actions);
-
+  {
+    /*user*/
+  }
+  {
+    pathname === "/user/expediente/" + id && columns.push(actions);
   }
 
-  {/*pm*/ }
-  {pathname === "/admin/expediente/" + id &&
-      columns.push(empty);
-
+  {
+    /*pm*/
+  }
+  {
+    pathname === "/admin/expediente/" + id && columns.push(empty);
   }
 
-  {/*admin*/ }
-  {pathname === "/pm/expediente/" + id &&
-      columns.push(empty);
+  {
+    /*admin*/
+  }
+  {
+    pathname === "/pm/expediente/" + id && columns.push(empty);
+  }
 
+  {
+    pathname === "/pm/hexpediente/" + id && columns.push(empty);
+  }
+
+  {
+    pathname === "/admin/hexpediente/" + id && columns.push(empty);
   }
 
   const paginationTable = {
@@ -187,40 +243,71 @@ export const TableGastos = ({ id }) => {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4">
-
-          {pathname === "/user/expediente/" + id &&
+          {pathname === "/user/expediente/" + id && (
             <>
-              <button id="basicButton" onClick={navGastos} > Nuevo Gasto </button>
+              <button
+                id="basicButton"
+                onClick={() => navigate("/user/facturas/" + id)}
+              >
+                {" "}
+                Nuevo Gasto{" "}
+              </button>
             </>
-          }
-
+          )}
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div className="col-4 mt-3">
-
             {/* user */}
-            {pathname === "/user/expediente/" + id &&
+            {pathname === "/user/expediente/" + id && (
               <>
-                <button id="basicButton" onClick={() => modalEstado(!modal)} > Cerrar y Enviar </button>
+                <button id="basicButton" onClick={() => modalEstado(!modal)}>
+                  {" "}
+                  Cerrar y Enviar{" "}
+                </button>
               </>
-            }
+            )}
 
             {/* admin */}
-            {pathname === "/admin/expediente/" + id &&
+            {pathname === "/admin/expediente/" + id && (
               <>
-                <button id="basicButton" onClick={() => modalEstadoPagar(!modalPagar)} > Pagar </button>
-                <button id="basicButton" onClick={() => modalEstadoRechazo(!modalRechazo)} className="ms-2" > Rechazar </button>
+                <button
+                  id="basicButton"
+                  onClick={() => modalEstadoPagar(!modalPagar)}
+                >
+                  {" "}
+                  Pagar{" "}
+                </button>
+                <button
+                  id="basicButton"
+                  onClick={() => modalEstadoRechazo(!modalRechazo)}
+                  className="ms-2"
+                >
+                  {" "}
+                  Rechazar{" "}
+                </button>
               </>
-            }
+            )}
 
             {/* pm */}
-            {pathname === "/pm/expediente/" + id &&
+            {pathname === "/pm/expediente/" + id && (
               <>
-                <button id="basicButton" onClick={() => modalEstadoSolicitud(!modalSolicitud)} > Aceptar </button>
-                <button id="basicButton" onClick={() => modalEstadoRechazo(!modalRechazo)} className="ms-2" > Rechazar </button>
+                <button
+                  id="basicButton"
+                  onClick={() => modalEstadoSolicitud(!modalSolicitud)}
+                >
+                  {" "}
+                  Aceptar{" "}
+                </button>
+                <button
+                  id="basicButton"
+                  onClick={() => modalEstadoRechazo(!modalRechazo)}
+                  className="ms-2"
+                >
+                  {" "}
+                  Rechazar{" "}
+                </button>
               </>
-            }
-
+            )}
           </div>
         </div>
       </div>
@@ -232,29 +319,42 @@ export const TableGastos = ({ id }) => {
         paginationPerPage={5}
         paginationComponentOptions={paginationTable}
       />
-      <Modal estado={modalImgEstado}
+      <Modal
+        estado={modalImgEstado}
+        className="test_class"
         cambiarEstado={modalCambiarEstado}
         ImgSrc={imageUrl}
-        imagenTicket={true} />
+        FacturaSrc={facturaUrl}
+        imagenTicket={true}
+      />
 
-      <Modal estado={modal}
+      <Modal
+        estado={modal}
         cambiarEstado={modalEstado}
-        saldo={total} />
+        saldo={total}
+        id={id}
+      />
 
-      <Modal estado={modalSolicitud}
+      <Modal
+        estado={modalSolicitud}
         cambiarEstado={modalEstadoSolicitud}
-        aprovacionSolicitud={true} />
+        aprovacionSolicitud={true}
+        id={id}
+      />
 
-      <Modal estado={modalRechazo}
+      <Modal
+        estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
-        rechazarPago={true} />
+        rechazarPago={true}
+        id={id}
+      />
 
-      <Modal estado={modalPagar}
+      <Modal
+        estado={modalPagar}
         cambiarEstado={modalEstadoPagar}
-        confirmarPago={true} />
+        confirmarPago={true}
+        id={id}
+      />
     </div>
   );
 };
-
-
-

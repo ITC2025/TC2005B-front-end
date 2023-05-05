@@ -6,18 +6,32 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 
-export default function GastosDropdown() {
+export default function GastosDropdown(props) {
+
+  //console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
-  };  
+  }; 
+
+  
+
+  const handleModal = () => {
+    props.doIt(props.id);
+    handleClose();
+
+  } 
+
+
 
   return (
     <div>
@@ -40,8 +54,8 @@ export default function GastosDropdown() {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Ver gastos</MenuItem>
+        <MenuItem onClick={handleClose} as={Link} to="/user/expediente" >Editar</MenuItem>
+        <MenuItem onClick={handleModal}>Borrar</MenuItem>
       </Menu>
 
     </div>

@@ -6,9 +6,9 @@ import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
 import { Button } from "react-bootstrap";
 import Modal from 'react-bootstrap/Modal';
-import { solicitudViaticosPM, tokenID } from "../../apis/getApiData";
+import { tokenID } from "../../apis/getApiData";
 
-export const PmTableTravelAll = () => {
+export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
@@ -22,20 +22,37 @@ export const PmTableTravelAll = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const idToEstado = (id) => {
-    if (id === 1) return "Borrador";
-    if (id === 2) return "En revisión";
-    if (id === 3) return "Aprobado";
-    if (id === 4) return "Pagado";
-    if (id === 5) return "Cerrado";
-    if (id === 6) return "Rechazado";
-    return ""
-  }
-
   // Funcion para mostrar datos con fetch
+  // const URL = "https://jsonplaceholder.typicode.com/users";
+  //
+  
+
   const getTravelAllowance = async () => {
-    const usuario = await tokenID()
-    let data = await solicitudViaticosPM(usuario.id)
+    const response = await tokenID();
+    const user_id = response.id;
+    let URL = "http://localhost:3001/viatico_request/pm/" + user_id;
+
+    if (project_code) {
+      URL = URL + "/" + project_code;
+    } 
+
+    //console.log(URL);
+
+    const res = await fetch(URL);
+    let data = await res.json();
+
+    if (closed_requests_only) {
+      data = data.filter((row) => {
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
+                row.StatusSolicitudViatico.descripcion != "En revisión")
+      });
+    } else if (!project_code) {
+      data = data.filter((row) => {
+        return (row.StatusSolicitudViatico.descripcion == "Enviado" || 
+                row.StatusSolicitudViatico.descripcion == "En revisión")
+      });
+    }
+
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -46,35 +63,11 @@ export const PmTableTravelAll = () => {
     getTravelAllowance();
   }, []);
 
-  // Funcion para aceptar o rechazar solicitudes
-  const handleAceptar = () => {
-    console.log("aceptar");
-  };
 
   const handleSend = () => {
-    console.log("enviar");
+    //console.log("enviar");
     //refrescar la pagina
     window.location.reload();
-  };
-
-  // Funcion con checkbox
-  const handleSelected = ({ selectedRows }) => {
-    console.log(selectedRows);
-    if (selectedRows.length === 1) {
-      console.log("row seleccionada");
-      setEstadoBoton2(false);
-      setEstadoBoton(false);
-    }
-    else if (selectedRows.length > 1) {
-      console.log("mas de una row seleccionadas");
-      setEstadoBoton2(true);
-      setEstadoBoton(false);
-    }
-    else {
-      console.log("no hay row seleccionadas");
-      setEstadoBoton(true);
-      setEstadoBoton2(true);
-    }
   };
 
   // Funcion para filtrar datos
@@ -94,29 +87,36 @@ export const PmTableTravelAll = () => {
       width: "120px",
     },
     {
-      name: "Descripcion",
-      selector: (row) => row.descripcion,
+      name: "Fecha",
+      selector: (row) => row.fechaInicio,
       sortable: true,
     },
     {
-      name: "Proyecto",
+      name: "Descripcion",
+      selector: (row) => row.descripcion,
+      sortable: true,
+
+    },
+    {
+      name: "Nombre",
+      selector: (row) => row.Empleado.name,
+      sortable: true,
+    },
+    {
+      name: "Project",
       selector: (row) => row.Proyecto.codigoProyecto,
       sortable: true,
     },
     {
-      name: 'Total',
-      selector: (row) => row.monto,
-      sortable: true
-    },
-    {
       name: "Estado",
-      selector: (row) => <BadgeStatus status={idToEstado(row.ID_status_solicitud_viaticos)} />,
+      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
+      style: { paddingLeft: "0px", },
     },
     {
       name: "Actions",
-      cell: (row) => <PmTableDropdown />,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico}/>,
       width: "80px",
     },
   ];
@@ -148,19 +148,7 @@ export const PmTableTravelAll = () => {
         pagination
         paginationComponentOptions={paginationTable}
         fixedHeader
-        selectableRows
-        onSelectedRowsChange={handleSelected}
       />
-      <div className="d-flex justify-content-end mr-4">
-        <Button type="submit" disabled={estadoBoton} role="boton" onClick={handleAceptar}>
-          Aceptar
-        </Button>
-        <div className="mx-2"></div>
-        <Button type="submit" disabled={estadoBoton2} role="boton" onClick={handleShow}>
-          Rechazar
-        </Button>
-      </div>
-
       <Modal
         show={show}
         onHide={handleClose}

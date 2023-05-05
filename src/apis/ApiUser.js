@@ -17,7 +17,7 @@ export async function sendFact(data){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 ///////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ export async function sendSolViaticos(infoV, data){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 ///////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ export async function viaticosUser(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 //////////////////////////////////////////////////////
@@ -83,7 +83,7 @@ export async function UserReporteGasto(ID){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 ///////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ export async function UserGasto(ID, Gasto){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 ///////////////////////////////////////////////////////
@@ -113,9 +113,7 @@ export async function getImage(ID, Gasto){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 ///////////////////////////////////////////////////////
-
-

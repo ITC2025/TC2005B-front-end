@@ -13,20 +13,27 @@ import { UserDashboard } from "./pages/Dashboard/userDashboard";
 import AdminDashboard from "./pages/Dashboard/adminDashboard";
 import { UserTable } from "./pages/HistorialViaticos/UserTable";
 import { PmTable } from "./pages/HistorialViaticos/PmTable";
-import { AdminTable } from "./pages/HistorialViaticos/adminTable";
+import { AdminTable }  from "./pages/HistorialViaticos/adminTable";
 import SolicitarViaticos from "./pages/SolicitarViaticos/SolicitarViaticos";
 import CrearProyecto from "./pages/CrearProyecto";
 import Proyectos from "./pages/Proyectos";
 import SeeProjectTable from "./pages/VerProyectosTabla/verproyectosTabla";
 import Expediente from "./pages/Expediente/expediente";
 import Proyecto from "./pages/Proyecto/proyectoAdmin";
-import SolicitudesAprovadas from "./pages/SolicitudesAprovadas/solicitudesAprovadas";
+import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
+import AdminViaticos from './pages/Viaticos/adminViaticos';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
   const routeParams = useParams();
   return <Expediente id={routeParams.id} />;
+}
+
+
+function FacturasID() {
+  const routeParams = useParams();
+  return <Facturas id={routeParams.id} />;
 }
 
 function App() {
@@ -42,8 +49,8 @@ function App() {
             <Route element={<NavbarSC client={true} />} path="user">
               <Route index element={<UserDashboard />} />
               <Route
-                element={<Facturas name="user facturas" />}
-                path="facturas"
+                element={<FacturasID name="user facturas" />}
+                path="facturas/:id"
               />
               {/* <Route
                 element={<TablaGastos name="user tabla gastos" />}
@@ -69,10 +76,13 @@ function App() {
               <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
               <Route element={<SeeProjectTable />} path="vertablaproyectos" />
-              <Route element={<PmTable all={false}/> } path={"solicitudes"} />
-              <Route element={<PmTable all={true}/> } path={"historico"} />
+              <Route element={<PmTable/> } path={"solicitudes/:project_code"} />
+              <Route element={<PmTable/> } path={"solicitudes"} />
+              <Route element={<PmTable/> } path={"historico"} />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
             </Route>
           </Route>
+{/* comentario */}
 
           {/*Rutas de admin*/}
           <Route element={<PrivateRoutes rol={3} />}>
@@ -81,16 +91,10 @@ function App() {
               <Route element={<AdminTable />}
                 path="historial"
               />
-              {/* <Route element={<Expedientes />} path="expediente/:id" /> */}
-              <Route
-                element={<Proyecto />}
-                path="proyecto"
-              />
-              <Route
-                element={<SolicitudesAprovadas
-                  name="solicitudes Aprovadas" />}
-                path="solicitudes" />
+              <Route element={<ExpedientesID />} path="hexpediente/:id" />
+              <Route element={<Proyectos />} path="proyectos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
+              <Route element={<SolicitudesAprobadas />} path="solicitudes" />
             </Route>
           </Route>
 

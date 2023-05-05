@@ -1,3 +1,5 @@
+import { tokenID } from "../apis/getApiData";
+
 export async function postEstimatedExpenses(
   concepto,
   monto,
@@ -8,7 +10,7 @@ export async function postEstimatedExpenses(
     monto: monto,
     ID_solicitud_viatico: ID_solicitud_viatico,
   };
-  const url = "http://localhost:3001/viaticos/";
+  const url = "http://localhost:3001/viaticos";
   const options = {
     method: "POST",
     body: JSON.stringify(expense),
@@ -18,7 +20,7 @@ export async function postEstimatedExpenses(
   };
   const rawResponse = await fetch(url, options);
   const response = await rawResponse.json();
-  console.log(JSON.stringify(response));
+  // console.log(JSON.stringify(response));
 }
 
 export async function submitSV(
@@ -27,14 +29,16 @@ export async function submitSV(
   ID_status_solicitud_viaticos,
   destino,
   fechaInicio,
-  fechaTermino
+  fechaTermino,
+  descripcion
 ) {
+  let idEmpleado = await tokenID();
   let solicitud = {
     monto: totalGastos,
-    ID_empleado: 1, // CAMBIAR AL OBTENER EL ID DEL EMPLEADO ACTIVO
-    ID_proyecto: parseInt(proyecto),
+    ID_empleado: idEmpleado.id, // CAMBIAR AL OBTENER EL ID DEL EMPLEADO ACTIVO
+    ID_proyecto: proyecto,
     ID_status_solicitud_viaticos: ID_status_solicitud_viaticos,
-    descripcion: "No hay campo",
+    descripcion: descripcion,
     destino: destino,
     fechaInicio: fechaInicio,
     fechaTermino: fechaTermino,

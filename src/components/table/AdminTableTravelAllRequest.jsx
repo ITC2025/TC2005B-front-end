@@ -5,9 +5,9 @@ import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
-import { userViaticos } from "../../apis/getApiData";
+import { adminSol } from "../../apis/getApiData";
 
-export const TableTravelAllowance = () => {
+export const AdminTableTravelAllRequest = () => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
@@ -17,20 +17,13 @@ export const TableTravelAllowance = () => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // // Funcion para mostrar datos con fetch
-  // const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
-  // // const URL = "https://jsonplaceholder.typicode.com/users";
-  // const getTravelAllowance = async () => {
-  //   const res = await fetch(URL);
-  //   const data = await res.json();
-  //   setTravelAllowance(data);
-  //   setFilterTravelAllowance(data);
-  //   // console.log(data);
-  // };
-
-  // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
-    let data = await userViaticos();
+    let data = await adminSol();
+   
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Pagado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Rechazado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -57,30 +50,17 @@ export const TableTravelAllowance = () => {
       width: "80px",
     },
     {
-      name: "Codigo Proyecto",
-      selector: (row) =>
-        row.Proyecto.codigoProyecto
-          ? row.Proyecto.codigoProyecto
-          : "Sin Proyecto",
-    },
-
-    {
-      name: "Concepto",
+      name: "Descripcion",
       selector: (row) => row.descripcion,
       sortable: true,
     },
     {
-      name: "Fecha Inicio",
-      selector: (row) => row.fechaInicio,
+      name: "Destino",
+      selector: (row) => row.destino,
       sortable: true,
     },
     {
-      name: "Fecha Fin",
-      selector: (row) => row.fechaTermino,
-      sortable: true,
-    },
-    {
-      name: "Monto",
+      name: "Total",
       selector: (row) => row.monto,
       sortable: true,
     },
@@ -89,17 +69,13 @@ export const TableTravelAllowance = () => {
       selector: (row) => (
         <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
       ),
+      sortable: true,
       width: "120px",
       style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
-      cell: (row) => (
-        <TableDropdown
-          viaticoID={row.ID_solicitud_viatico}
-          Status={row.StatusSolicitudViatico.descripcion}
-        />
-      ),
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -116,10 +92,6 @@ export const TableTravelAllowance = () => {
     <div className="container">
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4 d-flex justify-content-start">
-          <button id="basicButton" onClick={navSolicitar}>
-            {" "}
-            Solicitar Viaticos{" "}
-          </button>
         </div>
         <div className="col-8 d-flex justify-content-end">
           <div>
@@ -139,6 +111,7 @@ export const TableTravelAllowance = () => {
         data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
+        fixedHeader
       />
     </div>
   );

@@ -29,6 +29,7 @@ export async function tokenValidation(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+
     return response;
 }
 
@@ -63,8 +64,8 @@ export async function sessionDelete() {
 
 export async function userViaticos(){
     const id_user = await tokenID();
-    const url = 'http://localhost:3001/users/viaticos/' + JSON.stringify(id_user.id);
-    console.log(url);
+    const url = 'http://localhost:3001/viatico_request/user/' + JSON.stringify(id_user.id);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
@@ -74,13 +75,14 @@ export async function userViaticos(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
+    //console.log(response);  
     return response;
 }
 
 export async function userSaldo(){
     const id_user = await tokenID();
     const url = 'http://localhost:3001/users/saldo/' + JSON.stringify(id_user.id);
-    console.log(url);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
@@ -96,7 +98,7 @@ export async function userSaldo(){
 export async function projectsPM(){
     const id_user = await tokenID();
     const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user.id);
-    console.log(url);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
@@ -131,14 +133,14 @@ export async function postProject(nombre, codigo , desc) {
     return response;
 }
 
-export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, nomEmpleado, codProyecto, descStatus){
+export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, codProyecto, descStatus){
     let data = {
         monto: montoViatico,
         descripcion: descripcionSolicitud,
         destino: destinoViatico,
         fechaInicio: fechaI,
         fechaTermino: fechaF,
-        nombre_empleado: nomEmpleado,
+        ID_empleado: tokenID(),
         codigo_proyecto: codProyecto,
         status_descripcion: descStatus
     }
@@ -157,25 +159,12 @@ export async function postSolicitarViatico(montoViatico,descripcionSolicitud, de
     return response;
 }
 
-export async function postCrearReporteGastos(conceptoGasto,montoGasto,fechaGasto,imagenGasto,idSolicitud,descTipoGasto,descStatusReporte){
-    let data = {
-        concepto: conceptoGasto,
-        monto: montoGasto,
-        fecha: fechaGasto,
-        imagen: imagenGasto,
-        ID_solicitud_viatico: idSolicitud,
-        tipo: descTipoGasto,
-        status: descStatusReporte
-    }
-
-    const url = 'http://localhost:3001/expense_reports/crear';
+export async function postCrearReporteGastos(data){
+    const url = 'http://localhost:3001/expense_reports';
     const options = {
         method: "POST",
         credentials:"include",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
+        body: data
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
