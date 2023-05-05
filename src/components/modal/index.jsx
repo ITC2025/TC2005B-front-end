@@ -34,6 +34,7 @@ const Modal = ({ estado,
     saldo,
     pagarViaticos,
     pagarGastos,
+    enviarGastos,
     motivoRechazoSolicitud, 
     mostrarReferencia, id }) => {
     
@@ -109,6 +110,14 @@ const Modal = ({ estado,
                                 <h1> SALDO NEGATIVO</h1>
                                 <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
                                 <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
+                            </>
+                        }
+
+                        {enviarGastos &&
+                            <>
+                                <h1> ENVIAR GASTOS A REVISIÓN </h1>
+                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
 

@@ -28,6 +28,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
+  const [modalEnviarGastos, modalEstadoEnviarGastos] = useState(false);
   const [modalAprobarGastos, modalEstadoAprobarGastos] = useState(false);
   const [modalRechazoGastos, modalEstadoRechazoGastos] = useState(false);
   const [modalPagarGastos, modalEstadoPagarGastos] = useState(false);
@@ -253,7 +254,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
             {/* user */}
             {pathname === "/user/expediente/" + id && (
               <>
-                <button id="basicButton" onClick={() => modalEstado(!modal)}>
+                <button id="basicButton" onClick={() => modalEstadoEnviarGastos(!modalEnviarGastos)}>
                   {" "}
                   Cerrar y Enviar{" "}
                 </button>
@@ -325,6 +326,13 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
         estado={modal}
         cambiarEstado={modalEstado}
         saldo={total}
+        id={id}
+      />
+
+      <Modal
+        estado={modalEnviarGastos}
+        cambiarEstado={modalEstadoEnviarGastos}
+        enviarGastos={true}
         id={id}
       />
 
