@@ -44,7 +44,7 @@ export default function ProyectosDropdown({codigoproyecto}) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Ver</MenuItem>
+        <MenuItem onClick={handleClose}>Ver Proyecto</MenuItem>
       </Menu>
     </div>
   );

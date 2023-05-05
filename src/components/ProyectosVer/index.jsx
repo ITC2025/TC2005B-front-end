@@ -62,7 +62,7 @@ export default function TablaProyectos() {
       sortable: true,
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
     },
@@ -77,17 +77,17 @@ export default function TablaProyectos() {
       sortable: true,
     },
     {
-      name: "Actions",
+      name: "Acciones",
       cell: (row) => (
         <ViaticosDropdown status={row.ID_status_solicitud_viaticos} />
       ),
-      width: "80px",
+      width: "100px",
       style: { paddingLeft: "0.5em" },
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
