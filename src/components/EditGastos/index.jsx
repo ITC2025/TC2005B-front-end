@@ -130,7 +130,7 @@ function EG({ viaticoID }) {
                       className="form-control"
                       name="imagen"
                       type="file"
-                      required
+                     
                       onChange={handleFileUpload}
                     />
                   </div>
@@ -142,7 +142,7 @@ function EG({ viaticoID }) {
                       className="form-control"
                       name="factura"
                       type="file"
-                      required
+                    
                       onChange={handleFileUpload}
                     />
                   </div>
