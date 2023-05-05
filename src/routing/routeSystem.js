@@ -21,7 +21,6 @@ import Expediente from "../pages/Expediente/expediente.js";
 import Proyecto from "../pages/Proyecto/proyectoAdmin.js";
 import SolicitudesAprobadas from "../pages/SolicitudesAprobadas/index.js";
 import { NotFound } from "../pages/NotFound/NotFound.js";
-import AdminViaticos from '../pages/Viaticos/adminViaticos.js';
 import EditarGastp from '../pages/Gastos/EditarGasto.js';
 import SolicitarViaticosEditar from '../pages/SolicitarViaticos/SolicitarViaticosEditar.js';
 
