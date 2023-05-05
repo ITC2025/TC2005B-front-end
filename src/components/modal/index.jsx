@@ -158,12 +158,16 @@ const Modal = ({ estado,
                         {imagenTicket &&
                             <>
                                 <img src={ImgSrc} class="ticket_image" alt="Imagen ticket"></img>
+                                <div className='col-12 d-flex justify-content-center'>
+                                <div className='col-6 d-flex justify-content-around'>
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                                 {FacturaSrc && 
                                     <>
                                         <Button onClick={() => {window.open(FacturaSrc, "_blank")}} id='cancelButton' className='mt-3' size="lg" variant="danger">FACTURA</Button>
                                     </>
                                 }
+                                </div>
+                                </div>
                             </>
                         }
 
