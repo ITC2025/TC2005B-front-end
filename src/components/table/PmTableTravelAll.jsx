@@ -10,25 +10,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
-<<<<<<< HEAD
-  
-=======
 
-  // Estado de los botones, para deshabilitarlos o habilitarlos
-  const [estadoBoton, setEstadoBoton] = useState([false]);
-  const [estadoBoton2, setEstadoBoton2] = useState([false]);
-
-  // Estado para mostrar modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  // Funcion para mostrar datos con fetch
-  // const URL = "https://jsonplaceholder.typicode.com/users";
-  //
-
-
->>>>>>> e5628a368c20363120e269a6899ed742e9ef272b
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;
@@ -36,11 +18,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
 
     if (project_code) {
       URL = URL + "/" + project_code;
-<<<<<<< HEAD
-    } 
-=======
     }
->>>>>>> e5628a368c20363120e269a6899ed742e9ef272b
 
     const res = await fetch(URL);
     let data = await res.json();
@@ -69,12 +47,6 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
-
-
-  const handleSend = () => {
-    //refrescar la pagina
-    window.location.reload();
-  };
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
