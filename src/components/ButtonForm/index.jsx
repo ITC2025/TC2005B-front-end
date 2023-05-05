@@ -6,20 +6,20 @@ import { BiMoney } from "react-icons/bi";
 import { postCrearReporteGastos } from '../../apis/getApiData';
 
 function Gastos({viaticoID}) {
+  const newForm = {
+    ID_solicitud_viatico: viaticoID,
+    concepto: "",
+    ID_tipo_gasto: "",
+    monto: "",
+    imagen: "",
+    xml: "",
+    fecha: "",
+    ID_status_reporte_gasto: "2"
+  };
+  
   // Declaración de las variables de estado
   const [validated, setValidated] = useState(false);
-  const [formGasto, setFormGasto] = useState([
-      {
-        ID_solicitud_viatico: viaticoID,
-        concepto: "",
-        ID_tipo_gasto: "",
-        monto: "",
-        imagen: "",
-        xml: "",
-        fecha: "",
-        ID_status_reporte_gasto: "2"
-      }
-  ]);
+  const [formGasto, setFormGasto] = useState([newForm]);
 
   const handleChange = (event, index) => {
     const { name, value } = event.target;
@@ -68,16 +68,6 @@ const handleSubmit = (event) => {
   };
 
   const handleAddForm = () => {
-    const newForm = {
-      ID_solicitud_viatico: viaticoID,
-      concepto: "",
-      ID_tipo_gasto: "",
-      monto: "",
-      imagen: "",
-      xml: "",
-      fecha: "",
-      ID_status_reporte_gasto: "2"
-    };
     setFormGasto((prevFormGasto) => [...prevFormGasto, newForm]);
   };
 
