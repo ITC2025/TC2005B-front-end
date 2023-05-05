@@ -30,7 +30,6 @@ function SolicitarViaticosEditar() {
 
   const getDatos = async () => {
     await SolInd(routeParams.id).then((formData)=>{
-      console.log("hola")
       setFormData({
         fechaInicio: formData[0].fechaInicio,
         fechaTermino: formData[0].fechaTermino,

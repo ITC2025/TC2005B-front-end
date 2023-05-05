@@ -1,9 +1,11 @@
 //Exportacion y declaracion del api
+const host = "http://localhost:3001";
+
 export async function gastosApi(v_id) {
 
     //Se tiene el url de la ruta del servidor hacia donde se hace el request
     //Esta ruta del back esta conectada a un controlador designado
-    const url = 'http://localhost:3001/expenses_table/user/' + v_id;
+    const url = host + '/expenses_table/user/' + v_id;
     //En options se ponen cosas como el metodo que se realizara
     const options = {
         method: "GET"
@@ -26,7 +28,7 @@ export async function gastosApi(v_id) {
     }
 
 export async function proyecto_info(v_id) {
-  const url = "http://localhost:3001/expenses_table/" + v_id;
+  const url = host + "/expenses_table/" + v_id;
 
   const options = {
     method: "GET",
@@ -49,7 +51,7 @@ export async function proyecto_info(v_id) {
 }
 
 export async function proyecto_sum_user(v_id) {
-  const url = "http://localhost:3001/expenses_table/sumuser/" + v_id;
+  const url = host + "/expenses_table/sumuser/" + v_id;
 
   const options = {
     method: "GET",
@@ -72,7 +74,7 @@ export async function proyecto_sum_user(v_id) {
 }
 
 export async function proyecto_sum_pm(v_id) {
-  const url = "http://localhost:3001/expenses_table/sumpm/" + v_id;
+  const url = host + "/expenses_table/sumpm/" + v_id;
 
   const options = {
     method: "GET",
@@ -95,7 +97,7 @@ export async function proyecto_sum_pm(v_id) {
 }
 
 export async function proyecto_sum_admin(v_id) {
-  const url = "http://localhost:3001/expenses_table/sumadmin/" + v_id;
+  const url = host + "/expenses_table/sumadmin/" + v_id;
 
   const options = {
     method: "GET",
@@ -118,7 +120,7 @@ export async function proyecto_sum_admin(v_id) {
 }
 
 export async function imagen_gastos(g_id) {
-  const url = "http://localhost:3001/expense_reports/" + g_id;
+  const url = host + "/expense_reports/" + g_id;
 
   const options = {
     method: "GET",
@@ -141,7 +143,7 @@ export async function imagen_gastos(g_id) {
 }
 
 export async function smart_delete_expenses(id) {
-  const url = "http://localhost:3001/expense_reports/" + JSON.stringify(id);
+  const url = host + "/expense_reports/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -159,7 +161,7 @@ export async function smart_delete_expenses(id) {
 
 export async function approve_expenses(id) {
   const url =
-    "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
+    host + "/expense_reports/choice/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -177,7 +179,7 @@ export async function approve_expenses(id) {
 
 export async function reject_expenses(id) {
   const url =
-    "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
+    host + "/expense_reports/choice/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -195,7 +197,7 @@ export async function reject_expenses(id) {
 
 export async function send_expenses(id) {
   const url =
-    "http://localhost:3001/expense_reports/choice/" + JSON.stringify(id);
+    host + "/expense_reports/choice/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -213,7 +215,7 @@ export async function send_expenses(id) {
 
 export async function send_viatico(id) {
   const url =
-    "http://localhost:3001/viatico_request/" + JSON.stringify(id);
+    host + "/viatico_request/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -231,7 +233,7 @@ export async function send_viatico(id) {
 
 export async function accept_viatico(id) {
   const url =
-    "http://localhost:3001/viatico_request/" + JSON.stringify(id);
+    host + "/viatico_request/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -248,7 +250,7 @@ export async function accept_viatico(id) {
 }
 
 export async function reject_viatico(id, comRechazo) {
-  const url = "http://localhost:3001/viatico_request/" + JSON.stringify(id);
+  const url = host + "/viatico_request/" + JSON.stringify(id);
   //console.log(url);
   const options = {
     method: "PATCH",
@@ -266,7 +268,7 @@ export async function reject_viatico(id, comRechazo) {
 }
 
 export async function paid_viatico(id, refBank){
-  const url = 'http://localhost:3001/viatico_request/' + JSON.stringify(id);
+  const url = host + '/viatico_request/' + JSON.stringify(id);
   //console.log(url);
   const options = {
       method: "PATCH",
@@ -284,7 +286,7 @@ export async function paid_viatico(id, refBank){
 }
 
 export async function comentarioRechazo(id){
-  const url = 'http://localhost:3001/viatico_request/comentario/' + JSON.stringify(id);
+  const url = host + '/viatico_request/comentario/' + JSON.stringify(id);
   const options = {
       method: "GET",
       credentials:"include",
@@ -298,7 +300,7 @@ export async function comentarioRechazo(id){
 }
 
 export async function refBancaria(id){
-  const url = 'http://localhost:3001/viatico_request/refBancaria/' + JSON.stringify(id);
+  const url = host + '/viatico_request/refBancaria/' + JSON.stringify(id);
   const options = {
       method: "GET",
       credentials:"include",
