@@ -1,5 +1,5 @@
 import {Outlet, Navigate} from 'react-router-dom'
-import { tokenValidation } from './getApiData'
+import { tokenValidation } from '../apis/getApiData'
 import { useEffect, useState } from 'react';
 
 const PrivateRouteComponent = ({ has_permission, rol }) => {
