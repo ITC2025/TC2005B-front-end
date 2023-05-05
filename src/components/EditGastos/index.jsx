@@ -5,18 +5,7 @@ import { getGastos, updateGasto } from "../../apis/getApiData";
 
 function EG({ viaticoID }) {
   const [validated, setValidated] = useState(false);
-  const [formGasto, setFormGasto] = useState([
-    {
-      ID_solicitud_viatico: viaticoID,
-      concepto: "",
-      ID_tipo_gasto: "",
-      monto: "",
-      imagen: "",
-      xml: "",
-      fecha: "",
-      ID_status_reporte_gasto: "2",
-    },
-  ]);
+  const [formGasto, setFormGasto] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,10 +27,13 @@ function EG({ viaticoID }) {
     setFormGasto({ ...formGasto, [name]: value });
   };
 
-  const handleFileUpload = (event) => {
+  const handleFileUpload = (event, index) => {
     const { name } = event.target;
     const file = event.target.files[0];
-    setFormGasto({ ...formGasto, [name]: file });
+
+    const updatedFormGasto = [...formGasto];
+    updatedFormGasto[index][name] = file;
+    setFormGasto(updatedFormGasto);
   };
 
   const handleSubmit = async (event) => {
@@ -135,8 +127,7 @@ function EG({ viaticoID }) {
                         <input
                           className="form-control"
                           name="imagen"
-                          type="file"
-                          required
+                          type="file"                          
                           onChange={handleFileUpload}
                         />
                       </div>
@@ -148,7 +139,6 @@ function EG({ viaticoID }) {
                           className="form-control"
                           name="xml"
                           type="file"
-                          required
                           onChange={handleFileUpload}
                         />
                       </div>
