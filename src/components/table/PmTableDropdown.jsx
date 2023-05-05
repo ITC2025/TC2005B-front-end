@@ -14,6 +14,7 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [datosSV, setDatosSV] = React.useState([]);
+
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -116,6 +117,7 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
         )}
       </Menu>
       <Modal
+        dataDB={datosSV}
         estado={showModal}
         cambiarEstado={setShowModal}
         solicitudViatico={true}
