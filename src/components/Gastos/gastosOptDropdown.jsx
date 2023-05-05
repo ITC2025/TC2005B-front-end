@@ -8,7 +8,6 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
-
 export default function GastosDropdown(props) {
 
   //console.log(props.id);
@@ -23,15 +22,11 @@ export default function GastosDropdown(props) {
     setAnchorEl(null);
   }; 
 
-  
-
   const handleModal = () => {
     props.doIt(props.id);
     handleClose();
 
   } 
-
-
 
   return (
     <div>
