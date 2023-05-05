@@ -31,6 +31,7 @@ const Modal = ({ estado,
     solicitudViatico,
     id_solicitud_viatico,
     info,
+    dosBotones,
     motivoRechazo, id}) => {
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
@@ -208,6 +209,13 @@ const Modal = ({ estado,
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
                             </>
                         }
+
+                        {dosBotones && 
+                            <>
+                            <Button onClick={() => aceptarViatico(info[6])} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
+                            <Button onClick={() => rechazarViatico(info[6])} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button>
+                            </>
+                        }
                     </ContModal>
                 </Overlay >
             }
@@ -234,20 +242,19 @@ const Modal = ({ estado,
         navigate("/user/viaticos");
     }
 
-    function aceptarViatico(){
+    function aceptarViatico(id){
         approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
         cambiarEstado(false);
         navigate(-1);
     }
 
-    function rechazarViatico() {
+    function rechazarViatico(id) {
         reject_expenses(JSON.parse(id));
         reject_viatico(JSON.parse(id), comRechazo);
         cambiarEstado(false);
         navigate(-1);
     }
-    
 
     function pagadoViatico(){;
         paid_viatico(JSON.parse(id), refBank);
