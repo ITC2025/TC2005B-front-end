@@ -6,9 +6,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
-import Modal from "../modal/index"
+import Modal from "../modal/index";
 
-export default function TableDropdown({viaticoID, Status, info}) {
+export default function TableDropdown({ viaticoID, Status, info }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -46,8 +46,16 @@ export default function TableDropdown({viaticoID, Status, info}) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => setShowModal(!showModal)}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/expediente/"+viaticoID} >Ver gastos</MenuItem>
+        <MenuItem onClick={() => setShowModal(!showModal)}>
+          Abrir solicitud
+        </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={"/user/expediente/" + viaticoID}
+        >
+          Ver gastos
+        </MenuItem>
         {Status === "Rechazado" && (
           <>
             <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
@@ -56,11 +64,12 @@ export default function TableDropdown({viaticoID, Status, info}) {
       </Menu>
 
       <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
-      <Modal 
-        estado= {showModal}
+      <Modal
+        estado={showModal}
         cambiarEstado={setShowModal}
         solicitudViatico={true}
         info={info}
+        viaticoSV={viaticoID}
       />
     </div>
   );

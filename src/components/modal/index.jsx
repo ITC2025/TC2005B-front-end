@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Button, Container, Row, Col, Table } from "react-bootstrap";
 import { MdOutlineError, MdCheckCircle, MdClose } from "react-icons/md";
 import { BsCashCoin } from "react-icons/bs";
@@ -10,237 +10,392 @@ import {
   reject_viatico,
   approve_expenses,
   reject_expenses,
-  send_viatico
+  send_viatico,
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
+import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
-const Modal = ({ estado,
-    cambiarEstado,
-    solicitudExitosa,
-    ocurrioError,
-    confirmar,
-    cancelar,
-    aprovacionSolicitud,
-    imagenTicket,
-    proyectoCreado,
-    ImgSrc,
-    saldo,
-    rechazarPago,
-    confirmarPago,
-    solicitudViatico,
-    id_solicitud_viatico,
-    info,
-    dosBotones,
-    motivoRechazo, id}) => {
-    const [refBank, setRefBank] = useState('');
-    const [comRechazo, setComRechazo] = useState('');
-    const navigate = useNavigate();
-    return (
-        <>
-            {estado &&
-                <Overlay>
-                    <ContModal>
-                        <BotonCerrar>
-                            <MdClose id='cerrar' onClick={() => cambiarEstado(false)} />
-                        </BotonCerrar>
+const Modal = ({
+  estado,
+  cambiarEstado,
+  solicitudExitosa,
+  ocurrioError,
+  confirmar,
+  cancelar,
+  aprovacionSolicitud,
+  imagenTicket,
+  proyectoCreado,
+  ImgSrc,
+  saldo,
+  rechazarPago,
+  confirmarPago,
+  solicitudViatico,
+  id_solicitud_viatico,
+  info,
+  motivoRechazo,
+  id,
+  gastosContemplados,
+  viaticoSV,
+  dosBotones
+}) => {
+  const [refBank, setRefBank] = useState("");
+  const [comRechazo, setComRechazo] = useState("");
+  const navigate = useNavigate();
+  return (
+    <>
+      {estado && (
+        <Overlay>
+          <ContModal>
+            <BotonCerrar>
+              <MdClose id="cerrar" onClick={() => cambiarEstado(false)} />
+            </BotonCerrar>
+            {solicitudExitosa && (
+              <>
+                <MdCheckCircle id="imagen" />
+                <h1> SOLICITUD EXITOSA </h1>
+                <Button
+                  onClick={() => enviarData()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>
+              </>
+            )}
+            {proyectoCreado && (
+              <>
+                <MdCheckCircle id="imagen" />
+                <h1> PROYECTO CREADO </h1>
+                <Button
+                  onClick={() => enviarData()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>
+              </>
+            )}
+            {ocurrioError && (
+              <>
+                <MdOutlineError id="imagen" />
+                <h1> SOLICITUD EXITOSA </h1>
+                <Button
+                  onClick={() => enviarData()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>
+              </>
+            )}
+            {saldo > 0 && (
+              <>
+                <BsCashCoin id="imagen" />
+                <h1> SALDO POSITIVO</h1>
+                <Button
+                  onClick={() => cambioEstadoGasto()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ABONAR A OTRO VIATICO{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambioEstadoGasto()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  PAGAR EN CAJA{" "}
+                </Button>
+              </>
+            )}{" "}
+            {saldo <= 0 && (
+              <>
+                <BsCashCoin id="imagen" />
+                <h1> SALDO NEGATIVO</h1>
+                <Button
+                  onClick={() => cambioEstadoGasto()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ABONAR A OTRO VIATICO{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambioEstadoGasto()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  REEMBOLSO EN CAJA{" "}
+                </Button>
+              </>
+            )}
+            {confirmar && (
+              <>
+                <h1> CONFIRMAR </h1>
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  {" "}
+                  CANCELAR{" "}
+                </Button>
+              </>
+            )}
+            {cancelar && (
+              <>
+                <h1> CONFIRMAR </h1>
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  {" "}
+                  CANCELAR{" "}
+                </Button>
+              </>
+            )}
+            {aprovacionSolicitud && (
+              <>
+                <h1> APROBACION DE SOLICITUD </h1>
+                <Button
+                  onClick={() => aceptarViatico()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  ACEPTAR{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  {" "}
+                  CANCELAR{" "}
+                </Button>
+              </>
+            )}
+            {imagenTicket && (
+              <>
+                <img src={ImgSrc} alt="Imagen ticket"></img>
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  CLOSE
+                </Button>
+              </>
+            )}
+            {rechazarPago && (
+              <>
+                <h1> RECHAZAR PAGO </h1>
+                <div class="modal-textarea">
+                  <p>Motivo de rechazo: </p>
+                  <textarea value={comRechazo} onChange={enviarCom} rows="8" />
+                </div>
+                <Button
+                  onClick={() => rechazarViatico()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  RECHAZAR{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  {" "}
+                  CANCELAR{" "}
+                </Button>
+              </>
+            )}
+            {confirmarPago && (
+              <>
+                <h1> CONFIRMACION DE PAGO </h1>
+                <div class="modal-textarea">
+                  <p>Confirmacion de pago: </p>
+                  <textarea value={refBank} onChange={enviarRef} rows="3" />
+                </div>
+                <Button
+                  onClick={() => pagadoViatico()}
+                  id="basicButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="ligth"
+                >
+                  {" "}
+                  PAGAR{" "}
+                </Button>{" "}
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  {" "}
+                  CANCELAR{" "}
+                </Button>
+              </>
+            )}
+            {solicitudViatico && (
+              <>
+                <h1>SOLICITUD DE VIATICO</h1>
+                <div>
+                  {/* {abrirSolicitudDB()} */}
+                  <Container className="white-bg">
+                    <Container className="gray-bg" id="modalTable">
+                      <Container>
+                        <Row>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <p>
+                              Monto Total: <strong>${info[0]}</strong>
+                            </p>
+                            <p>
+                              Fecha de inicio: <strong>{info[1]}</strong>
+                            </p>
+                          </Col>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <p>
+                              Destino: <strong>{info[4]}</strong>
+                            </p>
+                          </Col>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <p>
+                              Proyecto: <strong>{info[3]}</strong>
+                            </p>
+                            <p>
+                              Fecha de termino: <strong>{info[2]}</strong>
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col>
+                            <p>
+                              Descripcion: <strong>{info[5]}</strong>
+                            </p>
+                          </Col>
+                        </Row>
+                        <Row>
+                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                            <Table bordered hover className="custom-table">
+                              <thead className="modal-thead">
+                                <tr>
+                                  <td>Concepto de gasto</td>
+                                  <td>Monto</td>
+                                </tr>
+                              </thead>
+                              <tbody className="modal-tbody">
+                                {/* {gastosContemplados.map((value, idx) => (
+                                  <tr key={idx} className="bg-white">
+                                    <td>{value.concepto}</td>
+                                    <td>{parseInt(value.monto)} MXN</td>
+                                  </tr>
+                                ))} */}
+                                {console.log(gastosContemplados)}
+                              </tbody>
+                            </Table>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Container>
+                  </Container>
+                </div>
+                <Button
+                  onClick={() => cambiarEstado(false)}
+                  id="cancelButton"
+                  className="mt-3"
+                  size="lg"
+                  variant="danger"
+                >
+                  CLOSE
+                </Button>
+              </>
+            )}
+          </ContModal>
+        </Overlay>
+      )}
+    </>
+  );
 
-                        {solicitudExitosa &&
-                            <>
-                                <MdCheckCircle id='imagen' />
-                                <h1> SOLICITUD EXITOSA </h1>
-                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
-                            </>
-                        }
+  function enviarData() {
+    cambiarEstado(false);
+    alert("si sirve");
+  }
 
-                        {proyectoCreado &&
-                            <>
-                                <MdCheckCircle id='imagen' />
-                                <h1> PROYECTO CREADO </h1>
-                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
-                            </>
-                        }
+  function enviarRef(event) {
+    setRefBank(event.target.value);
+  }
 
-                        {ocurrioError &&
-                            <>
-                                <MdOutlineError id='imagen' />
-                                <h1> SOLICITUD EXITOSA </h1>
-                                <Button onClick={() => enviarData()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
-                            </>
-                        }
+  function enviarCom(event) {
+    setComRechazo(event.target.value);
+  }
 
-                        {saldo > 0 &&
-                            <>
-                                <BsCashCoin id='imagen' />
-                                <h1> SALDO POSITIVO</h1>
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR EN CAJA </Button>
-                            </>
-                        } {saldo <= 0 &&
-                            <>
-                                <BsCashCoin id='imagen' />
-                                <h1> SALDO NEGATIVO</h1>
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ABONAR A OTRO VIATICO </Button> {' '}
-                                <Button onClick={() => cambioEstadoGasto()} id='basicButton' className='mt-3' size="lg" variant="ligth"> REEMBOLSO EN CAJA </Button>
-                            </>
-                        }
-
-                        {confirmar &&
-                            <>
-                                <h1> CONFIRMAR </h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {cancelar &&
-                            <>
-                                <h1> CONFIRMAR </h1>
-                                <Button onClick={() => cambiarEstado(false)} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {aprovacionSolicitud &&
-                            <>
-                                <h1> APROBACION DE SOLICITUD </h1>
-                                <Button onClick={() => aceptarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {imagenTicket &&
-                            <>
-                                <img src={ImgSrc} alt="Imagen ticket"></img>
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
-                            </>
-                        }
-
-                        {rechazarPago &&
-                            <>
-                                <h1> RECHAZAR PAGO </h1>
-
-                                <div class="modal-textarea">
-                                    <p>Motivo de rechazo: </p>
-                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
-                                </div>
-
-                                <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {confirmarPago &&
-                            <>
-                                <h1> CONFIRMACION DE PAGO </h1>
-                                <div class="modal-textarea">
-                                    <p>Confirmacion de pago: </p>
-                                    <textarea value={refBank} onChange={enviarRef} rows="3" />
-                                </div>
-
-                                <Button onClick={() => pagadoViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> PAGAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {solicitudViatico &&
-                            <>
-                                <h1>SOLICITUD DE VIATICO</h1>
-                                <div>
-                                    <Container className="white-bg">
-                                        <Container className="gray-bg" id="modalTable">
-                                            <Container>
-                                            <Row>
-                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                                                <p>
-                                                    Monto Total: <strong>${info[0]}</strong>
-                                                </p>
-                                                <p>
-                                                    Fecha de inicio:{" "}
-                                                    <strong>{info[1]}</strong>
-                                                </p>
-                                                </Col>
-                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                                                <p>
-                                                    Destino: <strong>{info[4]}</strong>
-                                                </p>
-                                                </Col>
-                                                <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                                                <p>
-                                                    Proyecto: <strong>{info[3]}</strong>
-                                                </p>
-                                                <p>
-                                                    Fecha de termino:{" "}
-                                                    <strong>{info[2]}</strong>
-                                                </p>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col>
-                                                <p>
-                                                    Descripcion: <strong>{info[5]}</strong>
-                                                </p>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                                                <Table bordered hover className="custom-table">
-                                                    <thead className="modal-thead">
-                                                    <tr>
-                                                        <td>Concepto de gasto</td>
-                                                        <td>Monto</td>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody className="modal-tbody">
-                                                    {/* {.map((value, idx) => (
-                                                        <tr key={idx} className="bg-white">
-                                                        <td>{value.concepto}</td>
-                                                        <td>{parseInt(value.monto)} MXN</td>
-                                                        </tr>
-                                                    ))} */}
-                                                    </tbody>
-                                                </Table>
-                                                </Col>
-                                            </Row>
-                                            </Container>
-                                        </Container>
-                                        </Container>
-                                </div>
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger">CLOSE</Button>
-                            </>
-                        }
-
-                        {dosBotones && 
-                            <>
-                            <Button onClick={() => aceptarViatico(info[6])} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button>
-                            <Button onClick={() => rechazarViatico(info[6])} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button>
-                            </>
-                        }
-                    </ContModal>
-                </Overlay >
-            }
-        </>
-    );
-
-    function enviarData() {
-        cambiarEstado(false)
-        alert('si sirve');
-    }
-
-    function enviarRef(event){
-        setRefBank(event.target.value);
-    }
-
-    function enviarCom(event){
-        setComRechazo(event.target.value);
-    }
-
-    function cambioEstadoGasto() {
-        send_expenses(JSON.parse(id));
-        send_viatico(JSON.parse(id));
-        cambiarEstado(false);
-        navigate("/user/viaticos");
-    }
+  function cambioEstadoGasto() {
+    send_expenses(JSON.parse(id));
+    send_viatico(JSON.parse(id));
+    cambiarEstado(false);
+    navigate("/user/viaticos");
+  }
 
     function aceptarViatico(id){
         approve_expenses(JSON.parse(id));
@@ -263,6 +418,11 @@ const Modal = ({ estado,
     }
 }
 
+// const abrirSolicitudDB = async () => {
+//   const getDatos = getSolicitudViaticoUser(viaticoSV);
+//   const data = await getDatos;
+//   console.log(data);
+// };
 export default Modal;
 
 const Overlay = styled.div`
