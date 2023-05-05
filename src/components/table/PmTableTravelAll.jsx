@@ -4,29 +4,13 @@ import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
-import { Button } from "react-bootstrap";
-import Modal from 'react-bootstrap/Modal';
 import { tokenID } from "../../apis/getApiData";
 
 export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
   // Configurar hooks
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
-
-  // Estado de los botones, para deshabilitarlos o habilitarlos
-  const [estadoBoton, setEstadoBoton] = useState([false]);
-  const [estadoBoton2, setEstadoBoton2] = useState([false]);
-
-  // Estado para mostrar modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  // Funcion para mostrar datos con fetch
-  // const URL = "https://jsonplaceholder.typicode.com/users";
-  //
   
-
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;
@@ -35,8 +19,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     if (project_code) {
       URL = URL + "/" + project_code;
     } 
-
-    //console.log(URL);
 
     const res = await fetch(URL);
     let data = await res.json();
@@ -65,12 +47,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
     getTravelAllowance();
   }, []);
 
-
-  const handleSend = () => {
-    //console.log("enviar");
-    //refrescar la pagina
-    window.location.reload();
-  };
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
@@ -151,29 +127,6 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
         paginationComponentOptions={paginationTable}
         fixedHeader
       />
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>CONFIRMACIÓN DE RECHAZO</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            Motivo de Rechazo:
-            <textarea className="form-control" rows="5" id="comment" required></textarea>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleSend}>RECHAZAR</Button>
-
-          <Button onClick={handleClose}>
-            CANCELAR
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
