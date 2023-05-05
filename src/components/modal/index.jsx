@@ -239,7 +239,6 @@ const Modal = ({ estado,
 
     function cambioEstadoGasto() {
         send_expenses(JSON.parse(id));
-        send_viatico(JSON.parse(id));
         cambiarEstado(false);
         navigate("/user/viaticos");
     }
