@@ -85,7 +85,7 @@ export default function TableDropdown({ viaticoID, Status }) {
 
       <Modal estado={modal}
         cambiarEstado={mostrarModal}
-        motivoRechazo={true}
+        motivoRechazoSolicitud={true}
         id={viaticoID} />
 
       <Modal estado={modalPagado}

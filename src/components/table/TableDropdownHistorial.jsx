@@ -80,7 +80,7 @@ export default function TableDropdownHistorial({ viaticoID, Status }) {
 
       <Modal estado={modal}
         cambiarEstado={mostrarModal}
-        motivoRechazo={true}
+        motivoRechazoSolicitud={true}
         id={viaticoID} />
 
       <Modal estado={modalPagado}

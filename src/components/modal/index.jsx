@@ -32,7 +32,7 @@ const Modal = ({ estado,
     saldo,
     rechazarPago,
     confirmarPago,
-    motivoRechazo, 
+    motivoRechazoSolicitud, 
     mostrarReferencia, id }) => {
     
     // hooks 
@@ -193,7 +193,7 @@ const Modal = ({ estado,
                             </>
                         }
 
-                        {motivoRechazo &&
+                        {motivoRechazoSolicitud &&
                             <>  
                                 <h1> MOTIVO RECHAZO </h1>
                                 <p> {msgRechazo.comentario} </p>
