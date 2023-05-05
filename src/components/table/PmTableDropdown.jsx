@@ -61,24 +61,12 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
       >
         {pathname === "/pm/solicitudes" && (
           <>
-            <MenuItem
-              onClick={handleOnClickSomething}
-              as={Link}
-              // to={"/pm/expediente/" + viaticoID}
-            >
-              Ver solicitud
-            </MenuItem>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
           </>
         )}
         {pathname === "/pm/solicitudes/" + codigoPr && (
           <>
-            <MenuItem
-              onClick={handleOnClickSomething}
-              as={Link}
-              // to={"/pm/expediente/" + viaticoID}
-            >
-              Ver solicitud
-            </MenuItem>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
             {status === "Rechazado" && (
               <MenuItem onClick={handleClose}>
                 Mostrar motivo de rechazo
@@ -95,13 +83,7 @@ export default function PmTableDropdown({ viaticoID, info, status, codigoPr }) {
 
         {pathname === "/pm/historico" && (
           <>
-            <MenuItem
-              onClick={handleOnClickSomething}
-              as={Link}
-              // to={"/pm/hexpediente/" + viaticoID}
-            >
-              Ver solicitud
-            </MenuItem>
+            <MenuItem onClick={handleOnClickSomething}>Ver solicitud</MenuItem>
             {status === "Rechazado" && (
               <MenuItem onClick={handleClose}>
                 Mostrar motivo de rechazo

@@ -135,6 +135,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
             row.ID_solicitud_viatico,
             row.StatusSolicitudViatico,
           ]}
+          status={row.StatusSolicitudViatico.descripcion}
           codigoPr={project_code}
         />
       ),
