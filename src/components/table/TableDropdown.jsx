@@ -6,13 +6,14 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal";
-import { tokenValidation } from "../../apis/getApiData";
+import { tokenValidation, eliminarSolicitud } from "../../apis/getApiData";
+import { useNavigate } from "react-router-dom";
 
 export default function TableDropdown({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
-
+  const navigate = useNavigate();
   const [modal, mostrarModal] = React.useState(false);
   const [modalPagado, mostrarModalPagado] = React.useState(false);
 
@@ -23,20 +24,22 @@ export default function TableDropdown({ viaticoID, Status }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  
+  const deleteSolicitud = (id) =>{
+    eliminarSolicitud(id)
+    window.location.reload();
+  };
 
   const getRole = async () => {
     const response = await tokenValidation()
-    // console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      // console.log('Yo soy Admin')
     }
   }
 
   React.useEffect(() => {
     getRole()
   }, [])
-
 
   return (
     <div>
@@ -79,6 +82,12 @@ export default function TableDropdown({ viaticoID, Status }) {
         {Status === "Pagado" && (
           <>
             <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
+          </>
+        )}
+
+        {Status === "Borrador" && (
+          <>
+            <MenuItem onClick={() => deleteSolicitud(viaticoID)}>Eliminar</MenuItem>
           </>
         )}
       </Menu>
