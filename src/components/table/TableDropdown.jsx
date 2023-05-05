@@ -44,7 +44,7 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   React.useEffect(() => {
     getRole()
-  })
+  }, [])
 
 
   return (
@@ -71,7 +71,7 @@ export default function TableDropdown({ viaticoID, Status }) {
         <MenuItem
           onClick={handleClose}
           as={Link}
-          to={isAdmin ? "../expediente/" + viaticoID : "../user/expediente/" + viaticoID}
+          to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
         >
           Ver gastos
         </MenuItem>
