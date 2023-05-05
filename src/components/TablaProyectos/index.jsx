@@ -30,7 +30,7 @@ export default function TablaProyectos() {
     };
     const rawResponse = await fetch(url, options);
     const response = await rawResponse.json();
-    console.log(response[0]);
+    //console.log(response[0]);
     setProyecto(response);
   };
 

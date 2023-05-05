@@ -68,7 +68,7 @@ function SolicitarViaticos() {
 
   const postToDB = () => {
     mostrarIDProyecto();
-    console.log(idProyecto);
+    // console.log(idProyecto);
     submitSV(
       totalGastos,
       idProyecto,

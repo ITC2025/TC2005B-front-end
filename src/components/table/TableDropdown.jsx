@@ -35,10 +35,10 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const getRole = async () => {
     const response = await tokenValidation()
-    console.log(response.role)
+    // console.log(response.role)
     if (response.role === 3) {
       setIsAdmin(true);
-      console.log('Yo soy Admin')
+      // console.log('Yo soy Admin')
     }
   }
 

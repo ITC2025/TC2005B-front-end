@@ -36,7 +36,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       URL = URL + "/" + project_code;
     } 
 
-    console.log(URL);
+    //console.log(URL);
 
     const res = await fetch(URL);
     let data = await res.json();
@@ -65,7 +65,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
 
   const handleSend = () => {
-    console.log("enviar");
+    //console.log("enviar");
     //refrescar la pagina
     window.location.reload();
   };
