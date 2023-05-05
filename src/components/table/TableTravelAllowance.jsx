@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
 import { userViaticos } from "../../apis/getApiData";
+import mxnFormat from "../../utils/mxnFormat";
 
 export const TableTravelAllowance = () => {
   const navigate = useNavigate();
@@ -17,20 +18,11 @@ export const TableTravelAllowance = () => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // // Funcion para mostrar datos con fetch
-  // const URL = "https://gorest.co.in/public/v2/users?page=1&per_page=20";
-  // // const URL = "https://jsonplaceholder.typicode.com/users";
-  // const getTravelAllowance = async () => {
-  //   const res = await fetch(URL);
-  //   const data = await res.json();
-  //   setTravelAllowance(data);
-  //   setFilterTravelAllowance(data);
-  //   // console.log(data);
-  // };
-
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
     let data = await userViaticos();
+    
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
   };
@@ -80,7 +72,7 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Monto",
-      selector: (row) => row.monto,
+      selector: (row) => mxnFormat(row.monto),
       sortable: true,
     },
     {

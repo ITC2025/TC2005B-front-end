@@ -131,7 +131,7 @@ const NavbarSC = ({ client, projectManager, admin }) => {
                             />
                             <NavDropdown title={username} id="basic-nav-dropdown">
 
-                            <NavDropdown.Item className="nav-link" onClick={sessionDelete}>  LOG OUT </NavDropdown.Item>
+                            <NavDropdown.Item className="nav-link" onClick={sessionDelete} style={{textAlign: "center"}}>  LOG OUT </NavDropdown.Item>
                             </NavDropdown>
                         </div>
                     </Nav>
