@@ -45,8 +45,10 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
 
     if (closed_requests_only) {
       data = data.filter((row) => {
-        return (row.StatusSolicitudViatico.descripcion != "Enviado" &&
-          row.StatusSolicitudViatico.descripcion != "En revisión")
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
+                row.StatusSolicitudViatico.descripcion != "En revisión" &&
+                row.StatusSolicitudViatico.descripcion != "Borrador" &&
+                row.StatusSolicitudViatico.descripcion != "Eliminado")
       });
     } else if (!project_code) {
       data = data.filter((row) => {
@@ -117,7 +119,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
     },
     {
       name: "Acciones",
-      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} codigoPr={project_code} />,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} codigoPr={project_code} />,
       width: "90px",
     },
   ];
