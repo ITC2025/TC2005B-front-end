@@ -52,7 +52,7 @@ export default function TableAdminDropdown({ viaticoID, status }) {
         {status === "Pagado" && (
           <>
             <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
-            <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>2
+            <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
           </>
         )}
       </Menu>
