@@ -5,6 +5,7 @@ import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
 import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
 import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
+import { SolInd } from "../../apis/getApiData";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticosEditar() {
@@ -14,7 +15,7 @@ function SolicitarViaticosEditar() {
         window.location.reload(); // cambiar ruta
     };
 
-    
+
   
 
   const [formData, setFormData] = useState({
@@ -24,22 +25,27 @@ function SolicitarViaticosEditar() {
     proyecto: "",
     descripcion: "",
   });
+
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
   const [proyectos, setProyectos] = useState([]);
   const [nombresProyectos, setNombresProyectos] = useState([]);
   const [selectedProyecto, setSelectedProyecto] = useState("");
+
+
   let idProyecto = 0;
 
-  const URL = "http://localhost:3001/projects";
-  const getProyectos = async () => {
-    const res = await fetch(URL);
-    const data = await res.json();
-    setProyectos(data);
-  };
+//   const URL = "http://localhost:3001/projects";
+//   const getProyectos = async () => {
+//     const res = await fetch(URL);
+//     const data = await res.json();
+//     setProyectos(data);
+//   };
 
   useEffect(() => {
-    getProyectos();
+    SolInd(id).then((solicitud)=>{
+        setFormData(solicitud);
+    })
   }, []);
 
   useEffect(() => {
@@ -95,29 +101,29 @@ function SolicitarViaticosEditar() {
     pageRefresher();
   };
 
-  const saveAsDraft = () => {
-    mostrarIDProyecto();
+//   const saveAsDraft = () => {
+//     mostrarIDProyecto();
 
-    alert("Solicitud de Viatico guardado como borrador");
-    submitSV(
-      totalGastos,
-      idProyecto,
-      1,
-      formData.destino,
-      formData.fechaInicio,
-      formData.fechaTermino,
-      formData.descripcion
-    ).then((res) => {
-      for (let i = 0; i < dataFromAddInput.length; i++) {
-        postEstimatedExpenses(
-          dataFromAddInput[i].concepto,
-          dataFromAddInput[i].monto,
-          res
-        );
-      }
-    });
-    pageRefresher();
-  };
+//     alert("Solicitud de Viatico guardado como borrador");
+//     submitSV(
+//       totalGastos,
+//       idProyecto,
+//       1,
+//       formData.destino,
+//       formData.fechaInicio,
+//       formData.fechaTermino,
+//       formData.descripcion
+//     ).then((res) => {
+//       for (let i = 0; i < dataFromAddInput.length; i++) {
+//         postEstimatedExpenses(
+//           dataFromAddInput[i].concepto,
+//           dataFromAddInput[i].monto,
+//           res
+//         );
+//       }
+//     });
+//     pageRefresher();
+//   };
 
   let totalGastos = 0;
 
