@@ -23,6 +23,8 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    console.log("hola")
+
   };
 
   const handleClose = () => {
@@ -160,7 +162,6 @@ export default function TableDropdown({ viaticoID, Status, info }) {
         motivoRechazo={true}
       />
       <Modal
-      // DATADB
         dataDB={datosSV}
         estado={showModal}
         cambiarEstado={setShowModal}
