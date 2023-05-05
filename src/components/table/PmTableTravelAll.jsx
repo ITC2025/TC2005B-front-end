@@ -11,6 +11,15 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
+  // Estado para mostrar modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
+  // Funcion para mostrar datos con fetch
+  // const URL = "https://jsonplaceholder.typicode.com/users";
+  //
+
+
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;

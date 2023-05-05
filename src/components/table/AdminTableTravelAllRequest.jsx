@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
-import TableDropdown from "./TableDropdown";
+import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 import mxnFormat from "../../utils/mxnFormat";
@@ -77,7 +77,7 @@ export const AdminTableTravelAllRequest = () => {
     },
     {
       name: "Acciones",
-      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
       width: "120px",
       style: { paddingLeft: "0.5em" },
     },
