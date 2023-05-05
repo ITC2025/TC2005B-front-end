@@ -50,34 +50,12 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
             </MenuItem>
           </>
         )}
-        {(pathname === "/pm/solicitudes/"+ codigoPr &&
-          <>
-            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver solicitud</MenuItem>
-            {status === "Rechazado" && (
-              <MenuItem onClick={handleClose}>
-                Mostrar motivo de rechazo
-              </MenuItem>
-            )}
-            {status === "Pagado" && (
-              <>
-              <MenuItem onClick={handleClose}>
-                Mostrar pago
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                Mostrar gastos
-              </MenuItem>
-              </>
-            )}
-
-          </>
-        )}
-
-        {(pathname === "/pm/historico" &&
+        {pathname === "/pm/solicitudes/" + codigoPr && (
           <>
             <MenuItem
               onClick={handleClose}
               as={Link}
-              to={"/pm/hexpediente/" + viaticoID}
+              to={"/pm/expediente/" + viaticoID}
             >
               Ver solicitud
             </MenuItem>
@@ -88,12 +66,40 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
             )}
             {status === "Pagado" && (
               <>
-              <MenuItem onClick={handleClose}>
-                Mostrar pago
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                Mostrar gastos
-              </MenuItem>
+                <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+                <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+              </>
+            )}
+          </>
+        )}
+
+        {pathname === "/pm/historico" && (
+          <>
+            <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
+            {status === "Rechazado" && (
+              <MenuItem>Ver motivo de rechazo</MenuItem>
+            )}
+            {status === "Pagado" && (
+              <>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/admin/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
+                <MenuItem>Mostrar pago</MenuItem>
+              </>
+            )}
+            {status === "Aprobado" && (
+              <>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/admin/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
               </>
             )}
           </>
