@@ -19,7 +19,7 @@ function SolicitarViaticosEditar() {
   const [formData, setFormData] = useState({
     fechaInicio: "",
     fechaTermino: "",
-    destino: "hermosillo",
+    destino: "",
     ID_proyecto: "",
     descripcion: "",
   });
@@ -33,21 +33,32 @@ function SolicitarViaticosEditar() {
 
   let idProyecto = 0;
 
-  
 
-  useEffect(() => {
-    const solicitud =  SolInd(routeParams.id)
-
-    SolInd(routeParams.id).then((formData)=>{
+  const getDatos = async () => {
+    await SolInd(routeParams.id).then((formData)=>{
+      console.log("hola")
       setFormData({
+        // fechaInicio: formData[0].fechaInicio,
+        // fechaTermino: formData[0].fechaTermino,
+        // destino: formData[0].destino,
+        // ID_proyecto: formData[0].ID_proyecto,
+        // descripcion: formData[0].descripcion
         fechaInicio: formData[0].fechaInicio,
         fechaTermino: formData[0].fechaTermino,
-        destino: formData[0].destino,
+        destino: "hola",
         ID_proyecto: formData[0].ID_proyecto,
         descripcion: formData[0].descripcion
       })
     });
     console.log(formData)
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      await getDatos();
+    }
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -164,7 +175,7 @@ function SolicitarViaticosEditar() {
                   inputLabel="Fecha Termino"
                   inputName="fechaTermino"
                   inputType="date"
-                  value={formData.fechaTermino}
+                  value={formData.fechaTermino || ""}
                   onChange={handleInputChange}
                 />
               </Col>
@@ -208,14 +219,6 @@ function SolicitarViaticosEditar() {
                   inputType="text"
                   value={formData.descripcion}
                   onChange={handleInputChange}
-                />
-              </Col>
-            </Row>
-            <Row id="SolicitFormRow" className="mx-1">
-              <Col sm={12} md={10}>
-                <AddInputButton
-                  className="form-button"
-                  onAddInput={handleDataFromAddInput}
                 />
               </Col>
             </Row>
