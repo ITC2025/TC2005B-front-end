@@ -9,7 +9,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 
-function TableAdminDropdown({viaticoID}) {
+function TableAdminDropdown({viaticoID, info}) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -47,6 +47,7 @@ function TableAdminDropdown({viaticoID}) {
         estado={showModal}
         cambiarEstado={setShowModal}
         solicitudViatico={true}
+        info={info}
       />
     </>  
   );

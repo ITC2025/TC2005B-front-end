@@ -29,6 +29,8 @@ const Modal = ({ estado,
     rechazarPago,
     confirmarPago,
     solicitudViatico,
+    id_solicitud_viatico,
+    info,
     motivoRechazo, id}) => {
     const [refBank, setRefBank] = useState('');
     const [comRechazo, setComRechazo] = useState('');
@@ -150,32 +152,32 @@ const Modal = ({ estado,
                                             <Row>
                                                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                                                 <p>
-                                                    Monto Total: <strong>${}</strong>
+                                                    Monto Total: <strong>${info[0]}</strong>
                                                 </p>
                                                 <p>
                                                     Fecha de inicio:{" "}
-                                                    <strong>{}</strong>
+                                                    <strong>{info[1]}</strong>
                                                 </p>
                                                 </Col>
                                                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                                                 <p>
-                                                    Destino: <strong>{}</strong>
+                                                    Destino: <strong>{info[4]}</strong>
                                                 </p>
                                                 </Col>
                                                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                                                 <p>
-                                                    Proyecto: <strong>{}</strong>
+                                                    Proyecto: <strong>{info[3]}</strong>
                                                 </p>
                                                 <p>
                                                     Fecha de termino:{" "}
-                                                    <strong>{}</strong>
+                                                    <strong>{info[2]}</strong>
                                                 </p>
                                                 </Col>
                                             </Row>
                                             <Row>
                                                 <Col>
                                                 <p>
-                                                    Descripcion: <strong>{}</strong>
+                                                    Descripcion: <strong>{info[5]}</strong>
                                                 </p>
                                                 </Col>
                                             </Row>

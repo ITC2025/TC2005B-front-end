@@ -56,7 +56,9 @@ export default function AdminTableTravelAll() {
     },
     {
       name: "Actions",
-      cell: (row) => <TableAdminDropdown travelToId={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableAdminDropdown
+       travelToId={row.ID_solicitud_viatico} 
+       info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]} />,
       width: "80px",
     },
   ];

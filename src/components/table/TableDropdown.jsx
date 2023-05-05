@@ -8,7 +8,7 @@ import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index"
 
-export default function TableDropdown({viaticoID, Status}) {
+export default function TableDropdown({viaticoID, Status, info}) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -60,6 +60,7 @@ export default function TableDropdown({viaticoID, Status}) {
         estado= {showModal}
         cambiarEstado={setShowModal}
         solicitudViatico={true}
+        info={info}
       />
     </div>
   );

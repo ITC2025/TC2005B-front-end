@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Modal from "../modal/index"
 
-export default function PmTableDropdown({ viaticoID }) {
+export default function PmTableDropdown({ viaticoID,info }) {
 
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -63,6 +63,7 @@ export default function PmTableDropdown({ viaticoID }) {
         estado={showModal}
         cambiarEstado={setShowModal}
         solicitudViatico={true}
+        info={info}
       />
     </div>
   );
