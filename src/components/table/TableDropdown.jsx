@@ -59,7 +59,7 @@ export default function TableDropdown({ viaticoID, Status }) {
           <MenuItem
             onClick={handleClose}
             as={Link}
-            to={"/user/viaticos/editar/" + viaticoID} >
+            to={"/user/solicitudEditar/" + viaticoID} >
             <>
               Modificar
             </>

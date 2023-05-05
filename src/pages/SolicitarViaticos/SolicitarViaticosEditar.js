@@ -9,14 +9,11 @@ import { SolInd } from "../../apis/getApiData";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticosEditar() {
-    const { id } = useParams;
+    const routeParams = useParams();
 
     const pageRefresher = () => {
         window.location.reload(); // cambiar ruta
     };
-
-
-  
 
   const [formData, setFormData] = useState({
     fechaInicio: "",
@@ -42,10 +39,15 @@ function SolicitarViaticosEditar() {
 //     setProyectos(data);
 //   };
 
+  const handleSolicitud = async () =>{
+    const solicitud = await SolInd(routeParams.id)
+    console.log(solicitud);
+    setFormData(solicitud);
+  }
+
   useEffect(() => {
-    SolInd(id).then((solicitud)=>{
-        setFormData(solicitud);
-    })
+    console.log(routeParams.id)
+    handleSolicitud()
   }, []);
 
   useEffect(() => {
@@ -137,7 +139,7 @@ function SolicitarViaticosEditar() {
 
   return (
     <>
-      <h1 id="HeaderTitle">Solicitar viaticos</h1>
+      <h1 id="HeaderTitle">Modificar Solicitud Viatico</h1>
       <hr />
       <Form onSubmit={handleSubmit}>
         <div id="FormSolicitBody">
@@ -228,15 +230,15 @@ function SolicitarViaticosEditar() {
                 </p>
               </Col>
               <Col id="SaveSendColumns" sm={12} md={6}>
-                <Button
+                {/* <Button
                   id="SendSaveButtons"
                   variant="primary"
                   onClick={saveAsDraft}
                 >
                   GUARDAR CAMBIOS
-                </Button>
+                </Button> */}
                 <Button id="SendSaveButtons" variant="primary" type="submit">
-                  GUARDAR Y ENVIAR
+                  GUARDAR CAMBIOS
                 </Button>
               </Col>
             </Row>

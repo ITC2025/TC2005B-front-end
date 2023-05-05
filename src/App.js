@@ -23,6 +23,7 @@ import Proyecto from "./pages/Proyecto/proyectoAdmin";
 import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 import AdminViaticos from './pages/Viaticos/adminViaticos';
+import SolicitarViaticosEditar from './pages/SolicitarViaticos/SolicitarViaticosEditar';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
@@ -57,8 +58,10 @@ function App() {
                 path="tablaGastos"
               /> */}
               <Route element={<SolicitarViaticos />} path="solicitar" />
+              <Route element={<SolicitarViaticosEditar />} path="solicitudEditar/:id" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
+
             </Route>
           </Route>
 
