@@ -22,15 +22,6 @@ export default function TableDropdownHistorial({ viaticoID, Status }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    {
-      Status === "Rechazado" &&
-        mostrarModal(!modal);
-    }
-
-    {
-      Status === "Pagado" &&
-        mostrarModalPagado(!modalPagado);
-    }
   };
 
   const getRole = async () => {

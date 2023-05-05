@@ -22,15 +22,6 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    {
-      Status === "Rechazado" &&
-        mostrarModal(!modal);
-    }
-
-    {
-      Status === "Pagado" &&
-        mostrarModalPagado(!modalPagado);
-    }
   };
 
   const getRole = async () => {
@@ -68,13 +59,16 @@ export default function TableDropdown({ viaticoID, Status }) {
         }}
       >
         {isAdmin ? null : <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>}
-        <MenuItem
-          onClick={handleClose}
-          as={Link}
-          to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
-        >
-          Ver gastos
-        </MenuItem>
+
+        {Status !== "Pagado" &&
+          <MenuItem
+            onClick={handleClose}
+            as={Link}
+            to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
+          >
+            Ver gastos
+          </MenuItem>
+        }
 
         {Status === "Rechazado" && (
           <>
