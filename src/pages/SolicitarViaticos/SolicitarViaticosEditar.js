@@ -2,8 +2,6 @@ import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FormInputIcon from "../../components/SolicitarViaticos/FormInputIcon";
-import AddInputButton from "../../components/SolicitarViaticos/AddInputButton";
-import RequestModal from "../../components/SolicitarViaticos/RequestModal";
 import "../../styles/SolicitarViaticos.css";
 import { SolInd } from "../../apis/getApiData";
 import { updateSolicitud } from "../../apis/gastosApiTabla";
@@ -18,13 +16,7 @@ function SolicitarViaticosEditar() {
     window.location.reload(); // cambiar ruta
   };
 
-  const [formData, setFormData] = useState({
-    fechaInicio: "",
-    fechaTermino: "",
-    destino: "",
-    ID_proyecto: "",
-    descripcion: "",
-  });
+  const [formData, setFormData] = useState({});
 
   const [showModal, setShowModal] = useState(false);
   const [dataFromAddInput, setDataFromAddInput] = useState([]);
@@ -44,17 +36,27 @@ function SolicitarViaticosEditar() {
         destino: formData[0].destino,
         ID_proyecto: formData[0].ID_proyecto,
         descripcion: formData[0].descripcion
-      })
+      });
+      console.log(formData)
     });
-    console.log(formData)
   }
 
   useEffect(() => {
-    async function fetchData() {
-      await getDatos();
+    const getDatos = async () => {
+      await SolInd(routeParams.id).then((formData)=>{
+        console.log("hola")
+        setFormData({
+          fechaInicio: formData[0].fechaInicio,
+          fechaTermino: formData[0].fechaTermino,
+          destino: formData[0].destino,
+          ID_proyecto: formData[0].ID_proyecto,
+          descripcion: formData[0].descripcion
+        });
+        console.log(formData)
+      });
     }
 
-    fetchData();
+    getDatos();
   }, []);
 
   useEffect(() => {
@@ -62,13 +64,6 @@ function SolicitarViaticosEditar() {
     setNombresProyectos(nombres);
   }, [proyectos]);
 
-  const handleProyectoChange = (event) => {
-    setSelectedProyecto(event.target.value);
-  };
-
-  const handleDataFromAddInput = (gastos) => {
-    setDataFromAddInput(gastos);
-  };
 
   const handleInputChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -89,28 +84,7 @@ function SolicitarViaticosEditar() {
     }
   };
 
-  const postToDB = () => {
-    mostrarIDProyecto();
-    console.log(idProyecto);
-    updateSolicitud(
-      routeParams.id,
-      3,
-      2,
-      formData.fechaInicio,
-      formData.fechaTermino,
-      formData.destino,
-      formData.descripcion
-    ).then((res) => {
-      for (let i = 0; i < dataFromAddInput.length; i++) {
-        postEstimatedExpenses(
-          dataFromAddInput[i].concepto,
-          dataFromAddInput[i].monto,
-          res
-        );
-      }
-    });
-    pageRefresher();
-  };
+
 
     const saveAsDraft = () => {
       mostrarIDProyecto();
@@ -146,11 +120,13 @@ function SolicitarViaticosEditar() {
     totalGastos = 0;
   }
 
+  console.log(formData.fechaInicio);
+
   return (
     <>
       <h1 id="HeaderTitle">Modificar Solicitud Viatico</h1>
       <hr />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} method="PATCH">
         <div id="FormSolicitBody">
           <Container id="FormSolicitComponent">
             <Row id="SolicitFormRow">
@@ -161,7 +137,7 @@ function SolicitarViaticosEditar() {
                   inputLabel="Fecha Inicio"
                   inputName="fechaInicio"
                   inputType="date"
-                  value={formData.fechaInicio}
+                  inputValue={formData.fechaInicio}
                   onChange={handleInputChange}
                   required
                 />
@@ -173,7 +149,7 @@ function SolicitarViaticosEditar() {
                   inputLabel="Fecha Termino"
                   inputName="fechaTermino"
                   inputType="date"
-                  value={formData.fechaTermino}
+                  inputValue={formData.fechaTermino}
                   onChange={handleInputChange}
                   required
                 />
@@ -187,7 +163,8 @@ function SolicitarViaticosEditar() {
                   inputLabel="Destino"
                   inputName="destino"
                   inputType="text"
-                  value={formData.destino}
+                  inputPlaceholder={formData.destino}
+                  inputValue={formData.destino}
                   onChange={handleInputChange}
                   required
                 />
@@ -201,7 +178,7 @@ function SolicitarViaticosEditar() {
                   inputLabel="Descripcion"
                   inputName="descripcion"
                   inputType="text"
-                  value={formData.descripcion}
+                  inputValue={formData.descripcion || "no jala"}
                   onChange={handleInputChange}
                   required
                 />
