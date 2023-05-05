@@ -123,7 +123,7 @@ const handleSubmit = (event) => {
                           <div className="form-group">
                             <label>Monto</label>
                             <input
-                              type="number"
+                              type="number" min={1}
                               name="monto"
                               className="form-control"
                               placeholder="Monto"

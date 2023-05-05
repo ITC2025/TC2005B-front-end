@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 // import "../../styles/TableStyle.css";
 import ViaticosDropdown from "./ViaticosDropdown";
 import { MdPadding } from "react-icons/md";
+import mxnFormat from "../../utils/mxnFormat";
 
 export default function TablaProyectos() {
   // Configurar hooks
@@ -19,7 +20,6 @@ export default function TablaProyectos() {
     };
     const rawResponse = await fetch(url, options);
     const response = await rawResponse.json();
-    //console.log(response);
     setProyecto(response);
   };
 
@@ -62,13 +62,13 @@ export default function TablaProyectos() {
       sortable: true,
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
     },
     {
       name: "Total",
-      selector: (row) => row.monto,
+      selector: (row) => mxnFormat(row.monto),
       sortable: true,
     },
     {
@@ -77,17 +77,17 @@ export default function TablaProyectos() {
       sortable: true,
     },
     {
-      name: "Actions",
+      name: "Acciones",
       cell: (row) => (
         <ViaticosDropdown status={row.ID_status_solicitud_viaticos} />
       ),
-      width: "80px",
+      width: "100px",
       style: { paddingLeft: "0.5em" },
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",

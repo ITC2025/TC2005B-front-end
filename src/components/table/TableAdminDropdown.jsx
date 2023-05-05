@@ -1,23 +1,76 @@
-import Dropdown from 'react-bootstrap/Dropdown';
-import { MdOutlineMoreVert} from 'react-icons/md';
-import "../../styles/TableBadges.css"
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { MdOutlineMoreVert } from "react-icons/md";
+import "../../styles/TableBadges.css";
+import { Link } from "react-router-dom";
+import Modal from "../modal";
 
-function TableAdminDropdown({travelToId}) {
+export default function TableAdminDropdown({ viaticoID, status }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
-    
-    <Dropdown>
-      <Dropdown.Toggle id="basic-button">
-        <MdOutlineMoreVert id='icon'  />
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu id="basic-menu" MenuListProps={{
+    <div>
+      <Button
+        id="basic-button"
+        aria-controls={open ? "basic-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleClick}
+      >
+        <MdOutlineMoreVert id="icon" />
+      </Button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
           "aria-labelledby": "basic-button",
-        }}>
-        <Dropdown.Item href={"http://localhost:3000/admin/expediente/"+travelToId}>Ver</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+        }}
+      >
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={"/admin/hexpediente/" + viaticoID}
+        >
+          Ver solicitud
+        </MenuItem>
+        {status === "Rechazado" && (
+          <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>Ver motivo de rechazo</MenuItem>
+        )}
+        {status === "Pagado" && (
+          <>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
+            <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+          </>
+        )}
+      </Menu>
+
+      <Modal estado={modalRechazo}
+        cambiarEstado={mostrarModalRechazo}
+        motivoRechazo={true}
+        id={viaticoID} />
+
+      <Modal estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID} />
+
+    </div>
   );
 }
 
-export default TableAdminDropdown;

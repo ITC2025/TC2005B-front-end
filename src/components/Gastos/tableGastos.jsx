@@ -11,6 +11,7 @@ import { MdImage } from "react-icons/md";
 import { Button, useAccordionButton } from "react-bootstrap";
 import { proyecto_sum_user, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
+import mxnFormat from "../../utils/mxnFormat";
 
 export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const navigate = useNavigate();
@@ -115,17 +116,15 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   let total = anticipo - suma;
   let idV = id;
 
-  const ImageComponent = async ({ idGasto }) => {
+    const ImageComponent = async ({ idGasto }) => {
     const data = await imagen_gastos(idGasto);
 
     let imageUrl = data.imagen;
-    imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
 
     let facturaUrl = null;
 
     if (data.factura) {
       facturaUrl = data.factura;
-      facturaUrl = "http://localhost:3001/reporte_gastos/" + facturaUrl;
     }
 
     return { imageUrl, facturaUrl };
@@ -173,7 +172,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     },
     {
       name: "Total",
-      selector: (row) => row.total,
+      selector: (row) => mxnFormat(row.total),
       sortable: true,
       width: "16%",
     },
@@ -192,7 +191,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
 
   const actions = {
     name: "Acciones",
-    cell: (row) => <GastosDropdown id={row.id} doIt={handleBorrar} />, //Pasa la funcion de borrar como componente
+    cell: (row) => <GastosDropdown id={row.id} idExpediente={id} doIt={handleBorrar} />, //Pasa la funcion de borrar como componente
     width: "8%",
     style: { paddingLeft: "0.5em" },
   };
@@ -233,7 +232,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
