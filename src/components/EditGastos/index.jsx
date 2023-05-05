@@ -50,7 +50,6 @@ function EG({ viaticoID }) {
       await updateGasto(formGasto, viaticoID);
       console.log("Gasto actualizado:", formGasto);
       
-      // window.location.href = "/user/expediente/" + viaticoID;
     } catch (error) {
       console.error("Error al actualizar el gasto:", error);
     }
@@ -108,7 +107,7 @@ function EG({ viaticoID }) {
                       <div className="form-group">
                         <label>Monto</label>
                         <input
-                          type="number"
+                          type="number" min={1}
                           name="monto"
                           className="form-control"
                           placeholder="Monto"
@@ -121,28 +120,30 @@ function EG({ viaticoID }) {
                   </div>
                   <div className="my-4"></div>
                   <div className="row">
-                    <div className="col-md-4">
-                      <label>Ticker de compra (PNG)</label>
-                      <div className="input-group mb-3">
-                        <input
-                          className="form-control"
-                          name="imagen"
-                          type="file"                          
-                          onChange={handleFileUpload}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-4">
-                      <label>Factura digital (XML)</label>
-                      <div className="input-group mb-3">
-                        <input
-                          className="form-control"
-                          name="xml"
-                          type="file"
-                          onChange={handleFileUpload}
-                        />
-                      </div>
-                    </div>
+                  <div className="col-md-4">
+                  <label>Ticker de compra (PNG)</label>
+                  <div className="input-group mb-3">
+                    <input
+                      className="form-control"
+                      name="imagen"
+                      type="file"
+                      required
+                      onChange={handleFileUpload}
+                    />
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <label>Factura digital (XML)</label>
+                  <div className="input-group mb-3">
+                    <input
+                      className="form-control"
+                      name="factura"
+                      type="file"
+                      required
+                      onChange={handleFileUpload}
+                    />
+                  </div>
+                </div>
                     <div className="col-md-4">
                       <label>Fecha de Compra</label>
                       <div className="input-group mb-3">
