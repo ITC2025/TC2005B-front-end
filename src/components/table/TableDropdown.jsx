@@ -55,6 +55,17 @@ export default function TableDropdown({ viaticoID, Status }) {
           </MenuItem>
         }
 
+        {Status === "Borrador" &&
+          <MenuItem
+            onClick={handleClose}
+            as={Link}
+            to={"/user/viaticos/editar/" + viaticoID} >
+            <>
+              Modificar
+            </>
+          </MenuItem>
+        }
+
         {Status === "Rechazado" && (
           <>
             <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
