@@ -272,3 +272,17 @@ export async function eliminarSolicitud(ID) {
     const response = await rawResponse.json();
     return response;
   }
+
+  export async function getSolicitudViaticoUser(idSV) {
+    const url = "http://localhost:3001/viaticos/viaticosSolicitud/" + idSV;
+    const options = {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    return response;
+  }
