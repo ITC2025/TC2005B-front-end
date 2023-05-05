@@ -413,7 +413,9 @@ const Modal = ({
             {motivoRechazo && (
               <>
                 <h1> MOTIVO RECHAZO </h1>
-                <p> {msgRechazo.comentario} </p>
+                <h5>
+                  {msgRechazo.comentario == null || msgRechazo.comentario == "" ? "No hay motivo de rechazo" : msgRechazo.comentario}
+                </h5>
                 <Button
                   onClick={() => cambiarEstado(false)}
                   id="cancelButton"
