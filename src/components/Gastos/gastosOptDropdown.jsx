@@ -11,7 +11,7 @@ import { smart_delete_expenses } from "../../apis/gastosApiTabla";
 
 export default function GastosDropdown(props) {
 
-  console.log(props.id);
+  //console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

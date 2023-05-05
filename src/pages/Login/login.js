@@ -67,7 +67,7 @@ export default function Login() {
     }
 
     const response2 = await tokenValidation();
-    console.log(response2.role);
+    // console.log(response2.role);
 
     switch (response2.role) {
       case 1:

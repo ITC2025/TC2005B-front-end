@@ -65,7 +65,7 @@ export async function sessionDelete() {
 export async function userViaticos(){
     const id_user = await tokenID();
     const url = 'http://localhost:3001/viatico_request/user/' + JSON.stringify(id_user.id);
-    console.log(url);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
@@ -75,14 +75,14 @@ export async function userViaticos(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(response);  
+    //console.log(response);  
     return response;
 }
 
 export async function userSaldo(){
     const id_user = await tokenID();
     const url = 'http://localhost:3001/users/saldo/' + JSON.stringify(id_user.id);
-    console.log(url);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
@@ -98,7 +98,7 @@ export async function userSaldo(){
 export async function projectsPM(){
     const id_user = await tokenID();
     const url = 'http://localhost:3001/projects/' + JSON.stringify(id_user.id);
-    console.log(url);
+    //console.log(url);
     const options = {
         method: "GET",
         credentials:"include",
