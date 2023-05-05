@@ -25,13 +25,13 @@ const Modal = ({ estado,
     aprovacionSolicitud,
     aprovacionGastos,
     rechazoGastos,
+    rechazoViaticos,
     imagenTicket,
     proyectoCreado,
     ImgSrc,
     FacturaSrc,
     saldo,
-    rechazarPago,
-    confirmarPago,
+    pagarViaticos,
     motivoRechazoSolicitud, 
     mostrarReferencia, id }) => {
     
@@ -145,7 +145,27 @@ const Modal = ({ estado,
                         {rechazoGastos &&
                             <>
                                 <h1> RECHAZO DE GASTOS </h1>
+
+                                <div class="modal-textarea">
+                                    <p>Motivo de rechazo: </p>
+                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
+                                </div>
+
                                 <Button onClick={() => rechazarGastos()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {rechazoViaticos &&
+                            <>
+                                <h1> RECHAZO DE SOLICITUD DE VIÁTICOS </h1>
+
+                                <div class="modal-textarea">
+                                    <p>Motivo de rechazo: </p>
+                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
+                                </div>
+
+                                <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
                                 <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
                             </>
                         }
@@ -166,23 +186,9 @@ const Modal = ({ estado,
                             </>
                         }
 
-                        {rechazarPago &&
+                        {pagarViaticos &&
                             <>
-                                <h1> RECHAZAR PAGO </h1>
-
-                                <div class="modal-textarea">
-                                    <p>Motivo de rechazo: </p>
-                                    <textarea value={comRechazo} onChange={enviarCom} rows="8" />
-                                </div>
-
-                                <Button onClick={() => rechazarViatico()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
-                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
-                            </>
-                        }
-
-                        {confirmarPago &&
-                            <>
-                                <h1> CONFIRMACION DE PAGO </h1>
+                                <h1> CONFIRMACION DE PAGO DE VIÁTICOS</h1>
                                 <div class="modal-textarea">
                                     <p> Introduce la referencia bancaria: </p>
                                     <textarea value={refBank} onChange={enviarRef} rows="3" />
@@ -252,13 +258,12 @@ const Modal = ({ estado,
     }
 
     function rechazarGastos(){
-        reject_expenses(JSON.parse(id));
+        reject_expenses(JSON.parse(id), comRechazo);
         cambiarEstado(false);
         navigate(-1);
     }
 
     function rechazarViatico() {
-        reject_expenses(JSON.parse(id));
         reject_viatico(JSON.parse(id), comRechazo);
         cambiarEstado(false);
         navigate(-1);
