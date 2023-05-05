@@ -36,11 +36,10 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
       URL = URL + "/" + project_code;
     }
 
-    //console.log(URL);
-
     const res = await fetch(URL);
     let data = await res.json();
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
 
 
     if (closed_requests_only) {
@@ -59,10 +58,8 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
 
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
-  // const getTravelAllowance = async () => {
   useEffect(() => {
     getTravelAllowance();
   }, []);

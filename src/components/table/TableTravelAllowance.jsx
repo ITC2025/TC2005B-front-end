@@ -31,6 +31,8 @@ export const TableTravelAllowance = () => {
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
     let data = await userViaticos();
+    
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
   };

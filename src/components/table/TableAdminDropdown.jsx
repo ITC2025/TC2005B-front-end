@@ -12,6 +12,9 @@ export default function TableAdminDropdown({ viaticoID, status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -21,7 +24,6 @@ export default function TableAdminDropdown({ viaticoID, status }) {
   };
 
   const [modal, mostrarModal] = React.useState(false);
-  const [modalPagado, mostrarModalPagado] = React.useState(false);
 
   return (
     <div>
@@ -57,18 +59,23 @@ export default function TableAdminDropdown({ viaticoID, status }) {
         )}
         {status === "Pagado" && (
           <>
-            <MenuItem onClick={handleClose}>Mostrar pago</MenuItem>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
             <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
           </>
         )}
       </Menu>
 
-      <Modal
-        estado={modal}
-        cambiarEstado={mostrarModal}
+      <Modal estado={modalRechazo}
+        cambiarEstado={mostrarModalRechazo}
         motivoRechazo={true}
-        id={viaticoID}
-      />
+        id={viaticoID} />
+
+      <Modal estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID} />
+
     </div>
   );
 }
+
