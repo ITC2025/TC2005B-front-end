@@ -136,6 +136,7 @@ const handleSubmit = (event) => {
                               name="monto"
                               className="form-control"
                               placeholder="Monto"
+                              value={form.monto}
                               onChange={(e) => handleChange(e, index)}
                               required
                             />

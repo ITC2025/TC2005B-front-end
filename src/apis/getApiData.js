@@ -171,6 +171,37 @@ export async function postCrearReporteGastos(data){
     return response;
 }
 
+export async function getGastos(viaticoID) {
+    const url = 'http://localhost:3001/expense_reports/' + viaticoID;
+    const options = {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+  
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    return response;
+  }
+  
+  export async function updateGasto(data, viaticoID) {
+    const url = `http://localhost:3001/expense_reports/` + viaticoID;
+    const options = {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+  
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    return response;
+  }
+  
 export async function adminSol(){
     const url = 'http://localhost:3001/viatico_request';
     const options = {
