@@ -69,7 +69,6 @@ export default function TableDropdown({ viaticoID, Status, info }) {
         cambiarEstado={setShowModal}
         solicitudViatico={true}
         info={info}
-        viaticoSV={viaticoID}
       />
     </div>
   );

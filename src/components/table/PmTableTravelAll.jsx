@@ -115,7 +115,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       name: "Actions",
       cell: (row) => <PmTableDropdown 
       viaticoID={row.ID_solicitud_viatico}
-      info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]}/>,
+      info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion, row.ID_solicitud_viatico, row.StatusSolicitudViatico]}/>,
       width: "80px",
     },
   ];

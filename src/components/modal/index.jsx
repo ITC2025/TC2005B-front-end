@@ -10,7 +10,7 @@ import {
   reject_viatico,
   approve_expenses,
   reject_expenses,
-  send_viatico,
+  send_viatico
 } from "../../apis/gastosApiTabla";
 // Styled Components
 import styled from "styled-components";
@@ -31,12 +31,10 @@ const Modal = ({
   rechazarPago,
   confirmarPago,
   solicitudViatico,
-  id_solicitud_viatico,
   info,
   motivoRechazo,
   id,
   gastosContemplados,
-  viaticoSV,
   dosBotones
 }) => {
   const [refBank, setRefBank] = useState("");
@@ -345,13 +343,13 @@ const Modal = ({
                                 </tr>
                               </thead>
                               <tbody className="modal-tbody">
-                                {/* {gastosContemplados.map((value, idx) => (
+                                {/* {getSolicitudViaticoUser(info[6]).map((value, idx) => (
                                   <tr key={idx} className="bg-white">
                                     <td>{value.concepto}</td>
                                     <td>{parseInt(value.monto)} MXN</td>
                                   </tr>
                                 ))} */}
-                                {console.log(gastosContemplados)}
+                                {console.log(getSolicitudViaticoUser(info[6]))}
                               </tbody>
                             </Table>
                           </Col>
@@ -360,17 +358,20 @@ const Modal = ({
                     </Container>
                   </Container>
                 </div>
-                <Button
-                  onClick={() => cambiarEstado(false)}
-                  id="cancelButton"
-                  className="mt-3"
-                  size="lg"
-                  variant="danger"
-                >
-                  CLOSE
-                </Button>
               </>
             )}
+
+            {dosBotones && 
+                <>
+                    { info[7] === 2 && (
+                        <>
+                        <Button  onClick={() => aceptarViatico(info[6])}  id="basicButton"  className="mt-3"  size="lg"  variant="ligth">ACEPTAR</Button>
+                        {" "}
+                        <Button  onClick={() => rechazarViatico(info[6])}  id="basicButton"  className="mt-3"  size="lg"  variant="ligth">RECHAZAR</Button>
+                        </>
+                    )}
+                </>
+            }
           </ContModal>
         </Overlay>
       )}

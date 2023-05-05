@@ -64,7 +64,7 @@ export default function PmTableDropdown({ viaticoID,info }) {
         cambiarEstado={setShowModal}
         solicitudViatico={true}
         info={info}
-        dos_botones={true}
+        dosBotones={true}
       />
     </div>
   );
