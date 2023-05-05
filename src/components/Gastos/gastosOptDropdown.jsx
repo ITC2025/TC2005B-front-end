@@ -7,12 +7,15 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import { smart_delete_expenses } from "../../apis/gastosApiTabla";
+import { SolInd } from "../../apis/getApiData";
+
 
 export default function GastosDropdown(props) {
 
   //console.log(props.id);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [estadoExp, setEstadoExp] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -20,13 +23,26 @@ export default function GastosDropdown(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    getStatusSolicitud();
   }; 
 
   const handleModal = () => {
     props.doIt(props.id);
     handleClose();
-
   } 
+
+  const getStatusSolicitud = async () => {
+    const solStatus = await SolInd(props.idExpediente);
+    console.log(solStatus[0].ID_status_solicitud_viaticos);
+    setEstadoExp(solStatus[0].ID_status_solicitud_viaticos);
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+      await getStatusSolicitud();
+    }
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -49,7 +65,12 @@ export default function GastosDropdown(props) {
         }}
       >
         <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>
-        <MenuItem onClick={handleClose} as={Link} to={"/user/EG/" + props.id} >Editar</MenuItem>
+        {(estadoExp === 6 || estadoExp === 1) && (
+          <>
+            <MenuItem onClick={handleClose} as={Link} to={"/user/EG/" + props.id} >Editar</MenuItem>
+          </>
+        )
+        }
         <MenuItem onClick={handleModal}>Borrar</MenuItem>
       </Menu>
 
