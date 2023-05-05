@@ -23,6 +23,8 @@ const Modal = ({ estado,
     confirmar,
     cancelar,
     aprovacionSolicitud,
+    aprovacionGastos,
+    rechazoGastos,
     imagenTicket,
     proyectoCreado,
     ImgSrc,
@@ -132,6 +134,22 @@ const Modal = ({ estado,
                             </>
                         }
 
+                        {aprovacionGastos &&
+                            <>
+                                <h1> APROBACION DE GASTOS </h1>
+                                <Button onClick={() => aceptarGastos()} id='basicButton' className='mt-3' size="lg" variant="ligth"> ACEPTAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
+                        {rechazoGastos &&
+                            <>
+                                <h1> RECHAZO DE GASTOS </h1>
+                                <Button onClick={() => rechazarGastos()} id='basicButton' className='mt-3' size="lg" variant="ligth"> RECHAZAR </Button> {' '}
+                                <Button onClick={() => cambiarEstado(false)} id='cancelButton' className='mt-3' size="lg" variant="danger"> CANCELAR </Button>
+                            </>
+                        }
+
                         {imagenTicket &&
                             <>
                                 <img src={ImgSrc} class="ticket_image" alt="Imagen ticket"></img>
@@ -223,6 +241,18 @@ const Modal = ({ estado,
     function aceptarViatico() {
         approve_expenses(JSON.parse(id));
         accept_viatico(JSON.parse(id));
+        cambiarEstado(false);
+        navigate(-1);
+    }
+
+    function aceptarGastos() {
+        approve_expenses(JSON.parse(id));
+        cambiarEstado(false);
+        navigate(-1);
+    }
+
+    function rechazarGastos(){
+        reject_expenses(JSON.parse(id));
         cambiarEstado(false);
         navigate(-1);
     }

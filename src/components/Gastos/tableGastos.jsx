@@ -28,7 +28,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
-  const [modalSolicitud, modalEstadoSolicitud] = useState(false);
+  const [modalGastos, modalEstadoGastos] = useState(false);
   const [modalRechazo, modalEstadoRechazo] = useState(false);
   const [modalPagar, modalEstadoPagar] = useState(false);
 
@@ -288,7 +288,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
               <>
                 <button
                   id="basicButton"
-                  onClick={() => modalEstadoSolicitud(!modalSolicitud)}
+                  onClick={() => modalEstadoGastos(!modalGastos)}
                 >
                   {" "}
                   Aceptar{" "}
@@ -331,16 +331,16 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       />
 
       <Modal
-        estado={modalSolicitud}
-        cambiarEstado={modalEstadoSolicitud}
-        aprovacionSolicitud={true}
+        estado={modalGastos}
+        cambiarEstado={modalEstadoGastos}
+        aprovacionGastos={true}
         id={id}
       />
 
       <Modal
         estado={modalRechazo}
         cambiarEstado={modalEstadoRechazo}
-        rechazarPago={true}
+        rechazoGastos={true}
         id={id}
       />
 
