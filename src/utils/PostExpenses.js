@@ -20,7 +20,7 @@ export async function postEstimatedExpenses(
   };
   const rawResponse = await fetch(url, options);
   const response = await rawResponse.json();
-  console.log(JSON.stringify(response));
+  // console.log(JSON.stringify(response));
 }
 
 export async function submitSV(
@@ -54,7 +54,7 @@ export async function submitSV(
   const rawResponse = await fetch(url, options);
   const response = await rawResponse.json();
   console.log(
-    "Solicitud de viaticos num",
+    "Solicitud de viáticos num",
     response.payload.ID_solicitud_viatico,
     "creada"
   );

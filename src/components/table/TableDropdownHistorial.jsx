@@ -6,14 +6,13 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal";
-import { tokenValidation, eliminarSolicitud } from "../../apis/getApiData";
-import { useNavigate } from "react-router-dom";
+import { tokenValidation } from "../../apis/getApiData";
 
-export default function TableDropdown({ viaticoID, Status }) {
+export default function TableDropdownHistorial({ viaticoID, Status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
-  const navigate = useNavigate();
+
   const [modal, mostrarModal] = React.useState(false);
   const [modalPagado, mostrarModalPagado] = React.useState(false);
 
@@ -23,11 +22,6 @@ export default function TableDropdown({ viaticoID, Status }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-  
-  const deleteSolicitud = (id) =>{
-    eliminarSolicitud(id)
-    window.location.reload();
   };
 
   const getRole = async () => {
@@ -40,6 +34,7 @@ export default function TableDropdown({ viaticoID, Status }) {
   React.useEffect(() => {
     getRole()
   }, [])
+
 
   return (
     <div>
@@ -62,34 +57,26 @@ export default function TableDropdown({ viaticoID, Status }) {
         }}
       >
         {isAdmin ? null : <MenuItem onClick={handleClose}>Abrir solicitud</MenuItem>}
-
-        {Status !== "Pagado" &&
-          <MenuItem
-            onClick={handleClose}
-            as={Link}
-            to={isAdmin ? "../expediente/" + viaticoID : "../expediente/" + viaticoID}
-          >
-            Ver gastos
-          </MenuItem>
-        }
+        <MenuItem
+          onClick={handleClose}
+          as={Link}
+          to={isAdmin ? "../hexpediente/" + viaticoID : "../hexpediente/" + viaticoID}
+        >
+          Ver historial
+        </MenuItem>
 
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={() => mostrarModal(!modal)}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
           </>
         )}
 
         {Status === "Pagado" && (
           <>
-            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}> Ver pago</MenuItem>
+            <MenuItem onClick={handleClose}> Ver pago</MenuItem>
           </>
         )}
 
-        {Status === "Borrador" && (
-          <>
-            <MenuItem onClick={() => deleteSolicitud(viaticoID)}>Eliminar</MenuItem>
-          </>
-        )}
       </Menu>
 
       <Modal estado={modal}

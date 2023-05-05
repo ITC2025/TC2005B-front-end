@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
+import TableDropdownHistorial from "./TableDropdownHistorial";
 
 export const AdminTableTravelAll = () => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ export const AdminTableTravelAll = () => {
       width: "80px",
     },
     {
-      name: "Descripcion",
+      name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
     },
@@ -73,15 +74,15 @@ export const AdminTableTravelAll = () => {
       style: { paddingLeft: "0px" },
     },
     {
-      name: "Actions",
+      name: "Acciones",
       cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
-      width: "80px",
+      width: "90px",
       style: { paddingLeft: "0.5em" },
     },
   ];
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
@@ -89,6 +90,8 @@ export const AdminTableTravelAll = () => {
   // mostrar la tabla
   return (
     <div className="container">
+      <h1 id="HeaderTitle">Historial de solicitudes</h1>
+      <hr />
       <div className="row my-2 d-flex align-items-end">
         <div className="col-4 d-flex justify-content-start">
         </div>

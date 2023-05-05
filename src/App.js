@@ -23,6 +23,7 @@ import Proyecto from "./pages/Proyecto/proyectoAdmin";
 import SolicitudesAprobadas from "./pages/SolicitudesAprobadas";
 import { NotFound } from "./pages/NotFound/NotFound";
 import AdminViaticos from './pages/Viaticos/adminViaticos';
+import EditarGastp from './pages/Gastos/EditarGasto';
 
 function ExpedientesID() {
   //Agarra el id del expediente del ult
@@ -30,10 +31,14 @@ function ExpedientesID() {
   return <Expediente id={routeParams.id} />;
 }
 
-
 function FacturasID() {
   const routeParams = useParams();
   return <Facturas id={routeParams.id} />;
+}
+
+function EditGastoID() {
+  const routeParams = useParams();
+  return <EditarGastp id={routeParams.id} />;
 }
 
 function App() {
@@ -56,6 +61,10 @@ function App() {
                 element={<TablaGastos name="user tabla gastos" />}
                 path="tablaGastos"
               /> */}
+              <Route
+                element={<EditGastoID name="user EditGasto" />}
+                path="EG/:id"
+              />
               <Route element={<SolicitarViaticos />} path="solicitar" />
               <Route element={<UserTable />} path="viaticos" />
               <Route element={<ExpedientesID />} path="expediente/:id" />
