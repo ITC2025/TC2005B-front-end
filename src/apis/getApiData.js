@@ -230,3 +230,21 @@ export async function solicitudViaticosPM(){
     const response = await rawResponse.json();
     return response;
 }
+
+export async function eliminarSolicitud(ID) {
+    const url = `http://localhost:3001/viatico_request/` + ID;
+    const options = {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ID_status_solicitud_viaticos: 7
+      }),
+    };
+  
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    return response;
+  }

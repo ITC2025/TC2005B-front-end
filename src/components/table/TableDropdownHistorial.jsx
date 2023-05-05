@@ -76,6 +76,7 @@ export default function TableDropdownHistorial({ viaticoID, Status }) {
             <MenuItem onClick={handleClose}> Ver pago</MenuItem>
           </>
         )}
+
       </Menu>
 
       <Modal estado={modal}

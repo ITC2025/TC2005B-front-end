@@ -33,7 +33,6 @@ export const TableTravelAllowance = () => {
     let data = await userViaticos();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
   useEffect(() => {
