@@ -1,11 +1,12 @@
 import * as React from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
-import Modal from "../modal";
+import Modal from "../modal/index";
 
 export default function TableAdminDropdown({ viaticoID, status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,6 +19,9 @@ export default function TableAdminDropdown({ viaticoID, status }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const [modal, mostrarModal] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
 
   return (
     <div>
@@ -47,7 +51,9 @@ export default function TableAdminDropdown({ viaticoID, status }) {
           Ver solicitud
         </MenuItem>
         {status === "Rechazado" && (
-          <MenuItem onClick={handleClose}>Ver motivo de rechazo</MenuItem>
+          <MenuItem onClick={() => mostrarModal(!modal)}>
+            Ver motivo de rechazo
+          </MenuItem>
         )}
         {status === "Pagado" && (
           <>
@@ -56,6 +62,13 @@ export default function TableAdminDropdown({ viaticoID, status }) {
           </>
         )}
       </Menu>
+
+      <Modal
+        estado={modal}
+        cambiarEstado={mostrarModal}
+        motivoRechazo={true}
+        id={viaticoID}
+      />
     </div>
   );
 }
