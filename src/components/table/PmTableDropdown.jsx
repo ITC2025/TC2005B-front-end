@@ -51,14 +51,7 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
           </>
         )}
 
-        {(pathname === "/pm/solicitudes/"+ codigoPr &&
-          <>
-            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver solicitud</MenuItem>
-
-          </>
-        )}
-
-        {(pathname === "/pm/historico" &&
+        {(pathname === "/pm/historico" || "/pm/solicitudes/"+ codigoPr &&
           <>
             <MenuItem
               onClick={handleClose}
