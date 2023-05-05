@@ -13,14 +13,9 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   const [travelAllowance, setTravelAllowance] = useState([]);
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
 
-  // Estado de los botones, para deshabilitarlos o habilitarlos
-  const [estadoBoton, setEstadoBoton] = useState([false]);
-  const [estadoBoton2, setEstadoBoton2] = useState([false]);
-
   // Estado para mostrar modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   // Funcion para mostrar datos con fetch
   // const URL = "https://jsonplaceholder.typicode.com/users";

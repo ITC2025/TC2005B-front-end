@@ -6,7 +6,6 @@ import TextField from "@mui/material/TextField";
 import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
-import TableDropdownHistorial from "./TableDropdownHistorial";
 
 export const AdminTableTravelAll = () => {
   const navigate = useNavigate();
@@ -74,12 +73,9 @@ export const AdminTableTravelAll = () => {
       style: { paddingLeft: "0px" },
     },
     {
-      name: "Acciones",
-      cell: (row) => <TableAdminDropdown 
-      viaticoID={row.ID_solicitud_viatico} 
-      status={row.StatusSolicitudViatico.descripcion}
-      />,
-      width: "90px",
+      name: "Actions",
+      cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
+      width: "80px",
       style: { paddingLeft: "0.5em" },
     },
   ];

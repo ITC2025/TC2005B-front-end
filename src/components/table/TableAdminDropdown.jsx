@@ -6,9 +6,8 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index";
-import { useLocation } from "react-router-dom";
 
-export default function TableAdminDropdown({ viaticoID, status, codigoPr }) {
+export default function TableAdminDropdown({ viaticoID, status }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -24,7 +23,6 @@ export default function TableAdminDropdown({ viaticoID, status, codigoPr }) {
   };
 
   const [modal, mostrarModal] = React.useState(false);
-  const { pathname } = useLocation();
 
   return (
     <div>
@@ -46,52 +44,37 @@ export default function TableAdminDropdown({ viaticoID, status, codigoPr }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        {pathname === "/admin/solicitudes" && (
-          <>
-            <MenuItem>
-              Ver solicitud
+        <>
+          <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
+          {status === "Rechazado" && (
+            <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>
+              Ver motivo de rechazo
             </MenuItem>
-          </>
-        )}
-        {pathname === "/admin/solicitudes/" + codigoPr && (
-          <>
-            <MenuItem>
-              Ver solicitud
-            </MenuItem>
-          </>
-        )}
-
-        {pathname === "/pm/historial" && (
-          <>
-            <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
-            {status === "Rechazado" && (
-              <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>Ver motivo de rechazo</MenuItem>
-            )}
-            {status === "Pagado" && (
-              <>
-                <MenuItem
-                  onClick={handleClose}
-                  as={Link}
-                  to={"/admin/hexpediente/" + viaticoID}
-                >
-                  Ver expediente
-                </MenuItem>
-                <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
-              </>
-            )}
-            {status === "Aprobado" && (
-              <>
-                <MenuItem
-                  onClick={handleClose}
-                  as={Link}
-                  to={"/admin/hexpediente/" + viaticoID}
-                >
-                  Ver expediente
-                </MenuItem>
-              </>
-            )}
-          </>
-        )}
+          )}
+          {status === "Pagado" && (
+            <>
+              <MenuItem
+                onClick={handleClose}
+                as={Link}
+                to={"/admin/hexpediente/" + viaticoID}
+              >
+                Ver expediente
+              </MenuItem>
+              <MenuItem>Mostrar pago</MenuItem>
+            </>
+          )}
+          {status === "Aprobado" && (
+            <>
+              <MenuItem
+                onClick={handleClose}
+                as={Link}
+                to={"/admin/hexpediente/" + viaticoID}
+              >
+                Ver expediente
+              </MenuItem>
+            </>
+          )}
+        </>
       </Menu>
 
       <Modal
