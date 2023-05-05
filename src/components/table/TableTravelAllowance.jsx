@@ -31,7 +31,6 @@ export const TableTravelAllowance = () => {
   // const getTravelAllowance = async () => {
   const getTravelAllowance = async () => {
     let data = await userViaticos();
-    data = data.filter((row) => row.ID_status_solicitud_viaticos !== 4);
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -99,7 +98,7 @@ export const TableTravelAllowance = () => {
         <TableDropdown
           viaticoID={row.ID_solicitud_viatico}
           Status={row.StatusSolicitudViatico.descripcion}
-          info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]}
+          info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion, row.ID_solicitud_viatico]}
         />
       ),
       width: "80px",

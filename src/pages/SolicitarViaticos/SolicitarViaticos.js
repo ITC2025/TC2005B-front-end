@@ -7,6 +7,10 @@ import "../../styles/SolicitarViaticos.css";
 import { postEstimatedExpenses, submitSV } from "../../utils/PostExpenses";
 
 function SolicitarViaticos() {
+  const pageRefresher = () => {
+    window.location.reload(); // cambiar ruta
+  };
+
   const [formData, setFormData] = useState({
     fechaInicio: "",
     fechaTermino: "",
@@ -64,7 +68,7 @@ function SolicitarViaticos() {
 
   const postToDB = () => {
     mostrarIDProyecto();
-    console.log(idProyecto);
+    // console.log(idProyecto);
     submitSV(
       totalGastos,
       idProyecto,
@@ -82,10 +86,13 @@ function SolicitarViaticos() {
         );
       }
     });
+    pageRefresher();
   };
 
   const saveAsDraft = () => {
     mostrarIDProyecto();
+
+    alert("Solicitud de Viatico guardado como borrador");
     submitSV(
       totalGastos,
       idProyecto,
@@ -103,6 +110,7 @@ function SolicitarViaticos() {
         );
       }
     });
+    pageRefresher();
   };
 
   let totalGastos = 0;

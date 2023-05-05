@@ -16,7 +16,7 @@ export default function Subtotal({id,reloadTrigger}) {
 
     const loadData2 = async () => {
         const jsonInfo = await proyecto_info(id);
-        console.log(jsonInfo);
+        //console.log(jsonInfo);
         
         setAnticipo(jsonInfo[0].anticipo)
     }
@@ -26,7 +26,7 @@ export default function Subtotal({id,reloadTrigger}) {
         if (location.pathname === "/user/expediente/" + id || location.pathname === "/pm/hexpediente/" + id || location.pathname === "/admin/hexpediente/" + id) {
             const loadData = async () => {
                 const jsonInfo = await proyecto_sum_user(id);
-                console.log(jsonInfo);
+                //console.log(jsonInfo);
         
                 setSuma(jsonInfo.monto)
                 
@@ -36,7 +36,7 @@ export default function Subtotal({id,reloadTrigger}) {
         else if (location.pathname === "/pm/expediente/" + id) {
             const loadData = async () => {
                 const jsonInfo = await proyecto_sum_pm(id);
-                console.log(jsonInfo);
+                //console.log(jsonInfo);
         
                 setSuma(jsonInfo.monto)
                 
@@ -46,7 +46,7 @@ export default function Subtotal({id,reloadTrigger}) {
         else if (location.pathname === "/admin/expediente/" + id) {
             const loadData = async () => {
                 const jsonInfo = await proyecto_sum_admin(id);
-                console.log(jsonInfo);
+                //console.log(jsonInfo);
         
                 setSuma(jsonInfo.monto)
                 

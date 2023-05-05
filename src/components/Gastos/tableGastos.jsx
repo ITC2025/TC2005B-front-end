@@ -25,6 +25,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   const [filtertravelAllowance, setFilterTravelAllowance] = useState([]);
   const [modalImgEstado, modalCambiarEstado] = useState(false);
   const [imageUrl, setImageUrl] = useState(null);
+  const [facturaUrl, setFacturaUrl] = useState(null);
   // hooks de modales
   const [modal, modalEstado] = useState(false);
   const [modalSolicitud, modalEstadoSolicitud] = useState(false);
@@ -70,7 +71,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
 
   const URLs = URL[0];
-  console.log(URLs);
 
   // const URL = "https://jsonplaceholder.typicode.com/users";
   const getTravelAllowance = async () => {
@@ -78,7 +78,6 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
     const data = await res.json();
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
   // const getTravelAllowance = async () => {
@@ -91,13 +90,11 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
 
   const loadData = async () => {
     const jsonInfo = await proyecto_sum_user(id);
-    console.log(jsonInfo);
     setSuma(jsonInfo.monto);
   };
 
   const loadData2 = async () => {
     const jsonInfo = await proyecto_info(id);
-    console.log(jsonInfo);
 
     setAnticipo(jsonInfo[0].anticipo);
   };
@@ -119,22 +116,28 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   let idV = id;
 
   const ImageComponent = async ({ idGasto }) => {
-    const imageBlob = await imagen_gastos(idGasto);
+    const data = await imagen_gastos(idGasto);
 
-    const reader = new FileReader();
-    reader.readAsDataURL(imageBlob);
-    reader.onloadend = () => {
-      setImageUrl(reader.result);
-    };
+    let imageUrl = data.imagen;
+    imageUrl = "http://localhost:3001/reporte_gastos/" + imageUrl;
 
-    return imageUrl;
+    let facturaUrl = null;
+
+    if (data.factura) {
+      facturaUrl = data.factura;
+      facturaUrl = "http://localhost:3001/reporte_gastos/" + facturaUrl;
+    }
+
+    return { imageUrl, facturaUrl };
   };
 
-  const OpenModal = (idRow) => {
+  const OpenModal = (idGasto) => {
     modalCambiarEstado(!modalImgEstado);
-    const imgURL = ImageComponent(idRow);
-    console.log(idRow);
-    console.log(imgURL);
+    ImageComponent({ idGasto })
+      .then(({ imageUrl, facturaUrl }) => {
+        setImageUrl(imageUrl);
+        setFacturaUrl(facturaUrl);
+      });
   };
 
   // configuracion de columnas
@@ -318,8 +321,10 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
       />
       <Modal
         estado={modalImgEstado}
+        className="test_class"
         cambiarEstado={modalCambiarEstado}
         ImgSrc={imageUrl}
+        FacturaSrc={facturaUrl}
         imagenTicket={true}
       />
 

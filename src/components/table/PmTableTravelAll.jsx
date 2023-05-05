@@ -36,10 +36,12 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       URL = URL + "/" + project_code;
     } 
 
-    console.log(URL);
+    //console.log(URL);
 
     const res = await fetch(URL);
     let data = await res.json();
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+
 
     if (closed_requests_only) {
       data = data.filter((row) => {
@@ -62,7 +64,7 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
 
 
   const handleSend = () => {
-    console.log("enviar");
+    //console.log("enviar");
     //refrescar la pagina
     window.location.reload();
   };
@@ -115,7 +117,8 @@ export const PmTableTravelAll = ({project_code, closed_requests_only}) => {
       name: "Actions",
       cell: (row) => <PmTableDropdown 
       viaticoID={row.ID_solicitud_viatico}
-      info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]}/>,
+      info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion, row.ID_solicitud_viatico, row.StatusSolicitudViatico]}
+      codigoPr={project_code}/>,
       width: "80px",
     },
   ];

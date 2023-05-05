@@ -10,7 +10,7 @@ export async function solViaticos(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 export async function viaticoInd(ID_sol){
@@ -23,7 +23,7 @@ export async function viaticoInd(ID_sol){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 export async function comentario(comentario) {
@@ -37,7 +37,7 @@ export async function comentario(comentario) {
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 export async function proyectos(){
@@ -50,7 +50,7 @@ export async function proyectos(){
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }
 
 export async function addProyecto(name, Codigo, Responsable, Descripcion) {
@@ -71,5 +71,5 @@ export async function addProyecto(name, Codigo, Responsable, Descripcion) {
     }
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
-    console.log(JSON.stringify(response))
+    //console.log(JSON.stringify(response))
 }

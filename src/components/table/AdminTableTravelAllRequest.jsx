@@ -3,12 +3,11 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
+import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
-import TableDropdownHistorial from "./TableDropdownHistorial";
-import TableAdminDropdown from "./TableAdminDropdown";
 
-export const AdminTableTravelAll = () => {
+export const AdminTableTravelAllRequest = () => {
   const navigate = useNavigate();
 
   const navSolicitar = () => {
@@ -21,7 +20,10 @@ export const AdminTableTravelAll = () => {
   const getTravelAllowance = async () => {
     let data = await adminSol();
    
-    data = data.filter((row) => row.StatusSolicitudViatico.descripcion !== "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Pagado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Rechazado");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -63,14 +65,17 @@ export const AdminTableTravelAll = () => {
       sortable: true,
     },
     {
-      name: 'Total',
-      selector: (row) => row.total,
-      sortable: true
+      name: "Estado",
+      selector: (row) => (
+        <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
+      ),
+      sortable: true,
+      width: "120px",
+      style: { paddingLeft: "0px" },
     },
     {
       name: "Actions",
-      //cell: (row) => <TableAdminDropdown travelToId={row.ID_solicitud_viatico}  info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion]} />,
-      cell: (row) => <TableDropdownHistorial viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
@@ -106,6 +111,7 @@ export const AdminTableTravelAll = () => {
         data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
+        fixedHeader
       />
     </div>
   );

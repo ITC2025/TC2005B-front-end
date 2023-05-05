@@ -10,7 +10,7 @@ import { useLocation } from "react-router-dom";
 import Modal from "../modal/index";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
-export default function PmTableDropdown({ viaticoID, info }) {
+export default function PmTableDropdown({ viaticoID, info, codigoPr }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [datosSV, setDatosSV] = React.useState([]);
@@ -70,6 +70,30 @@ export default function PmTableDropdown({ viaticoID, info }) {
           </>
         )}
 
+        {pathname === "/pm/solicitudes/" + codigoPr && (
+          <>
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/pm/expediente/" + viaticoID}
+            >
+              Ver gastos
+            </MenuItem>
+          </>
+        )}
+
+        {pathname === "/pm/solicitudes/" + codigoPr && (
+          <>
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/pm/expediente/" + viaticoID}
+            >
+              Ver solicitud
+            </MenuItem>
+          </>
+        )}
+
         {pathname === "/pm/historico" && (
           <>
             <MenuItem
@@ -89,6 +113,7 @@ export default function PmTableDropdown({ viaticoID, info }) {
         cambiarEstado={setShowModal}
         solicitudViatico={true}
         info={info}
+        dosBotones={true}
       />
     </div>
   );

@@ -6,15 +6,18 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
-import Modal from "../modal/index";
+import Modal from "../modal";
+import { tokenValidation } from "../../apis/getApiData";
 import { getSolicitudViaticoUser } from "../../apis/getApiData";
 
 export default function TableDropdown({ viaticoID, Status, info }) {
   const [showModal, setShowModal] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [isAdmin, setIsAdmin] = React.useState(false);
   const open = Boolean(anchorEl);
   const [modal, mostrarModal] = React.useState(false);
   const [datosSV, setDatosSV] = React.useState([]);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -22,9 +25,6 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-    {
-      Status === "Rechazado" && mostrarModal(!modal);
-    }
   };
 
   const abrirSolicitudDB = async () => {
@@ -38,6 +38,19 @@ export default function TableDropdown({ viaticoID, Status, info }) {
 
     abrirSolicitudDB().then(() => setShowModal(!showModal));
   };
+
+  const getRole = async () => {
+    const response = await tokenValidation();
+    // console.log(response.role)
+    if (response.role === 3) {
+      setIsAdmin(true);
+      // console.log('Yo soy Admin')
+    }
+  };
+
+  React.useEffect(() => {
+    getRole();
+  }, []);
 
   return (
     <div>
@@ -67,13 +80,56 @@ export default function TableDropdown({ viaticoID, Status, info }) {
         >
           Ver gastos
         </MenuItem>
+        {isAdmin ? null : (
+          <MenuItem onClick={handleOnClickSomething}>Abrir solicitud</MenuItem>
+        )}
+
+        {Status !== "Pagado" && (
+          <MenuItem
+            onClick={handleClose}
+            as={Link}
+            to={
+              isAdmin
+                ? "../expediente/" + viaticoID
+                : "../expediente/" + viaticoID
+            }
+          >
+            Ver gastos
+          </MenuItem>
+        )}
+
         {Status === "Rechazado" && (
           <>
-            <MenuItem onClick={handleClose}> Motivo de rechazo</MenuItem>
+            <MenuItem onClick={() => mostrarModal(!modal)}>
+              {" "}
+              Motivo de rechazo
+            </MenuItem>
+          </>
+        )}
+
+        {Status === "Pagado" && (
+          <>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>
+              {" "}
+              Ver pago
+            </MenuItem>
           </>
         )}
       </Menu>
 
+      <Modal
+        estado={modal}
+        cambiarEstado={mostrarModal}
+        motivoRechazo={true}
+        id={viaticoID}
+      />
+
+      <Modal
+        estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID}
+      />
       <Modal estado={modal} cambiarEstado={mostrarModal} motivoRechazo={true} />
       <Modal
         dataDB={datosSV}
