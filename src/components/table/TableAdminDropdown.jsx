@@ -45,13 +45,7 @@ export default function TableAdminDropdown({ viaticoID, status }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem
-          onClick={handleClose}
-          as={Link}
-          to={"/admin/hexpediente/" + viaticoID}
-        >
-          Ver solicitud
-        </MenuItem>
+        <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
         {status === "Rechazado" && (
           <MenuItem onClick={() => mostrarModal(!modal)}>
             Ver motivo de rechazo
@@ -59,23 +53,44 @@ export default function TableAdminDropdown({ viaticoID, status }) {
         )}
         {status === "Pagado" && (
           <>
-            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
-            <MenuItem onClick={handleClose}>Mostrar gastos</MenuItem>
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/admin/hexpediente/" + viaticoID}
+            >
+              Ver expediente
+            </MenuItem>
+            <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>
+              Mostrar pago
+            </MenuItem>
+          </>
+        )}
+        {status === "Aprobado" && (
+          <>
+            <MenuItem
+              onClick={handleClose}
+              as={Link}
+              to={"/admin/hexpediente/" + viaticoID}
+            >
+              Ver expediente
+            </MenuItem>
           </>
         )}
       </Menu>
 
-      <Modal estado={modalRechazo}
+      <Modal
+        estado={modalRechazo}
         cambiarEstado={mostrarModalRechazo}
         motivoRechazo={true}
-        id={viaticoID} />
+        id={viaticoID}
+      />
 
-      <Modal estado={modalPagado}
+      <Modal
+        estado={modalPagado}
         cambiarEstado={mostrarModalPagado}
         mostrarReferencia={true}
-        id={viaticoID} />
-
+        id={viaticoID}
+      />
     </div>
   );
 }
-
