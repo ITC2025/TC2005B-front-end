@@ -4,6 +4,7 @@ import { Container, Table, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { proyecto_sum_user, proyecto_sum_pm, proyecto_sum_admin, proyecto_info } from "../../apis/gastosApiTabla";
 import { useLocation } from "react-router-dom";
+import mxnFormat from "../../utils/mxnFormat";
 
 export default function Subtotal({id,reloadTrigger}) {
 
@@ -70,16 +71,16 @@ export default function Subtotal({id,reloadTrigger}) {
                             <tbody>
                                 <tr>
                                     <th> TOTAL (MXN): </th>
-                                    <th> $ {suma} </th>
+                                    <th>  {mxnFormat(suma)} </th>
                                 </tr>
                                 <tr>
                                     <th> ANTICIPO (MXN): </th>
-                                    <th> $ {anticipo} </th>
+                                    <th>  {mxnFormat(anticipo)} </th>
                                 </tr>
 
                                 <tr className="rowSaldo">
                                     <th> SALDO (MXN): </th>
-                                    <th> $ {total} </th>
+                                    <th>  {mxnFormat(total)} </th>
                                 </tr>
                             </tbody>
                         </Table>

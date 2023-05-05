@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import TableDropdown from "./TableDropdown";
 import { useNavigate } from "react-router-dom";
 import { userViaticos } from "../../apis/getApiData";
+import mxnFormat from "../../utils/mxnFormat";
 
 export const TableTravelAllowance = () => {
   const navigate = useNavigate();
@@ -82,7 +83,7 @@ export const TableTravelAllowance = () => {
     },
     {
       name: "Monto",
-      selector: (row) => row.monto,
+      selector: (row) => mxnFormat(row.monto),
       sortable: true,
     },
     {
