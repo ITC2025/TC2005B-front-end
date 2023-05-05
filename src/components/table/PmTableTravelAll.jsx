@@ -36,17 +36,18 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
       URL = URL + "/" + project_code;
     }
 
-    //console.log(URL);
-
     const res = await fetch(URL);
     let data = await res.json();
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
 
 
     if (closed_requests_only) {
       data = data.filter((row) => {
-        return (row.StatusSolicitudViatico.descripcion != "Enviado" &&
-          row.StatusSolicitudViatico.descripcion != "En revisión")
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
+                row.StatusSolicitudViatico.descripcion != "En revisión" &&
+                row.StatusSolicitudViatico.descripcion != "Borrador" &&
+                row.StatusSolicitudViatico.descripcion != "Eliminado")
       });
     } else if (!project_code) {
       data = data.filter((row) => {
@@ -57,10 +58,8 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
 
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
-    // console.log(data);
   };
 
-  // const getTravelAllowance = async () => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
@@ -117,7 +116,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
     },
     {
       name: "Acciones",
-      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} codigoPr={project_code} />,
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} codigoPr={project_code} />,
       width: "90px",
     },
   ];
