@@ -3,7 +3,7 @@ import DataTable from "react-data-table-component";
 import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import TextField from "@mui/material/TextField";
-import TableDropdown from "./TableDropdown";
+import TableAdminDropdown from "./TableAdminDropdown";
 import { useNavigate } from "react-router-dom";
 import { adminSol } from "../../apis/getApiData";
 
@@ -21,6 +21,8 @@ export const AdminTableTravelAll = () => {
     let data = await adminSol();
    
     data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado")
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -72,7 +74,7 @@ export const AdminTableTravelAll = () => {
     },
     {
       name: "Actions",
-      cell: (row) => <TableDropdown viaticoID={row.ID_solicitud_viatico} />,
+      cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
       width: "80px",
       style: { paddingLeft: "0.5em" },
     },
