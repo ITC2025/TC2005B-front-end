@@ -5,18 +5,25 @@ import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
+import Modal from "../modal/index";
 import { useLocation } from "react-router-dom";
 
 export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [modalRechazo, mostrarModalRechazo] = React.useState(false);
+  const [modalPagado, mostrarModalPagado] = React.useState(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
+  const [modal, mostrarModal] = React.useState(false);
   const { pathname } = useLocation();
 
   return (
@@ -41,64 +48,65 @@ export default function PmTableDropdown({ viaticoID, status, codigoPr }) {
       >
         {pathname === "/pm/solicitudes" && (
           <>
-            <MenuItem
-              onClick={handleClose}
-              as={Link}
-              to={"/pm/expediente/" + viaticoID}
-            >
+            <MenuItem>
               Ver solicitud
             </MenuItem>
           </>
         )}
-        {(pathname === "/pm/solicitudes/"+ codigoPr &&
+        {pathname === "/pm/solicitudes/" + codigoPr && (
           <>
-            <MenuItem onClick={handleClose} as={Link} to={"/pm/expediente/" + viaticoID}  >Ver solicitud</MenuItem>
+            <MenuItem>
+              Ver solicitud
+            </MenuItem>
+          </>
+        )}
+
+        {pathname === "/pm/historico" && (
+          <>
+            <MenuItem onClick={handleClose}>Ver solicitud</MenuItem>
             {status === "Rechazado" && (
-              <MenuItem onClick={handleClose}>
-                Mostrar motivo de rechazo
-              </MenuItem>
+              <MenuItem onClick={() => mostrarModalRechazo(!modalRechazo)}>Ver motivo de rechazo</MenuItem>
             )}
             {status === "Pagado" && (
               <>
-              <MenuItem onClick={handleClose}>
-                Mostrar pago
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                Mostrar gastos
-              </MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/pm/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
+                <MenuItem onClick={() => mostrarModalPagado(!modalPagado)}>Mostrar pago</MenuItem>
               </>
             )}
-
-          </>
-        )}
-
-        {(pathname === "/pm/historico" &&
-          <>
-            <MenuItem
-              onClick={handleClose}
-              as={Link}
-              to={"/pm/hexpediente/" + viaticoID}
-            >
-              Ver solicitud
-            </MenuItem>
-            {status === "Rechazado" && (
-              <MenuItem onClick={handleClose}>
-                Mostrar motivo de rechazo
-              </MenuItem>
-            )}
-            {status === "Pagado" && (
+            {status === "Aprobado" && (
               <>
-              <MenuItem onClick={handleClose}>
-                Mostrar pago
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                Mostrar gastos
-              </MenuItem>
+                <MenuItem
+                  onClick={handleClose}
+                  as={Link}
+                  to={"/pm/hexpediente/" + viaticoID}
+                >
+                  Ver expediente
+                </MenuItem>
               </>
             )}
           </>
         )}
       </Menu>
+
+      <Modal
+        estado={modalRechazo}
+        cambiarEstado={mostrarModalRechazo}
+        motivoRechazo={true}
+        id={viaticoID}
+      />
+
+      <Modal
+        estado={modalPagado}
+        cambiarEstado={mostrarModalPagado}
+        mostrarReferencia={true}
+        id={viaticoID}
+      />
     </div>
   );
 }
