@@ -28,7 +28,6 @@ export default function FormProject({ PmData }) {
 
   const handleForm = async (event) => {
     postToDB();
-    event.preventDefault();
     try {
       setSuccess(true);
     } catch (error) {
