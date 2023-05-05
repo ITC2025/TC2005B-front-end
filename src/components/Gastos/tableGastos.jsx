@@ -231,7 +231,7 @@ export const TableGastos = ({ id, handleReloadSubtotal }) => {
   }
 
   const paginationTable = {
-    rowsPerPageText: "Filas por pagina",
+    rowsPerPageText: "Filas por página",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
