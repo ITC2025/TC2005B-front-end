@@ -42,7 +42,7 @@ export default function TableDropdownHistorial({ viaticoID, Status }) {
 
   React.useEffect(() => {
     getRole()
-  })
+  }, [])
 
 
   return (
@@ -69,7 +69,7 @@ export default function TableDropdownHistorial({ viaticoID, Status }) {
         <MenuItem
           onClick={handleClose}
           as={Link}
-          to={isAdmin ? "../hexpediente/" + viaticoID : "../user/hexpediente/" + viaticoID}
+          to={isAdmin ? "../hexpediente/" + viaticoID : "../hexpediente/" + viaticoID}
         >
           Ver historial
         </MenuItem>
