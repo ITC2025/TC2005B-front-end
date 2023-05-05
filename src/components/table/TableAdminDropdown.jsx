@@ -60,7 +60,7 @@ export default function TableAdminDropdown({ viaticoID, status }) {
               >
                 Ver expediente
               </MenuItem>
-              <MenuItem>Mostrar pago</MenuItem>
+              <MenuItem onClick={() => mostrarModalPagado(!modalRechazo)}>Mostrar pago</MenuItem>
             </>
           )}
           {status === "Aprobado" && (
