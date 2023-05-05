@@ -72,14 +72,14 @@ export default function TableDropdown({ viaticoID, Status, info }) {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleOnClickSomething}>Abrir solicitud</MenuItem>
+        {/* <MenuItem onClick={handleOnClickSomething}>Abrir solicitud</MenuItem>
         <MenuItem
           onClick={handleClose}
           as={Link}
           to={"/user/expediente/" + viaticoID}
         >
           Ver gastos
-        </MenuItem>
+        </MenuItem> */}
         {isAdmin ? null : (
           <MenuItem onClick={handleOnClickSomething}>Abrir solicitud</MenuItem>
         )}
