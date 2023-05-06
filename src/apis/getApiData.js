@@ -1,10 +1,10 @@
 const host = 'http://localhost:3001';
 
 export async function getAuthenticationData(name, password) {
-    let data = {
-        correoElectronico: name,
-        password: password
-    }
+  let data = {
+    correoElectronico: name,
+    password: password,
+  };
 
     const url = host + '/login';
     const options = {
@@ -32,7 +32,7 @@ export async function tokenValidation(){
     const rawResponse = await fetch(url, options)
     const response = await rawResponse.json();
 
-    return response;
+  return response;
 }
 
 export async function tokenID(){
@@ -113,12 +113,12 @@ export async function projectsPM(){
     return response;
 }
 
-export async function postProject(nombre, codigo , desc) {
-    let data = {
-        nombre: nombre,
-        codigoProyecto: codigo,
-        descripcion: desc
-    }
+export async function postProject(nombre, codigo, desc) {
+  let data = {
+    nombre: nombre,
+    codigoProyecto: codigo,
+    descripcion: desc,
+  };
 
     const id_user = await tokenID();
     const url = host + '/projects/' + JSON.stringify(id_user.id);
@@ -135,17 +135,25 @@ export async function postProject(nombre, codigo , desc) {
     return response;
 }
 
-export async function postSolicitarViatico(montoViatico,descripcionSolicitud, destinoViatico, fechaI, fechaF, codProyecto, descStatus){
-    let data = {
-        monto: montoViatico,
-        descripcion: descripcionSolicitud,
-        destino: destinoViatico,
-        fechaInicio: fechaI,
-        fechaTermino: fechaF,
-        ID_empleado: tokenID(),
-        codigo_proyecto: codProyecto,
-        status_descripcion: descStatus
-    }
+export async function postSolicitarViatico(
+  montoViatico,
+  descripcionSolicitud,
+  destinoViatico,
+  fechaI,
+  fechaF,
+  codProyecto,
+  descStatus
+) {
+  let data = {
+    monto: montoViatico,
+    descripcion: descripcionSolicitud,
+    destino: destinoViatico,
+    fechaInicio: fechaI,
+    fechaTermino: fechaF,
+    ID_empleado: tokenID(),
+    codigo_proyecto: codProyecto,
+    status_descripcion: descStatus,
+  };
 
     const url = host + '/viatico_request/solicitar';
     const options = {
@@ -260,6 +268,20 @@ export async function eliminarSolicitud(ID) {
       }),
     };
   
+    const rawResponse = await fetch(url, options);
+    const response = await rawResponse.json();
+    return response;
+  }
+
+  export async function getSolicitudViaticoUser(idSV) {
+    const url = "http://localhost:3001/viaticos/viaticosSolicitud/" + idSV;
+    const options = {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
     const rawResponse = await fetch(url, options);
     const response = await rawResponse.json();
     return response;

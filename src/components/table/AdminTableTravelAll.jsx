@@ -21,10 +21,16 @@ export const AdminTableTravelAll = () => {
 
   const getTravelAllowance = async () => {
     let data = await adminSol();
-   
-    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
-    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "En revisión");
-    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado")
+
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "Borrador"
+    );
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "En revisión"
+    );
+    data = data.filter(
+      (row) => row.StatusSolicitudViatico.descripcion != "Eliminado"
+    );
     setTravelAllowance(data);
     setFilterTravelAllowance(data);
     // console.log(data);
@@ -66,18 +72,19 @@ export const AdminTableTravelAll = () => {
       sortable: true,
     },
     {
-      name: "Estado",
-      selector: (row) => (
-        <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
-      ),
+      name: "Total",
+      selector: (row) => row.total,
       sortable: true,
-      width: "120px",
-      style: { paddingLeft: "0px" },
     },
     {
-      name: "Actions",
-      cell: (row) => <TableAdminDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} />,
-      width: "80px",
+      name: "Acciones",
+      cell: (row) => (
+        <TableAdminDropdown
+          viaticoID={row.ID_solicitud_viatico}
+          status={row.StatusSolicitudViatico.descripcion}
+        />
+      ),
+      width: "90px",
       style: { paddingLeft: "0.5em" },
     },
   ];
@@ -94,8 +101,7 @@ export const AdminTableTravelAll = () => {
       <h1 id="HeaderTitle">Historial de solicitudes</h1>
       <hr />
       <div className="row my-2 d-flex align-items-end">
-        <div className="col-4 d-flex justify-content-start">
-        </div>
+        <div className="col-4 d-flex justify-content-start"></div>
         <div className="col-8 d-flex justify-content-end">
           <div>
             <div className="d-flex justify-content-end">
@@ -114,7 +120,6 @@ export const AdminTableTravelAll = () => {
         data={travelAllowance}
         pagination
         paginationComponentOptions={paginationTable}
-        fixedHeader
       />
     </div>
   );

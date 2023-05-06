@@ -89,6 +89,7 @@ export const TableTravelAllowance = () => {
         <TableDropdown
           viaticoID={row.ID_solicitud_viatico}
           Status={row.StatusSolicitudViatico.descripcion}
+          info={[row.monto, row.fechaInicio, row.fechaTermino, row.Proyecto.codigoProyecto, row.destino, row.descripcion, row.ID_solicitud_viatico]}
         />
       ),
       width: "100px",
