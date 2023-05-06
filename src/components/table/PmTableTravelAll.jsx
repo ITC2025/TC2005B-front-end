@@ -4,8 +4,6 @@ import "../../styles/TableStyle.css";
 import { BadgeStatus } from "../BadgeStatus";
 import PmTableDropdown from "./PmTableDropdown";
 import TextField from "@mui/material/TextField";
-import { Button } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
 import { tokenID } from "../../apis/getApiData";
 
 export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
@@ -21,6 +19,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   // const URL = "https://jsonplaceholder.typicode.com/users";
   //
 
+
   const getTravelAllowance = async () => {
     const response = await tokenID();
     const user_id = response.id;
@@ -32,28 +31,21 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
 
     const res = await fetch(URL);
     let data = await res.json();
-    data = data.filter(
-      (row) => row.StatusSolicitudViatico.descripcion != "Borrador"
-    );
-    data = data.filter(
-      (row) => row.StatusSolicitudViatico.descripcion != "Eliminado"
-    );
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Borrador");
+    data = data.filter((row) => row.StatusSolicitudViatico.descripcion != "Eliminado");
+
 
     if (closed_requests_only) {
       data = data.filter((row) => {
-        return (
-          row.StatusSolicitudViatico.descripcion != "Enviado" &&
-          row.StatusSolicitudViatico.descripcion != "En revisión" &&
-          row.StatusSolicitudViatico.descripcion != "Borrador" &&
-          row.StatusSolicitudViatico.descripcion != "Eliminado"
-        );
+        return (row.StatusSolicitudViatico.descripcion != "Enviado" && 
+                row.StatusSolicitudViatico.descripcion != "En revisión" &&
+                row.StatusSolicitudViatico.descripcion != "Borrador" &&
+                row.StatusSolicitudViatico.descripcion != "Eliminado")
       });
     } else if (!project_code) {
       data = data.filter((row) => {
-        return (
-          row.StatusSolicitudViatico.descripcion == "Enviado" ||
-          row.StatusSolicitudViatico.descripcion == "En revisión"
-        );
+        return (row.StatusSolicitudViatico.descripcion == "Enviado" ||
+          row.StatusSolicitudViatico.descripcion == "En revisión")
       });
     }
 
@@ -64,11 +56,6 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   useEffect(() => {
     getTravelAllowance();
   }, []);
-
-  const handleSend = () => {
-    //refrescar la pagina
-    window.location.reload();
-  };
 
   // Funcion para filtrar datos
   const handleFilter = (e) => {
@@ -95,6 +82,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
       name: "Descripción",
       selector: (row) => row.descripcion,
       sortable: true,
+
     },
     {
       name: "Nombre",
@@ -108,33 +96,15 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
     },
     {
       name: "Estado",
-      selector: (row) => (
-        <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />
-      ),
+      selector: (row) => <BadgeStatus status={row.StatusSolicitudViatico.descripcion} />,
       sortable: true,
       width: "120px",
       style: { paddingLeft: "0px", textAlign: "center" },
     },
     {
-      name: "Actions",
-      cell: (row) => (
-        <PmTableDropdown
-          viaticoID={row.ID_solicitud_viatico}
-          info={[
-            row.monto,
-            row.fechaInicio,
-            row.fechaTermino,
-            row.Proyecto.codigoProyecto,
-            row.destino,
-            row.descripcion,
-            row.ID_solicitud_viatico,
-            row.StatusSolicitudViatico,
-          ]}
-          status={row.StatusSolicitudViatico.descripcion}
-          codigoPr={project_code}
-        />
-      ),
-      width: "80px",
+      name: "Acciones",
+      cell: (row) => <PmTableDropdown viaticoID={row.ID_solicitud_viatico} status={row.StatusSolicitudViatico.descripcion} codigoPr={project_code} />,
+      width: "90px",
     },
   ];
 
@@ -146,7 +116,7 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
   };
   // mostrar la tabla
   return (
-    <div className="container" style={{ paddingTop: "0rem" }}>
+    <div className="container" style = {{paddingTop: "0rem"}}>
       <h1 id="HeaderTitle">Solicitudes</h1>
       <hr />
       <div className="row my-2">
@@ -168,32 +138,6 @@ export const PmTableTravelAll = ({ project_code, closed_requests_only }) => {
         paginationComponentOptions={paginationTable}
         fixedHeader
       />
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>CONFIRMACIÓN DE RECHAZO</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div>
-            Motivo de Rechazo:
-            <textarea
-              className="form-control"
-              rows="5"
-              id="comment"
-              required
-            ></textarea>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleSend}>RECHAZAR</Button>
-
-          <Button onClick={handleClose}>CANCELAR</Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };
