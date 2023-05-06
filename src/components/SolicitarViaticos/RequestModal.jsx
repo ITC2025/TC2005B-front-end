@@ -1,5 +1,6 @@
 import { Modal, Button, Container, Row, Col, Table } from "react-bootstrap";
 import "../../styles/RequestModal.css";
+import mxnFormat from "../../utils/mxnFormat";
 
 function RequestModal(props) {
   return (
@@ -54,7 +55,7 @@ function RequestModal(props) {
                       {props.gastosValues.map((value, idx) => (
                         <tr key={idx} className="bg-white">
                           <td>{value.concepto}</td>
-                          <td>{parseInt(value.monto)} MXN</td>
+                          <td>{mxnFormat(value.monto)} MXN</td>
                         </tr>
                       ))}
                     </tbody>
