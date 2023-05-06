@@ -7,6 +7,7 @@ import { MdOutlineMoreVert } from "react-icons/md";
 import "../../styles/TableBadges.css";
 import { Link } from "react-router-dom";
 import Modal from "../modal/index";
+import React from "react";
 
 export default function TableAdminDropdown({ viaticoID, info, status }) {
   const [showModal, setShowModal] = useState(false);
