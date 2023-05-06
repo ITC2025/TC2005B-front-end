@@ -371,6 +371,30 @@ const Modal = ({
                             </Table>
                           </Col>
                         </Row>
+                        <Row>
+                        {info[7] === 2 && info[8] === "PM" && (
+                          <>
+                            <Button
+                              onClick={() => aceptarViatico(info[6])}
+                              id="basicButton"
+                              className="mt-3"
+                              size="lg"
+                              variant="ligth"
+                            >
+                              ACEPTAR
+                            </Button>{" "}
+                            <Button
+                              onClick={() => rechazarViatico(info[6])}
+                              id="basicButton"
+                              className="mt-3"
+                              size="lg"
+                              variant="ligth"
+                            >
+                              RECHAZAR
+                            </Button>
+                          </>
+                        )}
+                        </Row>
                       </Container>
                     </Container>
                   </Container>
@@ -494,14 +518,12 @@ const Modal = ({
   }
 
   function aceptarViatico(id) {
-    approve_expenses(JSON.parse(id));
     accept_viatico(JSON.parse(id));
     cambiarEstado(false);
     navigate(-1);
   }
 
   function rechazarViatico(id) {
-    reject_expenses(JSON.parse(id));
     reject_viatico(JSON.parse(id), comRechazo);
     cambiarEstado(false);
     navigate(-1);
