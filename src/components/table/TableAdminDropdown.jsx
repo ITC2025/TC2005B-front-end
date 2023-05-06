@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState } from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -22,7 +22,7 @@ export default function TableAdminDropdown({ viaticoID, info, status }) {
     setAnchorEl(null);
   };
 
-  const [modal, mostrarModal] = React.useState(false);
+  // const [modal, mostrarModal] = React.useState(false);
 
   return (
     <div>

@@ -16,7 +16,7 @@ import {
   comentarioRechazo,
   refBancaria,
 } from "../../apis/gastosApiTabla";
-
+import mxnFormat from "../../utils/mxnFormat";
 {
   /* Ver que show con esto, va en solicitudviaticos 
                 <Button
@@ -328,28 +328,24 @@ const Modal = ({
                         <Row>
                           <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                             <p>
-                              Monto Total: <strong>${info[0]}</strong>
+                              Monto Total: <strong>{mxnFormat(info[0])}</strong>
+                               
                             </p>
                             <p>
-                              Fecha de inicio: <strong>{info[1]}</strong>
+                              Fecha de Inicio: <strong>{info[1]}</strong>
                             </p>
                           </Col>
                           <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                             <p>
                               Destino: <strong>{info[4]}</strong>
+                            </p>                           <p>
+                              Proyecto: <strong>{info[3]}</strong>
                             </p>
                           </Col>
                           <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                             <p>
-                              Proyecto: <strong>{info[3]}</strong>
+                              Fecha de Finalización: <strong>{info[2]}</strong>
                             </p>
-                            <p>
-                              Fecha de término: <strong>{info[2]}</strong>
-                            </p>
-                          </Col>
-                        </Row>
-                        <Row>
-                          <Col>
                             <p>
                               Descripción: <strong>{info[5]}</strong>
                             </p>
@@ -368,7 +364,7 @@ const Modal = ({
                                 {dataDB.map((value, idx) => (
                                   <tr key={idx} className="bg-white">
                                     <td>{value.concepto}</td>
-                                    <td>{parseInt(value.monto)} MXN</td>
+                                    <td>{mxnFormat(value.monto)} MXN</td>
                                   </tr>
                                 ))}
                               </tbody>
